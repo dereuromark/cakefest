@@ -51,9 +51,8 @@ class CakefestAttendanceController extends AppController {
 			if ($this->CakefestAttendance->save($this->request->data)) {
 				$this->Session->setFlash(__('The cakefest attendance has been saved'));
 				return $this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The cakefest attendance could not be saved. Please, try again.'));
 			}
+			$this->Session->setFlash(__('The cakefest attendance could not be saved. Please, try again.'));
 		}
 		$users = $this->CakefestAttendance->User->find('list');
 		$this->set(compact('users'));
@@ -74,9 +73,9 @@ class CakefestAttendanceController extends AppController {
 			if ($this->CakefestAttendance->save($this->request->data)) {
 				$this->Session->setFlash(__('The cakefest attendance has been saved'));
 				return $this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The cakefest attendance could not be saved. Please, try again.'));
 			}
+			$this->Session->setFlash(__('The cakefest attendance could not be saved. Please, try again.'));
+
 		} else {
 			$options = array('conditions' => array('CakefestAttendance.' . $this->CakefestAttendance->primaryKey => $id));
 			$this->request->data = $this->CakefestAttendance->find('first', $options);
