@@ -12,7 +12,7 @@ It's the <a href="http://cakefest.org/" target="_blank">annual conference dedica
 Join us now at the awesome meetup of most CakePHP devs.
 </p>
 
-<h3>What is this page for</h3>
+<h3>What is this site for</h3>
 <p>
 Currently, it is difficult to know from all devs who will be at the conference, and from when to when.
 This page helps to set a basic attendance overview. Also, if you allow other people to see your email, you

@@ -44,7 +44,7 @@ class AppController extends MyController {
 				),
 				'columns' => array('username', 'email'),
 				'userModel' => 'User',
-				//'scope' => array('User.active' => 1)
+				//'scope' => array('User.email_confirmed' => 1)
 			)
 		);
 		$this->Auth->authorize = array(
