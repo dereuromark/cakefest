@@ -738,3 +738,7 @@ pre {
 #url-rewriting-warning {
 	display:none;
 }
+
+
+#header a, #footer a {
+	color: #fff;

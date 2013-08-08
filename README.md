@@ -9,4 +9,5 @@ Author: Mark Scherer alias dereuromark
 ### Dependencies
 
 * CakePHP2.4
+* Ceerams Authenticate plugin
 * My Tools plugin

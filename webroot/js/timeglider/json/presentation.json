@@ -1,0 +1,110 @@
+{
+"presentation":"Timeglider",
+"title":"My Presentation",
+"description":"Example of two timelines loaded, one with 'inverted' set to true, and both with a higher 'bottom' value to create a bookmatched view.",
+"open_modal":true,
+"initial_zoom":49,
+"image_lane_height":100,
+"focus_date":"1991-06-12 12:00:00",
+"initial_timelines":["mr_life", "hj_life"],
+"timelines":[
+
+{"focus_date":"1991-06-12 12:00:00",
+"title":"John",
+"id":"mr_life",
+"initial_zoom":"46",
+"bottom":"250",
+"events":[
+
+{   "startdate":"1968-08-20 12:00:00",
+	"enddate":"",
+	"title":"John Born",
+	"description":"Valley hospital in Springfield, Illinois.<iframe src='http://techmeme.com' width=400 height=200></iframe>",
+	"icon":"circle_green.png",
+	"importance":"50",
+	"video": "http://techmeme.com/m/",
+	"link":"http://www.ridgewoodnj.net/main.cfm",
+	"id":"ev_0"
+},
+{   "startdate":"1981-09-01 12:00:00",
+	"enddate":"1986-06-01 12:00:00",
+	"title":"HHS",
+	"description":"Hanover (NH) High School.",
+	"icon":"square_blue.png",
+	"importance":"32",
+	"link":"http://hanoverhigh.us/Hanover/",
+	"id":"ev_3"
+},
+
+{   "startdate":"1999-06-19 12:00:00",
+	"enddate":"1999-06-19 12:00:00",
+	"title":"Married!",
+	"description":"in Amherst, MA",
+	"icon":"circle_red.png",
+	"importance":"42",
+	"id":"ev_3mar"
+},
+
+
+{   "startdate":"today",
+	"enddate":"",
+	"title":"today!",
+	"description":"Here in Boise Idaho.",
+	"icon":"star_orange.png",
+	"importance":"40",
+	"link":"",
+	"id":"ev_4"
+}
+]
+},
+
+{"focus_date":"1969-02-27 12:00:00",
+"title":"Mary",
+"description":"Mary's life",
+"id":"hj_life",
+"initial_zoom":"42",
+"bottom":"180",
+"inverted":true,
+"events":[
+
+{   "startdate":"1969-02-27 12:00:00",
+	"enddate":"1969-02-27 12:00:00",
+	"title":"Mary born",
+	"description":"St Lukes Hospital, Boise ID, to Walter and Diane Jastremsky",
+	"icon":"circle_green.png",
+	"importance":"50",
+	"id":"hj_ev_0"
+},
+{   "startdate":"1982-09-01 12:00:00",
+	"enddate":"1987-06-01 12:00:00",
+	"title":"Boise High",
+	"description":"Boise (NH) High School.",
+	"icon":"square_blue.png",
+	"importance":"32",
+	"id":"hj_ev_3"
+},
+
+{   "startdate":"1999-06-19 12:00:00",
+	"enddate":"1999-06-19 12:00:00",
+	"title":"Married!",
+	"description":"in Amherst, MA",
+	"icon":"circle_red.png",
+	"importance":"42",
+	"id":"ev_3mar"
+},
+
+{   
+	"startdate":"today",
+	"enddate":"",
+	"title":"today!",
+	"description":"Here in Boise Idaho.",
+	"icon":"star_orange.png",
+	"importance":"40",
+	"link":"",
+	"id":"ev_4"
+}]
+
+}
+
+]
+}

@@ -1,3 +1,7 @@
+<div style="float: right; margin-left: 20px;">
+<a href="http://cakefest.org/" target="_blank"><img src="http://cakefest.org/img/event.jpg" title="CakeFest" style="margin-bottom: 8px;" alt="" /></a>
+</div>
+
 <h2>CakeFest 2013 - Who is on board?</h2>
 <p><b>August 29th - September 1st</b>, San Francisco, USA</p>
 

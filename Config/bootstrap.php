@@ -66,6 +66,8 @@ CakePlugin::loadAll();
 
 App::import('Lib', 'Tools.Bootstrap/MyBootstrap');
 
+Configure::load('configs');
+
 /**
  * You can attach event listeners to the request lifecycle as Dispatcher Filter . By Default CakePHP bundles two filters:
  *

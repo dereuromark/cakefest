@@ -17,6 +17,17 @@ class OverviewController extends AppController {
  */
 	public $components = array('Paginator');
 
+	/**
+	 * OverviewController::beforeFilter()
+	 *
+	 * @return void
+	 */
+	public function beforeFilter() {
+		parent::beforeFilter();
+
+		$this->Auth->allow();
+	}
+
 /**
  * index method
  *

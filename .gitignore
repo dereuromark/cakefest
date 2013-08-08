@@ -1,2 +1,3 @@
 Config/database.php
 tmp
+Plugin/DebugKit
