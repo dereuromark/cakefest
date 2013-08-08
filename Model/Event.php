@@ -1,26 +1,18 @@
 <?php
 App::uses('AppModel', 'Model');
-
 /**
- * CakefestAttendance Model
+ * Event Model
  *
- * @property User $User
+ * @property Attendee $Attendee
  */
-class CakefestAttendance extends AppModel {
-
-/**
- * Use table
- *
- * @var mixed False or table name
- */
-	public $useTable = 'cakefest_attendance';
+class Event extends AppModel {
 
 /**
  * Display field
  *
  * @var string
  */
-	public $displayField = 'user_id';
+	public $displayField = 'name';
 
 /**
  * Validation rules
@@ -48,19 +40,9 @@ class CakefestAttendance extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'display_email' => array(
-			'boolean' => array(
-				'rule' => array('boolean'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'user_id' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
+		'name' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -70,18 +52,26 @@ class CakefestAttendance extends AppModel {
 		),
 	);
 
+	//The Associations below have been created with all possible keys, those that are not needed can be removed
+
 /**
- * belongsTo associations
+ * hasMany associations
  *
  * @var array
  */
-	public $belongsTo = array(
-		'User' => array(
-			'className' => 'User',
-			'foreignKey' => 'user_id',
+	public $hasMany = array(
+		'Attendee' => array(
+			'className' => 'Attendee',
+			'foreignKey' => 'event_id',
+			'dependent' => false,
 			'conditions' => '',
 			'fields' => '',
-			'order' => ''
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
 		)
 	);
 

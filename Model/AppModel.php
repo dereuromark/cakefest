@@ -1,18 +1,5 @@
 <?php
-/**
- * Application model for Cake.
- *
- * This file is application-wide model file. You can put all
- * application-wide model-related methods here.
- *
- * PHP 5
- *
- * @link          http://cakephp.org CakePHP(tm) Project
- * @package       app.Model
- * @since         CakePHP(tm) v 0.2.9
- */
-
-App::uses('Model', 'Model');
+App::uses('MyModel', 'Tools.Model');
 
 /**
  * Application model for Cake.
@@ -22,5 +9,5 @@ App::uses('Model', 'Model');
  *
  * @package       app.Model
  */
-class AppModel extends Model {
+class AppModel extends MyModel {
 }

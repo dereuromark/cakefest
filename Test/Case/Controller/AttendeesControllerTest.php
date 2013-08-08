@@ -1,11 +1,11 @@
 <?php
-App::uses('CakefestAttendanceController', 'Controller');
+App::uses('AttendeesController', 'Controller');
 
 /**
- * CakefestAttendanceController Test Case
+ * AttendeesController Test Case
  *
  */
-class CakefestAttendanceControllerTest extends ControllerTestCase {
+class AttendeesControllerTest extends ControllerTestCase {
 
 /**
  * Fixtures
@@ -13,8 +13,10 @@ class CakefestAttendanceControllerTest extends ControllerTestCase {
  * @var array
  */
 	public $fixtures = array(
-		'app.cakefest_attendance',
-		'app.user'
+		'app.attendee',
+		'app.event',
+		'app.user',
+		'app.cakefest_attendance'
 	);
 
 /**

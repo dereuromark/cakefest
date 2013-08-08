@@ -1,11 +1,11 @@
 <?php
-App::uses('CakefestAttendance', 'Model');
+App::uses('Attendee', 'Model');
 
 /**
- * CakefestAttendance Test Case
+ * Attendee Test Case
  *
  */
-class CakefestAttendanceTest extends CakeTestCase {
+class AttendeeTest extends CakeTestCase {
 
 /**
  * Fixtures
@@ -13,8 +13,10 @@ class CakefestAttendanceTest extends CakeTestCase {
  * @var array
  */
 	public $fixtures = array(
-		'app.cakefest_attendance',
-		'app.user'
+		'app.attendee',
+		'app.event',
+		'app.user',
+		'app.cakefest_attendance'
 	);
 
 /**
@@ -24,7 +26,7 @@ class CakefestAttendanceTest extends CakeTestCase {
  */
 	public function setUp() {
 		parent::setUp();
-		$this->CakefestAttendance = ClassRegistry::init('CakefestAttendance');
+		$this->Attendee = ClassRegistry::init('Attendee');
 	}
 
 /**
@@ -33,7 +35,7 @@ class CakefestAttendanceTest extends CakeTestCase {
  * @return void
  */
 	public function tearDown() {
-		unset($this->CakefestAttendance);
+		unset($this->Attendee);
 
 		parent::tearDown();
 	}

@@ -23,8 +23,8 @@ class OverviewController extends AppController {
  * @return void
  */
 	public function index() {
-		$this->User->CakefestAttendance->recursive = 0;
-		$this->set('cakefestAttendance', $this->Paginator->paginate('CakefestAttendance'));
+		$this->User->Attendee->recursive = 0;
+		$this->set('attendees', $this->Paginator->paginate('Attendee'));
 	}
 
 }
