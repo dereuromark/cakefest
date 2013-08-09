@@ -3,8 +3,8 @@
 	<fieldset>
 		<legend><?php echo __('Add Attendee'); ?></legend>
 	<?php
-		echo $this->Form->input('from', array('timeFormat' => 24, 'interval' => 30));
-		echo $this->Form->input('to', array('timeFormat' => 24, 'interval' => 30));
+		echo $this->Form->input('from', array('type' => 'date', 'timeFormat' => 24, 'interval' => 30));
+		echo $this->Form->input('to', array('type' => 'date', 'timeFormat' => 24, 'interval' => 30));
 		echo $this->Form->input('display_email', array('after' => ' Only logged in users will be able to see it.'));
 		echo $this->Form->input('comment');
 		echo $this->Form->input('event_id');

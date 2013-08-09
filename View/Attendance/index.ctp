@@ -14,8 +14,8 @@
 			<?php //echo $this->Html->link($attendee['Event']['name'], array('controller' => 'events', 'action' => 'view', $attendee['Event']['id'])); ?>
 			<?php echo h($attendee['Event']['name']); ?>
 		</td>
-		<td><?php echo h($attendee['Attendee']['from']); ?>&nbsp;</td>
-		<td><?php echo h($attendee['Attendee']['to']); ?>&nbsp;</td>
+		<td><?php echo $this->Datetime->localDate($attendee['Attendee']['from'], '%Y-%m-%d'); ?>&nbsp;</td>
+		<td><?php echo $this->Datetime->localDate($attendee['Attendee']['to'], '%Y-%m-%d'); ?>&nbsp;</td>
 		<td><?php echo $this->Format->yesNo($attendee['Attendee']['display_email']); ?>&nbsp;</td>
 
 		<td class="actions">

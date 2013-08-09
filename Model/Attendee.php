@@ -93,9 +93,15 @@ class Attendee extends AppModel {
 		$compareDateTime = strtotime($compareDate);
 		switch ($key) {
 			case 'from':
-				return $dateTime >= $compareDateTime - 10 * DAY;
+				if (!($dateTime >= $compareDateTime - 10 * DAY)) {
+					return 'You cannot set a date before ' . date(FORMAT_DB_DATE, $compareDateTime);
+				}
+				return true;
 			case 'to':
-				return $dateTime <= $compareDateTime + 10 * DAY;
+				if (!($dateTime <= $compareDateTime + 10 * DAY)) {
+					return 'You cannot set a date after ' . date(FORMAT_DB_DATE, $compareDateTime);
+				}
+				return true;
 		}
 
 		return false;
