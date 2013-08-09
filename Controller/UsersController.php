@@ -73,6 +73,7 @@ class UsersController extends AppController {
 	 * delete method
 	 *
 	 * @throws MethodNotAllowedException
+	 * @param string $id
 	 * @return void
 	 */
 	public function delete($id = null) {

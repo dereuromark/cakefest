@@ -21,6 +21,8 @@ class AttendeesController extends AppController {
 	}
 
 	/**
+	 * index method
+	 *
 	 * @return void
 	 */
 	public function index() {
@@ -30,6 +32,9 @@ class AttendeesController extends AppController {
 	}
 
 	/**
+	 * view method
+	 *
+	 * @param string $id
 	 * @return void
 	 */
 	public function view($id = null) {
@@ -42,6 +47,8 @@ class AttendeesController extends AppController {
 	}
 
 	/**
+	 * add method
+	 *
 	 * @return void
 	 */
 	public function add() {
@@ -51,9 +58,8 @@ class AttendeesController extends AppController {
 				$var = $this->request->data['Attendee']['user_id'];
 				$this->Common->flashMessage(__('record add %s saved', h($var)), 'success');
 				return $this->Common->postRedirect(array('action' => 'index'));
-			} else {
-				$this->Common->flashMessage(__('formContainsErrors'), 'error');
 			}
+			$this->Common->flashMessage(__('formContainsErrors'), 'error');
 		}
 
 		$events = $this->Attendee->Event->find('list');
@@ -62,6 +68,9 @@ class AttendeesController extends AppController {
 	}
 
 	/**
+	 * edit method
+	 *
+	 * @param string $id
 	 * @return void
 	 */
 	public function edit($id = null) {
@@ -74,9 +83,8 @@ class AttendeesController extends AppController {
 				$var = $this->request->data['Attendee']['user_id'];
 				$this->Common->flashMessage(__('record edit %s saved', h($var)), 'success');
 				return $this->Common->postRedirect(array('action' => 'index'));
-			} else {
-				$this->Common->flashMessage(__('formContainsErrors'), 'error');
 			}
+			$this->Common->flashMessage(__('formContainsErrors'), 'error');
 		} else {
 			$this->request->data = $attendee;
 		}

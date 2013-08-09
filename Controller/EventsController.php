@@ -20,6 +20,8 @@ class EventsController extends AppController {
 	}
 
 	/**
+	 * index method
+	 *
 	 * @return void
 	 */
 	public function index() {
@@ -29,6 +31,9 @@ class EventsController extends AppController {
 	}
 
 	/**
+	 * view method
+	 *
+	 * @param string $id
 	 * @return void
 	 */
 	public function view($id = null) {
@@ -41,6 +46,8 @@ class EventsController extends AppController {
 	}
 
 	/**
+	 * add method
+	 *
 	 * @return void
 	 */
 	public function add() {
@@ -50,14 +57,16 @@ class EventsController extends AppController {
 				$var = $this->request->data['Event']['name'];
 				$this->Common->flashMessage(__('record add %s saved', h($var)), 'success');
 				return $this->Common->postRedirect(array('action' => 'index'));
-			} else {
-				$this->Common->flashMessage(__('formContainsErrors'), 'error');
 			}
+			$this->Common->flashMessage(__('formContainsErrors'), 'error');
 		}
 
 	}
 
 	/**
+	 * edit method
+	 *
+	 * @param string $id
 	 * @return void
 	 */
 	public function edit($id = null) {
@@ -70,9 +79,8 @@ class EventsController extends AppController {
 				$var = $this->request->data['Event']['name'];
 				$this->Common->flashMessage(__('record edit %s saved', h($var)), 'success');
 				return $this->Common->postRedirect(array('action' => 'index'));
-			} else {
-				$this->Common->flashMessage(__('formContainsErrors'), 'error');
 			}
+			$this->Common->flashMessage(__('formContainsErrors'), 'error');
 		} else {
 			$this->request->data = $event;
 		}
@@ -82,6 +90,7 @@ class EventsController extends AppController {
 	 * delete method
 	 *
 	 * @throws MethodNotAllowedException
+	 * @param string $id
 	 * @return void
 	 */
 	public function delete($id = null) {
