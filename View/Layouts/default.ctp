@@ -12,7 +12,6 @@
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
-		echo $this->fetch('script');
 	?>
 </head>
 <body>
@@ -53,5 +52,7 @@
 		</div>
 	</div>
 	<?php echo $this->element('sql_dump'); ?>
+	<?php echo $this->fetch('script'); ?>
+	<?php echo $this->Js->writeBuffer(array('inline' => true)); ?>
 </body>
 </html>

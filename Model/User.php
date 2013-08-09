@@ -24,22 +24,26 @@ class User extends AppModel {
 	public $validate = array(
 		'username' => array(
 			'notempty' => array(
-				'rule' => array('notempty'),
+				'rule' => array('notEmpty'),
 				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+				'last' => true,
+			),
+			'isUnique' => array(
+				'rule' => array('isUnique'),
+				'message' => 'This username has already been taken',
+				'last' => true,
 			),
 		),
 		'email' => array(
 			'email' => array(
 				'rule' => array('email'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+				'message' => 'Please provide a valid email address',
+				'last' => true,
+			),
+			'isUnique' => array(
+				'rule' => array('isUnique'),
+				'message' => 'This username has already been taken',
+				'last' => true,
 			),
 		),
 		'status' => array(

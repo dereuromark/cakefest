@@ -20,8 +20,11 @@ might be able to connect before, after or even during the event and socialize, h
 </p>
 
 <h3>The attendees this year</h3>
+Currently, <?php echo count($attendees); ?> submitted their attendance schedule so far:
+
+
 <?php
-pr($attendees);
+echo $this->element('timeline');
 ?>
 
 
