@@ -14,6 +14,8 @@ class TimelineHelper extends AppHelper {
 	protected $_defaults = array(
 		'id' => 'mytimeline',
 		'selectable' => false,
+		'min' => null,
+		'max' => null
 	);
 
 	protected $_items = array();
@@ -94,7 +96,7 @@ function drawVisualization() {
 	options = {
 	    'width':  '100%',
 	    //'height': '300px',
-	    'editable': true,   // enable dragging and editing events
+	    'editable': false,
 	    'style': 'box',
 	    'min': new Date(2013, 08, 18),
 	    'max': new Date(2013, 09, 13),
@@ -127,7 +129,7 @@ JS;
 						break;
 					case 'start':
 					case 'end':
-						$tmp[] = '\'' . $key . '\': new Date('.(int)substr($row, 0, 4).', '.(int)substr($row, 5, 2).', '.(int)substr($row, 8, 2).')';
+						$tmp[] = '\'' . $key . '\': ' . $this->_date($row);
 						break;
 					default:
 						$tmp[] = '\'' .$key . '\': \'' . ($row) . '\'';
@@ -138,6 +140,10 @@ JS;
 		$string = '[' . implode(',' . PHP_EOL, $e) . '];';
 
 		return $string;
+	}
+
+	protected function _date($date) {
+		return 'new Date(' . (int)substr($date, 0, 4) . ', ' . (int)substr($date, 5, 2) . ', ' . (int)substr($date, 8, 2) . ')';
 	}
 
 }
