@@ -1,0 +1,25 @@
+
+
+msgid "loggedOutMessage"
+msgstr "You are now logged out"
+
+msgid "loggedInMessage"
+msgstr "You are successfully logged in"
+
+msgid "Pwd"
+msgstr "New Password"
+
+msgid "Pwd Repeat"
+msgstr "Confirm Password"
+
+msgid "Irc Nick"
+msgstr "IRC Nick"
+
+msgid "formContainsErrors"
+msgstr "The form contains errors. Please correct them to continue."
+
+msgid "valErrBetweenCharacters %s %s"
+msgstr "Please provide an input between %s and %s chars."
+
+msgid "valErrPwdNotMatch"
+msgstr "The passwords do not match."

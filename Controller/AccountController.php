@@ -74,4 +74,38 @@ class AccountController extends AppController {
 		}
 	}
 
+	public function edit() {
+		$uid = $this->Session->read('Auth.User.id');
+		$user = $this->User->get($uid);
+		$this->User->Behaviors->attach('Tools.Passwordable', array('require' => false));
+
+		if ($this->Common->isPosted()) {
+			$this->request->data['User']['id'] = $uid;
+			if ($this->User->save($this->request->data, true, array('id', 'username', 'email', 'irc_nick', 'pwd', 'pwd_repeat'))) {
+				$this->Common->flashMessage(__('Account modified'), 'success');
+				if (!$this->Auth->login($user['User'])) {
+					throw new CakeException('Cannot log user in');
+				}
+				return $this->redirect(array('controller' => 'overview', 'action' => 'index'));
+			}
+			$this->Common->flashMessage(__('formContainsErrors'), 'error');
+
+			# pw should not be passed to the view again for security reasons
+			unset($this->request->data['User']['pwd']);
+			unset($this->request->data['User']['pwd_repeat']);
+		} else {
+			$this->request->data = $user;
+		}
+	}
+
+	public function delete($id = null) {
+		$this->request->onlyAllow('post', 'delete');
+		$uid = $this->Session->read('Auth.User.id');
+		if (!$this->User->delete($uid)) {
+			throw new InternalErrorException();
+		}
+		$this->Common->flashMessage('Account deleted', 'success');
+		return $this->redirect(array('action' => 'logout'));
+	}
+
 }

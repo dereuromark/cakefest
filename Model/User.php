@@ -78,11 +78,11 @@ class User extends AppModel {
 		),
 	);
 
-/**
- * belongsTo associations
- *
- * @var array
- */
+	/**
+	 * belongsTo associations
+	 *
+	 * @var array
+	 */
 	public $belongsTo = array(
 		/*
 		'Role' => array(
@@ -102,8 +102,16 @@ class User extends AppModel {
 		*/
 	);
 
+	/**
+	 * hasMany associations
+	 *
+	 * @var array
+	 */
 	public $hasMany = array(
-		'Attendee'
+		'Attendee' => array(
+			'className' => 'Attendee',
+			'dependent' => true,
+		)
 	);
 
 	/**

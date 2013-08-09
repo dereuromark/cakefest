@@ -19,9 +19,12 @@
 		<div id="header">
 			<div style="float: right;">
 				<?php if ($this->Session->read('Auth.User.id')) { ?>
+					<?php echo h($this->Session->read('Auth.User.username')); ?> [<?php echo h($this->Session->read('Auth.User.email')); ?>] -
+
 					<?php if (Auth::hasRole(Configure::read('Role.admin'))) { ?>
 						<?php echo $this->Html->link('Admin', array('controller' => 'overview', 'action' => 'admin')); ?> |
 					<?php } ?>
+					<?php echo $this->Html->link('Account', array('controller' => 'account', 'action' => 'edit')); ?> |
 					<?php echo $this->Html->link('Logout', array('controller' => 'account', 'action' => 'logout')); ?>
 				<?php } else { ?>
 					<?php echo $this->Html->link('Login', array('controller' => 'account', 'action' => 'login')); ?> |
