@@ -10,8 +10,8 @@
 	<fieldset>
 		<legend>Set new password</legend>
 	<?php
-		echo $this->Form->input('pwd');
-		echo $this->Form->input('pwd_repeat');
+		echo $this->Form->input('pwd', array('type' => 'password'));
+		echo $this->Form->input('pwd_repeat', array('type' => 'password'));
 	?>
 	</fieldset>
 
