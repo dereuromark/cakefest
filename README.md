@@ -2,6 +2,7 @@
 
 Running with CakePHP 2.4
 
+Check it out live: http://cakefest.dereuromark.de
 
 Author: Mark Scherer alias dereuromark
 
