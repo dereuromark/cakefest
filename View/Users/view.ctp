@@ -45,13 +45,7 @@
 		<dt><?php echo __('Role'); ?></dt>
 		<dd>
 			<?php
-				$roles = Configure::read('Role');
-    		foreach ($roles as $role => $id) {
-    			if ($id == $user['User']['role_id']) {
-    				echo h($role);
-    				break;
-    			}
-    		}
+				echo $this->Cakefest->roleName($user['User']['role_id']);
 			?>
 			&nbsp;
 		</dd>

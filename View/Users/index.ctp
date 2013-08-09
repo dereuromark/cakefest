@@ -26,7 +26,7 @@
 		<td><?php echo User::statuses($user['User']['status']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['created']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['modified']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['role_id']); ?>&nbsp;</td>
+		<td><?php echo $this->Cakefest->roleName($user['User']['role_id']); ?>&nbsp;</td>
 		<?php if (false) { ?>
 		<td><?php echo h($user['User']['language_id']); ?>&nbsp;</td>
 		<?php } ?>
