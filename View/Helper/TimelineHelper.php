@@ -42,11 +42,15 @@ class TimelineHelper extends AppHelper {
 	 * Add timeline item.
 	 *
 	 * Requires at least
-	 * - start
+	 * - start (date or datetime)
+	 * - content (string)
 	 * Further data options
-	 * - end
-	 * - content
+	 * - end (date or datetime)
+	 * - group (string)
+	 * - className (string)
+	 * - editable (boolean)
 	 *
+	 * @link http://almende.github.io/chap-links-library/js/timeline/doc/
 	 * @param array
 	 * @return void
 	 */
@@ -55,8 +59,9 @@ class TimelineHelper extends AppHelper {
 	}
 
 	/**
-	 * Add timeline items.
+	 * Add timeline items as an array of items.
 	 *
+	 * @see TimelineHelper::addItem()
 	 * @return void
 	 */
 	public function addItems($items) {
@@ -117,6 +122,9 @@ JS;
 			$tmp = array();
 			foreach ($item as $key => $row) {
 				switch ($key) {
+					case 'editable':
+						$tmp[] = $row ? 'true' : 'false';
+						break;
 					case 'start':
 					case 'end':
 						$tmp[] = '\'' . $key . '\': new Date('.(int)substr($row, 0, 4).', '.(int)substr($row, 5, 2).', '.(int)substr($row, 8, 2).')';
