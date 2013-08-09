@@ -14,6 +14,7 @@ convenience.
 	<?php
 		echo $this->Form->input('username', array());
 		echo $this->Form->input('email', array());
+
 		echo $this->Form->input('pwd', array());
 		echo $this->Form->input('pwd_repeat', array());
 	?>

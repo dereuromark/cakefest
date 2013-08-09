@@ -27,18 +27,24 @@ class Attendee extends AppModel {
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
-				//'last' => false, // Stop validation after this rule
+				'last' => true,
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+			'isValidDate' => array(
+				'rule' => array('isValidDate', 'from'),
+				'message' => 'Please provide a valid date without the allowed range',
+				'last' => true,
+			)
 		),
 		'to' => array(
 			'datetime' => array(
 				'rule' => array('datetime'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+				'last' => true,
+			),
+			'isValidDate' => array(
+				'rule' => array('isValidDate', 'to'),
+				'message' => 'Please provide a valid date without the allowed range',
+				'last' => true,
 			),
 		),
 		'display_email' => array(
@@ -73,7 +79,27 @@ class Attendee extends AppModel {
 		),
 	);
 
-	//The Associations below have been created with all possible keys, those that are not needed can be removed
+	public function isValidDate($data, $key, $settings) {
+		if (empty($this->data[$this->alias]['event_id'])) {
+			return true;
+		}
+		$event = $this->Event->get($this->data[$this->alias]['event_id']);
+		if (!$event) {
+			throw new InternalErrorException();
+		}
+		$date = $data[$key];
+		$dateTime = strtotime($date);
+		$compareDate = $event['Event'][$key];
+		$compareDateTime = strtotime($compareDate);
+		switch ($key) {
+			case 'from':
+				return $dateTime >= $compareDateTime - 10 * DAY;
+			case 'to':
+				return $dateTime <= $compareDateTime + 10 * DAY;
+		}
+
+		return false;
+	}
 
 /**
  * belongsTo associations
