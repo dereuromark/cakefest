@@ -41,6 +41,8 @@
 		<div id="footer">
 			<div style="float: left">
 				Created by <a href="http://www.dereuromark.de" target="_blank">dereuromark</a> - August 2013.
+
+				More infos to the event at <a href="http://lanyrd.com/2013/cakefest/" target="_blank">lanyrd.com/2013/cakefest/</a>.
 			</div>
 
 			<?php echo $this->Html->link(

@@ -7,12 +7,10 @@
 <?php
 	$this->loadHelper('Timeline');
 	foreach ($attendees as $attendee) {
-		//die(returns($attendee));
 		$content = $this->Html->link($attendee['User']['username'], array('controller' => 'attendees', 'action' => 'view', $attendee['Attendee']['id']));
 		if ($attendee['User']['status'] == User::STATUS_CORE_DEV) {
 			$content .= '<br /><small>' . __('Core Dev') . '</small>';
 		}
-		//$content .= '<br /><small>' . User::statuses($attendee['User']['status'], 'short') . '</small>';
 
 		$this->Timeline->addItem(array('start' => $attendee['Attendee']['from'], 'end' => $attendee['Attendee']['to'], 'content' => $content));
 	}
