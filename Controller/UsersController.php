@@ -8,81 +8,87 @@ App::uses('AppController', 'Controller');
  */
 class UsersController extends AppController {
 
-/**
- * Components
- *
- * @var array
- */
+	/**
+	 * Components
+	 *
+	 * @var array
+	 */
 	public $components = array('Paginator');
 
-/**
- * index method
- *
- * @return void
- */
+	public function beforeFilter() {
+		parent::beforeFilter();
+	}
+
+	/**
+	 * index method
+	 *
+	 * @return void
+	 */
 	public function index() {
 		$this->User->recursive = 0;
-		$this->set('users', $this->Paginator->paginate());
+		$users = $this->paginate();
+		$this->set(compact('users'));
 	}
 
-/**
- * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
+	/**
+	 * view method
+	 *
+	 * @param string $id
+	 * @return void
+	 */
 	public function view($id = null) {
-		if (!$this->User->exists($id)) {
-			throw new NotFoundException(__('Invalid user'));
+		$this->User->recursive = 0;
+		if (empty($id) || !($user = $this->User->find('first', array('conditions'=>array('User.id'=>$id))))) {
+			$this->Common->flashMessage(__('invalidRecord'), 'error');
+			return $this->Common->autoRedirect(array('action' => 'index'));
 		}
-		$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
-		$this->set('user', $this->User->find('first', $options));
+		$this->set(compact('user'));
 	}
 
-/**
- * edit method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
+	/**
+	 * edit method
+	 *
+	 * @param string $id
+	 * @return void
+	 */
 	public function edit($id = null) {
-		if (!$this->User->exists($id)) {
-			throw new NotFoundException(__('Invalid user'));
+		if (empty($id) || !($user = $this->User->find('first', array('conditions'=>array('User.id'=>$id))))) {
+			$this->Common->flashMessage(__('invalidRecord'), 'error');
+			return $this->Common->autoRedirect(array('action' => 'index'));
 		}
-		if ($this->request->is('post') || $this->request->is('put')) {
+		if ($this->Common->isPosted()) {
 			$this->User->Behaviors->attach('Tools.Passwordable', array('allowEmpty' => true));
 			if ($this->User->save($this->request->data)) {
-				$this->Session->setFlash(__('The user has been saved'));
-				return $this->redirect(array('action' => 'index'));
+				$var = $this->request->data['User']['username'];
+				$this->Common->flashMessage(__('record edit %s saved', h($var)), 'success');
+				return $this->Common->postRedirect(array('action' => 'index'));
 			}
-			$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
-
+			$this->Common->flashMessage(__('formContainsErrors'), 'error');
 		} else {
-			$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
-			$this->request->data = $this->User->find('first', $options);
+			$this->request->data = $user;
 		}
 	}
 
-/**
- * delete method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
+	/**
+	 * delete method
+	 *
+	 * @throws MethodNotAllowedException
+	 * @return void
+	 */
 	public function delete($id = null) {
-		$this->User->id = $id;
-		if (!$this->User->exists()) {
-			throw new NotFoundException(__('Invalid user'));
-		}
 		$this->request->onlyAllow('post', 'delete');
-		if ($this->User->delete()) {
-			$this->Session->setFlash(__('User deleted'));
-			return $this->redirect(array('action' => 'index'));
+		if (empty($id) || !($user = $this->User->find('first', array('conditions'=>array('User.id'=>$id), 'fields'=>array('id', 'username'))))) {
+			$this->Common->flashMessage(__('invalidRecord'), 'error');
+			return $this->Common->autoRedirect(array('action'=>'index'));
 		}
-		$this->Session->setFlash(__('User was not deleted'));
-		return $this->redirect(array('action' => 'index'));
+		$var = $user['User']['username'];
+
+		if ($this->User->delete($id)) {
+			$this->Common->flashMessage(__('record del %s done', h($var)), 'success');
+			return $this->Common->postRedirect(array('action' => 'index'));
+		}
+		$this->Common->flashMessage(__('record del %s not done exception', h($var)), 'error');
+		return $this->Common->autoRedirect(array('action' => 'index'));
 	}
+
 }

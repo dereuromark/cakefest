@@ -11,6 +11,12 @@ class AccountController extends AppController {
 		$this->Auth->allow('login', 'logout', 'register', 'activate', 'lost_pwd', 'change_pwd');
 	}
 
+	/**
+	 * AccountController::login()
+	 *
+	 * @param string $username
+	 * @return void
+	 */
 	public function login($username = null) {
 
 		if ($this->Common->isPosted()) {
@@ -28,6 +34,11 @@ class AccountController extends AppController {
 		}
 	}
 
+	/**
+	 * AccountController::logout()
+	 *
+	 * @return void
+	 */
 	public function logout() {
 		$whereTo = $this->Auth->logout();
 		# delete cookie
@@ -39,6 +50,11 @@ class AccountController extends AppController {
 		return $this->redirect($whereTo);
 	}
 
+	/**
+	 * AccountController::register()
+	 *
+	 * @return void
+	 */
 	public function register() {
 		$this->User->Behaviors->load('Tools.Passwordable', array());
 		if ($this->Common->isPosted()) {

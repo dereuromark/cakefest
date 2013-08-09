@@ -16,96 +16,96 @@ class AttendeesController extends AppController {
  */
 	public $components = array('Paginator');
 
-/**
- * index method
- *
- * @return void
- */
+	public function beforeFilter() {
+		parent::beforeFilter();
+	}
+
+	/**
+	 * @return void
+	 */
 	public function index() {
 		$this->Attendee->recursive = 0;
-		$this->set('attendees', $this->Paginator->paginate());
+		$attendees = $this->paginate();
+		$this->set(compact('attendees'));
 	}
 
-/**
- * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
+	/**
+	 * @return void
+	 */
 	public function view($id = null) {
-		if (!$this->Attendee->exists($id)) {
-			throw new NotFoundException(__('Invalid attendee'));
+		$this->Attendee->recursive = 0;
+		if (empty($id) || !($attendee = $this->Attendee->find('first', array('conditions'=>array('Attendee.id'=>$id))))) {
+			$this->Common->flashMessage(__('invalidRecord'), 'error');
+			return $this->Common->autoRedirect(array('action' => 'index'));
 		}
-		$options = array('conditions' => array('Attendee.' . $this->Attendee->primaryKey => $id));
-		$this->set('attendee', $this->Attendee->find('first', $options));
+		$this->set(compact('attendee'));
 	}
 
-/**
- * add method
- *
- * @return void
- */
+	/**
+	 * @return void
+	 */
 	public function add() {
-		if ($this->request->is('post')) {
+		if ($this->Common->isPosted()) {
 			$this->Attendee->create();
 			if ($this->Attendee->save($this->request->data)) {
-				$this->Session->setFlash(__('The attendee has been saved'));
-				return $this->redirect(array('action' => 'index'));
+				$var = $this->request->data['Attendee']['user_id'];
+				$this->Common->flashMessage(__('record add %s saved', h($var)), 'success');
+				return $this->Common->postRedirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The attendee could not be saved. Please, try again.'));
+				$this->Common->flashMessage(__('formContainsErrors'), 'error');
 			}
 		}
+
 		$events = $this->Attendee->Event->find('list');
 		$users = $this->Attendee->User->find('list');
 		$this->set(compact('events', 'users'));
 	}
 
-/**
- * edit method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
+	/**
+	 * @return void
+	 */
 	public function edit($id = null) {
-		if (!$this->Attendee->exists($id)) {
-			throw new NotFoundException(__('Invalid attendee'));
+		if (empty($id) || !($attendee = $this->Attendee->find('first', array('conditions'=>array('Attendee.id'=>$id))))) {
+			$this->Common->flashMessage(__('invalidRecord'), 'error');
+			return $this->Common->autoRedirect(array('action' => 'index'));
 		}
-		if ($this->request->is('post') || $this->request->is('put')) {
+		if ($this->Common->isPosted()) {
 			if ($this->Attendee->save($this->request->data)) {
-				$this->Session->setFlash(__('The attendee has been saved'));
-				return $this->redirect(array('action' => 'index'));
+				$var = $this->request->data['Attendee']['user_id'];
+				$this->Common->flashMessage(__('record edit %s saved', h($var)), 'success');
+				return $this->Common->postRedirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The attendee could not be saved. Please, try again.'));
+				$this->Common->flashMessage(__('formContainsErrors'), 'error');
 			}
 		} else {
-			$options = array('conditions' => array('Attendee.' . $this->Attendee->primaryKey => $id));
-			$this->request->data = $this->Attendee->find('first', $options);
+			$this->request->data = $attendee;
 		}
 		$events = $this->Attendee->Event->find('list');
 		$users = $this->Attendee->User->find('list');
 		$this->set(compact('events', 'users'));
 	}
 
-/**
- * delete method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
+	/**
+	 * delete method
+	 *
+	 * @throws MethodNotAllowedException
+	 * @param string $id
+	 * @return void
+	 */
 	public function delete($id = null) {
-		$this->Attendee->id = $id;
-		if (!$this->Attendee->exists()) {
-			throw new NotFoundException(__('Invalid attendee'));
-		}
 		$this->request->onlyAllow('post', 'delete');
-		if ($this->Attendee->delete()) {
-			$this->Session->setFlash(__('Attendee deleted'));
-			return $this->redirect(array('action' => 'index'));
+		if (empty($id) || !($attendee = $this->Attendee->find('first', array('conditions'=>array('Attendee.id'=>$id), 'fields'=>array('id', 'user_id'))))) {
+			$this->Common->flashMessage(__('invalidRecord'), 'error');
+			return $this->Common->autoRedirect(array('action'=>'index'));
 		}
-		$this->Session->setFlash(__('Attendee was not deleted'));
-		return $this->redirect(array('action' => 'index'));
+		$var = $attendee['Attendee']['user_id'];
+
+		if ($this->Attendee->delete($id)) {
+			$this->Common->flashMessage(__('record del %s done', h($var)), 'success');
+			return $this->Common->postRedirect(array('action' => 'index'));
+		}
+		$this->Common->flashMessage(__('record del %s not done exception', h($var)), 'error');
+		return $this->Common->autoRedirect(array('action' => 'index'));
 	}
+
 }

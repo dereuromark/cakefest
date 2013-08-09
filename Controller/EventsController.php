@@ -15,90 +15,89 @@ class EventsController extends AppController {
  */
 	public $components = array('Paginator');
 
-/**
- * index method
- *
- * @return void
- */
+	public function beforeFilter() {
+		parent::beforeFilter();
+	}
+
+	/**
+	 * @return void
+	 */
 	public function index() {
 		$this->Event->recursive = 0;
-		$this->set('events', $this->Paginator->paginate());
+		$events = $this->paginate();
+		$this->set(compact('events'));
 	}
 
-/**
- * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
+	/**
+	 * @return void
+	 */
 	public function view($id = null) {
-		if (!$this->Event->exists($id)) {
-			throw new NotFoundException(__('Invalid event'));
+		$this->Event->recursive = 0;
+		if (empty($id) || !($event = $this->Event->find('first', array('conditions'=>array('Event.id'=>$id))))) {
+			$this->Common->flashMessage(__('invalidRecord'), 'error');
+			return $this->Common->autoRedirect(array('action' => 'index'));
 		}
-		$options = array('conditions' => array('Event.' . $this->Event->primaryKey => $id));
-		$this->set('event', $this->Event->find('first', $options));
+		$this->set(compact('event'));
 	}
 
-/**
- * add method
- *
- * @return void
- */
+	/**
+	 * @return void
+	 */
 	public function add() {
-		if ($this->request->is('post')) {
+		if ($this->Common->isPosted()) {
 			$this->Event->create();
 			if ($this->Event->save($this->request->data)) {
-				$this->Session->setFlash(__('The event has been saved'));
-				return $this->redirect(array('action' => 'index'));
+				$var = $this->request->data['Event']['name'];
+				$this->Common->flashMessage(__('record add %s saved', h($var)), 'success');
+				return $this->Common->postRedirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The event could not be saved. Please, try again.'));
+				$this->Common->flashMessage(__('formContainsErrors'), 'error');
 			}
 		}
+
 	}
 
-/**
- * edit method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
+	/**
+	 * @return void
+	 */
 	public function edit($id = null) {
-		if (!$this->Event->exists($id)) {
-			throw new NotFoundException(__('Invalid event'));
+		if (empty($id) || !($event = $this->Event->find('first', array('conditions'=>array('Event.id'=>$id))))) {
+			$this->Common->flashMessage(__('invalidRecord'), 'error');
+			return $this->Common->autoRedirect(array('action' => 'index'));
 		}
-		if ($this->request->is('post') || $this->request->is('put')) {
+		if ($this->Common->isPosted()) {
 			if ($this->Event->save($this->request->data)) {
-				$this->Session->setFlash(__('The event has been saved'));
-				return $this->redirect(array('action' => 'index'));
+				$var = $this->request->data['Event']['name'];
+				$this->Common->flashMessage(__('record edit %s saved', h($var)), 'success');
+				return $this->Common->postRedirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The event could not be saved. Please, try again.'));
+				$this->Common->flashMessage(__('formContainsErrors'), 'error');
 			}
 		} else {
-			$options = array('conditions' => array('Event.' . $this->Event->primaryKey => $id));
-			$this->request->data = $this->Event->find('first', $options);
+			$this->request->data = $event;
 		}
 	}
 
-/**
- * delete method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
+	/**
+	 * delete method
+	 *
+	 * @throws MethodNotAllowedException
+	 * @return void
+	 */
 	public function delete($id = null) {
-		$this->Event->id = $id;
-		if (!$this->Event->exists()) {
-			throw new NotFoundException(__('Invalid event'));
-		}
 		$this->request->onlyAllow('post', 'delete');
-		if ($this->Event->delete()) {
-			$this->Session->setFlash(__('Event deleted'));
-			return $this->redirect(array('action' => 'index'));
+		if (empty($id) || !($event = $this->Event->find('first', array('conditions'=>array('Event.id'=>$id), 'fields'=>array('id', 'name'))))) {
+			$this->Common->flashMessage(__('invalidRecord'), 'error');
+			return $this->Common->autoRedirect(array('action'=>'index'));
 		}
-		$this->Session->setFlash(__('Event was not deleted'));
-		return $this->redirect(array('action' => 'index'));
+		$var = $event['Event']['name'];
+
+		if ($this->Event->delete($id)) {
+			$this->Common->flashMessage(__('record del %s done', h($var)), 'success');
+			return $this->Common->postRedirect(array('action' => 'index'));
+		}
+		$this->Common->flashMessage(__('record del %s not done exception', h($var)), 'error');
+		return $this->Common->autoRedirect(array('action' => 'index'));
 	}
+
 }

@@ -7,16 +7,15 @@ App::uses('EventsController', 'Controller');
  */
 class EventsControllerTest extends ControllerTestCase {
 
-/**
- * Fixtures
- *
- * @var array
- */
+	/**
+	 * Fixtures
+	 *
+	 * @var array
+	 */
 	public $fixtures = array(
 		'app.event',
 		'app.attendee',
-		'app.user',
-		'app.cakefest_attendance'
+		'app.user'
 	);
 
 /**
