@@ -29,6 +29,6 @@ pr($attendees);
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('Join in'), array('controller' => 'attendees', 'action' => 'add')); ?></li>
+		<li><?php echo $this->Html->link(__('Join in'), array('controller' => 'attendance', 'action' => 'index')); ?></li>
 	</ul>
 </div>

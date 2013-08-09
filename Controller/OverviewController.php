@@ -38,4 +38,13 @@ class OverviewController extends AppController {
 		$this->set('attendees', $this->Paginator->paginate('Attendee'));
 	}
 
+/**
+ * admin method
+ *
+ * @return void
+ */
+	public function admin() {
+
+	}
+
 }

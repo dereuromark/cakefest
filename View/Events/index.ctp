@@ -2,7 +2,6 @@
 	<h2><?php echo __('Events'); ?></h2>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
-			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('from'); ?></th>
 			<th><?php echo $this->Paginator->sort('to'); ?></th>
 			<th><?php echo $this->Paginator->sort('name'); ?></th>
@@ -11,7 +10,6 @@
 	</tr>
 	<?php foreach ($events as $event): ?>
 	<tr>
-		<td><?php echo h($event['Event']['id']); ?>&nbsp;</td>
 		<td><?php echo h($event['Event']['from']); ?>&nbsp;</td>
 		<td><?php echo h($event['Event']['to']); ?>&nbsp;</td>
 		<td><?php echo h($event['Event']['name']); ?>&nbsp;</td>
@@ -42,7 +40,6 @@
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 		<li><?php echo $this->Html->link(__('New Event'), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Attendees'), array('controller' => 'attendees', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Attendee'), array('controller' => 'attendees', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('Back'), array('controller' => 'overview', 'action' => 'admin')); ?></li>
 	</ul>
 </div>

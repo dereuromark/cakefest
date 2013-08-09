@@ -2,32 +2,34 @@
 	<h2><?php echo __('Users'); ?></h2>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
-			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('username'); ?></th>
-			<th><?php echo $this->Paginator->sort('irc_nick'); ?></th>
 			<th><?php echo $this->Paginator->sort('email'); ?></th>
-			<th><?php echo $this->Paginator->sort('password'); ?></th>
+			<?php if (false) { ?>
 			<th><?php echo $this->Paginator->sort('timezone'); ?></th>
+			<?php } ?>
 			<th><?php echo $this->Paginator->sort('status'); ?></th>
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th><?php echo $this->Paginator->sort('modified'); ?></th>
 			<th><?php echo $this->Paginator->sort('role_id'); ?></th>
+			<?php if (false) { ?>
 			<th><?php echo $this->Paginator->sort('language_id'); ?></th>
+			<?php } ?>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	<?php foreach ($users as $user): ?>
 	<tr>
-		<td><?php echo h($user['User']['id']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['username']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['irc_nick']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['email']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['password']); ?>&nbsp;</td>
+		<?php if (false) { ?>
 		<td><?php echo h($user['User']['timezone']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['status']); ?>&nbsp;</td>
+		<?php } ?>
+		<td><?php echo User::statuses($user['User']['status']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['created']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['modified']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['role_id']); ?>&nbsp;</td>
+		<?php if (false) { ?>
 		<td><?php echo h($user['User']['language_id']); ?>&nbsp;</td>
+		<?php } ?>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $user['User']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $user['User']['id'])); ?>
@@ -53,6 +55,6 @@
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('New User'), array('action' => 'add')); ?></li>
+		<li><?php echo $this->Html->link(__('Back'), array('controller' => 'overview', 'action' => 'admin')); ?></li>
 	</ul>
 </div>

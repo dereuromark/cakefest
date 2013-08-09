@@ -51,6 +51,8 @@ CakePlugin::loadAll();
 
 App::import('Lib', 'Tools.Bootstrap/MyBootstrap');
 
+define('USER_ROLE_KEY', 'role_id');
+
 App::uses('Auth', 'Tools.Lib');
 
 Configure::load('configs');

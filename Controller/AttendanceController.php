@@ -2,12 +2,14 @@
 App::uses('AppController', 'Controller');
 
 /**
- * Attendees Controller
+ * Attendance Controller
  *
  * @property Attendee $Attendee
  * @property PaginatorComponent $Paginator
  */
-class AttendeesController extends AppController {
+class AttendanceController extends AppController {
+
+	public $uses = array('Attendee');
 
 /**
  * Components
@@ -27,7 +29,10 @@ class AttendeesController extends AppController {
 	 */
 	public function index() {
 		$this->Attendee->recursive = 0;
-		$attendees = $this->paginate();
+
+		$this->Paginator->settings['conditions']['user_id'] = $this->Session->read('Auth.User.id');
+
+		$attendees = $this->Paginator->paginate();
 		$this->set(compact('attendees'));
 	}
 
@@ -47,6 +52,28 @@ class AttendeesController extends AppController {
 	}
 
 	/**
+	 * add method
+	 *
+	 * @return void
+	 */
+	public function add() {
+		if ($this->Common->isPosted()) {
+			$this->Attendee->create();
+			$this->request->data['Attendee']['user_id'] = $this->Session->read('Auth.User.id');
+			if ($this->Attendee->save($this->request->data)) {
+				$var = $this->request->data['Attendee']['user_id'];
+				$this->Common->flashMessage(__('record add %s saved', h($var)), 'success');
+				return $this->Common->postRedirect(array('action' => 'index'));
+			}
+			$this->Common->flashMessage(__('formContainsErrors'), 'error');
+		}
+
+		$events = $this->Attendee->Event->find('list');
+		$users = $this->Attendee->User->find('list');
+		$this->set(compact('events', 'users'));
+	}
+
+	/**
 	 * edit method
 	 *
 	 * @param string $id
@@ -58,6 +85,7 @@ class AttendeesController extends AppController {
 			return $this->Common->autoRedirect(array('action' => 'index'));
 		}
 		if ($this->Common->isPosted()) {
+			$this->request->data['Attendee']['id'] = $attendee['Attendee']['id'];
 			if ($this->Attendee->save($this->request->data)) {
 				$var = $this->request->data['Attendee']['user_id'];
 				$this->Common->flashMessage(__('record edit %s saved', h($var)), 'success');
@@ -70,6 +98,7 @@ class AttendeesController extends AppController {
 		$events = $this->Attendee->Event->find('list');
 		$users = $this->Attendee->User->find('list');
 		$this->set(compact('events', 'users'));
+		$this->render('add');
 	}
 
 	/**

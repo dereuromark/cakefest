@@ -58,6 +58,7 @@ class AccountController extends AppController {
 	public function register() {
 		$this->User->Behaviors->load('Tools.Passwordable', array());
 		if ($this->Common->isPosted()) {
+			$this->request->data['User']['role_id'] = Configure::read('Role.user');
 			if ($user = $this->User->save($this->request->data)) {
 				$this->Common->flashMessage(__('Account created'), 'success');
 				if (!$this->Auth->login($user['User'])) {

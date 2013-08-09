@@ -21,11 +21,7 @@
 			<?php echo h($user['User']['email']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Password'); ?></dt>
-		<dd>
-			<?php echo h($user['User']['password']); ?>
-			&nbsp;
-		</dd>
+
 		<dt><?php echo __('Timezone'); ?></dt>
 		<dd>
 			<?php echo h($user['User']['timezone']); ?>
@@ -33,7 +29,7 @@
 		</dd>
 		<dt><?php echo __('Status'); ?></dt>
 		<dd>
-			<?php echo h($user['User']['status']); ?>
+			<?php echo User::statuses($user['User']['status']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Created'); ?></dt>
@@ -46,16 +42,26 @@
 			<?php echo h($user['User']['modified']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Role Id'); ?></dt>
+		<dt><?php echo __('Role'); ?></dt>
 		<dd>
-			<?php echo h($user['User']['role_id']); ?>
+			<?php
+				$roles = Configure::read('Role');
+    		foreach ($roles as $role => $id) {
+    			if ($id == $user['User']['role_id']) {
+    				echo h($role);
+    				break;
+    			}
+    		}
+			?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Language Id'); ?></dt>
+		<?php if (false) { ?>
+		<dt><?php echo __('Language'); ?></dt>
 		<dd>
 			<?php echo h($user['User']['language_id']); ?>
 			&nbsp;
 		</dd>
+		<?php } ?>
 	</dl>
 </div>
 <div class="actions">
@@ -64,6 +70,5 @@
 		<li><?php echo $this->Html->link(__('Edit User'), array('action' => 'edit', $user['User']['id'])); ?> </li>
 		<li><?php echo $this->Form->postLink(__('Delete User'), array('action' => 'delete', $user['User']['id']), null, __('Are you sure you want to delete # %s?', $user['User']['id'])); ?> </li>
 		<li><?php echo $this->Html->link(__('List Users'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New User'), array('action' => 'add')); ?> </li>
 	</ul>
 </div>

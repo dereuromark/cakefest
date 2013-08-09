@@ -16,6 +16,8 @@ class AppController extends MyController {
 
 	public $helpers = array('Session', 'Html', 'Form' => array('className' => 'Tools.FormExt'), 'Tools.Common', 'Tools.Format', 'Tools.Datetime', 'Tools.Numeric');
 
+	public $paginate = array();
+
 	/**
 	 * AppController::constructClasses()
 	 *
