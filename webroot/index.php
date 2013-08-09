@@ -54,7 +54,7 @@ if (!defined('APP_DIR')) {
  * The following line differs from its sibling
  * /app/webroot/index.php
  */
-define('CAKE_CORE_INCLUDE_PATH', 'E:' . DS . 'PHP' . DS . 'wamp' . DS . 'www' . DS . 'work' . DS . 'app20' . DS . 'test' . DS . 'lib');
+//define('CAKE_CORE_INCLUDE_PATH', '');
 
 /**
  * Editing below this line should NOT be necessary.
