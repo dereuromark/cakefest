@@ -1,19 +1,4 @@
 <?php
-/**
- * This file is loaded automatically by the app/webroot/index.php file after core.php
- *
- * This file should load/create any application wide configuration settings, such as
- * Caching, Logging, loading additional configuration files.
- *
- * You should also use this file to include any files that provide global functions/constants
- * that your application uses.
- *
- * PHP 5
- *
- * @link          http://cakephp.org CakePHP(tm) Project
- * @package       app.Config
- * @since         CakePHP(tm) v 0.10.8.2117
- */
 
 // Setup a 'default' cache configuration for use in the application.
 Cache::config('default', array('engine' => 'File'));
@@ -66,6 +51,8 @@ CakePlugin::loadAll();
 
 App::import('Lib', 'Tools.Bootstrap/MyBootstrap');
 
+App::uses('Auth', 'Tools.Lib');
+
 Configure::load('configs');
 
 /**
@@ -86,7 +73,7 @@ Configure::load('configs');
  */
 Configure::write('Dispatcher.filters', array(
 	'AssetDispatcher',
-	'CacheDispatcher'
+	//'CacheDispatcher'
 ));
 
 /**

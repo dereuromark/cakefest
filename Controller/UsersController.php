@@ -41,22 +41,6 @@ class UsersController extends AppController {
 	}
 
 /**
- * add method
- *
- * @return void
- */
-	public function add() {
-		if ($this->request->is('post')) {
-			$this->User->create();
-			if ($this->User->save($this->request->data)) {
-				$this->Session->setFlash(__('The user has been saved'));
-				return $this->redirect(array('action' => 'index'));
-			}
-			$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
-		}
-	}
-
-/**
  * edit method
  *
  * @throws NotFoundException
@@ -68,6 +52,7 @@ class UsersController extends AppController {
 			throw new NotFoundException(__('Invalid user'));
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
+			$this->User->Behaviors->attach('Tools.Passwordable', array('allowEmpty' => true));
 			if ($this->User->save($this->request->data)) {
 				$this->Session->setFlash(__('The user has been saved'));
 				return $this->redirect(array('action' => 'index'));

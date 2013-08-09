@@ -20,6 +20,9 @@
 		<div id="header">
 			<div style="float: right;">
 				<?php if ($this->Session->read('Auth.User.id')) { ?>
+					<?php if (Auth::hasRole('admin')) { ?>
+						<?php echo $this->Html->link('Admin', array('controller' => 'overview', 'action' => 'admin')); ?> |
+					<?php } ?>
 					<?php echo $this->Html->link('Logout', array('controller' => 'account', 'action' => 'logout')); ?>
 				<?php } else { ?>
 					<?php echo $this->Html->link('Login', array('controller' => 'account', 'action' => 'login')); ?> |

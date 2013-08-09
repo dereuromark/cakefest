@@ -50,7 +50,11 @@ class AppController extends MyController {
 		$this->Auth->authorize = array(
 			'Tools.Tiny' => array()
 		);
-		$this->Auth->logoutRedirect = '/';
+		$this->Auth->logoutRedirect = array(
+			'plugin' => false,
+			'admin' => false,
+			'controller' => 'overview',
+			'action' => 'index');
 		$this->Auth->loginRedirect = array(
 			'plugin' => false,
 			'admin' => false,
