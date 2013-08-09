@@ -15,8 +15,8 @@ convenience.
 		echo $this->Form->input('username', array());
 		echo $this->Form->input('email', array());
 
-		echo $this->Form->input('pwd', array());
-		echo $this->Form->input('pwd_repeat', array());
+		echo $this->Form->input('pwd', array('type' => 'password'));
+		echo $this->Form->input('pwd_repeat', array('type' => 'password'));
 	?>
 </fieldset>
 <?php if (false) { ?>

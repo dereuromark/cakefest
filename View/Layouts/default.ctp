@@ -42,6 +42,8 @@
 			<div style="float: left">
 				Created by <a href="http://www.dereuromark.de" target="_blank">dereuromark</a> - August 2013.
 
+				Bugs? Issues? <a href="https://github.com/dereuromark/cakefest" target="_blank">Open a PR/ticket</a>.
+
 				More infos to the event at <a href="http://lanyrd.com/2013/cakefest/" target="_blank">lanyrd.com/2013/cakefest/</a>.
 			</div>
 
