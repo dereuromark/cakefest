@@ -1,5 +1,9 @@
 <h2>Register</h2>
 <p>We don't want SPAM. So we need to verify your account/email.</p>
+<p>
+Note: Currently we do not send any emails, not even for registration. You will be logged in right away for your
+convenience.
+</p>
 
 <?php echo $this->Form->create('User');?>
 

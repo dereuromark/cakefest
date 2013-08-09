@@ -3,7 +3,7 @@
 
 <?php echo $this->Form->create('User');?>
 
-<h3>Please enter your username and password below.</h3>
+<h3>Please enter your username/email and password below.</h3>
 
 	<?php
 		echo $this->Form->input('login', array('label' => 'Your username or email'));
