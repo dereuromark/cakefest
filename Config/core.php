@@ -201,7 +201,9 @@
  *
  */
 	Configure::write('Session', array(
-		'defaults' => 'php'
+		'defaults' => 'php',
+		'timeout' => 3 * DAY,
+		'cookieTimeout' => MONTH
 	));
 
 /**
