@@ -1,15 +1,4 @@
 <?php
-/**
- * This is core configuration file.
- *
- * Use it to configure core behavior of Cake.
- *
- * PHP 5
- *
- * @link          http://cakephp.org CakePHP(tm) Project
- * @package       app.Config
- * @since         CakePHP(tm) v 0.2.9
- */
 
 /**
  * CakePHP Debug Level:
@@ -24,7 +13,10 @@
  * In production mode, flash messages redirect after a time interval.
  * In development mode, you need to click the flash message to continue.
  */
-	Configure::write('debug', 2);
+	Configure::write('debug', 0);
+	if (env('HTTP_HOST') === 'localhost') {
+		Configure::write('debug', 2);
+	}
 
 /**
  * Configure the Error handler used to handle errors for your application. By default

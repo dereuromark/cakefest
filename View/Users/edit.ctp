@@ -7,7 +7,13 @@
 		echo $this->Form->input('username');
 		echo $this->Form->input('email');
 
-		echo $this->Form->input('role_id');
+
+		$availableRoles = Configure::read('Role');
+		$roles = array();
+		foreach ($availableRoles as $role => $id) {
+			$roles[$id] = $role;
+		}
+		echo $this->Form->input('role_id', array('options' => $roles));
 		echo $this->Form->input('status', array('options' => User::statuses()));
 	?>
 	</fieldset>
@@ -23,9 +29,9 @@
 		<legend><?php echo __('Details'); ?></legend>
 	<?php
 		echo $this->Form->input('irc_nick');
-		echo $this->Form->input('timezone');
+		//echo $this->Form->input('timezone');
 
-		echo $this->Form->input('language_id');
+		//echo $this->Form->input('language_id');
 	?>
 	</fieldset>
 

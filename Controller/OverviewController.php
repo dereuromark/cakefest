@@ -29,7 +29,7 @@ class OverviewController extends AppController {
 	}
 
 /**
- * index method
+ * Homepage.
  *
  * @return void
  */
@@ -39,12 +39,12 @@ class OverviewController extends AppController {
 	}
 
 /**
- * admin method
+ * Admin backend.
  *
  * @return void
  */
 	public function admin() {
-
+		//TODO
 	}
 
 }
