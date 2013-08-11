@@ -63,7 +63,7 @@ class Attendee extends AppModel {
 				'last' => true
 			),
 			'isUnique' => array(
-				'rule' => array('isUnique'),
+				'rule' => array('validateUnique', array('user_id')),
 				'last' => true,
 				'message' => 'You can only have one attendance entry per event'
 			),
