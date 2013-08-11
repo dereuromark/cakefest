@@ -18,7 +18,6 @@ Join in and tell others about your planned trip to San Francisco and the fest.
 ### TODOS
 
 * OptIn
-* Lost Pwd
 
 #### Ideas
 
