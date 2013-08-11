@@ -14,8 +14,12 @@ class TimelineHelper extends AppHelper {
 	protected $_defaults = array(
 		'id' => 'mytimeline',
 		'selectable' => false,
+		'editable' => false,
 		'min' => null,
-		'max' => null
+		'max' => null,
+		'width' => '100%',
+		'height' => null, // Auto.
+		'style' => 'box',
 	);
 
 	protected $_items = array();
@@ -43,10 +47,10 @@ class TimelineHelper extends AppHelper {
 	/**
 	 * Add timeline item.
 	 *
-	 * Requires at least
+	 * Requires at least:
 	 * - start (date or datetime)
 	 * - content (string)
-	 * Further data options
+	 * Further data options:
 	 * - end (date or datetime)
 	 * - group (string)
 	 * - className (string)
@@ -143,7 +147,18 @@ JS;
 	}
 
 	protected function _date($date) {
-		return 'new Date(' . (int)substr($date, 0, 4) . ', ' . (int)substr($date, 5, 2) . ', ' . (int)substr($date, 8, 2) . ')';
+		$dateTime = explode(' ', $date, 2);
+		$datePieces = array();
+		$datePieces[] = (int)substr($date, 0, 4);
+		$datePieces[] = (int)substr($date, 5, 2);
+		$datePieces[] = (int)substr($date, 8, 2);
+		if (!empty($dateTime[1])) {
+			//TODO
+			$datePieces[] = (int)substr($date, 0, 2);
+			$datePieces[] = (int)substr($date, 3, 2);
+			$datePieces[] = (int)substr($date, 6, 2);
+		}
+		return 'new Date(' . implode(', ', $datePieces) . ')';
 	}
 
 }

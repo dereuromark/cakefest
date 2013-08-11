@@ -56,6 +56,9 @@ define('USER_ROLE_KEY', 'role_id');
 App::uses('Auth', 'Tools.Lib');
 
 Configure::load('configs');
+if (file_exists(APP . 'Config' . DS . 'configs_private.php')) {
+	Configure::load('configs_private');
+}
 
 Configure::write('Config.language', 'eng');
 
