@@ -32,7 +32,7 @@
 				<?php } ?>
 			</div>
 
-			<h1><?php echo $this->Html->link('CakeFest 2013 - The Attendance APP', '/'); ?></h1>
+			<h1><?php echo $this->Html->link('CakeFest 2013 - The Attendance App', '/'); ?></h1>
 		</div>
 		<div id="content">
 

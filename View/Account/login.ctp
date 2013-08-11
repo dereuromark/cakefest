@@ -18,3 +18,6 @@
 <h3>No account yet?</h3>
 <p><?php echo $this->Html->link('Create one here. For free :P', array('action' => 'register'))?></p>
 
+<h3>Password lost?</h3>
+<p><?php echo $this->Html->link('Reset your password.', array('action' => 'lost_password'))?></p>
+

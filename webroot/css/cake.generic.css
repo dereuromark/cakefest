@@ -1,21 +1,4 @@
 @charset "utf-8";
-/**
- *
- * Generic CSS for CakePHP
- *
- * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
- *
- * Licensed under The MIT License
- * For full copyright and license information, please see the LICENSE.txt
- * Redistributions of files must retain the above copyright notice.
- *
- * @copyright     Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
- * @link          http://cakephp.org CakePHP(tm) Project
- * @package       app.webroot.css
- * @since         CakePHP(tm)
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
- */
 
 * {
 	margin:0;
@@ -742,3 +725,12 @@ pre {
 
 #header a, #footer a {
 	color: #fff;
+}
+
+div.warning {
+	background: -moz-linear-gradient(center top , #999, #000) repeat-x scroll 0 0 yellow;
+}
+
+div.info {
+	background: -moz-linear-gradient(center top , #999, #000) repeat-x scroll 0 0 #C43C35;
+}

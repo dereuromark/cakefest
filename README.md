@@ -1,10 +1,11 @@
 # CakePHP CakeFest APP
 
-Running with CakePHP 2.4
+A fun app to socialize around the upcoming CakeFest this year.
+Join in and tell others about your planned trip to San Francisco and the fest.
 
-Check it out live: http://cakefest.dereuromark.de
-
-Author: Mark Scherer alias dereuromark
+* Running with CakePHP 2.4
+* Check it out live: http://cakefest.dereuromark.de
+* Author: Mark Scherer alias dereuromark
 
 
 ### Dependencies
