@@ -734,3 +734,7 @@ div.warning {
 div.info {
 	background: -moz-linear-gradient(center top , #999, #000) repeat-x scroll 0 0 #C43C35;
 }
+
+select#AttendeeFromHour, select#AttendeeToHour {
+	margin-left: 10px;
+}

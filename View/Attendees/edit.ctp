@@ -4,8 +4,8 @@
 		<legend><?php echo __('Edit Attendee'); ?></legend>
 	<?php
 		echo $this->Form->input('id');
-		echo $this->Form->input('from');
-		echo $this->Form->input('to');
+		echo $this->Form->input('from', array('timeFormat' => 24, 'interval' => 30));
+		echo $this->Form->input('to', array('timeFormat' => 24, 'interval' => 30));
 		echo $this->Form->input('display_email');
 		echo $this->Form->input('comment');
 		echo $this->Form->input('event_id');

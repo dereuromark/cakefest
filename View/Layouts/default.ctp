@@ -58,8 +58,17 @@
 			?>
 		</div>
 	</div>
-	<?php echo $this->element('sql_dump'); ?>
 	<?php echo $this->fetch('script'); ?>
 	<?php echo $this->Js->writeBuffer(array('inline' => true)); ?>
+
+<?php
+$debug = Configure::read('debug');
+if ($debug > 0 && CakePlugin::loaded('Setup')) {
+	$this->loadHelper('Setup.Debug', $debug);
+	echo $this->Debug->show();
+} else {
+	echo $this->element('sql_dump');
+}
+?>
 </body>
 </html>

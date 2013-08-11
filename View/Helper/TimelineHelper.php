@@ -5,7 +5,7 @@ App::uses('AppHelper', 'View/Helper');
 /**
  * TimelineHelper for easy output of a timeline with multiple items.
  *
- * Uses http://almende.github.io/chap-links-library/timeline.html
+ * @link http://almende.github.io/chap-links-library/timeline.html
  */
 class TimelineHelper extends AppHelper {
 
@@ -20,6 +20,7 @@ class TimelineHelper extends AppHelper {
 		'width' => '100%',
 		'height' => null, // Auto.
 		'style' => 'box',
+		'current' => null, // Current time
 	);
 
 	protected $_items = array();
@@ -86,6 +87,13 @@ class TimelineHelper extends AppHelper {
 	public function finalize($return = false) {
 		$timelineId = $this->settings['id'];
 		$data = $this->_format($this->_items);
+
+		$current = '';
+		if (false) {
+			$dateString = date('Y-m-d H:i:s', time());
+			$current = 'timeline.setCurrentTime(' . $this->_date($dateString) . ');';
+		}
+
 		$script = <<<JS
 var timeline;
 var data;
@@ -112,6 +120,7 @@ function drawVisualization() {
 
 	// Draw our timeline with the created data and options
 	timeline.draw(data, options);
+	$current
 }
 
 drawVisualization();
@@ -149,14 +158,14 @@ JS;
 	protected function _date($date) {
 		$dateTime = explode(' ', $date, 2);
 		$datePieces = array();
-		$datePieces[] = (int)substr($date, 0, 4);
-		$datePieces[] = (int)substr($date, 5, 2);
-		$datePieces[] = (int)substr($date, 8, 2);
+		$datePieces[] = substr($dateTime[0], 0, 4);
+		$datePieces[] = (int)substr($dateTime[0], 5, 2);
+		$datePieces[] = (int)substr($dateTime[0], 8, 2);
 		if (!empty($dateTime[1])) {
 			//TODO
-			$datePieces[] = (int)substr($date, 0, 2);
-			$datePieces[] = (int)substr($date, 3, 2);
-			$datePieces[] = (int)substr($date, 6, 2);
+			$datePieces[] = (int)substr($dateTime[1], 0, 2);
+			$datePieces[] = (int)substr($dateTime[1], 3, 2);
+			$datePieces[] = (int)substr($dateTime[1], 6, 2);
 		}
 		return 'new Date(' . implode(', ', $datePieces) . ')';
 	}
