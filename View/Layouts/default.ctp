@@ -42,12 +42,20 @@
 			<?php echo $this->fetch('content'); ?>
 		</div>
 		<div id="footer">
-			<div style="float: left">
+			<div style="float: left; text-align: left;">
+<?php
+	$url = array(
+		'controller' => 'contact',
+		'?' => array('subject' => 'CakeFest App')
+	);
+?>
+				<p>
 				Created by <a href="http://www.dereuromark.de" target="_blank">dereuromark</a> - August 2013.
 
-				Bugs? Issues? <a href="https://github.com/dereuromark/cakefest" target="_blank">Open a PR/ticket</a>.
+				Bugs? Issues? <a href="https://github.com/dereuromark/cakefest" target="_blank">Open a PR/ticket</a> or <?php echo $this->Html->link('contact me', $url)?>.
 
-				More infos to the event at <a href="http://lanyrd.com/2013/cakefest/" target="_blank">lanyrd.com/2013/cakefest/</a>.
+				</p><p>
+				More infos to the event at <a href="http://lanyrd.com/2013/cakefest/" target="_blank">lanyrd.com/2013/cakefest/</a>.</p>
 			</div>
 
 			<?php echo $this->Html->link(

@@ -67,6 +67,14 @@ class AppController extends MyController {
 			'admin' => false,
 			'controller' => 'account',
 			'action' => 'login');
+
+		$allowed = array('Account' => array('login', 'lost_password'));
+		foreach ($allowed as $controller => $actions) {
+			if ($this->name === $controller && in_array($this->request->action, $actions)) {
+				$this->Common->flashMessage('The page you tried to access is not relevant if you are already logged in. Redirected to main page.', 'info');
+				return $this->redirect($this->Auth->loginRedirect);
+			}
+		}
 	}
 
 }

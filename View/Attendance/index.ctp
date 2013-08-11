@@ -6,7 +6,7 @@
 <?php
 	$url = array(
 		'controller' => 'contact',
-		'?' => array('subject' => 'Core Dev', 'email' => $user['User']['email'], 'name' => $user['User']['username'], 'message' => 'I am a core dev!')
+		'?' => array('subject' => 'Core Dev', 'message' => 'I am a core dev!')
 	);
 ?>
 <p>

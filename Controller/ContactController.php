@@ -58,6 +58,7 @@ class ContactController extends AppController {
 		$adminEmailname = Configure::read('Config.admin_emailname');
 
 		// Send email to Admin
+		Configure::write('Email.live', true);
 		App::uses('EmailLib', 'Tools.Lib');
 		$this->Email = new EmailLib();
 		$this->Email->to($adminEmail, $adminEmailname);
