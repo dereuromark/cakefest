@@ -10,6 +10,7 @@ $config['Config'] = array(
 	'admin_email' => '', // see configs_private.php
 	'admin_name' => 'Mark',
 	'admin_emailname' => 'Mark',
+	'rememberMe' => false,
 );
 
 

@@ -63,7 +63,7 @@ class ContactController extends AppController {
 		$this->Email = new EmailLib();
 		$this->Email->to($adminEmail, $adminEmailname);
 
-		$this->Email->subject(Configure::read('Config.page_name') . ' - ' . __('contact via form'));
+		$this->Email->subject(Configure::read('Config.pageName') . ' - ' . __('contact via form'));
 		$this->Email->template('contact');
 		$this->Email->viewVars(compact('message', 'subject', 'fromEmail', 'fromName'));
 		if ($this->Email->send()) {

@@ -8,8 +8,8 @@
 	<?php
 		echo $this->Form->input('login', array('label' => 'Your username or email'));
 		echo $this->Form->input('password', array('autocomplete' => 'off'));
-		if (Configure::read('Config.remember_me')) {
-			echo $this->Form->input('RememberMe.confirm', array('type' => 'checkbox', 'label' => 'Remember me on this device.'));
+		if (Configure::read('Config.rememberMe')) {
+			echo $this->Form->input('RememberMe.confirm', array('type' => 'checkbox', 'label' => __('Remember me on this device.')));
 		}
 	?>
 
