@@ -33,7 +33,8 @@ class AttendanceController extends AppController {
 		$this->Paginator->settings['conditions']['user_id'] = $this->Session->read('Auth.User.id');
 
 		$attendees = $this->Paginator->paginate();
-		$this->set(compact('attendees'));
+		$user = $this->Attendee->User->get($this->Session->read('Auth.User.id'));
+		$this->set(compact('attendees', 'user'));
 	}
 
 	/**

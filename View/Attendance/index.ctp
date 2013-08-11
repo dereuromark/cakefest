@@ -1,5 +1,20 @@
 <div class="attendees index">
 	<h2><?php echo __('My Attendance'); ?></h2>
+
+<p>as <b><?php echo User::statuses($user['User']['status'])?></b>.<p>
+<?php if ($user['User']['status'] == User::STATUS_DEV) { ?>
+<?php
+	$url = array(
+		'controller' => 'contact',
+		'?' => array('subject' => 'Core Dev', 'email' => $user['User']['email'], 'name' => $user['User']['username'], 'message' => 'I am a core dev!')
+	);
+?>
+<p>
+If you want to displayed under a different status (as core developer),
+<?php echo $this->Html->link('please let me know', $url)?>.
+</p>
+<?php } ?>
+
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 			<th><?php echo $this->Paginator->sort('event_id'); ?></th>

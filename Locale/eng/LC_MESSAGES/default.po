@@ -27,6 +27,8 @@ msgstr "The passwords do not match."
 msgid "new pw saved - you may now log in"
 msgstr "New password saved - you may now log in again."
 
+msgid "contactSuccessfullySent %s"
+msgstr "Email has been successfully sent - I will get back to you as soon as possible to the provided email address (%s)."
 
 ### Captcha Intgegration (Anti-Spam)
 
