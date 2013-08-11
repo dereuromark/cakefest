@@ -5,6 +5,9 @@ Event: <?php echo h($attendee['Event']['name']); ?>
 </p>
 
 <h3><?php echo h($attendee['User']['username']); ?></h3>
+
+<p><?php echo User::statuses($attendee['User']['status']); ?></p>
+
 	<dl>
 		<dt><?php echo __('From'); ?></dt>
 		<dd>
@@ -18,24 +21,25 @@ Event: <?php echo h($attendee['Event']['name']); ?>
 		</dd>
 		<dt><?php echo __('Email'); ?></dt>
 		<dd>
-			<?php if($attendee['Attendee']['display_email']); ?>
+			<?php if ($attendee['Attendee']['display_email']); ?>
+				<?php if (Auth::id()) { ?>
 				<?php echo h($attendee['User']['email']); ?>
+				<?php } else { ?>
+					<i>You need to be logged in to see the email.</i>
+				<?php } ?>
 			<?php ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Comment'); ?></dt>
-		<dd>
-			<?php echo nl2br(h($attendee['Attendee']['comment'])); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Status'); ?></dt>
-		<dd>
-			<?php echo User::statuses($attendee['User']['status']); ?>
-			&nbsp;
-		</dd>
+
 		<dt><?php echo __('IRC Nick'); ?></dt>
 		<dd>
 			<?php echo h($attendee['User']['irc_nick']); ?>
+			&nbsp;
+		</dd>
+
+		<dt><?php echo __('Comment'); ?></dt>
+		<dd>
+			<?php echo nl2br(h($attendee['Attendee']['comment'])); ?>
 			&nbsp;
 		</dd>
 	</dl>

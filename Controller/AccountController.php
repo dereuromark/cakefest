@@ -17,7 +17,6 @@ class AccountController extends AppController {
 	 * @return void
 	 */
 	public function login() {
-
 		if ($this->Common->isPosted()) {
 			if ($this->Auth->login()) {
 				$this->Common->flashMessage(__('loggedInMessage'), 'success');
@@ -182,6 +181,11 @@ class AccountController extends AppController {
 		}
 	}
 
+	/**
+	 * AccountController::edit()
+	 *
+	 * @return void
+	 */
 	public function edit() {
 		$uid = $this->Session->read('Auth.User.id');
 		$user = $this->User->get($uid);
@@ -198,7 +202,7 @@ class AccountController extends AppController {
 			}
 			$this->Common->flashMessage(__('formContainsErrors'), 'error');
 
-			# pw should not be passed to the view again for security reasons
+			// Pwd should not be passed to the view again for security reasons.
 			unset($this->request->data['User']['pwd']);
 			unset($this->request->data['User']['pwd_repeat']);
 		} else {
@@ -206,6 +210,12 @@ class AccountController extends AppController {
 		}
 	}
 
+	/**
+	 * AccountController::delete()
+	 *
+	 * @param mixed $id
+	 * @return void
+	 */
 	public function delete($id = null) {
 		$this->request->onlyAllow('post', 'delete');
 		$uid = $this->Session->read('Auth.User.id');
