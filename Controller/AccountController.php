@@ -40,7 +40,7 @@ class AccountController extends AppController {
 	public function logout() {
 		$whereTo = $this->Auth->logout();
 		# delete cookie
-		if (Configure::read('Config.remember_me')) {
+		if (Configure::read('Config.rememberMe')) {
 			$this->Comon->loadComponent('Tools.RememberMe');
 			$this->RememberMe->delete();
 		}
@@ -100,7 +100,7 @@ class AccountController extends AppController {
 					App::uses('EmailLib', 'Tools.Lib');
 					$this->Email = new EmailLib();
 					$this->Email->to($res['User']['email'], $res['User']['username']);
-					$this->Email->subject(Configure::read('Config.pageName').' - '.__('Password request'));
+					$this->Email->subject(Configure::read('Config.pageName') . ' - ' . __('Password request'));
 					$this->Email->template('lost_password');
 					$this->Email->viewVars(compact('cCode'));
 					if ($this->Email->send()) {

@@ -15,12 +15,12 @@ class TimelineHelper extends AppHelper {
 		'id' => 'mytimeline',
 		'selectable' => false,
 		'editable' => false,
-		'min' => null,
-		'max' => null,
+		'min' => null, // Min date.
+		'max' => null, // Max date.
 		'width' => '100%',
 		'height' => null, // Auto.
 		'style' => 'box',
-		'current' => null, // Current time
+		'current' => null, // Current time.
 	);
 
 	protected $_items = array();
@@ -39,6 +39,25 @@ class TimelineHelper extends AppHelper {
 	/**
 	 * Apply settings and merge them with the defaults.
 	 *
+	 * Possible values are (with their default values):
+	 *  - 'min',
+	 *  - 'max',
+	 *  - 'width'
+	 *  - 'height'
+	 *  - 'minHeight'
+	 *  - 'selectable' => false,
+	 *  - 'editable' => false,
+	 *  - 'moveable' => true
+	 *  - 'animate' => true,
+	 *  - 'animateZoom' => true,
+	 *  - 'axisOnTop' => false,
+	 *  - 'cluster' => false
+	 *  - 'locale' (string)
+	 *  - 'style' (string)
+	 *  - ...
+	 *
+	 * @link http://almende.github.io/chap-links-library/js/timeline/doc/
+	 * @param array $settings Key value pairs to merge with current settings.
 	 * @return void
 	 */
 	public function settings($settings) {
@@ -85,14 +104,18 @@ class TimelineHelper extends AppHelper {
 	 * @return void or string Javascript if $return is true
 	 */
 	public function finalize($return = false) {
-		$timelineId = $this->settings['id'];
+		$settings = $this->settings;
+		$timelineId = $settings['id'];
 		$data = $this->_format($this->_items);
 
 		$current = '';
-		if (false) {
+		if ($settings['current']) {
 			$dateString = date('Y-m-d H:i:s', time());
 			$current = 'timeline.setCurrentTime(' . $this->_date($dateString) . ');';
 		}
+		unset($settings['id']);
+		unset($settings['current']);
+		$options = $this->_options($settings);
 
 		$script = <<<JS
 var timeline;
@@ -103,17 +126,7 @@ var options;
 function drawVisualization() {
 	// Create a JSON data table
 	data = $data
-
-	// specify options
-	options = {
-	    'width':  '100%',
-	    //'height': '300px',
-	    'editable': false,
-	    'style': 'box',
-	    'min': new Date(2013, 08, 18),
-	    'max': new Date(2013, 09, 13),
-	    'selectable': false
-	};
+	options = $options
 
 	// Instantiate our timeline object.
 	timeline = new links.Timeline(document.getElementById('$timelineId'));
@@ -131,7 +144,41 @@ JS;
 		$this->Js->buffer($script);
 	}
 
-	public function _format($items) {
+	/**
+	 * Format options to JS code
+	 *
+	 * @param array $options
+	 * @return string
+	 */
+	protected function _options($options) {
+		$e = array();
+		foreach ($options as $option => $value) {
+			if (is_null($value)) {
+				continue;
+			}
+			if (is_string($value)) {
+				$value = '\'' . $value . '\'';
+			} elseif (is_object($value)) { // Datetime?
+				$value = $this->_date($value);
+			} elseif (is_bool($value)) {
+				$value = $value ? 'true' : 'false';
+			} else {
+				$value = str_replace('\'', '\\\'', $value);
+			}
+			$e[] = '\'' .$option . '\': ' . $value;
+		}
+		$string = '{' . PHP_EOL . "\t" . implode(',' . PHP_EOL . "\t", $e) . PHP_EOL . '}';
+		return $string;
+	}
+
+	/**
+	 * Format items to JS code
+	 *
+	 * @see TimelineHelper::addItem()
+	 * @param array $items
+	 * @return string
+	 */
+	protected function _format($items) {
 		$e = array();
 		foreach ($items as $item) {
 			$tmp = array();
@@ -145,27 +192,43 @@ JS;
 						$tmp[] = '\'' . $key . '\': ' . $this->_date($row);
 						break;
 					default:
-						$tmp[] = '\'' .$key . '\': \'' . ($row) . '\'';
+						$tmp[] = '\'' .$key . '\': \'' . str_replace('\'', '\\\'', $row) . '\'';
 				}
 			}
 			$e[] = '{' . implode(',' . PHP_EOL, $tmp) . '}';
 		}
 		$string = '[' . implode(',' . PHP_EOL, $e) . '];';
-
 		return $string;
 	}
 
+	/**
+	 * Format date to JS code.
+	 *
+	 * @param string|DateTime $date
+	 * @return string
+	 */
 	protected function _date($date) {
-		$dateTime = explode(' ', $date, 2);
-		$datePieces = array();
-		$datePieces[] = substr($dateTime[0], 0, 4);
-		$datePieces[] = (int)substr($dateTime[0], 5, 2);
-		$datePieces[] = (int)substr($dateTime[0], 8, 2);
-		if (!empty($dateTime[1])) {
-			//TODO
-			$datePieces[] = (int)substr($dateTime[1], 0, 2);
-			$datePieces[] = (int)substr($dateTime[1], 3, 2);
-			$datePieces[] = (int)substr($dateTime[1], 6, 2);
+		if (is_object($date)) {
+			// Datetime?
+			$datePieces = array();
+			$datePieces[] = $date->format('Y');
+			$datePieces[] = (int)$date->format('m');
+			$datePieces[] = (int)$date->format('d');
+			$datePieces[] = (int)$date->format('H');
+			$datePieces[] = (int)$date->format('i');
+			$datePieces[] = (int)$date->format('s');
+		} else {
+			// As string (fallback).
+			$dateTime = explode(' ', $date, 2);
+			$datePieces = array();
+			$datePieces[] = substr($dateTime[0], 0, 4);
+			$datePieces[] = (int)substr($dateTime[0], 5, 2);
+			$datePieces[] = (int)substr($dateTime[0], 8, 2);
+			if (!empty($dateTime[1])) {
+				$datePieces[] = (int)substr($dateTime[1], 0, 2);
+				$datePieces[] = (int)substr($dateTime[1], 3, 2);
+				$datePieces[] = (int)substr($dateTime[1], 6, 2);
+			}
 		}
 		return 'new Date(' . implode(', ', $datePieces) . ')';
 	}
