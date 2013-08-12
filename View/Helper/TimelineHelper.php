@@ -5,6 +5,11 @@ App::uses('AppHelper', 'View/Helper');
 /**
  * TimelineHelper for easy output of a timeline with multiple items.
  *
+ * You need to include your css and js file, manually:
+ *
+ *   echo $this->Html->script('timeline/timeline');
+ *   echo $this->Html->css('/js/timeline/timeline');
+ *
  * @link http://almende.github.io/chap-links-library/timeline.html
  */
 class TimelineHelper extends AppHelper {
