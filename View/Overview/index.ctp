@@ -18,7 +18,7 @@ We hear it all the time in the IRC channel: "Are you going to the fest?" etc.
 <br />
 Currently, it is difficult to know from all devs who will be at the conference, and from when to when.
 This page helps to set a basic attendance overview. Also, if you allow other people to see your email or provide an IRC nick, you
-might be able to connect before, after or even during the event and socialize, hang out or party :-)
+might be able to connect before, after and especially during the event to socialize, hang out or party :-)
 </p>
 
 <h3>The attendees this year</h3>
