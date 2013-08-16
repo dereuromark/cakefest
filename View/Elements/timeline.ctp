@@ -2,7 +2,9 @@
 <?php echo $this->Html->script('timeline/timeline'); ?>
 <?php echo $this->Html->css('/js/timeline/timeline'); ?>
 
-<div id="mytimeline"></div>
+<div id="mytimeline">
+	<noscript><p>JavaScript is required to view the attendance timeline.</p></noscript>
+</div>
 
 <?php
 	$this->loadHelper('Timeline');
