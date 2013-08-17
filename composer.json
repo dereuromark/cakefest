@@ -9,6 +9,7 @@
         }
     ],
     "require": {
-        "dereuromark/tools-cakephp": "2.3.x-dev"
+        "dereuromark/tools-cakephp": "2.3.x-dev",
+        "ceeram/authenticate": "dev-master"
     }
 }

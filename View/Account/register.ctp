@@ -29,7 +29,7 @@ convenience.
 </fieldset>
 <?php } ?>
 
-<?php echo $this->Form->end(__('Log me in'));?>
+<?php echo $this->Form->end(__('Create account'));?>
 
 <h3>No account yet?</h3>
 <p><?php echo $this->Html->link('Create one here. For free :P', array('action' => 'register'))?></p>
