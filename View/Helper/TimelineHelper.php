@@ -217,7 +217,8 @@ JS;
 			// Datetime?
 			$datePieces = array();
 			$datePieces[] = $date->format('Y');
-			$datePieces[] = (int)$date->format('m');
+			// JavaScript uses 0-indexed months, so we need to subtract 1 month from PHP's output
+			$datePieces[] = (int)($date->format('m') - 1);
 			$datePieces[] = (int)$date->format('d');
 			$datePieces[] = (int)$date->format('H');
 			$datePieces[] = (int)$date->format('i');
@@ -227,7 +228,8 @@ JS;
 			$dateTime = explode(' ', $date, 2);
 			$datePieces = array();
 			$datePieces[] = substr($dateTime[0], 0, 4);
-			$datePieces[] = (int)substr($dateTime[0], 5, 2);
+			// JavaScript uses 0-indexed months, so we need to subtract 1 month from the output
+			$datePieces[] = (int)(substr($dateTime[0], 5, 2) - 1);
 			$datePieces[] = (int)substr($dateTime[0], 8, 2);
 			if (!empty($dateTime[1])) {
 				$datePieces[] = (int)substr($dateTime[1], 0, 2);
