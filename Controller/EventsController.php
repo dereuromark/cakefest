@@ -38,7 +38,7 @@ class EventsController extends AppController {
 	 */
 	public function view($id = null) {
 		$this->Event->recursive = 0;
-		if (empty($id) || !($event = $this->Event->find('first', array('conditions'=>array('Event.id'=>$id))))) {
+		if (empty($id) || !($event = $this->Event->find('first', array('conditions' => array('Event.id' => $id))))) {
 			$this->Common->flashMessage(__('invalidRecord'), 'error');
 			return $this->Common->autoRedirect(array('action' => 'index'));
 		}
@@ -60,7 +60,6 @@ class EventsController extends AppController {
 			}
 			$this->Common->flashMessage(__('formContainsErrors'), 'error');
 		}
-
 	}
 
 	/**
@@ -70,7 +69,7 @@ class EventsController extends AppController {
 	 * @return void
 	 */
 	public function edit($id = null) {
-		if (empty($id) || !($event = $this->Event->find('first', array('conditions'=>array('Event.id'=>$id))))) {
+		if (empty($id) || !($event = $this->Event->find('first', array('conditions' => array('Event.id' => $id))))) {
 			$this->Common->flashMessage(__('invalidRecord'), 'error');
 			return $this->Common->autoRedirect(array('action' => 'index'));
 		}
@@ -95,7 +94,7 @@ class EventsController extends AppController {
 	 */
 	public function delete($id = null) {
 		$this->request->onlyAllow('post', 'delete');
-		if (empty($id) || !($event = $this->Event->find('first', array('conditions'=>array('Event.id'=>$id), 'fields'=>array('id', 'name'))))) {
+		if (empty($id) || !($event = $this->Event->find('first', array('conditions' => array('Event.id' => $id), 'fields' => array('id', 'name'))))) {
 			$this->Common->flashMessage(__('invalidRecord'), 'error');
 			return $this->Common->autoRedirect(array('action'=>'index'));
 		}

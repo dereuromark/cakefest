@@ -92,7 +92,8 @@ class AccountController extends AppController {
 					$this->Token = ClassRegistry::init('Tools.Token');
 					$cCode = $this->Token->newKey('reset_pwd', null, $uid);
 					if (Configure::read('debug') > 0) {
-						$this->Common->flashMessage('DEBUG MODE: Show activation key - '.h($res['User']['username']).' | '.$cCode, 'info');
+						$debugMessage = 'DEBUG MODE: Show activation key - ' . h($res['User']['username']) . ' | ' . $cCode;
+						$this->Common->flashMessage($debugMessage, 'info');
 					}
 
 					// Send email

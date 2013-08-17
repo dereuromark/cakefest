@@ -10,11 +10,11 @@ class OverviewController extends AppController {
 
 	public $uses = array('User');
 
-/**
- * Components
- *
- * @var array
- */
+	/**
+	 * Components
+	 *
+	 * @var array
+	 */
 	public $components = array('Paginator');
 
 	/**
@@ -28,21 +28,21 @@ class OverviewController extends AppController {
 		$this->Auth->allow();
 	}
 
-/**
- * Homepage.
- *
- * @return void
- */
+	/**
+	 * Homepage.
+	 *
+	 * @return void
+	 */
 	public function index() {
 		$this->User->Attendee->recursive = 0;
 		$this->set('attendees', $this->Paginator->paginate('Attendee'));
 	}
 
-/**
- * Admin backend.
- *
- * @return void
- */
+	/**
+	 * Admin backend.
+	 *
+	 * @return void
+	 */
 	public function admin() {
 		//TODO
 	}

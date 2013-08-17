@@ -9,11 +9,11 @@ App::uses('AppController', 'Controller');
  */
 class AttendeesController extends AppController {
 
-/**
- * Components
- *
- * @var array
- */
+	/**
+	 * Components
+	 *
+	 * @var array
+	 */
 	public $components = array('Paginator');
 
 	public function beforeFilter() {
@@ -41,7 +41,7 @@ class AttendeesController extends AppController {
 	 */
 	public function view($id = null) {
 		$this->Attendee->recursive = 0;
-		if (empty($id) || !($attendee = $this->Attendee->find('first', array('conditions'=>array('Attendee.id'=>$id))))) {
+		if (empty($id) || !($attendee = $this->Attendee->find('first', array('conditions' => array('Attendee.id' => $id))))) {
 			$this->Common->flashMessage(__('invalidRecord'), 'error');
 			return $this->Common->autoRedirect(array('action' => 'index'));
 		}
@@ -55,7 +55,7 @@ class AttendeesController extends AppController {
 	 * @return void
 	 */
 	public function edit($id = null) {
-		if (empty($id) || !($attendee = $this->Attendee->find('first', array('conditions'=>array('Attendee.id'=>$id))))) {
+		if (empty($id) || !($attendee = $this->Attendee->find('first', array('conditions' => array('Attendee.id' => $id))))) {
 			$this->Common->flashMessage(__('invalidRecord'), 'error');
 			return $this->Common->autoRedirect(array('action' => 'index'));
 		}
@@ -83,7 +83,7 @@ class AttendeesController extends AppController {
 	 */
 	public function delete($id = null) {
 		$this->request->onlyAllow('post', 'delete');
-		if (empty($id) || !($attendee = $this->Attendee->find('first', array('conditions'=>array('Attendee.id'=>$id), 'fields'=>array('id', 'user_id'))))) {
+		if (empty($id) || !($attendee = $this->Attendee->find('first', array('conditions' => array('Attendee.id' => $id), 'fields'=>array('id', 'user_id'))))) {
 			$this->Common->flashMessage(__('invalidRecord'), 'error');
 			return $this->Common->autoRedirect(array('action'=>'index'));
 		}

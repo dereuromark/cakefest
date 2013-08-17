@@ -38,7 +38,7 @@ class UsersController extends AppController {
 	 */
 	public function view($id = null) {
 		$this->User->recursive = 0;
-		if (empty($id) || !($user = $this->User->find('first', array('conditions'=>array('User.id'=>$id))))) {
+		if (empty($id) || !($user = $this->User->find('first', array('conditions'=> array('User.id' => $id))))) {
 			$this->Common->flashMessage(__('invalidRecord'), 'error');
 			return $this->Common->autoRedirect(array('action' => 'index'));
 		}
@@ -52,7 +52,7 @@ class UsersController extends AppController {
 	 * @return void
 	 */
 	public function edit($id = null) {
-		if (empty($id) || !($user = $this->User->find('first', array('conditions'=>array('User.id'=>$id))))) {
+		if (empty($id) || !($user = $this->User->find('first', array('conditions'=> array('User.id' => $id))))) {
 			$this->Common->flashMessage(__('invalidRecord'), 'error');
 			return $this->Common->autoRedirect(array('action' => 'index'));
 		}
@@ -78,7 +78,7 @@ class UsersController extends AppController {
 	 */
 	public function delete($id = null) {
 		$this->request->onlyAllow('post', 'delete');
-		if (empty($id) || !($user = $this->User->find('first', array('conditions'=>array('User.id'=>$id), 'fields'=>array('id', 'username'))))) {
+		if (empty($id) || !($user = $this->User->find('first', array('conditions'=> array('User.id' => $id), 'fields'=> array('id', 'username'))))) {
 			$this->Common->flashMessage(__('invalidRecord'), 'error');
 			return $this->Common->autoRedirect(array('action'=>'index'));
 		}

@@ -11,11 +11,11 @@ class AttendanceController extends AppController {
 
 	public $uses = array('Attendee');
 
-/**
- * Components
- *
- * @var array
- */
+	/**
+	 * Components
+	 *
+	 * @var array
+	 */
 	public $components = array('Paginator');
 
 	public function beforeFilter() {
@@ -67,7 +67,7 @@ class AttendanceController extends AppController {
 	 */
 	public function edit($id = null) {
 		$uid = $this->Session->read('Auth.User.id');
-		if (empty($id) || !($attendee = $this->Attendee->find('first', array('conditions'=>array('Attendee.id'=>$id, 'Attendee.user_id' => $uid))))) {
+		if (empty($id) || !($attendee = $this->Attendee->find('first', array('conditions' => array('Attendee.id' => $id, 'Attendee.user_id' => $uid))))) {
 			$this->Common->flashMessage(__('invalidRecord'), 'error');
 			return $this->Common->autoRedirect(array('action' => 'index'));
 		}
@@ -98,7 +98,7 @@ class AttendanceController extends AppController {
 	public function delete($id = null) {
 		$this->request->onlyAllow('post', 'delete');
 		$uid = $this->Session->read('Auth.User.id');
-		if (empty($id) || !($attendee = $this->Attendee->find('first', array('conditions'=>array('Attendee.id'=>$id, 'Attendee.user_id' => $uid), 'fields'=>array('id', 'user_id'))))) {
+		if (empty($id) || !($attendee = $this->Attendee->find('first', array('conditions' => array('Attendee.id' => $id, 'Attendee.user_id' => $uid), 'fields' => array('id', 'user_id'))))) {
 			$this->Common->flashMessage(__('invalidRecord'), 'error');
 			return $this->Common->autoRedirect(array('action'=>'index'));
 		}

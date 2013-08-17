@@ -1,5 +1,6 @@
 <?php
 App::uses('AppModel', 'Model');
+
 /**
  * Attendee Model
  *
@@ -8,18 +9,18 @@ App::uses('AppModel', 'Model');
  */
 class Attendee extends AppModel {
 
-/**
- * Display field
- *
- * @var string
- */
+	/**
+	 * Display field
+	 *
+	 * @var string
+	 */
 	public $displayField = 'user_id';
 
-/**
- * Validation rules
- *
- * @var array
- */
+	/**
+	 * Validation rules
+	 *
+	 * @var array
+	 */
 	public $validate = array(
 		'from' => array(
 			'datetime' => array(
@@ -80,6 +81,14 @@ class Attendee extends AppModel {
 		),
 	);
 
+	/**
+	 * Attendee::isValidDate()
+	 *
+	 * @param mixed $data
+	 * @param mixed $key
+	 * @param mixed $settings
+	 * @return boolean Success or string Error message.
+	 */
 	public function isValidDate($data, $key, $settings) {
 		if (empty($this->data[$this->alias]['event_id'])) {
 			return true;
@@ -108,11 +117,11 @@ class Attendee extends AppModel {
 		return false;
 	}
 
-/**
- * belongsTo associations
- *
- * @var array
- */
+	/**
+	 * belongsTo associations
+	 *
+	 * @var array
+	 */
 	public $belongsTo = array(
 		'Event' => array(
 			'className' => 'Event',
@@ -129,4 +138,5 @@ class Attendee extends AppModel {
 			'order' => ''
 		)
 	);
+
 }
