@@ -1,0 +1,14 @@
+{
+    "name": "dereuromark/cakefest",
+    "description": "The Cakefest Attendance App",
+    "minimum-stability": "dev",
+    "authors": [
+        {
+            "name": "Mark Scherer",
+            "email": "markscherer@gmx.de"
+        }
+    ],
+    "require": {
+        "dereuromark/tools-cakephp": "2.3.x-dev"
+    }
+}
