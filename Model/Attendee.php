@@ -9,6 +9,8 @@ App::uses('AppModel', 'Model');
  */
 class Attendee extends AppModel {
 
+	public $order = array('Attendee.from' => 'ASC');
+
 	/**
 	 * Display field
 	 *
