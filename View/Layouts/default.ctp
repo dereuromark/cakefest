@@ -25,6 +25,7 @@
 						<?php echo $this->Html->link('Admin', array('controller' => 'overview', 'action' => 'admin')); ?> |
 					<?php } ?>
 					<?php echo $this->Html->link('Account', array('controller' => 'account', 'action' => 'edit')); ?> |
+					<?php echo $this->Html->link('Attendance', array('controller' => 'attendance', 'action' => 'index')); ?> |
 					<?php echo $this->Html->link('Logout', array('controller' => 'account', 'action' => 'logout')); ?>
 				<?php } else { ?>
 					<?php echo $this->Html->link('Login', array('controller' => 'account', 'action' => 'login')); ?> |
