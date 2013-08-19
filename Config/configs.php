@@ -13,6 +13,9 @@ $config['Config'] = array(
 	'rememberMe' => false,
 );
 
+$config['Asset'] = array(
+	'js' => 'buffer'
+);
 
 /* Please provide the following using the configs_private.php which is not under version control */
 

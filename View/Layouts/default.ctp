@@ -12,6 +12,8 @@
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
+
+		$this->Html->script('jquery', array('inline' => false));
 	?>
 </head>
 <body>
@@ -68,7 +70,7 @@
 		</div>
 	</div>
 	<?php echo $this->fetch('script'); ?>
-	<?php echo $this->Js->writeBuffer(array('inline' => true)); ?>
+	<?php echo $this->Js->writeBuffer(array('inline' => true, 'onDomReady' => false)); ?>
 
 <?php
 $debug = Configure::read('debug');
