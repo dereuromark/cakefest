@@ -54,6 +54,11 @@ If you want to displayed under a different status (as core developer),
 	?>
 	</div>
 </div>
+
+<p>
+<b>Note: </b> All times are in the timezone of the event location (in this case PDT - Pacific Daylight Time).
+</p>
+
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
