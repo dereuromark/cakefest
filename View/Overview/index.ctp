@@ -23,8 +23,9 @@ might be able to connect before, after and especially during the event to social
 </p>
 
 <h3>The attendees this year</h3>
-Currently, <?php echo count($attendees); ?> submitted their attendance schedule so far:
-
+<p>
+Currently, <?php echo count($attendees); ?> devs submitted their attendance schedule so far:
+</p>
 
 <?php
 echo $this->element('timeline');
