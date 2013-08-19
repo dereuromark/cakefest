@@ -21,12 +21,12 @@ Event: <?php echo h($attendee['Event']['name']); ?>
 		</dd>
 		<dt><?php echo __('Email'); ?></dt>
 		<dd>
-			<?php if ($attendee['Attendee']['display_email'] || Auth::hasRole(Configure::read('Role.admin'))) {; ?>
-				<?php if (Auth::id()) { ?>
+			<?php if (Auth::id()) { ?>
+				<?php if ($attendee['Attendee']['display_email'] || Auth::hasRole(Configure::read('Role.admin'))) {; ?>
 				<?php echo h($attendee['User']['email']); ?>
-				<?php } else { ?>
-					<i>You need to be logged in to see the email.</i>
 				<?php } ?>
+			<?php } else { ?>
+				<i>You need to be logged in to see the email.</i>
 			<?php } ?>
 			&nbsp;
 		</dd>
