@@ -1,7 +1,4 @@
-<div style="float: right; margin-left: 20px;">
-<a href="http://cakefest.org/" target="_blank"><img src="http://cakefest.org/img/event.jpg" title="CakeFest" style="margin-bottom: 8px;" alt="" /></a>
-</div>
-
+<div class="index">
 <h2>CakeFest 2013 - Who is on board?</h2>
 <p><b>August 29th - September 1st</b>, San Francisco, USA</p>
 
@@ -29,11 +26,19 @@ Currently, <?php echo count($attendees); ?> submitted their attendance schedule 
 echo $this->element('timeline');
 ?>
 
-
+</div>
 
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 		<li><?php echo $this->Html->link(__('Join in'), array('controller' => 'attendance', 'action' => 'index')); ?></li>
 	</ul>
+	<?php if (!Auth::id()) { ?>
+	<br />
+	<br />
+	<h4>No account yet?</h4>
+	<p style="margin-top: 10px;">
+	<?php echo $this->Html->link('Please register first', array('controller' => 'account', 'action' => 'register'))?>
+	</p>
+	<?php } ?>
 </div>

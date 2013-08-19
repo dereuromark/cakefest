@@ -68,7 +68,7 @@ class AppController extends MyController {
 			'controller' => 'account',
 			'action' => 'login');
 
-		$allowed = array('Account' => array('login', 'lost_password'));
+		$allowed = array('Account' => array('login', 'lost_password', 'register'));
 		if (!Auth::id()) {
 			return;
 		}
