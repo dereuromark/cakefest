@@ -170,7 +170,7 @@ JS;
 			} else {
 				$value = str_replace('\'', '\\\'', $value);
 			}
-			$e[] = '\'' .$option . '\': ' . $value;
+			$e[] = '\'' . $option . '\': ' . $value;
 		}
 		$string = '{' . PHP_EOL . "\t" . implode(',' . PHP_EOL . "\t", $e) . PHP_EOL . '}';
 		return $string;
@@ -197,7 +197,7 @@ JS;
 						$tmp[] = '\'' . $key . '\': ' . $this->_date($row);
 						break;
 					default:
-						$tmp[] = '\'' .$key . '\': \'' . str_replace('\'', '\\\'', $row) . '\'';
+						$tmp[] = '\'' . $key . '\': \'' . str_replace('\'', '\\\'', $row) . '\'';
 				}
 			}
 			$e[] = '{' . implode(',' . PHP_EOL, $tmp) . '}';

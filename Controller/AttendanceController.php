@@ -18,10 +18,6 @@ class AttendanceController extends AppController {
 	 */
 	public $components = array('Paginator');
 
-	public function beforeFilter() {
-		parent::beforeFilter();
-	}
-
 	/**
 	 * index method
 	 *
@@ -100,7 +96,7 @@ class AttendanceController extends AppController {
 		$uid = $this->Session->read('Auth.User.id');
 		if (empty($id) || !($attendee = $this->Attendee->find('first', array('conditions' => array('Attendee.id' => $id, 'Attendee.user_id' => $uid), 'fields' => array('id', 'user_id'))))) {
 			$this->Common->flashMessage(__('invalidRecord'), 'error');
-			return $this->Common->autoRedirect(array('action'=>'index'));
+			return $this->Common->autoRedirect(array('action' => 'index'));
 		}
 		$var = $attendee['Attendee']['user_id'];
 

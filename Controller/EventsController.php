@@ -8,16 +8,12 @@ App::uses('AppController', 'Controller');
  */
 class EventsController extends AppController {
 
-/**
- * Components
- *
- * @var array
- */
+	/**
+	 * Components
+	 *
+	 * @var array
+	 */
 	public $components = array('Paginator');
-
-	public function beforeFilter() {
-		parent::beforeFilter();
-	}
 
 	/**
 	 * index method
@@ -96,7 +92,7 @@ class EventsController extends AppController {
 		$this->request->onlyAllow('post', 'delete');
 		if (empty($id) || !($event = $this->Event->find('first', array('conditions' => array('Event.id' => $id), 'fields' => array('id', 'name'))))) {
 			$this->Common->flashMessage(__('invalidRecord'), 'error');
-			return $this->Common->autoRedirect(array('action'=>'index'));
+			return $this->Common->autoRedirect(array('action' => 'index'));
 		}
 		$var = $event['Event']['name'];
 

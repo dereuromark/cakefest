@@ -83,9 +83,9 @@ class AttendeesController extends AppController {
 	 */
 	public function delete($id = null) {
 		$this->request->onlyAllow('post', 'delete');
-		if (empty($id) || !($attendee = $this->Attendee->find('first', array('conditions' => array('Attendee.id' => $id), 'fields'=>array('id', 'user_id'))))) {
+		if (empty($id) || !($attendee = $this->Attendee->find('first', array('conditions' => array('Attendee.id' => $id), 'fields' => array('id', 'user_id'))))) {
 			$this->Common->flashMessage(__('invalidRecord'), 'error');
-			return $this->Common->autoRedirect(array('action'=>'index'));
+			return $this->Common->autoRedirect(array('action' => 'index'));
 		}
 		$var = $attendee['Attendee']['user_id'];
 
