@@ -39,7 +39,7 @@ class AccountController extends AppController {
 	 */
 	public function logout() {
 		$whereTo = $this->Auth->logout();
-		# delete cookie
+		// Delete cookie
 		if (Configure::read('Config.rememberMe')) {
 			$this->Comon->loadComponent('Tools.RememberMe');
 			$this->RememberMe->delete();
@@ -176,7 +176,7 @@ class AccountController extends AppController {
 			}
 			$this->Common->flashMessage(__('formContainsErrors'), 'error');
 
-			# pw should not be passed to the view again for security reasons
+			// pwd should not be passed to the view again for security reasons
 			unset($this->request->data['User']['pwd']);
 			unset($this->request->data['User']['pwd_repeat']);
 		}
@@ -197,7 +197,7 @@ class AccountController extends AppController {
 			if ($this->User->save($this->request->data, true, array('id', 'username', 'email', 'irc_nick', 'pwd', 'pwd_repeat'))) {
 				$this->Common->flashMessage(__('Account modified'), 'success');
 				if (!$this->Auth->login($user['User'])) {
-					throw new CakeException('Cannot log user in');
+					throw new CakeException('Cannot update user auth data');
 				}
 				return $this->redirect(array('controller' => 'overview', 'action' => 'index'));
 			}
