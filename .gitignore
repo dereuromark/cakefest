@@ -2,5 +2,6 @@ Config/database.php
 tmp
 Plugin/DebugKit
 Plugin/Setup
+Plugin/CodeSniffer
 /Config/configs_private.php
 _*

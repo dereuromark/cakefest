@@ -16,6 +16,11 @@ class AttendeesController extends AppController {
 	 */
 	public $components = array('Paginator');
 
+	/**
+	 * AttendeesController::beforeFilter()
+	 *
+	 * @return void
+	 */
 	public function beforeFilter() {
 		parent::beforeFilter();
 

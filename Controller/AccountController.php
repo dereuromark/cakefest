@@ -162,6 +162,7 @@ class AccountController extends AppController {
 	 * AccountController::register()
 	 *
 	 * @return void
+	 * @throws CakeException
 	 */
 	public function register() {
 		$this->User->Behaviors->load('Tools.Passwordable', array());
@@ -186,6 +187,7 @@ class AccountController extends AppController {
 	 * AccountController::edit()
 	 *
 	 * @return void
+	 * @throws CakeException
 	 */
 	public function edit() {
 		$uid = $this->Session->read('Auth.User.id');
@@ -216,6 +218,7 @@ class AccountController extends AppController {
 	 *
 	 * @param mixed $id
 	 * @return void
+	 * @throws InternalErrorException
 	 */
 	public function delete($id = null) {
 		$this->request->onlyAllow('post', 'delete');

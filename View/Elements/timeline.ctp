@@ -7,7 +7,7 @@
 </div>
 
 <?php
-	$this->loadHelper('Timeline');
+	$this->loadHelper('Tools.Timeline');
 	$settings = array(
 		'min' => new DateTime('2013-08-18'),
 		'max' => new DateTime('2013-09-13'),

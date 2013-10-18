@@ -90,6 +90,7 @@ class Attendee extends AppModel {
 	 * @param mixed $key
 	 * @param mixed $settings
 	 * @return boolean Success or string Error message.
+	 * @throws InternalErrorException
 	 */
 	public function isValidDate($data, $key, $settings) {
 		if (empty($this->data[$this->alias]['event_id'])) {
