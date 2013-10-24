@@ -20,7 +20,6 @@ class AccountController extends AppController {
 		if ($this->Common->isPosted()) {
 			if ($this->Auth->login()) {
 				$this->Common->flashMessage(__('loggedInMessage'), 'success');
-
 				return $this->redirect($this->Auth->redirectUrl());
 			}
 			$this->request->data['User']['password'] = '';
@@ -41,7 +40,7 @@ class AccountController extends AppController {
 		$whereTo = $this->Auth->logout();
 		// Delete cookie
 		if (Configure::read('Config.rememberMe')) {
-			$this->Comon->loadComponent('Tools.RememberMe');
+			$this->Common->loadComponent('Tools.RememberMe');
 			$this->RememberMe->delete();
 		}
 		$this->Common->flashMessage(__('loggedOutMessage'), 'success');
@@ -170,6 +169,7 @@ class AccountController extends AppController {
 			$this->request->data['User']['role_id'] = Configure::read('Role.user');
 			if ($user = $this->User->save($this->request->data)) {
 				$this->Common->flashMessage(__('Account created'), 'success');
+				// Log in right away for now
 				if (!$this->Auth->login($user['User'])) {
 					throw new CakeException('Cannot log user in');
 				}
@@ -196,9 +196,11 @@ class AccountController extends AppController {
 
 		if ($this->Common->isPosted()) {
 			$this->request->data['User']['id'] = $uid;
-			if ($this->User->save($this->request->data, true, array('id', 'username', 'email', 'irc_nick', 'pwd', 'pwd_repeat'))) {
+			if ($newUser = $this->User->save($this->request->data, true, array('id', 'username', 'email', 'irc_nick', 'pwd', 'pwd_repeat'))) {
+				$newUser['User'] += $user['User'];
+				// Update session data, as well
 				$this->Common->flashMessage(__('Account modified'), 'success');
-				if (!$this->Auth->login($user['User'])) {
+				if (!$this->Auth->login($newUser['User'])) {
 					throw new CakeException('Cannot update user auth data');
 				}
 				return $this->redirect(array('controller' => 'overview', 'action' => 'index'));

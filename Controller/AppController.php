@@ -6,9 +6,6 @@ App::uses('MyController', 'Tools.Controller');
  *
  * Add your application-wide methods in the class below, your controllers
  * will inherit them.
- *
- * @package		app.Controller
- * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends MyController {
 
@@ -16,15 +13,13 @@ class AppController extends MyController {
 
 	public $helpers = array('Session', 'Html', 'Form' => array('className' => 'Tools.FormExt'), 'Tools.Common', 'Tools.Format', 'Tools.Datetime', 'Tools.Numeric');
 
-	public $paginate = array();
-
 	/**
 	 * AppController::constructClasses()
 	 *
 	 * @return void
 	 */
 	public function constructClasses() {
-		if (CakePlugin::loaded('DebugKit')) {
+		if (CakePlugin::loaded('DebugKit') && Configure::read('debug')) {
 			$this->components[] = 'DebugKit.Toolbar';
 		}
 
@@ -68,6 +63,7 @@ class AppController extends MyController {
 			'controller' => 'account',
 			'action' => 'login');
 
+		// Do not allow access to these public actions when already logged in
 		$allowed = array('Account' => array('login', 'lost_password', 'register'));
 		if (!Auth::id()) {
 			return;
