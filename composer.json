@@ -9,7 +9,7 @@
         }
     ],
     "require": {
-        "dereuromark/tools-cakephp": "2.3.x-dev",
-        "ceeram/authenticate": "dev-master"
+        "dereuromark/tools-cakephp": "master",
+        "FriendsOfCake/Authenticate": "master"
     }
 }

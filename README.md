@@ -10,8 +10,8 @@ Join in and tell others about your planned trip to San Francisco and the fest.
 
 ### Dependencies
 
-* CakePHP2.4
-* Ceerams Authenticate plugin
+* CakePHP 2.4
+* FriendsOfCake/Authenticate plugin
 * My Tools plugin
 
 
