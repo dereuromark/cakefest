@@ -20,7 +20,7 @@
 	<div id="container">
 		<div id="header">
 			<div style="float: right;">
-				<?php if ($this->Session->read('Auth.User.id')) { ?>
+				<?php if (Auth::id()) { ?>
 					<?php echo h($this->Session->read('Auth.User.username')); ?> [<?php echo h($this->Session->read('Auth.User.email')); ?>] -
 
 					<?php if (Auth::hasRole(Configure::read('Role.admin'))) { ?>
