@@ -8,10 +8,14 @@
 
 <?php
 	$this->loadHelper('Tools.Timeline');
+	$from = new DateTime($event['Event']['from']);
+	$to = new DateTime($event['Event']['to']);
+
 	$settings = array(
-		'min' => new DateTime($event['Event']['from']),
-		'max' => new DateTime($event['Event']['to']),
-	);	$this->Timeline->settings($settings);
+		'min' => $from->sub(new DateInterval('P10D')),
+		'max' => $to->add(new DateInterval('P10D')),
+	);
+	$this->Timeline->settings($settings);
 
 	foreach ($attendees as $attendee) {
 		$content = '';
