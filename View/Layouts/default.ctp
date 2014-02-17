@@ -35,7 +35,7 @@
 				<?php } ?>
 			</div>
 
-			<h1><?php echo $this->Html->link('CakeFest 2013 - The Attendance App', '/'); ?></h1>
+			<h1><?php echo $this->Html->link('CakeFest 2014 - The Attendance App', '/'); ?></h1>
 		</div>
 		<div id="content">
 
@@ -58,7 +58,7 @@
 				Bugs? Issues? <a href="https://github.com/dereuromark/cakefest" target="_blank">Open a PR/ticket</a> or <?php echo $this->Html->link('contact me', $url)?>.
 
 				</p><p>
-				More infos to the event at <a href="http://lanyrd.com/2013/cakefest/" target="_blank">lanyrd.com/2013/cakefest/</a>.</p>
+				More infos to the event at <a href="http://lanyrd.com/2014/cakefest/" target="_blank">lanyrd.com/2014/cakefest/</a>.</p>
 			</div>
 
 			<?php echo $this->Html->link(
