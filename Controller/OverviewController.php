@@ -35,7 +35,12 @@ class OverviewController extends AppController {
 	 */
 	public function index() {
 		$this->User->Attendee->recursive = 0;
-		$this->set('attendees', $this->Paginator->paginate('Attendee'));
+		// For now just the newest one
+		$currentEvent = $this->User->Attendee->Event->find('first', array('order' => array('from' => 'DESC')));
+
+		$attendees = $this->User->Attendee->find('all', array('conditions' => array('Attendee.event_id' => $currentEvent['Event']['id'])));
+
+		$this->set(compact('currentEvent', 'attendees'));
 	}
 
 	/**

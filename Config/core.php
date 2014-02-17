@@ -14,7 +14,7 @@
  * In development mode, you need to click the flash message to continue.
  */
 	Configure::write('debug', 0);
-	if (env('HTTP_HOST') === 'localhost') {
+	if (env('HTTP_HOST') === 'localhost' || env('HTTP_HOST') === 'cakefest.local') {
 		Configure::write('debug', 2);
 	}
 
