@@ -27,6 +27,7 @@ class AttendanceController extends AppController {
 		$this->Attendee->recursive = 0;
 
 		$this->Paginator->settings['conditions']['user_id'] = $this->Session->read('Auth.User.id');
+		$this->Paginator->settings['conditions']['Event.to >='] = date(FORMAT_DB_DATETIME);
 
 		$attendees = $this->Paginator->paginate();
 		$user = $this->Attendee->User->get($this->Session->read('Auth.User.id'));
@@ -50,9 +51,8 @@ class AttendanceController extends AppController {
 			$this->Common->flashMessage(__('formContainsErrors'), 'error');
 		}
 
-		$events = $this->Attendee->Event->find('list');
-		$users = $this->Attendee->User->find('list');
-		$this->set(compact('events', 'users'));
+		$events = $this->Attendee->Event->find('list', array('conditions' => array('Event.to >=' => date(FORMAT_DB_DATETIME))));
+		$this->set(compact('events'));
 	}
 
 	/**
@@ -78,9 +78,8 @@ class AttendanceController extends AppController {
 		} else {
 			$this->request->data = $attendee;
 		}
-		$events = $this->Attendee->Event->find('list');
-		$users = $this->Attendee->User->find('list');
-		$this->set(compact('events', 'users'));
+		$events = $this->Attendee->Event->find('list', array('conditions' => array('Event.to >=' => date(FORMAT_DB_DATETIME))));
+		$this->set(compact('events'));
 		$this->render('add');
 	}
 
