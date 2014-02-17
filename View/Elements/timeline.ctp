@@ -9,10 +9,9 @@
 <?php
 	$this->loadHelper('Tools.Timeline');
 	$settings = array(
-		'min' => new DateTime('2014-08-10'),
-		'max' => new DateTime('2014-09-05'),
-	);
-	$this->Timeline->settings($settings);
+		'min' => new DateTime($event['Event']['from']),
+		'max' => new DateTime($event['Event']['to']),
+	);	$this->Timeline->settings($settings);
 
 	foreach ($attendees as $attendee) {
 		$content = '';

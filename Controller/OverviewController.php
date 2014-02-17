@@ -36,11 +36,11 @@ class OverviewController extends AppController {
 	public function index() {
 		$this->User->Attendee->recursive = 0;
 		// For now just the newest one
-		$currentEvent = $this->User->Attendee->Event->find('first', array('order' => array('from' => 'DESC')));
+		$event = $this->User->Attendee->Event->find('first', array('order' => array('from' => 'DESC')));
 
-		$attendees = $this->User->Attendee->find('all', array('conditions' => array('Attendee.event_id' => $currentEvent['Event']['id'])));
+		$attendees = $this->User->Attendee->find('all', array('conditions' => array('Attendee.event_id' => $event['Event']['id'])));
 
-		$this->set(compact('currentEvent', 'attendees'));
+		$this->set(compact('event', 'attendees'));
 	}
 
 	/**
