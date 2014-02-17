@@ -3,8 +3,8 @@
 <a href="http://cakefest.org/" target="_blank"><img src="http://cakefest.org/img/event.jpg" title="CakeFest" style="margin-bottom: 8px;" alt="" /></a>
 </div>
 
-<h2>CakeFest 2013 - Who is on board?</h2>
-<p><b>August 29th - September 1st</b>, San Francisco, USA</p>
+<h2>CakeFest 2014 - Who is on board?</h2>
+<p><b>August 21st - August 24th</b>, Madrid, Spain</p>
 
 <h3>What is the CakeFest</h3>
 <p>

@@ -9,8 +9,8 @@
 <?php
 	$this->loadHelper('Tools.Timeline');
 	$settings = array(
-		'min' => new DateTime('2013-08-18'),
-		'max' => new DateTime('2013-09-13'),
+		'min' => new DateTime('2014-08-10'),
+		'max' => new DateTime('2014-09-05'),
 	);
 	$this->Timeline->settings($settings);
 
