@@ -3,5 +3,7 @@ tmp
 Plugin/DebugKit
 Plugin/Setup
 Plugin/CodeSniffer
+Plugin/Tools
+Plugin/Authenticate
 /Config/configs_private.php
 _*
