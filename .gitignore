@@ -7,3 +7,6 @@ Plugin/Tools
 Plugin/Authenticate
 /Config/configs_private.php
 _*
+/Vendor/autoload.php
+/Vendor/composer
+/composer.lock
