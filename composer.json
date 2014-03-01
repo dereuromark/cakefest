@@ -9,7 +9,7 @@
         }
     ],
     "require": {
-        "dereuromark/tools-cakephp": "master",
-        "FriendsOfCake/Authenticate": "master"
+        "dereuromark/tools-cakephp": "dev-master",
+        "FriendsOfCake/Authenticate": "dev-master"
     }
 }
