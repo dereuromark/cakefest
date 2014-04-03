@@ -1,7 +1,7 @@
 
 <h2><?php echo __('Contact Form');?></h2>
 <p>
-My email address: <?php echo $this->Format->encodeEmailUrl(Configure::read('Config.admin_email')); ?></p>
+My email address: <?php echo $this->Format->encodeEmailUrl(Configure::read('Config.adminEmail')); ?></p>
 
 <?php echo $this->Form->create('Contact');?>
 	<fieldset>

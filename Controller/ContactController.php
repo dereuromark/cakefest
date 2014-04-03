@@ -70,6 +70,7 @@ class ContactController extends AppController {
 			$this->Common->flashMessage(__('contactSuccessfullySent %s', $fromEmail), 'success');
 			return $this->redirect(array('action' => 'index'));
 		}
+		$this->log($this->Email->getError());
 		$this->Common->flashMessage(__('Contact Email could not be sent'), 'error');
 	}
 
