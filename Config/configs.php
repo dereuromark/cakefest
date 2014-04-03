@@ -7,9 +7,8 @@ $config['Role'] = array(
 
 $config['Config'] = array(
 	'pageName' => 'CakeFest App',
-	'admin_email' => '', // see configs_private.php
-	'admin_name' => 'Mark',
-	'admin_emailname' => 'Mark',
+	'adminEmail' => '', // See configs_private.php
+	'adminName' => 'Mark',
 	'rememberMe' => false,
 );
 
