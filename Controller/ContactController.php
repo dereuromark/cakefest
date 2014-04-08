@@ -46,7 +46,6 @@ class ContactController extends AppController {
 			}
 		}
 
-		$this->set(compact('dropdowns'));
 		$this->helpers = array_merge($this->helpers, array('Tools.Captcha'));
 	}
 
