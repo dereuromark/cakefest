@@ -144,7 +144,11 @@ class AccountController extends AppController {
 		$this->User->Behaviors->load('Tools.Passwordable', array());
 		if ($this->Common->isPosted()) {
 			$this->request->data['User']['id'] = $uid;
-			if ($this->User->save($this->request->data, true, array('id', 'pwd', 'pwd_repeat'))) {
+			$options = array(
+				'validate' => true,
+				'fieldList' => array('id', 'pwd', 'pwd_repeat')
+			);
+			if ($this->User->save($this->request->data, $options)) {
 				$this->Common->flashMessage(__('new pw saved - you may now log in'), 'success');
 				$this->Session->delete('Auth.Tmp');
 				$username = $this->User->field('username', array('id' => $uid));
@@ -197,7 +201,11 @@ class AccountController extends AppController {
 
 		if ($this->Common->isPosted()) {
 			$this->request->data['User']['id'] = $uid;
-			if ($newUser = $this->User->save($this->request->data, true, array('id', 'username', 'email', 'irc_nick', 'pwd', 'pwd_repeat'))) {
+			$options = array(
+				'validate' => true,
+				'fieldList' => array('id', 'username', 'email', 'irc_nick', 'pwd', 'pwd_repeat')
+			);
+			if ($newUser = $this->User->save($this->request->data, $options)) {
 				$newUser['User'] += $user['User'];
 				// Update session data, as well
 				$this->Common->flashMessage(__('Account modified'), 'success');
