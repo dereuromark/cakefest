@@ -74,6 +74,8 @@ class AppController extends MyController {
 				return $this->redirect($this->Auth->loginRedirect);
 			}
 		}
+
+		$this->paginate['paramType'] = 'querystring';
 	}
 
 }

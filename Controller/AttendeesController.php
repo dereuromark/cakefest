@@ -5,16 +5,8 @@ App::uses('AppController', 'Controller');
  * Attendees Controller
  *
  * @property Attendee $Attendee
- * @property PaginatorComponent $Paginator
  */
 class AttendeesController extends AppController {
-
-	/**
-	 * Components
-	 *
-	 * @var array
-	 */
-	public $components = array('Paginator');
 
 	/**
 	 * AttendeesController::beforeFilter()

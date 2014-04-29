@@ -12,13 +12,6 @@ class AttendanceController extends AppController {
 	public $uses = array('Attendee');
 
 	/**
-	 * Components
-	 *
-	 * @var array
-	 */
-	public $components = array('Paginator');
-
-	/**
 	 * index method
 	 *
 	 * @return void
@@ -26,10 +19,10 @@ class AttendanceController extends AppController {
 	public function index() {
 		$this->Attendee->recursive = 0;
 
-		$this->Paginator->settings['conditions']['user_id'] = $this->Session->read('Auth.User.id');
-		$this->Paginator->settings['conditions']['Event.to >='] = date(FORMAT_DB_DATETIME);
+		$this->paginate['conditions']['user_id'] = $this->Session->read('Auth.User.id');
+		$this->paginate['conditions']['Event.to >='] = date(FORMAT_DB_DATETIME);
 
-		$attendees = $this->Paginator->paginate();
+		$attendees = $this->paginate();
 		$user = $this->Attendee->User->get($this->Session->read('Auth.User.id'));
 		$this->set(compact('attendees', 'user'));
 	}
