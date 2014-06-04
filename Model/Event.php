@@ -41,7 +41,7 @@ class Event extends AppModel {
 			),
 		),
 		'name' => array(
-			'notempty' => array(
+			'notEmpty' => array(
 				'rule' => array('notEmpty'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,

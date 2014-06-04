@@ -23,7 +23,7 @@ class User extends AppModel {
 	 */
 	public $validate = array(
 		'username' => array(
-			'notempty' => array(
+			'notEmpty' => array(
 				'rule' => array('notEmpty'),
 				//'message' => 'Your custom message here',
 				'last' => true,

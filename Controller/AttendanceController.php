@@ -84,7 +84,7 @@ class AttendanceController extends AppController {
 	 * @return void
 	 */
 	public function delete($id = null) {
-		$this->request->onlyAllow('post', 'delete');
+		$this->request->allowMethod('post', 'delete');
 		$uid = $this->Session->read('Auth.User.id');
 		if (empty($id) || !($attendee = $this->Attendee->find('first', array('conditions' => array('Attendee.id' => $id, 'Attendee.user_id' => $uid), 'fields' => array('id', 'user_id'))))) {
 			$this->Common->flashMessage(__('invalidRecord'), 'error');

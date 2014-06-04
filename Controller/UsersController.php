@@ -65,7 +65,7 @@ class UsersController extends AppController {
 	 * @return void
 	 */
 	public function delete($id = null) {
-		$this->request->onlyAllow('post', 'delete');
+		$this->request->allowMethod('post', 'delete');
 		if (empty($id) || !($user = $this->User->find('first', array('conditions' => array('User.id' => $id), 'fields' => array('id', 'username'))))) {
 			$this->Common->flashMessage(__('invalidRecord'), 'error');
 			return $this->Common->autoRedirect(array('action' => 'index'));
