@@ -28,14 +28,11 @@ class Attendee extends AppModel {
 			'datetime' => array(
 				'rule' => array('datetime'),
 				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
 				'last' => true,
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 			'isValidDate' => array(
 				'rule' => array('isValidDate', 'from'),
-				'message' => 'Please provide a valid date without the allowed range',
+				'message' => 'Please provide a valid date within the allowed range',
 				'last' => true,
 			)
 		),
@@ -46,7 +43,12 @@ class Attendee extends AppModel {
 			),
 			'isValidDate' => array(
 				'rule' => array('isValidDate', 'to'),
-				'message' => 'Please provide a valid date without the allowed range',
+				'message' => 'Please provide a valid date within the allowed range',
+				'last' => true,
+			),
+			'validateDateTime' => array(
+				'rule' => array('validateDateTime', array('after' => 'from')),
+				'message' => 'This date must be after the from date',
 				'last' => true,
 			),
 		),
@@ -109,10 +111,20 @@ class Attendee extends AppModel {
 				if (!($dateTime >= $compareDateTime - 10 * DAY)) {
 					return 'You cannot set a date before ' . date(FORMAT_DB_DATE, $compareDateTime);
 				}
+				$compareDate = $event['Event']['to'];
+				$compareDateTime = strtotime($compareDate);
+				if (!($dateTime <= $compareDateTime - 10 * DAY)) {
+					return 'You cannot set a date after ' . date(FORMAT_DB_DATE, $compareDateTime);
+				}
 				return true;
 			case 'to':
 				if (!($dateTime <= $compareDateTime + 10 * DAY)) {
 					return 'You cannot set a date after ' . date(FORMAT_DB_DATE, $compareDateTime);
+				}
+				$compareDate = $event['Event']['from'];
+				$compareDateTime = strtotime($compareDate);
+				if (!($dateTime >= $compareDateTime - 10 * DAY)) {
+					return 'You cannot set a date before ' . date(FORMAT_DB_DATE, $compareDateTime);
 				}
 				return true;
 		}

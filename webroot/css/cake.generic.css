@@ -738,3 +738,7 @@ div.info {
 select#AttendeeFromHour, select#AttendeeToHour {
 	margin-left: 10px;
 }
+
+div.input label {
+	cursor: pointer;
+}

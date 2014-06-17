@@ -3,7 +3,7 @@
 <head>
 	<?php echo $this->Html->charset(); ?>
 	<title>
-		<?php echo $this->fetch('title'); ?>
+		<?php echo $this->fetch('title'); ?> - CakeFest App
 	</title>
 	<?php
 		echo $this->Html->meta('icon');
@@ -39,7 +39,6 @@
 		</div>
 		<div id="content">
 
-			<?php echo $this->Session->flash(); ?>
 			<?php echo $this->Common->flash(); ?>
 
 			<?php echo $this->fetch('content'); ?>

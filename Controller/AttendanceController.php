@@ -42,6 +42,9 @@ class AttendanceController extends AppController {
 				return $this->Common->postRedirect(array('action' => 'index'));
 			}
 			$this->Common->flashMessage(__('formContainsErrors'), 'error');
+		} else {
+			$this->request->data['Attendee']['from'] = date(FORMAT_DB_DATETIME);
+			$this->request->data['Attendee']['to'] = date(FORMAT_DB_DATETIME);
 		}
 
 		$events = $this->Attendee->Event->find('list', array('conditions' => array('Event.to >=' => date(FORMAT_DB_DATETIME))));

@@ -56,7 +56,7 @@ If you want to displayed under a different status (as core developer),
 </div>
 
 <p>
-<b>Note: </b> All times are in the timezone of the event location (in this case PDT - Pacific Daylight Time).
+<b>Note: </b> All times are in the timezone of the event location (in this case CET - Central European Time).
 </p>
 
 <div class="actions">
