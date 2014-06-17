@@ -113,7 +113,7 @@ class Attendee extends AppModel {
 				}
 				$compareDate = $event['Event']['to'];
 				$compareDateTime = strtotime($compareDate);
-				if (!($dateTime <= $compareDateTime - 10 * DAY)) {
+				if (!($dateTime <= $compareDateTime + 10 * DAY)) {
 					return 'You cannot set a date after ' . date(FORMAT_DB_DATE, $compareDateTime);
 				}
 				return true;
