@@ -1,7 +1,7 @@
 <div class="attendees form">
 <?php echo $this->Form->create('ContactForm'); ?>
 	<fieldset>
-		<legend><?php echo __('Noify Attendees'); ?></legend>
+		<legend><?php echo __('Notify Attendees'); ?></legend>
 	<?php
 	foreach ($lastAttendees as $attendee) {
 		$label = $attendee['User']['username'] . ' - ' . $attendee['User']['email'];
