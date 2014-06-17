@@ -133,6 +133,21 @@ class Attendee extends AppModel {
 	}
 
 	/**
+	 * Attendee::getNotifyableAttendees()
+	 *
+	 * @return array
+	 */
+	public function getNotifyableAttendees() {
+		$last = $this->Event->find('first', array('order' => array('from' => 'DESC')));
+		$current = $this->Event->find('first', array('conditions' => array('id !=' => $last['Event']['id']), 'order' => array('from' => 'DESC')));
+
+		$currentAttendees = $this->find('all', array('conditions' => array('Attendee.event_id' => $current['Event']['id'])));
+		$currentUserList = Hash::extract($currentAttendees, '{n}.Attendee.user_id');
+		$lastAttendees = $this->find('all', array('contain' => array('User'), 'conditions' => array('Attendee.user_id NOT' => $currentUserList, 'Attendee.event_id' => $last['Event']['id'])));
+		return $lastAttendees;
+	}
+
+	/**
 	 * belongsTo associations
 	 *
 	 * @var array

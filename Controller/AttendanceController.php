@@ -33,6 +33,8 @@ class AttendanceController extends AppController {
 	 * @return void
 	 */
 	public function add() {
+		$events = $this->Attendee->Event->find('list', array('conditions' => array('Event.to >=' => date(FORMAT_DB_DATETIME))));
+
 		if ($this->Common->isPosted()) {
 			$this->Attendee->create();
 			$this->request->data['Attendee']['user_id'] = $this->Session->read('Auth.User.id');
@@ -45,9 +47,15 @@ class AttendanceController extends AppController {
 		} else {
 			$this->request->data['Attendee']['from'] = date(FORMAT_DB_DATETIME);
 			$this->request->data['Attendee']['to'] = date(FORMAT_DB_DATETIME);
+
+			if (count($events) === 1) {
+				$key = array_keys($events);
+				$event = $this->Attendee->Event->get(array_shift($key));
+				$this->request->data['Attendee']['from'] = $event['Event']['from'] . ' ' . '08:00:00';
+				$this->request->data['Attendee']['to'] = $event['Event']['to'] . ' ' . '20:00:00';
+			}
 		}
 
-		$events = $this->Attendee->Event->find('list', array('conditions' => array('Event.to >=' => date(FORMAT_DB_DATETIME))));
 		$this->set(compact('events'));
 	}
 
