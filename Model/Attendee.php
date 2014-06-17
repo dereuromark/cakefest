@@ -109,22 +109,22 @@ class Attendee extends AppModel {
 		switch ($key) {
 			case 'from':
 				if (!($dateTime >= $compareDateTime - 10 * DAY)) {
-					return 'You cannot set a date before ' . date(FORMAT_DB_DATE, $compareDateTime);
+					return 'You cannot set a date before ' . date(FORMAT_DB_DATE, $compareDateTime - 10 * DAY);
 				}
 				$compareDate = $event['Event']['to'];
 				$compareDateTime = strtotime($compareDate);
 				if (!($dateTime <= $compareDateTime + 10 * DAY)) {
-					return 'You cannot set a date after ' . date(FORMAT_DB_DATE, $compareDateTime);
+					return 'You cannot set a date after ' . date(FORMAT_DB_DATE, $compareDateTime + 10 * DAY);
 				}
 				return true;
 			case 'to':
 				if (!($dateTime <= $compareDateTime + 10 * DAY)) {
-					return 'You cannot set a date after ' . date(FORMAT_DB_DATE, $compareDateTime);
+					return 'You cannot set a date after ' . date(FORMAT_DB_DATE, $compareDateTime + 10 * DAY);
 				}
 				$compareDate = $event['Event']['from'];
 				$compareDateTime = strtotime($compareDate);
 				if (!($dateTime >= $compareDateTime - 10 * DAY)) {
-					return 'You cannot set a date before ' . date(FORMAT_DB_DATE, $compareDateTime);
+					return 'You cannot set a date before ' . date(FORMAT_DB_DATE, $compareDateTime - 10 * DAY);
 				}
 				return true;
 		}
