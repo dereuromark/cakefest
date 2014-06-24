@@ -15,9 +15,9 @@ Join in and tell others about your planned trip to Madrid and the fest.
 
 ### Installation
 
-* Check out CakePHP into /ROOT/lib/Cake
-* Check out this repo into /ROOT/app (or cakefest)
-* Run composer install/update on it
+* Check out this repo into /ROOT/app
+* Navigate into the /app folder.
+* Run composer install/update on it (this will also install CakePHP into the Vendor folder)
 * Create a vhost with a local dev domain of your choice, e.g. `cakefest.local`, and use /ROOT/app/webroot/ as document root
 * Check it out at `http://cakefest.local`
 
