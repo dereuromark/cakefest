@@ -1,15 +1,24 @@
 {
-    "name": "dereuromark/cakefest",
-    "description": "The Cakefest Attendance App",
-    "minimum-stability": "dev",
-    "authors": [
-        {
-            "name": "Mark Scherer",
-            "email": "euromark@web.de"
-        }
-    ],
-    "require": {
-        "dereuromark/tools-cakephp": "dev-master",
-        "FriendsOfCake/Authenticate": "dev-master"
-    }
+	"name": "dereuromark/cakefest",
+	"description": "The Cakefest Attendance App",
+	"homepage" : "https://github.com/CakePress/CakePress",
+	"license": "MIT",
+	"keywords" : [
+		"Framework",
+		"CakeFest",
+		"CakePHP"
+	],
+	"minimum-stability": "dev",
+	"authors": [{
+			"name": "Mark Scherer",
+			"email": "euromark@web.de"
+		}],
+	"require": {
+		"cakephp/cakephp" : "dev-master",
+		"dereuromark/tools-cakephp": "dev-master",
+		"FriendsOfCake/Authenticate": "dev-master"
+	},
+	"config" : {
+		"vendor-dir" : "Vendor"
+	}
 }
