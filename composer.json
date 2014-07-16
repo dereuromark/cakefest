@@ -14,10 +14,17 @@
 			"email": "euromark@web.de"
 		}],
 	"require": {
-		"cakephp/cakephp" : "dev-master",
+		"cakephp/cakephp" : "2.5.*",
 		"dereuromark/tools-cakephp": "dev-master",
-		"FriendsOfCake/Authenticate": "dev-master"
+		"FriendsOfCake/Authenticate": "dev-master",
+		"CakeDC/search" : "dev-master",
 	},
+	"minimum-stability" : "dev",
+	"repositories" : [{
+			"type" : "vcs",
+			"url" : "https://github.com/dereuromark/search"
+		}
+	],
 	"config" : {
 		"vendor-dir" : "Vendor"
 	}
