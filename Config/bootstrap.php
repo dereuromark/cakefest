@@ -3,8 +3,7 @@
 // Setup a 'default' cache configuration for use in the application.
 Cache::config('default', array('engine' => 'File'));
 
-CakePlugin::loadAll();
-CakePlugin::load('Tools', array('bootstrap' => true));
+CakePlugin::loadAll(array('Tools' => array('bootstrap' => true)));
 
 define('USER_ROLE_KEY', 'role_id');
 
