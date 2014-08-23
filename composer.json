@@ -1,7 +1,7 @@
 {
 	"name": "dereuromark/cakefest",
 	"description": "The Cakefest Attendance App",
-	"homepage" : "https://github.com/CakePress/CakePress",
+	"homepage" : "http://cakefest.dereuromark.de",
 	"license": "MIT",
 	"keywords" : [
 		"Framework",
