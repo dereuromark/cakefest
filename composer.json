@@ -14,21 +14,20 @@
 			"email": "euromark@web.de"
 		}],
 	"require": {
-		"php": ">=5.3",
-		"cakephp/cakephp" : "2.5.*",
-		"dereuromark/cakephp-tools": "dev-master",
-		"FriendsOfCake/Authenticate": "dev-master",
-		"CakeDC/search" : "dev-master"
+		"php": ">=5.4.16",
+		"cakephp/cakephp": "3.0.*-dev",
+		"mobiledetect/mobiledetectlib": "2.*",
+		"cakephp/debug_kit": "3.0.*-dev",
+		"dereuromark/cakephp-tinyauth": "dev-master",
+		"dereuromark/cakephp-geo": "dev-master",
+		"dereuromark/cakephp-tools": "dev-cake3",
+		"FriendsOfCake/Authenticate": "dev-cake3",
+		"CakeDC/search" : "3.0.*-dev"
 	},
 	"require-dev": {
-		"phpunit/phpunit" : "3.7.*",
-		"cakephp/debug_kit": "dev-master"
+		"phpunit/phpunit": "*",
+		"d11wtq/boris": "1.0.*"
 	},
-	"repositories" : [{
-			"type" : "vcs",
-			"url" : "https://github.com/dereuromark/search"
-		}
-	],
 	"config" : {
 		"vendor-dir" : "Vendor"
 	}
