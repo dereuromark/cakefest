@@ -30,5 +30,8 @@
 	},
 	"config" : {
 		"vendor-dir" : "Vendor"
+	},
+	"scripts": {
+		"post-install-cmd": "App\\Console\\Installer::postInstall"
 	}
 }
