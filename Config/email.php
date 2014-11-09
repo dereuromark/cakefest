@@ -1,5 +1,6 @@
 <?php
-App::uses('BaseEmailConfig', 'Tools.Config');
+
+use Tools\Config\BaseEmailConfig;
 
 class EmailConfig extends BaseEmailConfig {
 

@@ -35,7 +35,7 @@ If you want to displayed under a different status (as core developer),
 
 		<td class="actions">
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $attendee['Attendee']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $attendee['Attendee']['id']), null, __('Are you sure you want to delete # %s?', $attendee['Attendee']['id'])); ?>
+			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $attendee['Attendee']['id']), null, __('Are you sure you want to delete # {0}?', $attendee['Attendee']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>

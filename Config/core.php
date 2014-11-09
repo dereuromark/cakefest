@@ -1,4 +1,7 @@
 <?php
+use Cake\Cache\Cache;
+use Cake\Core\Configure;
+use Cake\Utility\Inflector;
 
 /**
  * CakePHP Debug Level:

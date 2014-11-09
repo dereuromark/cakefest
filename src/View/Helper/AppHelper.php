@@ -1,6 +1,7 @@
 <?php
 
-App::uses('MyHelper', 'Tools.View/Helper');
+namespace App\View\Helper;
+use Tools\View\Helper\MyHelper;
 
 class AppHelper extends MyHelper {
 }

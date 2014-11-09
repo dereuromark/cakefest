@@ -1,13 +1,35 @@
 <?php
+/**
+ * Configure paths required to find CakePHP + general filepath
+ * constants
+ */
+require __DIR__ . '/paths.php';
+
+// Use composer to load the autoloader.
+require ROOT . DS . 'vendor' . DS . 'autoload.php';
+
+/**
+ * Bootstrap CakePHP.
+ *
+ * Does the various bits of setup that CakePHP needs to do.
+ * This includes:
+ *
+ * - Registering the CakePHP autoloader.
+ * - Setting the default application paths.
+ */
+require CORE_PATH . 'config' . DS . 'bootstrap.php';
+
+use Cake\Cache\Cache;
+use Cake\Core\App;
+use Cake\Core\Configure;
+use Cake\Core\Plugin;
 
 // Setup a 'default' cache configuration for use in the application.
 Cache::config('default', array('engine' => 'File'));
 
-CakePlugin::loadAll(array('Tools' => array('bootstrap' => true)));
+Plugin::loadAll(array('Tools' => array('bootstrap' => true)));
 
 define('USER_ROLE_KEY', 'role_id');
-
-App::uses('Auth', 'Tools.Lib');
 
 Configure::load('configs');
 if (file_exists(APP . 'Config' . DS . 'configs_private.php')) {
@@ -35,19 +57,4 @@ Configure::write('Config.language', 'eng');
 Configure::write('Dispatcher.filters', array(
 	'AssetDispatcher',
 	//'CacheDispatcher'
-));
-
-/**
- * Configures default file logging options
- */
-App::uses('CakeLog', 'Log');
-CakeLog::config('debug', array(
-	'engine' => 'File',
-	'types' => array('notice', 'info', 'debug'),
-	'file' => 'debug',
-));
-CakeLog::config('error', array(
-	'engine' => 'File',
-	'types' => array('warning', 'error', 'critical', 'alert', 'emergency'),
-	'file' => 'error',
 ));
