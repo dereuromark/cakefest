@@ -11,7 +11,6 @@
  * @since         3.0.0
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
-namespace config;
 
 /**
  * Use the DS to separate the directories in other defines
