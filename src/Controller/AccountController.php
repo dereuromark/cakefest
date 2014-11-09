@@ -1,5 +1,9 @@
 <?php
-App::uses('AppController', 'Controller');
+namespace App\Controller;
+
+use App\Controller\AppController;
+use Tools\View\Helper\FormatHelper;
+use Tools\EmailLib;
 
 class AccountController extends AppController {
 
@@ -97,7 +101,7 @@ class AccountController extends AppController {
 
 					// Send email
 					Configure::write('Email.live', true);
-					App::uses('EmailLib', 'Tools.Lib');
+
 					$this->Email = new EmailLib();
 					$this->Email->to($res['User']['email'], $res['User']['username']);
 					$this->Email->subject(Configure::read('Config.pageName') . ' - ' . __('Password request'));
@@ -105,17 +109,16 @@ class AccountController extends AppController {
 					$this->Email->viewVars(compact('cCode'));
 					if ($this->Email->send()) {
 						// Confirmation output
-						App::uses('FormatHelper', 'Tools.View/Helper');
 						$email = h(FormatHelper::hideEmail($res['User']['email']));
 
-						$this->Common->flashMessage(__('An email with instructions has been send to \'%s\'.', $email), 'success');
+						$this->Common->flashMessage(__('An email with instructions has been send to \'{0}\'.', $email), 'success');
 						$this->Common->flashMessage(__('In a third step you will then be able to change your password.'), 'success');
 					} else {
 						$this->Common->flashMessage(__('Confirmation Email could not be sent. Please consult an admin.'), 'error');
 					}
 					return $this->redirect(array('action' => 'lost_password'));
 				}
-				$this->Common->flashMessage(__('No account has been found for \'%s\'', $this->request->data['Form']['login']), 'error');
+				$this->Common->flashMessage(__('No account has been found for \'{0}\'', $this->request->data['Form']['login']), 'error');
 			}
 		}
 

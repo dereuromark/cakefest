@@ -1,5 +1,6 @@
 <?php
-App::uses('MyController', 'Tools.Controller');
+namespace App\Controller;
+use Tools\Controller\MyController;
 
 /**
  * Application Controller
@@ -19,7 +20,7 @@ class AppController extends MyController {
 	 * @return void
 	 */
 	public function constructClasses() {
-		if (CakePlugin::loaded('DebugKit') && Configure::read('debug')) {
+		if (Plugin::loaded('DebugKit') && Configure::read('debug')) {
 			$this->components[] = 'DebugKit.Toolbar';
 		}
 
