@@ -12,17 +12,15 @@ class AttendeeFixture extends CakeTestFixture {
 	 * @var array
 	 */
 	public $fields = array(
-		'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 10, 'key' => 'primary'),
-		'from' => array('type' => 'datetime', 'null' => false, 'default' => null),
-		'to' => array('type' => 'datetime', 'null' => false, 'default' => null),
-		'display_email' => array('type' => 'boolean', 'null' => false, 'default' => '0'),
-		'comment' => array('type' => 'text', 'null' => true, 'default' => null, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'),
-		'event_id' => array('type' => 'integer', 'null' => false, 'default' => '0', 'length' => 10),
-		'user_id' => array('type' => 'integer', 'null' => false, 'default' => '0', 'length' => 10),
-		'indexes' => array(
-			'PRIMARY' => array('column' => 'id', 'unique' => 1)
-		),
-		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_unicode_ci', 'engine' => 'InnoDB')
+		'id' => ['type' => 'integer', 'null' => false, 'default' => null, 'length' => 10],
+		'from' => ['type' => 'datetime', 'null' => false, 'default' => null],
+		'to' => ['type' => 'datetime', 'null' => false, 'default' => null],
+		'display_email' => ['type' => 'boolean', 'null' => false, 'default' => '0'],
+		'comment' => ['type' => 'text', 'null' => true, 'default' => null, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'],
+		'event_id' => ['type' => 'integer', 'null' => false, 'default' => '0', 'length' => 10],
+		'user_id' => ['type' => 'integer', 'null' => false, 'default' => '0', 'length' => 10],
+		'_constraints' => ['primary' => ['type' => 'primary', 'columns' => ['id']], 'PRIMARY' => ['type' => 'unique', 'columns' => 'id']],
+		'_options' => ['charset' => 'utf8', 'collate' => 'utf8_unicode_ci', 'engine' => 'InnoDB']
 	);
 
 	/**
