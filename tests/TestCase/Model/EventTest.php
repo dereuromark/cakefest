@@ -6,7 +6,7 @@ use App\Model\Event;
  * Event Test Case
  *
  */
-class EventTest extends CakeTestCase {
+class EventTest extends TestCase {
 
 	/**
 	 * Fixtures

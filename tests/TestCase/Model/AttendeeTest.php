@@ -6,7 +6,7 @@ use App\Model\Attendee;
  * Attendee Test Case
  *
  */
-class AttendeeTest extends CakeTestCase {
+class AttendeeTest extends TestCase {
 
 	/**
 	 * Fixtures

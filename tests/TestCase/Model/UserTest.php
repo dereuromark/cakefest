@@ -6,7 +6,7 @@ use App\Model\User;
  * User Test Case
  *
  */
-class UserTest extends CakeTestCase {
+class UserTest extends TestCase {
 
 	/**
 	 * Fixtures
