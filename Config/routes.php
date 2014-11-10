@@ -1,31 +1,46 @@
 <?php
 
+use Cake\Routing\Router;
+use Cake\Core\Plugin;
+
+Router::scope('/', function ($routes) {
+
 /**
- * Here, we are connecting '/' (base path) to controller called 'Pages',
+ * Here, we are connecting '/' (base path) to a controller called 'Pages',
  * its action called 'display', and we pass a param to select the view file
- * to use (in this case, /app/View/Pages/home.ctp)...
+ * to use (in this case, src/Template/Pages/home.ctp)...
  */
-Router::connect('/', array('controller' => 'overview', 'action' => 'index'));
+	$routes->connect('/', ['controller' => 'Overview', 'action' => 'index']);
 
-Router::connect('/login', array('controller' => 'account', 'action' => 'login'));
-Router::connect('/logout', array('controller' => 'account', 'action' => 'logout'));
-Router::connect('/register', array('controller' => 'account', 'action' => 'register'));
+	$routes->connect('/login', array('controller' => 'Account', 'action' => 'login'));
+	$routes->connect('/logout', array('controller' => 'Account', 'action' => 'logout'));
+	$routes->connect('/register', array('controller' => 'Account', 'action' => 'register'));
 
-Router::connect('/admin', array('controller' => 'overview', 'action' => 'admin'));
-
-/**
-* ...and connect the rest of 'Pages' controller's URLs.
-*/
-Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
+	$routes->connect('/admin', array('controller' => 'Overview', 'action' => 'admin'));
 
 /**
-* Load all plugin routes. See the CakePlugin documentation on
-* how to customize the loading of plugin routes.
-*/
+ * ...and connect the rest of 'Pages' controller's URLs.
+ */
+	$routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
+
+/**
+ * Connect a route for the index action of any controller.
+ * And a more general catch all route for any action.
+ *
+ * The `fallbacks` method is a shortcut for
+ *    `$routes->connect('/:controller', ['action' => 'index'], ['routeClass' => 'InflectedRoute']);`
+ *    `$routes->connect('/:controller/:action/*', [], ['routeClass' => 'InflectedRoute']);`
+ *
+ * You can remove these routes once you've connected the
+ * routes you want in your application.
+ */
+	//$routes->fallbacks();
+	$routes->connect('/:controller', ['action' => 'index'], ['routeClass' => 'InflectedRoute']);
+	$routes->connect('/:controller/:action/*', [], ['routeClass' => 'InflectedRoute']);
+});
+
+/**
+ * Load all plugin routes.  See the Plugin documentation on
+ * how to customize the loading of plugin routes.
+ */
 Plugin::routes();
-
-/**
-* Load the CakePHP default routes. Only remove this if you do not want to use
-* the built-in default routes.
-*/
-require CAKE . 'Config' . DS . 'routes.php';

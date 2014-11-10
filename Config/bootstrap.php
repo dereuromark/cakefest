@@ -20,41 +20,155 @@ require ROOT . DS . 'vendor' . DS . 'autoload.php';
 require CORE_PATH . 'config' . DS . 'bootstrap.php';
 
 use Cake\Cache\Cache;
+use Cake\Console\ConsoleErrorHandler;
 use Cake\Core\App;
 use Cake\Core\Configure;
+use Cake\Core\Configure\Engine\PhpConfig;
 use Cake\Core\Plugin;
-
-// Setup a 'default' cache configuration for use in the application.
-Cache::config('default', array('engine' => 'File'));
-
-Plugin::loadAll(array('Tools' => array('bootstrap' => true)));
-
-define('USER_ROLE_KEY', 'role_id');
-
-Configure::load('configs');
-if (file_exists(APP . 'Config' . DS . 'configs_private.php')) {
-	Configure::load('configs_private');
-}
-
-Configure::write('Config.language', 'eng');
+use Cake\Datasource\ConnectionManager;
+use Cake\Error\ErrorHandler;
+use Cake\Log\Log;
+use Cake\Network\Email\Email;
+use Cake\Network\Request;
+use Cake\Routing\DispatcherFactory;
+use Cake\Routing\Router;
+use Cake\Utility\Inflector;
+use Cake\Utility\Security;
 
 /**
- * You can attach event listeners to the request lifecycle as Dispatcher Filter . By Default CakePHP bundles two filters:
+ * Read configuration file and inject configuration into various
+ * CakePHP classes.
  *
- * - AssetDispatcher filter will serve your asset files (css, images, js, etc) from your themes and plugins
- * - CacheDispatcher filter will read the Cache.check configure variable and try to serve cached content generated from controllers
- *
- * Feel free to remove or add filters as you see fit for your application. A few examples:
- *
- * Configure::write('Dispatcher.filters', array(
- *		'MyCacheFilter', //  will use MyCacheFilter class from the Routing/Filter package in your app.
- *		'MyPlugin.MyFilter', // will use MyFilter class from the Routing/Filter package in MyPlugin plugin.
- * 		array('callable' => $aFunction, 'on' => 'before', 'priority' => 9), // A valid PHP callback type to be called on beforeDispatch
- *		array('callable' => $anotherMethod, 'on' => 'after'), // A valid PHP callback type to be called on afterDispatch
- *
- * ));
+ * By default there is only one configuration file. It is often a good
+ * idea to create multiple configuration files, and separate the configuration
+ * that changes from configuration that does not. This makes deployment simpler.
  */
-Configure::write('Dispatcher.filters', array(
-	'AssetDispatcher',
-	//'CacheDispatcher'
+try {
+	Configure::config('default', new PhpConfig());
+	Configure::load('app', 'default', false);
+
+} catch (\Exception $e) {
+	die($e->getMessage() . "\n");
+}
+
+// Load an environment local configuration file.
+// You can use a file like app_local.php to provide local overrides to your
+// shared configuration.
+Configure::load('app_local', 'default');
+//Configure::load('app_private', 'default');
+
+// When debug = false the metadata cache should last
+// for a very very long time, as we don't want
+// to refresh the cache while users are doing requests.
+if (!Configure::read('debug')) {
+	Configure::write('Cache._cake_model_.duration', '+99 years');
+	Configure::write('Cache._cake_core_.duration', '+99 years');
+}
+
+/**
+ * Set server timezone to UTC. You can change it to another timezone of your
+ * choice but using UTC makes time calculations / conversions easier.
+ */
+date_default_timezone_set('UTC');
+
+/**
+ * Configure the mbstring extension to use the correct encoding.
+ */
+mb_internal_encoding(Configure::read('App.encoding'));
+
+/**
+ * Set the default locale. This controls how dates, number and currency is
+ * formatted and sets the default language to use for translations.
+ */
+ini_set('intl.default_locale', 'en_US');
+
+/**
+ * Register application error and exception handlers.
+ */
+$isCli = php_sapi_name() === 'cli';
+if ($isCli) {
+	(new ConsoleErrorHandler(Configure::consume('Error')))->register();
+} else {
+	(new ErrorHandler(Configure::consume('Error')))->register();
+}
+
+// Include the CLI bootstrap overrides.
+if ($isCli) {
+	require __DIR__ . '/bootstrap_cli.php';
+}
+
+/**
+ * Set the full base URL.
+ * This URL is used as the base of all absolute links.
+ *
+ * If you define fullBaseUrl in your config file you can remove this.
+ */
+if (!Configure::read('App.fullBaseUrl')) {
+	$s = null;
+	if (env('HTTPS')) {
+		$s = 's';
+	}
+
+	$httpHost = env('HTTP_HOST');
+	if (isset($httpHost)) {
+		Configure::write('App.fullBaseUrl', 'http' . $s . '://' . $httpHost);
+	}
+	unset($httpHost, $s);
+}
+
+Cache::config(Configure::consume('Cache'));
+ConnectionManager::config(Configure::consume('Datasources'));
+Email::configTransport(Configure::consume('EmailTransport'));
+Email::config(Configure::consume('Email'));
+Log::config(Configure::consume('Log'));
+Security::salt(Configure::consume('Security.salt'));
+
+/**
+ * Setup detectors for mobile and tablet.
+ */
+Request::addDetector('mobile', function ($request) {
+	$detector = new \Detection\MobileDetect();
+	return $detector->isMobile();
+});
+Request::addDetector('tablet', function ($request) {
+	$detector = new \Detection\MobileDetect();
+	return $detector->isTablet();
+});
+
+/**
+ * Custom Inflector rules, can be set to correctly pluralize or singularize table, model, controller names or whatever other
+ * string is passed to the inflection functions
+ *
+ * Inflector::rules('plural', ['/^(inflect)or$/i' => '\1ables']);
+ * Inflector::rules('irregular' => ['red' => 'redlings']);
+ * Inflector::rules('uninflected', ['dontinflectme']);
+ * Inflector::rules('transliteration', ['/å/' => 'aa']);
+ */
+
+/**
+ * Plugins need to be loaded manually, you can either load them one by one or all of them in a single call
+ * Uncomment one of the lines below, as you need. make sure you read the documentation on Plugin to use more
+ * advanced ways of loading plugins
+ *
+ * Plugin::loadAll(); // Loads all plugins at once
+ * Plugin::load('DebugKit'); //Loads a single plugin named DebugKit
+ *
+ */
+Plugin::loadAll(array(
+		'Tools' => array('autoload' => true, 'bootstrap' => true)
 ));
+
+Plugin::load('DebugKit', ['bootstrap' => true]);
+
+/**
+ * Connect middleware/dispatcher filters.
+ */
+DispatcherFactory::add('Asset');
+DispatcherFactory::add('Routing');
+DispatcherFactory::add('ControllerFactory');
+
+//Router::extensions(['json']);
+
+//define('USER_ROLE_KEY', 'role_id');
+
+Configure::write('Config.language', 'eng');

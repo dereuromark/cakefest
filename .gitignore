@@ -28,3 +28,4 @@ _*
 /vendor/phpspec
 /vendor/psr
 /vendor/sebastian
+/config/app_local.php
