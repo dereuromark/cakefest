@@ -1,10 +1,12 @@
 <?php
-App::uses('AppController', 'Controller');
+namespace App\Controller;
+
+use Cake\Event\Event;
+use App\Controller\AppController;
+
 /**
  * Overview Controller
  *
- * @property User $User
- * @property PaginatorComponent $Paginator
  */
 class OverviewController extends AppController {
 
@@ -22,7 +24,7 @@ class OverviewController extends AppController {
 	 *
 	 * @return void
 	 */
-	public function beforeFilter() {
+	public function beforeFilter(Event $event) {
 		parent::beforeFilter();
 
 		$this->Auth->allow('index');

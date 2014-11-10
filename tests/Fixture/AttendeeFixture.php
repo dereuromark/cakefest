@@ -2,7 +2,8 @@
 /**
  * AttendeeFixture
  *
- */
+ */namespace Test\Fixture;
+
 class AttendeeFixture extends CakeTestFixture {
 
 	/**

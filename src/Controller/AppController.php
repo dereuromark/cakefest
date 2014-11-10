@@ -1,6 +1,8 @@
 <?php
 namespace App\Controller;
-use Tools\Controller\MyController;
+
+use Cake\Event\Event;
+use Tools\Controller\Controller;
 
 /**
  * Application Controller
@@ -8,7 +10,7 @@ use Tools\Controller\MyController;
  * Add your application-wide methods in the class below, your controllers
  * will inherit them.
  */
-class AppController extends MyController {
+class AppController extends Controller {
 
 	public $components = array('Session', 'RequestHandler', 'Tools.Common', 'Auth', 'Tools.AuthUser');
 
@@ -33,7 +35,7 @@ class AppController extends MyController {
 	 *
 	 * @return void
 	 */
-	public function beforeFilter() {
+	public function beforeFilter(Event $event) {
 		parent::beforeFilter();
 		$this->Auth->authenticate = array(
 			'Authenticate.MultiColumn' => array(

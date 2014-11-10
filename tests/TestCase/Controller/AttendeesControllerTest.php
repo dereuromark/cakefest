@@ -1,5 +1,6 @@
 <?php
-App::uses('AttendeesController', 'Controller');
+namespace Test\TestCase\Controller;
+use App\Controller\AttendeesController;
 
 /**
  * AttendeesController Test Case

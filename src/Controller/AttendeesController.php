@@ -1,5 +1,8 @@
 <?php
-App::uses('AppController', 'Controller');
+namespace App\Controller;
+
+use Cake\Event\Event;
+use App\Controller\AppController;
 
 /**
  * Attendees Controller
@@ -13,7 +16,7 @@ class AttendeesController extends AppController {
 	 *
 	 * @return void
 	 */
-	public function beforeFilter() {
+	public function beforeFilter(Event $event) {
 		parent::beforeFilter();
 
 		$this->Auth->allow('view');
@@ -161,7 +164,7 @@ class AttendeesController extends AppController {
 
 		// Send email to Admin
 		Configure::write('Email.live', true);
-		App::uses('EmailLib', 'Tools.Lib');
+		use Tools\EmailLib;
 		$this->Email = new EmailLib();
 		$this->Email->to($user['email'], $user['username']);
 

@@ -1,5 +1,6 @@
 <?php
-App::uses('AppController', 'Controller');
+namespace App\Controller;
+use App\Controller\AppController;
 /**
  * Events Controller
  *

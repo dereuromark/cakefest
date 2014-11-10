@@ -1,5 +1,6 @@
 <?php
-App::uses('AppModel', 'Model');
+namespace App\Model;
+use App\Model\AppModel;
 
 /**
  * User Model

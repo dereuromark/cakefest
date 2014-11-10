@@ -1,5 +1,6 @@
 <?php
-App::uses('Attendee', 'Model');
+namespace Test\TestCase\Model;
+use App\Model\Attendee;
 
 /**
  * Attendee Test Case

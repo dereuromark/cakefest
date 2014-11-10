@@ -1,5 +1,6 @@
 <?php
-App::uses('Event', 'Model');
+namespace Test\TestCase\Model;
+use App\Model\Event;
 
 /**
  * Event Test Case

@@ -2,7 +2,8 @@
 /**
  * EventFixture
  *
- */
+ */namespace Test\Fixture;
+
 class EventFixture extends CakeTestFixture {
 
 	/**

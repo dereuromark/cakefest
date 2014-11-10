@@ -1,5 +1,6 @@
 <?php
-App::uses('EventsController', 'Controller');
+namespace Test\TestCase\Controller;
+use App\Controller\EventsController;
 
 /**
  * EventsController Test Case

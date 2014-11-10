@@ -1,5 +1,6 @@
 <?php
-App::uses('UsersController', 'Controller');
+namespace Test\TestCase\Controller;
+use App\Controller\UsersController;
 
 /**
  * UsersController Test Case

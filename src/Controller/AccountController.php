@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller;
 
+use Cake\Event\Event;
 use App\Controller\AppController;
 use Tools\View\Helper\FormatHelper;
 use Tools\EmailLib;
@@ -9,7 +10,7 @@ class AccountController extends AppController {
 
 	public $uses = array('User');
 
-	public function beforeFilter() {
+	public function beforeFilter(Event $event) {
 		parent::beforeFilter();
 
 		$this->Auth->allow('login', 'logout', 'register', 'activate', 'lost_password', 'change_password');

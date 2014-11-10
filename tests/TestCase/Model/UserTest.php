@@ -1,5 +1,6 @@
 <?php
-App::uses('User', 'Model');
+namespace Test\TestCase\Model;
+use App\Model\User;
 
 /**
  * User Test Case

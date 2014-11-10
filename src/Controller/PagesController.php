@@ -10,8 +10,12 @@
  * @package       app.Controller
  * @since         CakePHP(tm) v 0.2.9
  */
+namespace App\Controller;
 
-App::uses('AppController', 'Controller');
+use Cake\Core\Configure;
+use Cake\Utility\Inflector;
+
+use App\Controller\AppController;
 
 /**
  * Static content controller
