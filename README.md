@@ -9,17 +9,19 @@ Join in and tell others about your planned trip to Madrid and the fest.
 
 ### Dependencies
 
-* CakePHP 2.5
-* FriendsOfCake/Authenticate plugin
-* My Tools plugin
+* CakePHP 3.x
+* FriendsOfCake/Authenticate and CakeDC/Search plugin
+* My Tools, Geo, TinyAuth and Setup plugins
+* Uses DebugKit plugin for development
 
 ### Installation
 
-* Check out this repo into /ROOT/app
-* Navigate into the /app folder.
-* Run composer install/update on it (this will also install CakePHP into the Vendor folder)
-* Create a vhost with a local dev domain of your choice, e.g. `cakefest.local`, and use /ROOT/app/webroot/ as document root
-* Check it out at `http://cakefest.local`
+* Clone this repo via git - or download it manually.
+* Navigate into the ROOT folder.
+* Run composer install/update on it (this will also install CakePHP into the vendor folder and all plugins).
+* Create a `/config/app_local.php/` config file with database credentials.
+* Create a vhost with a local dev domain of your choice, e.g. `cakefest.local`, and use ROOT/webroot/ as document root.
+* Check it out at `http://cakefest.local`.
 
 ### TODOS
 
