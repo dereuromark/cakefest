@@ -1,14 +1,13 @@
 <?php
-namespace App\Model;
-use App\Model\AppModel;
+namespace App\Model\Table;
+
+use App\Model\Table\AppTable;
 
 /**
  * User Model
  *
- * @property Role $Role
- * @property Language $Language
  */
-class User extends AppModel {
+class UsersTable extends AppTable {
 
 	/**
 	 * Display field

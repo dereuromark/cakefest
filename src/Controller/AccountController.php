@@ -8,7 +8,7 @@ use Tools\EmailLib;
 
 class AccountController extends AppController {
 
-	public $uses = array('User');
+	public $modelClass = 'User';
 
 	public function beforeFilter(Event $event) {
 		parent::beforeFilter($event);

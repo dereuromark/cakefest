@@ -3,6 +3,8 @@ namespace App\Controller;
 
 use Cake\Event\Event;
 use Tools\Controller\Controller;
+use Cake\Core\Plugin;
+use Cake\Core\Configure;
 
 /**
  * Application Controller
@@ -22,12 +24,10 @@ class AppController extends Controller {
 	 *
 	 * @return void
 	 */
-	public function constructClasses() {
+	public function initialize() {
 		if (Plugin::loaded('DebugKit') && Configure::read('debug')) {
-			$this->components[] = 'DebugKit.Toolbar';
+			//$this->components[] = 'DebugKit.Toolbar';
 		}
-
-		parent::constructClasses();
 	}
 
 	/**

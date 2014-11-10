@@ -1,14 +1,12 @@
 <?php
-namespace App\Model;
-use App\Model\AppModel;
+namespace App\Model\Table;
+
+use App\Model\Table\AppTable;
 
 /**
- * Attendee Model
- *
- * @property Event $Event
- * @property User $User
+ * Attendee Table
  */
-class Attendee extends AppModel {
+class AttendeesTable extends AppTable {
 
 	public $order = array('Attendee.from' => 'ASC');
 
@@ -155,14 +153,14 @@ class Attendee extends AppModel {
 	 */
 	public $belongsTo = array(
 		'Event' => array(
-			'className' => 'Event',
+			//'className' => 'Event',
 			'foreignKey' => 'event_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
 		),
 		'User' => array(
-			'className' => 'User',
+			//'className' => 'User',
 			'foreignKey' => 'user_id',
 			'conditions' => '',
 			'fields' => '',

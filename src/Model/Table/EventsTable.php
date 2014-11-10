@@ -1,12 +1,12 @@
 <?php
-namespace App\Model;
-use App\Model\AppModel;
+namespace App\Model\Table;
+
+use App\Model\Table\AppTable;
+
 /**
  * Event Model
- *
- * @property Attendee $Attendee
  */
-class Event extends AppModel {
+class EventsTable extends AppTable {
 
 	/**
 	 * Display field
@@ -60,17 +60,13 @@ class Event extends AppModel {
 	 */
 	public $hasMany = array(
 		'Attendee' => array(
-			'className' => 'Attendee',
+			//'className' => 'Attendee',
 			'foreignKey' => 'event_id',
 			'dependent' => false,
 			'conditions' => '',
 			'fields' => '',
 			'order' => '',
 			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
 		)
 	);
 

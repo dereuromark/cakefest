@@ -11,7 +11,7 @@ use App\Controller\AppController;
  */
 class AttendanceController extends AppController {
 
-	public $uses = array('Attendee');
+	public $modelClass = 'Attendee';
 
 	/**
 	 * index method

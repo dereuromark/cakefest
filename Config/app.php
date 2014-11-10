@@ -215,7 +215,6 @@ $config = [
 			'username' => 'my_app',
 			'password' => 'secret',
 			'database' => 'my_app',
-			'prefix' => false,
 			'encoding' => 'utf8',
 			'timezone' => 'UTC',
 			'cacheMetadata' => true,
@@ -228,7 +227,7 @@ $config = [
 			* decreases performance because each query needs to be traversed and
 			* manipulated before being executed.
 			*/
-			'quoteIdentifiers' => false,
+			'quoteIdentifiers' => true,
 
 			/*
 			* During development, if using MySQL < 5.6, uncommenting the
@@ -251,11 +250,10 @@ $config = [
 			'username' => 'my_app',
 			'password' => 'secret',
 			'database' => 'test_myapp',
-			'prefix' => false,
 			'encoding' => 'utf8',
 			'timezone' => 'UTC',
 			'cacheMetadata' => true,
-			'quoteIdentifiers' => false,
+			'quoteIdentifiers' => true,
 			//'init' => ['SET GLOBAL innodb_stats_on_metadata = 0'],
 		],
 	],

@@ -10,7 +10,7 @@ use App\Controller\AppController;
  */
 class OverviewController extends AppController {
 
-	public $modelClass = 'User';
+	public $modelClass = 'Users';
 
 	/**
 	 * Components
@@ -36,11 +36,12 @@ class OverviewController extends AppController {
 	 * @return void
 	 */
 	public function index() {
-		$this->User->Attendee->recursive = 0;
 		// For now just the newest one
-		$event = $this->User->Attendee->Event->find('first', array('order' => array('from' => 'DESC')));
+		//$event = $this->Users->Attendees->Events->find('first', array('order' => array('from' => 'DESC')));
+		$event = $this->Users->Attendees->Events->find('all', array('order' => array('from' => 'DESC')))->first();
 
-		$attendees = $this->User->Attendee->find('all', array('conditions' => array('Attendee.event_id' => $event['Event']['id'])));
+die(debug($event));
+		$attendees = $this->Users->Attendees->find('all', array('conditions' => array('Attendee.event_id' => $event['Event']['id'])));
 
 		$this->set(compact('event', 'attendees'));
 	}
