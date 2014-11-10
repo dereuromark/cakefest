@@ -36,7 +36,8 @@ class AppController extends Controller {
 	 * @return void
 	 */
 	public function beforeFilter(Event $event) {
-		parent::beforeFilter();
+		parent::beforeFilter($event);
+
 		$this->Auth->authenticate = array(
 			'Authenticate.MultiColumn' => array(
 				'fields' => array(

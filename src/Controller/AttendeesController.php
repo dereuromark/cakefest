@@ -17,7 +17,7 @@ class AttendeesController extends AppController {
 	 * @return void
 	 */
 	public function beforeFilter(Event $event) {
-		parent::beforeFilter();
+		parent::beforeFilter($event);
 
 		$this->Auth->allow('view');
 	}

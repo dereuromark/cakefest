@@ -10,7 +10,7 @@ use App\Controller\AppController;
  */
 class OverviewController extends AppController {
 
-	public $uses = array('User');
+	public $modelClass = 'User';
 
 	/**
 	 * Components
@@ -25,7 +25,7 @@ class OverviewController extends AppController {
 	 * @return void
 	 */
 	public function beforeFilter(Event $event) {
-		parent::beforeFilter();
+		parent::beforeFilter($event);
 
 		$this->Auth->allow('index');
 	}

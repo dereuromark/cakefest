@@ -9,7 +9,7 @@ class ContactController extends AppController {
 	public $uses = array('Tools.ContactForm');
 
 	public function beforeFilter(Event $event) {
-		parent::beforeFilter();
+		parent::beforeFilter($event);
 
 		$this->Auth->allow();
 	}
