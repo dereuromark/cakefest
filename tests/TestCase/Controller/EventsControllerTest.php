@@ -14,9 +14,9 @@ class EventsControllerTest extends ControllerTestCase {
 	 * @var array
 	 */
 	public $fixtures = array(
-		'app.event',
-		'app.attendee',
-		'app.user'
+		'app.events',
+		'app.attendees',
+		'app.users'
 	);
 
 	/**

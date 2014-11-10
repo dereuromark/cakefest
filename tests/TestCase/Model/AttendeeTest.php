@@ -14,10 +14,10 @@ class AttendeeTest extends CakeTestCase {
 	 * @var array
 	 */
 	public $fixtures = array(
-		'app.attendee',
-		'app.event',
-		'app.user',
-		'app.cakefest_attendance'
+		'app.attendees',
+		'app.events',
+		'app.users',
+		'app.cakefest_attendances'
 	);
 
 	/**

@@ -14,8 +14,8 @@ class EventTest extends CakeTestCase {
 	 * @var array
 	 */
 	public $fixtures = array(
-		'app.event',
-		'app.attendee'
+		'app.events',
+		'app.attendees'
 	);
 
 	/**
