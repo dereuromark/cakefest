@@ -16,7 +16,7 @@ class AppController extends Controller {
 
 	public $components = array('Session', 'RequestHandler', 'Tools.Common', 'Auth', 'Tools.AuthUser');
 
-	public $helpers = array('Session', 'Html', 'Form' => array('className' => 'Tools.FormExt'), 'Tools.Common',
+	public $helpers = array('Session', 'Html', 'Form', 'Tools.Common',
 		'Tools.Format', 'Tools.Datetime', 'Tools.Numeric', 'Tools.AuthUser');
 
 	/**
