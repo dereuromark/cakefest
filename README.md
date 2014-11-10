@@ -26,6 +26,7 @@ Join in and tell others about your planned trip to Madrid and the fest.
 ### TODOS
 
 * OptIn
+* Geo Map
 
 #### Ideas
 
