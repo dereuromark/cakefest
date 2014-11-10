@@ -21,6 +21,7 @@
 		"dereuromark/cakephp-tinyauth": "dev-master",
 		"dereuromark/cakephp-geo": "dev-master",
 		"dereuromark/cakephp-tools": "dev-cake3",
+		"dereuromark/cakephp-setup": "dev-cake3",
 		"FriendsOfCake/Authenticate": "dev-cake3",
 		"CakeDC/search" : "3.0.*-dev"
 	},

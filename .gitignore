@@ -29,3 +29,5 @@ _*
 /vendor/psr
 /vendor/sebastian
 /config/app_local.php
+/bin/phpunit
+/bin/phpunit.bat

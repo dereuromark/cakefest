@@ -94,7 +94,7 @@ if ($isCli) {
 
 // Include the CLI bootstrap overrides.
 if ($isCli) {
-	require __DIR__ . '/bootstrap_cli.php';
+	//require __DIR__ . '/bootstrap_cli.php';
 }
 
 /**
@@ -155,10 +155,10 @@ Request::addDetector('tablet', function ($request) {
  *
  */
 Plugin::loadAll(array(
-		'Tools' => array('autoload' => true, 'bootstrap' => true)
+		'Tools' => array('autoload' => true, 'bootstrap' => true),
+		'Setup',
+		'DebugKit' => ['bootstrap' => true]
 ));
-
-Plugin::load('DebugKit', ['bootstrap' => true]);
 
 /**
  * Connect middleware/dispatcher filters.

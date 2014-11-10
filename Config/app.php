@@ -68,58 +68,6 @@ $config = [
 		'salt' => '__SALT__',
 	],
 
-	'Datasources' => [
-		'default' => [
-			'className' => 'Cake\Database\Connection',
-			'driver' => 'Cake\Database\Driver\Mysql',
-			'persistent' => false,
-			'host' => 'localhost',
-			'login' => 'root',
-			'password' => '',
-			'database' => 'cake_cakefest',
-			'encoding' => 'utf8',
-			'timezone' => 'UTC',
-			'cacheMetadata' => true,
-
-			/*
-			* Set identifier quoting to true if you are using reserved words or
-			* special characters in your table or column names. Enabling this
-			* setting will result in queries built using the Query Builder having
-			* identifiers quoted when creating SQL. It should be noted that this
-			* decreases performance because each query needs to be traversed and
-			* manipulated before being executed.
-			*/
-			'quoteIdentifiers' => true,
-
-			/*
-			* During development, if using MySQL < 5.6, uncommenting the
-			* following line could boost the speed at which schema metadata is
-			* fetched from the database. It can also be set directly with the
-			* mysql configuration directive 'innodb_stats_on_metadata = 0'
-			* which is the recommended value in production environments
-			*/
-			'init' => ['SET GLOBAL innodb_stats_on_metadata = 0'],
-		],
-
-		/**
-		 * The test connection is used during the test suite.
-		 */
-		'test' => [
-			'className' => 'Cake\Database\Connection',
-			'driver' => 'Cake\Database\Driver\Mysql',
-			'persistent' => false,
-			'host' => 'localhost',
-			'login' => 'root',
-			'password' => '',
-			'database' => 'cake_test',
-			'encoding' => 'utf8',
-			'timezone' => 'UTC',
-			'cacheMetadata' => true,
-			'quoteIdentifiers' => true,
-			'init' => ['SET GLOBAL innodb_stats_on_metadata = 0'],
-		],
-	],
-
 /**
  * Apply timestamps with the last modified time to static assets (js, css, images).
  * Will append a querystring parameter containing the time the file was modified.
@@ -255,6 +203,64 @@ $config = [
 	],
 
 /**
+ * Connection information used by the ORM to connect
+ * to your application's datastores.
+ */
+	'Datasources' => [
+		'default' => [
+			'className' => 'Cake\Database\Connection',
+			'driver' => 'Cake\Database\Driver\Mysql',
+			'persistent' => false,
+			'host' => 'localhost',
+			'username' => 'my_app',
+			'password' => 'secret',
+			'database' => 'my_app',
+			'prefix' => false,
+			'encoding' => 'utf8',
+			'timezone' => 'UTC',
+			'cacheMetadata' => true,
+
+			/*
+			* Set identifier quoting to true if you are using reserved words or
+			* special characters in your table or column names. Enabling this
+			* setting will result in queries built using the Query Builder having
+			* identifiers quoted when creating SQL. It should be noted that this
+			* decreases performance because each query needs to be traversed and
+			* manipulated before being executed.
+			*/
+			'quoteIdentifiers' => false,
+
+			/*
+			* During development, if using MySQL < 5.6, uncommenting the
+			* following line could boost the speed at which schema metadata is
+			* fetched from the database. It can also be set directly with the
+			* mysql configuration directive 'innodb_stats_on_metadata = 0'
+			* which is the recommended value in production environments
+			*/
+			//'init' => ['SET GLOBAL innodb_stats_on_metadata = 0'],
+		],
+
+		/**
+		 * The test connection is used during the test suite.
+		 */
+		'test' => [
+			'className' => 'Cake\Database\Connection',
+			'driver' => 'Cake\Database\Driver\Mysql',
+			'persistent' => false,
+			'host' => 'localhost',
+			'username' => 'my_app',
+			'password' => 'secret',
+			'database' => 'test_myapp',
+			'prefix' => false,
+			'encoding' => 'utf8',
+			'timezone' => 'UTC',
+			'cacheMetadata' => true,
+			'quoteIdentifiers' => false,
+			//'init' => ['SET GLOBAL innodb_stats_on_metadata = 0'],
+		],
+	],
+
+/**
  * Configures logging options
  */
 	'Log' => [
@@ -309,9 +315,6 @@ $config = [
  * To use database sessions, load the SQL file located at config/Schema/sessions.sql
  */
 	'Session' => [
-		'cookie' => 'CAKEFEST',
 		'defaults' => 'php',
-		'timeout' => 3 * DAY,
-		'cookieTimeout' => MONTH
 	],
 ];
