@@ -12,7 +12,7 @@ My email address: <?php echo $this->Format->encodeEmailUrl(Configure::read('Conf
 		echo $this->Form->input('ContactForm.subject');
 		echo $this->Form->input('ContactForm.message', array('type' => 'textarea', 'class'=>'contact', 'rows'=>10, 'label'=>__('Your Message')));
 
-		if (!Auth::id()) {
+		if (!$this->AuthUser->id()) {
 			echo $this->Captcha->input('ContactForm');
 		}
 

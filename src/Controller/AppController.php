@@ -10,9 +10,10 @@ use Tools\Controller\MyController;
  */
 class AppController extends MyController {
 
-	public $components = array('Session', 'RequestHandler', 'Tools.Common', 'Auth');
+	public $components = array('Session', 'RequestHandler', 'Tools.Common', 'Auth', 'Tools.AuthUser');
 
-	public $helpers = array('Session', 'Html', 'Form' => array('className' => 'Tools.FormExt'), 'Tools.Common', 'Tools.Format', 'Tools.Datetime', 'Tools.Numeric');
+	public $helpers = array('Session', 'Html', 'Form' => array('className' => 'Tools.FormExt'), 'Tools.Common',
+		'Tools.Format', 'Tools.Datetime', 'Tools.Numeric', 'Tools.AuthUser');
 
 	/**
 	 * AppController::constructClasses()
@@ -66,7 +67,7 @@ class AppController extends MyController {
 
 		// Do not allow access to these public actions when already logged in
 		$allowed = array('Account' => array('login', 'lost_password', 'register'));
-		if (!Auth::id()) {
+		if (!$this->AuthUser->id()) {
 			return;
 		}
 		foreach ($allowed as $controller => $actions) {

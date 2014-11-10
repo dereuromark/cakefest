@@ -20,10 +20,10 @@
 	<div id="container">
 		<div id="header">
 			<div style="float: right;">
-				<?php if (Auth::id()) { ?>
+				<?php if ($this->AuthUser->id()) { ?>
 					<?php echo h($this->Session->read('Auth.User.username')); ?> [<?php echo h($this->Session->read('Auth.User.email')); ?>] -
 
-					<?php if (Auth::hasRole(Configure::read('Role.admin'))) { ?>
+					<?php if ($this->AuthUser->hasRole(Configure::read('Role.admin'))) { ?>
 						<?php echo $this->Html->link('Admin', array('controller' => 'overview', 'action' => 'admin')); ?> |
 					<?php } ?>
 					<?php echo $this->Html->link('Account', array('controller' => 'account', 'action' => 'edit')); ?> |
@@ -72,8 +72,8 @@
 	<?php echo $this->Js->writeBuffer(array('inline' => true, 'onDomReady' => false)); ?>
 
 <?php
-$debug = Configure::read('debug');
-if ($debug > 0 && CakePlugin::loaded('Setup')) {
+$debug =\Cake\Core\Configure::read('debug');
+if ($debug > 0 && \Cake\Core\Plugin::loaded('Setup')) {
 	$this->loadHelper('Setup.Debug', $debug);
 	echo $this->Debug->show();
 } else {

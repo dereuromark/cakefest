@@ -38,7 +38,7 @@ echo $this->element('timeline');
 	<ul>
 		<li><?php echo $this->Html->link(__('Join in'), array('controller' => 'attendance', 'action' => 'index')); ?></li>
 	</ul>
-	<?php if (!Auth::id()) { ?>
+	<?php if (!$this->AuthUser->id()) { ?>
 	<br />
 	<br />
 	<h4>No account yet?</h4>
