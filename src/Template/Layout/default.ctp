@@ -69,15 +69,13 @@
 		</div>
 	</div>
 	<?php echo $this->fetch('script'); ?>
-	<?php echo $this->Js->writeBuffer(array('inline' => true, 'onDomReady' => false)); ?>
+	<?php //echo $this->Js->writeBuffer(array('inline' => true, 'onDomReady' => false)); ?>
 
 <?php
 $debug =\Cake\Core\Configure::read('debug');
 if ($debug > 0 && \Cake\Core\Plugin::loaded('Setup')) {
 	$this->loadHelper('Setup.Debug', $debug);
 	echo $this->Debug->show();
-} else {
-	echo $this->element('sql_dump');
 }
 ?>
 </body>

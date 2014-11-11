@@ -1,8 +1,8 @@
 <div class="attendees index">
 	<h2><?php echo __('My Attendance'); ?></h2>
 
-<p>as <b><?php echo User::statuses($user['User']['status'])?></b>.<p>
-<?php if ($user['User']['status'] == User::STATUS_DEV) { ?>
+<p>as <b><?php echo \App\Model\Table\User::statuses($user['User']['status'])?></b>.<p>
+<?php if ($user['User']['status'] == \App\Model\Table\User::STATUS_DEV) { ?>
 <?php
 	$url = array(
 		'controller' => 'contact',
@@ -29,8 +29,8 @@ If you want to displayed under a different status (as core developer),
 			<?php //echo $this->Html->link($attendee['Event']['name'], array('controller' => 'events', 'action' => 'view', $attendee['Event']['id'])); ?>
 			<?php echo h($attendee['Event']['name']); ?>
 		</td>
-		<td><?php echo $this->Datetime->localDate($attendee['Attendee']['from'], '%Y-%m-%d %H:%M'); ?>&nbsp;</td>
-		<td><?php echo $this->Datetime->localDate($attendee['Attendee']['to'], '%Y-%m-%d %H:%M'); ?>&nbsp;</td>
+		<td><?php echo $this->Time->localDate($attendee['Attendee']['from'], '%Y-%m-%d %H:%M'); ?>&nbsp;</td>
+		<td><?php echo $this->Time->localDate($attendee['Attendee']['to'], '%Y-%m-%d %H:%M'); ?>&nbsp;</td>
 		<td><?php echo $this->Format->yesNo($attendee['Attendee']['display_email']); ?>&nbsp;</td>
 
 		<td class="actions">

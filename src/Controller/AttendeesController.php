@@ -41,7 +41,7 @@ class AttendeesController extends AppController {
 	 */
 	public function view($id = null) {
 		$this->Attendee->recursive = 0;
-		if (empty($id) || !($attendee = $this->Attendee->find('first', array('conditions' => array('Attendee.id' => $id))))) {
+		if (empty($id) || !($attendee = $this->Attendee->find('first', array('conditions' => array('Attendees.id' => $id))))) {
 			$this->Common->flashMessage(__('invalidRecord'), 'error');
 			return $this->Common->autoRedirect(array('action' => 'index'));
 		}
@@ -55,7 +55,7 @@ class AttendeesController extends AppController {
 	 * @return void
 	 */
 	public function edit($id = null) {
-		if (empty($id) || !($attendee = $this->Attendee->find('first', array('conditions' => array('Attendee.id' => $id))))) {
+		if (empty($id) || !($attendee = $this->Attendee->find('first', array('conditions' => array('Attendees.id' => $id))))) {
 			$this->Common->flashMessage(__('invalidRecord'), 'error');
 			return $this->Common->autoRedirect(array('action' => 'index'));
 		}
@@ -83,7 +83,7 @@ class AttendeesController extends AppController {
 	 */
 	public function delete($id = null) {
 		$this->request->allowMethod('post', 'delete');
-		if (empty($id) || !($attendee = $this->Attendee->find('first', array('conditions' => array('Attendee.id' => $id), 'fields' => array('id', 'user_id'))))) {
+		if (empty($id) || !($attendee = $this->Attendee->find('first', array('conditions' => array('Attendees.id' => $id), 'fields' => array('id', 'user_id'))))) {
 			$this->Common->flashMessage(__('invalidRecord'), 'error');
 			return $this->Common->autoRedirect(array('action' => 'index'));
 		}
@@ -186,7 +186,7 @@ class AttendeesController extends AppController {
 	public function notify_invalid() {
 		$event = $this->Attendee->Event->find('first', array('order' => array('from' => 'DESC')));
 
-		$lastAttendees = $this->Attendee->find('all', array('contain' => array('User'), 'conditions' => array('Attendee.event_id' => $event['Event']['id'])));
+		$lastAttendees = $this->Attendee->find('all', array('contain' => array('User'), 'conditions' => array('Attendees.event_id' => $event['Event']['id'])));
 
 		foreach ($lastAttendees as $key => $attendee) {
 			$this->Attendee->set($attendee);

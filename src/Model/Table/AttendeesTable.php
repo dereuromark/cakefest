@@ -8,7 +8,7 @@ use App\Model\Table\AppTable;
  */
 class AttendeesTable extends AppTable {
 
-	public $order = array('Attendee.from' => 'ASC');
+	public $order = array('Attendees.from' => 'ASC');
 
 	/**
 	 * Display field
@@ -140,9 +140,9 @@ class AttendeesTable extends AppTable {
 		$last = $this->Event->find('first', array('order' => array('from' => 'DESC')));
 		$current = $this->Event->find('first', array('conditions' => array('id !=' => $last['Event']['id']), 'order' => array('from' => 'DESC')));
 
-		$currentAttendees = $this->find('all', array('conditions' => array('Attendee.event_id' => $current['Event']['id'])));
-		$currentUserList = Hash::extract($currentAttendees, '{n}.Attendee.user_id');
-		$lastAttendees = $this->find('all', array('contain' => array('User'), 'conditions' => array('Attendee.user_id NOT' => $currentUserList, 'Attendee.event_id' => $last['Event']['id'])));
+		$currentAttendees = $this->find('all', array('conditions' => array('Attendees.event_id' => $current['Event']['id'])));
+		$currentUserList = Hash::extract($currentAttendees, '{n}.Attendees.user_id');
+		$lastAttendees = $this->find('all', array('contain' => array('User'), 'conditions' => array('Attendees.user_id NOT' => $currentUserList, 'Attendees.event_id' => $last['Event']['id'])));
 		return $lastAttendees;
 	}
 
