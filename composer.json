@@ -22,7 +22,7 @@
 		"dereuromark/cakephp-geo": "dev-master",
 		"dereuromark/cakephp-tools": "dev-cake3",
 		"dereuromark/cakephp-setup": "dev-cake3",
-		"FriendsOfCake/Authenticate": "dev-cake3",
+		"friendsofcake/authenticate": "dev-cake3",
 		"CakeDC/search" : "3.0.*-dev"
 	},
 	"require-dev": {

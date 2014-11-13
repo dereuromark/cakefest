@@ -6,7 +6,7 @@ Event: <?php echo h($attendee['Event']['name']); ?>
 
 <h3><?php echo h($attendee['User']['username']); ?></h3>
 
-<p><?php echo User::statuses($attendee['User']['status']); ?></p>
+<p><?php echo App\Model\Entity\User::statuses($attendee['User']['status']); ?></p>
 
 	<dl>
 		<dt><?php echo __('From'); ?></dt>
@@ -22,7 +22,7 @@ Event: <?php echo h($attendee['Event']['name']); ?>
 		<dt><?php echo __('Email'); ?></dt>
 		<dd>
 			<?php if ($this->AuthUser->id()) { ?>
-				<?php if ($attendee['Attendee']['display_email'] || $this->AuthUser->hasRole(Configure::read('Role.admin'))) {; ?>
+				<?php if ($attendee['Attendee']['display_email'] || $this->AuthUser->hasRole(Cake\Core\Configure::read('Role.admin'))) {; ?>
 				<?php echo h($attendee['User']['email']); ?>
 				<?php } ?>
 			<?php } else { ?>

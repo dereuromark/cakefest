@@ -8,12 +8,13 @@
 	<?php
 		echo $this->Form->input('login', array('label' => 'Your username or email'));
 		echo $this->Form->input('password', array('autocomplete' => 'off'));
-		if (Configure::read('Config.rememberMe')) {
+		if (Cake\Core\Configure::read('Config.rememberMe')) {
 			echo $this->Form->input('RememberMe.confirm', array('type' => 'checkbox', 'label' => __('Remember me on this device.')));
 		}
 	?>
 
-<?php echo $this->Form->end(__('Log me in'));?>
+<?php echo $this->Form->submit(__('Log me in'));?>
+<?php echo $this->Form->end(); ?>
 
 <h3>No account yet?</h3>
 <p><?php echo $this->Html->link('Create one here. For free :P', array('action' => 'register'))?></p>

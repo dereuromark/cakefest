@@ -157,7 +157,11 @@ Request::addDetector('tablet', function ($request) {
 Plugin::loadAll(array(
 		'Tools' => array('autoload' => true, 'bootstrap' => true),
 		'Setup',
-		'DebugKit' => ['bootstrap' => true]
+		'DebugKit' => ['bootstrap' => true],
+		'FOC/Authenticate',
+		'Search',
+		'TinyAuth',
+		'Geo'
 ));
 
 /**

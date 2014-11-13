@@ -1,7 +1,7 @@
 
 <h2><?php echo __('Contact Form');?></h2>
 <p>
-My email address: <?php echo $this->Format->encodeEmailUrl(Configure::read('Config.adminEmail')); ?></p>
+My email address: <?php echo $this->Format->encodeEmailUrl(Cake\Core\Configure::read('Config.adminEmail')); ?></p>
 
 <?php echo $this->Form->create('Contact');?>
 	<fieldset>
@@ -18,6 +18,6 @@ My email address: <?php echo $this->Format->encodeEmailUrl(Configure::read('Conf
 
 	?>
 	</fieldset>
-<?php echo $this->Form->submit(__('Submit'), array('class'=>'submit'));?>
+<?php echo $this->Form->submit(__('Submit'), array('class' => 'submit'));?>
 <?php echo $this->Form->end();?>
 

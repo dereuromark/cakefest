@@ -5,15 +5,17 @@ use Cake\Event\Event;
 use App\Controller\AppController;
 use Tools\View\Helper\FormatHelper;
 use Tools\EmailLib;
+use Cake\Core\Configure;
+use Cake\ORM\TableRegistry;
 
 class AccountController extends AppController {
 
-	public $modelClass = 'User';
+	public $modelClass = 'Users';
 
 	public function beforeFilter(Event $event) {
 		parent::beforeFilter($event);
 
-		$this->Auth->allow('login', 'logout', 'register', 'activate', 'lost_password', 'change_password');
+		$this->Auth->allow(['login', 'logout', 'register', 'activate', 'lost_password', 'change_password']);
 	}
 
 	/**
@@ -23,10 +25,14 @@ class AccountController extends AppController {
 	 */
 	public function login() {
 		if ($this->Common->isPosted()) {
-			if ($this->Auth->login()) {
+			$user = $this->Auth->identify();
+			if ($user) {
+				die(debug($user));
+				$this->Auth->setUser($user);
 				$this->Common->flashMessage(__('loggedInMessage'), 'success');
 				return $this->redirect($this->Auth->redirectUrl());
 			}
+			$this->Common->flashMessage(__('loggedInError'), 'error');
 			$this->request->data['User']['password'] = '';
 
 		} else {
@@ -66,8 +72,8 @@ class AccountController extends AppController {
 		}
 
 		if (!empty($keyToCheck)) {
-			$this->Token = ClassRegistry::init('Tools.Token');
-			$key = $this->Token->useKey('reset_pwd', $keyToCheck);
+			$this->Tokens = TableRegistry::get('Tools.Tokens');
+			$key = $this->Tokens->useKey('reset_pwd', $keyToCheck);
 
 			if (!empty($key) && $key['Token']['used'] == 1) {
 				$this->Common->flashMessage(__('alreadyChangedYourPassword'), 'warning');
@@ -173,7 +179,7 @@ class AccountController extends AppController {
 	 * @throws CakeException
 	 */
 	public function register() {
-		$this->User->Behaviors->load('Tools.Passwordable', array());
+		$this->Users->addBehavior('Tools.Passwordable');
 		if ($this->Common->isPosted()) {
 			$this->request->data['User']['role_id'] = Configure::read('Role.user');
 			if ($user = $this->User->save($this->request->data)) {

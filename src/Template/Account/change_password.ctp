@@ -9,7 +9,8 @@
 		echo $this->Form->input('pwd_repeat', array('type' => 'password', 'autocomplete' => 'off'));
 	?>
 	</fieldset>
-<?php echo $this->Form->end(__('Submit'));?>
+<?php echo $this->Form->submit(__('Submit'));?>
+<?php echo $this->Form->end(); ?>
 </div>
 
 <br /><br />

@@ -1,10 +1,10 @@
 <?php
 namespace App\Controller;
+
 use App\Controller\AppController;
+
 /**
  * Users Controller
- *
- * @property User $User
  */
 class UsersController extends AppController {
 

@@ -23,7 +23,7 @@
 				<?php if ($this->AuthUser->id()) { ?>
 					<?php echo h($this->Session->read('Auth.User.username')); ?> [<?php echo h($this->Session->read('Auth.User.email')); ?>] -
 
-					<?php if ($this->AuthUser->hasRole(Configure::read('Role.admin'))) { ?>
+					<?php if ($this->AuthUser->hasRole(Cake\Core\Configure::read('Role.admin'))) { ?>
 						<?php echo $this->Html->link('Admin', array('controller' => 'overview', 'action' => 'admin')); ?> |
 					<?php } ?>
 					<?php echo $this->Html->link('Account', array('controller' => 'account', 'action' => 'edit')); ?> |

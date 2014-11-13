@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use Cake\Event\Event;
 use App\Controller\AppController;
+use Tools\Network\Email\Email;
 
 /**
  * Attendees Controller
@@ -31,6 +32,15 @@ class AttendeesController extends AppController {
 		$this->Attendee->recursive = 0;
 		$attendees = $this->paginate();
 		$this->set(compact('attendees'));
+	}
+
+	/**
+	 * AttendeesController::map()
+	 *
+	 * @return void
+	 */
+	public function map() {
+
 	}
 
 	/**
@@ -164,7 +174,6 @@ class AttendeesController extends AppController {
 
 		// Send email to Admin
 		Configure::write('Email.live', true);
-		use Tools\EmailLib;
 		$this->Email = new EmailLib();
 		$this->Email->to($user['email'], $user['username']);
 
