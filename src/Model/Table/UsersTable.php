@@ -29,9 +29,10 @@ class UsersTable extends AppTable {
 				'last' => true,
 			),
 			'isUnique' => array(
-				'rule' => array('isUnique'),
+				'rule' => array('validateUnique'),
 				'message' => 'This username has already been taken',
 				'last' => true,
+				'provider' => 'table'
 			),
 		),
 		'email' => array(
@@ -41,9 +42,10 @@ class UsersTable extends AppTable {
 				'last' => true,
 			),
 			'isUnique' => array(
-				'rule' => array('isUnique'),
+				'rule' => array('validateUnique'),
 				'message' => 'This username has already been taken',
 				'last' => true,
+				'provider' => 'table'
 			),
 		),
 		'status' => array(

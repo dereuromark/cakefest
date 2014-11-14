@@ -5,7 +5,7 @@ Note: Currently we do not send any emails, not even for registration. You will b
 convenience.
 </p>
 
-<?php echo $this->Form->create('User');?>
+<?php echo $this->Form->create($user);?>
 
 <h3>Create an account</h3>
 <fieldset>
