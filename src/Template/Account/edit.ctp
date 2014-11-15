@@ -1,5 +1,5 @@
 <div class="users form">
-<?php echo $this->Form->create('User'); ?>
+<?php echo $this->Form->create($user); ?>
 	<fieldset>
 		<legend><?php echo __('Account information'); ?></legend>
 	<?php
@@ -19,10 +19,11 @@
 		<legend><?php echo __('Details'); ?></legend>
 	<?php
 		echo $this->Form->input('irc_nick');
-		//echo $this->Form->input('timezone');
+		echo $this->Form->input('timezone', ['empty' => ' - no selection - ', 'options' => $this->Time->timezones()]);
 
 		//echo $this->Form->input('language_id');
 	?>
+		<p>Your detected locale (for DateTime formatting) is: <span><?= ini_get('intl.default_locale'); ?></span></p>
 	</fieldset>
 
 <?php echo $this->Form->submit(__('Submit')); ?>
@@ -32,6 +33,6 @@
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 
-		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('User.id')), null, __('Are you sure you want to delete your account # {0}?', $this->Form->value('User.id'))); ?></li>
+		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $user->id), array('confirm' => __('Are you sure you want to delete your account # {0}?', $user->id))); ?></li>
 	</ul>
 </div>

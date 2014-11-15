@@ -1,7 +1,7 @@
 <h2>Welcome</h2>
 <p>You need to login to proceed.</p>
 
-<?php echo $this->Form->create('User');?>
+<?php echo $this->Form->create();?>
 
 <h3>Please enter your username/email and password below.</h3>
 

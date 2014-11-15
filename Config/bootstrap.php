@@ -81,6 +81,7 @@ mb_internal_encoding(Configure::read('App.encoding'));
  * formatted and sets the default language to use for translations.
  */
 ini_set('intl.default_locale', 'en_US');
+//ini_set('intl.default_locale', 'de-DE');
 
 /**
  * Register application error and exception handlers.
@@ -173,6 +174,6 @@ DispatcherFactory::add('ControllerFactory');
 
 //Router::extensions(['json']);
 
-//define('USER_ROLE_KEY', 'role_id');
+define('USER_ROLE_KEY', 'role_id');
 
 Configure::write('Config.language', 'eng');

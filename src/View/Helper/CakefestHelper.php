@@ -3,6 +3,7 @@
 namespace App\View\Helper;
 
 use App\View\Helper\AppHelper;
+use Cake\Core\Configure;
 
 class CakefestHelper extends AppHelper {
 
@@ -13,7 +14,7 @@ class CakefestHelper extends AppHelper {
 	 * @return string Role name
 	 */
 	public function roleName($roleId) {
-		$roles = Configure::read('Role');
+		$roles = Configure::read('Roles');
 		foreach ($roles as $role => $id) {
 			if ($id == $roleId) {
 				return h($role);

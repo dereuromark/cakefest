@@ -4,11 +4,11 @@
 		<legend><?php echo __('Notify Attendees'); ?></legend>
 	<?php
 	foreach ($lastAttendees as $attendee) {
-		$label = $attendee['User']['username'] . ' - ' . $attendee['User']['email'];
-		echo $this->Form->input('Form.' . $attendee['Attendee']['id'] . '.check', array('type' => 'checkbox', 'label' => $label));
-		echo $this->Form->hidden('Form.' . $attendee['Attendee']['id'] . '.user_id');
-		echo $this->Form->hidden('Form.' . $attendee['Attendee']['id'] . '.email');
-		echo $this->Form->hidden('Form.' . $attendee['Attendee']['id'] . '.username');
+		$label = $attendee->user->username . ' - ' . $attendee->user->email;
+		echo $this->Form->input('Form.' . $attendee['id'] . '.check', array('type' => 'checkbox', 'label' => $label));
+		echo $this->Form->hidden('Form.' . $attendee['id'] . '.user_id');
+		echo $this->Form->hidden('Form.' . $attendee['id'] . '.email');
+		echo $this->Form->hidden('Form.' . $attendee['id'] . '.username');
 	}
 	if (empty($lastAttendees)) {
 		echo '<i>n/a</i>';

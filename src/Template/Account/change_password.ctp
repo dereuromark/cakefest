@@ -1,7 +1,7 @@
 <h3><?php echo __('Step 3: Set a new password')?></h3>
 
 <div class="users form">
-<?php echo $this->Form->create('User');?>
+<?php echo $this->Form->create($user);?>
 	<fieldset>
 		<legend><?php echo __('Enter your new password and confirm it');?></legend>
 	<?php

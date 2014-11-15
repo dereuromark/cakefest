@@ -22,7 +22,7 @@ Event: <?php echo h($attendee['Event']['name']); ?>
 		<dt><?php echo __('Email'); ?></dt>
 		<dd>
 			<?php if ($this->AuthUser->id()) { ?>
-				<?php if ($attendee['Attendee']['display_email'] || $this->AuthUser->hasRole(Cake\Core\Configure::read('Role.admin'))) {; ?>
+				<?php if ($attendee['Attendee']['display_email'] || $this->AuthUser->hasRole(Cake\Core\Configure::read('Roles.admin'))) {; ?>
 				<?php echo h($attendee['User']['email']); ?>
 				<?php } ?>
 			<?php } else { ?>

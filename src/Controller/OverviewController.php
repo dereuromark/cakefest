@@ -40,7 +40,8 @@ class OverviewController extends AppController {
 		//$event = $this->Users->Attendees->Events->find('first', array('order' => array('from' => 'DESC')));
 		$event = $this->Users->Attendees->Events->find('all', array('order' => array('from' => 'DESC')))->first();
 
-		$attendees = $this->Users->Attendees->find('all', array('conditions' => array('Attendees.event_id' => $event['Event']['id'])));
+		$attendees = $this->Users->Attendees->find('all', array('conditions' => array('Attendees.event_id' => $event['id'])))
+			->contain('Users');
 
 		$this->set(compact('event', 'attendees'));
 	}

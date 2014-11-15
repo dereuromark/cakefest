@@ -14,7 +14,6 @@ class EventsController extends AppController {
 	 * @return void
 	 */
 	public function index() {
-		$this->Event->recursive = 0;
 		$events = $this->paginate();
 		$this->set(compact('events'));
 	}
@@ -26,8 +25,7 @@ class EventsController extends AppController {
 	 * @return void
 	 */
 	public function view($id = null) {
-		$this->Event->recursive = 0;
-		if (empty($id) || !($event = $this->Event->find('first', array('conditions' => array('Event.id' => $id))))) {
+		if (empty($id) || !($event = $this->Events->find('first', array('conditions' => array('Events.id' => $id))))) {
 			$this->Common->flashMessage(__('invalidRecord'), 'error');
 			return $this->Common->autoRedirect(array('action' => 'index'));
 		}
@@ -40,10 +38,10 @@ class EventsController extends AppController {
 	 * @return void
 	 */
 	public function add() {
+		$event = $this->Events->newEntity($this->request->data);
 		if ($this->Common->isPosted()) {
-			$this->Event->create();
-			if ($this->Event->save($this->request->data)) {
-				$var = $this->request->data['Event']['name'];
+			if ($this->Events->save($event)) {
+				$var = $this->request->data['name'];
 				$this->Common->flashMessage(__('record add %s saved', h($var)), 'success');
 				return $this->Common->postRedirect(array('action' => 'index'));
 			}
@@ -58,20 +56,21 @@ class EventsController extends AppController {
 	 * @return void
 	 */
 	public function edit($id = null) {
-		if (empty($id) || !($event = $this->Event->find('first', array('conditions' => array('Event.id' => $id))))) {
+		if (empty($id) || !($event = $this->Events->find('first', array('conditions' => array('Events.id' => $id))))) {
 			$this->Common->flashMessage(__('invalidRecord'), 'error');
 			return $this->Common->autoRedirect(array('action' => 'index'));
 		}
 		if ($this->Common->isPosted()) {
-			if ($this->Event->save($this->request->data)) {
-				$var = $this->request->data['Event']['name'];
+			$event = $this->Events->patchEntity($event, $this->request->data);
+			if ($this->Events->save($event)) {
+				$var = $this->request->data['name'];
 				$this->Common->flashMessage(__('record edit %s saved', h($var)), 'success');
 				return $this->Common->postRedirect(array('action' => 'index'));
 			}
 			$this->Common->flashMessage(__('formContainsErrors'), 'error');
-		} else {
-			$this->request->data = $event;
 		}
+
+		$this->set(compact('event'));
 	}
 
 	/**
@@ -83,13 +82,13 @@ class EventsController extends AppController {
 	 */
 	public function delete($id = null) {
 		$this->request->allowMethod('post', 'delete');
-		if (empty($id) || !($event = $this->Event->find('first', array('conditions' => array('Event.id' => $id), 'fields' => array('id', 'name'))))) {
+		if (empty($id) || !($event = $this->Events->find('first', array('conditions' => array('Events.id' => $id), 'fields' => array('id', 'name'))))) {
 			$this->Common->flashMessage(__('invalidRecord'), 'error');
 			return $this->Common->autoRedirect(array('action' => 'index'));
 		}
-		$var = $event['Event']['name'];
+		$var = $event['name'];
 
-		if ($this->Event->delete($id)) {
+		if ($this->Events->delete($id)) {
 			$this->Common->flashMessage(__('record del %s done', h($var)), 'success');
 			return $this->Common->postRedirect(array('action' => 'index'));
 		}

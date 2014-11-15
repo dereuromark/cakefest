@@ -1,5 +1,5 @@
 <div class="attendees form">
-<?php echo $this->Form->create('Attendee'); ?>
+<?php echo $this->Form->create($attendee); ?>
 	<fieldset>
 		<legend><?php echo __('Edit Attendee'); ?></legend>
 	<?php
@@ -19,7 +19,7 @@
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 
-		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('Attendee.id')), null, __('Are you sure you want to delete # {0}?', $this->Form->value('Attendee.id'))); ?></li>
+		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $attendee->id), array('confirm' => __('Are you sure you want to delete # {0}?', $attendee->id))); ?></li>
 		<li><?php echo $this->Html->link(__('List Attendees'), array('action' => 'index')); ?></li>
 	</ul>
 </div>

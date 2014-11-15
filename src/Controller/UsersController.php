@@ -14,7 +14,6 @@ class UsersController extends AppController {
 	 * @return void
 	 */
 	public function index() {
-		$this->User->recursive = 0;
 		$users = $this->paginate();
 		$this->set(compact('users'));
 	}
@@ -26,7 +25,6 @@ class UsersController extends AppController {
 	 * @return void
 	 */
 	public function view($id = null) {
-		$this->User->recursive = 0;
 		if (empty($id) || !($user = $this->User->find('first', array('conditions' => array('User.id' => $id))))) {
 			$this->Common->flashMessage(__('invalidRecord'), 'error');
 			return $this->Common->autoRedirect(array('action' => 'index'));

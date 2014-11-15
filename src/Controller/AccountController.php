@@ -27,17 +27,32 @@ class AccountController extends AppController {
 		if ($this->Common->isPosted()) {
 			$user = $this->Auth->identify();
 			if ($user) {
-				die(debug($user));
+				$this->Users->addBehavior('Tools.Passwordable', array('confirm' => false));
+				$password = $this->request->data['password'];
+				$dbPassword = $this->Users->field('password', array('id' => $user['id']));
+
+				if ($this->Users->needsPasswordRehash($dbPassword)) {
+					$data = array(
+						'id' => $user['id'],
+						'pwd' => $password,
+						'modified' => false
+					);
+					$updatedUser = $this->Users->newEntity($data, ['markNew' => false]);
+					if (!$this->Users->save($updatedUser, ['validate' => false])) {
+						trigger_error(sprintf('Could not store new pwd for user %s.', $user['id']));
+					}
+				}
+				unset($user['password']);
 				$this->Auth->setUser($user);
 				$this->Common->flashMessage(__('loggedInMessage'), 'success');
 				return $this->redirect($this->Auth->redirectUrl());
 			}
 			$this->Common->flashMessage(__('loggedInError'), 'error');
-			$this->request->data['User']['password'] = '';
+			$this->request->data['password'] = '';
 
 		} else {
 			if ($username = $this->request->query('username')) {
-				$this->request->data['User']['login'] = $username;
+				$this->request->data['login'] = $username;
 			}
 		}
 	}
@@ -79,7 +94,7 @@ class AccountController extends AppController {
 				$this->Common->flashMessage(__('alreadyChangedYourPassword'), 'warning');
 			} elseif (!empty($key)) {
 				$uid = $key['Token']['user_id'];
-				$this->Session->write('Auth.Tmp.id', $uid);
+				$this->request->session()->write('Auth.Tmp.id', $uid);
 				$this->redirect(array('action' => 'change_password'));
 			} else {
 				$this->Common->flashMessage(__('Invalid Key'), 'error');
@@ -138,7 +153,7 @@ class AccountController extends AppController {
 	 * @return void
 	 */
 	public function change_password() {
-		$uid = $this->Session->read('Auth.Tmp.id');
+		$uid = $this->request->session()->read('Auth.Tmp.id');
 		if (empty($uid)) {
 			$this->Common->flashMessage(__('You have to find your account first and click on the link in the email you receive afterwards'), 'error');
 			$this->redirect(array('action' => 'lost_password'));
@@ -146,7 +161,7 @@ class AccountController extends AppController {
 
 		if ($this->request->query('abort')) {
 			if (!empty($uid)) {
-				$this->Session->delete('Auth.Tmp');
+				$this->request->session()->delete('Auth.Tmp');
 			}
 			$this->redirect(array('action' => 'login'));
 		}
@@ -160,7 +175,7 @@ class AccountController extends AppController {
 			);
 			if ($this->User->save($this->request->data, $options)) {
 				$this->Common->flashMessage(__('new pw saved - you may now log in'), 'success');
-				$this->Session->delete('Auth.Tmp');
+				$this->request->session()->delete('Auth.Tmp');
 				$username = $this->User->field('username', array('id' => $uid));
 				$this->redirect(array('action' => 'login', '?' => array('username' => $username)));
 			}
@@ -180,22 +195,26 @@ class AccountController extends AppController {
 	 */
 	public function register() {
 		$this->Users->addBehavior('Tools.Passwordable');
+		$user = $this->Users->newEntity($this->request->data);
+
 		if ($this->Common->isPosted()) {
-			$this->request->data['User']['role_id'] = Configure::read('Role.user');
-			if ($user = $this->User->save($this->request->data)) {
+			$user->role_id = Configure::read('Roles.user');
+
+			if ($this->Users->save($user)) {
 				$this->Common->flashMessage(__('Account created'), 'success');
-				// Log in right away for now
-				if (!$this->Auth->login($user['User'])) {
-					throw new CakeException('Cannot log user in');
-				}
-				return $this->redirect(array('controller' => 'overview', 'action' => 'index'));
+				// Log in right away
+				$this->Auth->setUser($user->toArray());
+				return $this->redirect(array('controller' => 'Overview', 'action' => 'index'));
 			}
 			$this->Common->flashMessage(__('formContainsErrors'), 'error');
-
 			// pwd should not be passed to the view again for security reasons
-			unset($this->request->data['User']['pwd']);
-			unset($this->request->data['User']['pwd_repeat']);
+			$user->unsetProperty('pwd');
+			$user->unsetProperty('pwd_repeat');
+			//unset($this->request->data['User']['pwd']);
+			//unset($this->request->data['User']['pwd_repeat']);
 		}
+
+		$this->set(compact('user'));
 	}
 
 	/**
@@ -205,33 +224,31 @@ class AccountController extends AppController {
 	 * @throws CakeException
 	 */
 	public function edit() {
-		$uid = $this->Session->read('Auth.User.id');
-		$user = $this->User->get($uid);
-		$this->User->Behaviors->attach('Tools.Passwordable', array('require' => false));
+		$uid = $this->request->session()->read('Auth.User.id');
+		$user = $this->Users->get($uid);
+		$this->Users->addBehavior('Tools.Passwordable', array('require' => false));
 
 		if ($this->Common->isPosted()) {
-			$this->request->data['User']['id'] = $uid;
+			//$user->id = $uid;
 			$options = array(
-				'validate' => true,
-				'fieldList' => array('id', 'username', 'email', 'irc_nick', 'pwd', 'pwd_repeat')
+				//'validate' => true,
+				//'fieldList' => array('id', 'username', 'email', 'irc_nick', 'pwd', 'pwd_repeat')
 			);
-			if ($newUser = $this->User->save($this->request->data, $options)) {
-				$newUser['User'] += $user['User'];
+			$user = $this->Users->patchEntity($user, $this->request->data);
+			if ($this->Users->save($user, $options)) {
 				// Update session data, as well
 				$this->Common->flashMessage(__('Account modified'), 'success');
-				if (!$this->Auth->login($newUser['User'])) {
-					throw new CakeException('Cannot update user auth data');
-				}
-				return $this->redirect(array('controller' => 'overview', 'action' => 'index'));
+				$this->Auth->setUser($user->toArray());
+				return $this->redirect(array('controller' => 'Overview', 'action' => 'index'));
 			}
 			$this->Common->flashMessage(__('formContainsErrors'), 'error');
 
 			// Pwd should not be passed to the view again for security reasons.
-			unset($this->request->data['User']['pwd']);
-			unset($this->request->data['User']['pwd_repeat']);
-		} else {
-			$this->request->data = $user;
+			//unset($this->request->data['User']['pwd']);
+			//unset($this->request->data['User']['pwd_repeat']);
 		}
+
+		$this->set(compact('user'));
 	}
 
 	/**
@@ -243,7 +260,7 @@ class AccountController extends AppController {
 	 */
 	public function delete($id = null) {
 		$this->request->allowMethod('post', 'delete');
-		$uid = $this->Session->read('Auth.User.id');
+		$uid = $this->request->session()->read('Auth.User.id');
 		if (!$this->User->delete($uid)) {
 			throw new InternalErrorException();
 		}

@@ -3,10 +3,13 @@ namespace App\Controller;
 
 use Cake\Event\Event;
 use App\Controller\AppController;
+use Tools\Email\Email;
+use Cake\Core\Configure;
 
 class ContactController extends AppController {
 
-	public $uses = array('Tools.ContactForm');
+	public $modelClass = 'Tools.ContactForm';
+	//public $uses = array('Tools.ContactForm');
 
 	public function beforeFilter(Event $event) {
 		parent::beforeFilter($event);
@@ -18,6 +21,8 @@ class ContactController extends AppController {
 	 * @return void
 	 */
 	public function index() {
+		$contactForm = $this->ContactForm->newEntity($this->request->data);
+
 		if ($this->Common->isPosted()) {
 
 			$name = $this->request->data['ContactForm']['name'];
@@ -26,10 +31,9 @@ class ContactController extends AppController {
 			$subject = $this->request->data['ContactForm']['subject'];
 
 			if (!$this->AuthUser->id()) {
-				$this->ContactForm->Behaviors->attach('Tools.Captcha');
+				//$this->ContactForm->Behaviors->attach('Tools.Captcha');
 			}
-			$this->ContactForm->set($this->request->data);
-			if ($this->ContactForm->validates()) {
+			if ($this->ContactForm->validate($contactForm)) {
 				$this->_send($name, $email, $subject, $message);
 			} else {
 				$this->Common->flashMessage(__('formContainsErrors'), 'error');
@@ -49,7 +53,7 @@ class ContactController extends AppController {
 			}
 		}
 
-		$this->helpers = array_merge($this->helpers, array('Tools.Captcha'));
+		//$this->helpers = array_merge($this->helpers, array('Tools.Captcha'));
 	}
 
 	/**
@@ -61,8 +65,7 @@ class ContactController extends AppController {
 
 		// Send email to Admin
 		Configure::write('Email.live', true);
-		use Tools\EmailLib;
-		$this->Email = new EmailLib();
+		$this->Email = new Email();
 		$this->Email->to($adminEmail, $adminEmailname);
 
 		$this->Email->subject(Configure::read('Config.pageName') . ' - ' . __('contact via form'));

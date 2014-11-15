@@ -23,7 +23,7 @@
 				<?php if ($this->AuthUser->id()) { ?>
 					<?php echo h($this->Session->read('Auth.User.username')); ?> [<?php echo h($this->Session->read('Auth.User.email')); ?>] -
 
-					<?php if ($this->AuthUser->hasRole(Cake\Core\Configure::read('Role.admin'))) { ?>
+					<?php if ($this->AuthUser->hasRole(Cake\Core\Configure::read('Roles.admin'))) { ?>
 						<?php echo $this->Html->link('Admin', array('controller' => 'overview', 'action' => 'admin')); ?> |
 					<?php } ?>
 					<?php echo $this->Html->link('Account', array('controller' => 'account', 'action' => 'edit')); ?> |
@@ -69,13 +69,13 @@
 		</div>
 	</div>
 	<?php echo $this->fetch('script'); ?>
-	<?php //echo $this->Js->writeBuffer(array('inline' => true, 'onDomReady' => false)); ?>
+	<?php echo $this->Js->writeBuffer(array('onDomReady' => false)); ?>
 
 <?php
 $debug =\Cake\Core\Configure::read('debug');
 if ($debug > 0 && \Cake\Core\Plugin::loaded('Setup')) {
-	$this->loadHelper('Setup.Debug', $debug);
-	echo $this->Debug->show();
+	//$this->loadHelper('Setup.Debug', $debug);
+	//echo $this->Debug->show();
 }
 ?>
 </body>

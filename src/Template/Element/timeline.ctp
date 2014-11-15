@@ -8,24 +8,23 @@
 
 <?php
 	$this->loadHelper('Tools.Timeline');
-	$from = new DateTime($event['Event']['from']);
-	$to = new DateTime($event['Event']['to']);
+	$from = new \DateTime($event['Event']['from']);
+	$to = new \DateTime($event['Event']['to']);
 
 	$settings = array(
-		'min' => $from->sub(new DateInterval('P10D')),
-		'max' => $to->add(new DateInterval('P10D')),
+		'min' => $from->sub(new \DateInterval('P10D')),
+		'max' => $to->add(new \DateInterval('P10D')),
 	);
 	$this->Timeline->settings($settings);
 
 	foreach ($attendees as $attendee) {
 		$content = '';
-		if ($attendee['User']['status'] == User::STATUS_CORE_DEV) {
+		if ($attendee['User']['status'] == App\Model\Entity\User::STATUS_CORE_DEV) {
 			$content .= '<div style="float: right"><small>' . __('Core Dev') . '</small></div>';
 		}
-		$content .= $this->Html->link($attendee['User']['username'], array('controller' => 'attendees', 'action' => 'view', $attendee['Attendee']['id']));
+		$content .= $this->Html->link($attendee->user->username, array('controller' => 'attendees', 'action' => 'view', $attendee['id']));
 
-
-		$this->Timeline->addItem(array('start' => new DateTime($attendee['Attendee']['from']), 'end' => new DateTime($attendee['Attendee']['to']), 'content' => $content));
+		$this->Timeline->addItem(array('start' => $attendee['from'], 'end' => $attendee['to'], 'content' => $content));
 	}
 	$this->Timeline->finalize();
 ?>

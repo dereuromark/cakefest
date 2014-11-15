@@ -1,5 +1,5 @@
 <div class="events form">
-<?php echo $this->Form->create('Event'); ?>
+<?php echo $this->Form->create($event); ?>
 	<fieldset>
 		<legend><?php echo __('Add Event'); ?></legend>
 	<?php
@@ -17,7 +17,5 @@
 	<ul>
 
 		<li><?php echo $this->Html->link(__('List Events'), array('action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('List Attendees'), array('controller' => 'attendees', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Attendee'), array('controller' => 'attendees', 'action' => 'add')); ?> </li>
 	</ul>
 </div>

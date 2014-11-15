@@ -68,6 +68,10 @@ $config = [
 		'salt' => '__SALT__',
 	],
 
+	'Passwordable'  => [
+		'passwordHasher' => ['className' => 'Fallback', 'hashers' => ['Default', 'Weak']]
+	],
+
 /**
  * Apply timestamps with the last modified time to static assets (js, css, images).
  * Will append a querystring parameter containing the time the file was modified.
@@ -314,6 +318,8 @@ $config = [
  */
 	'Session' => [
 		'defaults' => 'php',
+		'timeout' => 3 * DAY,
+		'cookieTimeout' => MONTH
 	],
 	'Roles' => array(
 		'admin' => '1',

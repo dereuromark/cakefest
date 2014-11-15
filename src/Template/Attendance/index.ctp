@@ -1,11 +1,11 @@
 <div class="attendees index">
 	<h2><?php echo __('My Attendance'); ?></h2>
 
-<p>as <b><?php echo \App\Model\Table\User::statuses($user['User']['status'])?></b>.<p>
-<?php if ($user['User']['status'] == \App\Model\Table\User::STATUS_DEV) { ?>
+<p>as <b><?php echo \App\Model\Entity\User::statuses($user['status'])?></b>.<p>
+<?php if ($user['User']['status'] == \App\Model\Entity\User::STATUS_DEV) { ?>
 <?php
 	$url = array(
-		'controller' => 'contact',
+		'controller' => 'Contact',
 		'?' => array('subject' => 'Core Dev', 'message' => 'I am a core dev!')
 	);
 ?>
@@ -29,13 +29,13 @@ If you want to displayed under a different status (as core developer),
 			<?php //echo $this->Html->link($attendee['Event']['name'], array('controller' => 'events', 'action' => 'view', $attendee['Event']['id'])); ?>
 			<?php echo h($attendee['Event']['name']); ?>
 		</td>
-		<td><?php echo $this->Time->localDate($attendee['Attendee']['from'], '%Y-%m-%d %H:%M'); ?>&nbsp;</td>
-		<td><?php echo $this->Time->localDate($attendee['Attendee']['to'], '%Y-%m-%d %H:%M'); ?>&nbsp;</td>
-		<td><?php echo $this->Format->yesNo($attendee['Attendee']['display_email']); ?>&nbsp;</td>
+		<td><?php echo $this->Time->nice($attendee['from']); ?>&nbsp;</td>
+		<td><?php echo $this->Time->nice($attendee['to']); ?>&nbsp;</td>
+		<td><?php echo $this->Format->yesNo($attendee['display_email']); ?>&nbsp;</td>
 
 		<td class="actions">
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $attendee['Attendee']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $attendee['Attendee']['id']), null, __('Are you sure you want to delete # {0}?', $attendee['Attendee']['id'])); ?>
+			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $attendee['id'])); ?>
+			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $attendee['id']), array('confirm' => __('Are you sure you want to delete # {0}?', $attendee['id']))); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -62,7 +62,7 @@ If you want to displayed under a different status (as core developer),
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-	<?php if (empty($attendees)) { ?>
+	<?php if (!count($attendees)) { ?>
 		<li><?php echo $this->Html->link(__('Attend now'), array('action' => 'add')); ?></li>
 	<?php } ?>
 		<li><?php echo $this->Html->link(__('Back'), array('controller' => 'overview', 'action' => 'index')); ?> </li>

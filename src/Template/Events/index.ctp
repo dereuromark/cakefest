@@ -10,14 +10,14 @@
 	</tr>
 	<?php foreach ($events as $event): ?>
 	<tr>
-		<td><?php echo h($event['Event']['from']); ?>&nbsp;</td>
-		<td><?php echo h($event['Event']['to']); ?>&nbsp;</td>
-		<td><?php echo h($event['Event']['name']); ?>&nbsp;</td>
-		<td><?php echo h($event['Event']['description']); ?>&nbsp;</td>
+		<td><?php echo h($event['from']); ?>&nbsp;</td>
+		<td><?php echo h($event['to']); ?>&nbsp;</td>
+		<td><?php echo h($event['name']); ?>&nbsp;</td>
+		<td><?php echo h($event['description']); ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $event['Event']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $event['Event']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $event['Event']['id']), null, __('Are you sure you want to delete # {0}?', $event['Event']['id'])); ?>
+			<?php echo $this->Html->link(__('View'), array('action' => 'view', $event['id'])); ?>
+			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $event['id'])); ?>
+			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $event['id']), array('confirm' => __('Are you sure you want to delete # {0}?', $event['id']))); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -40,6 +40,6 @@
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 		<li><?php echo $this->Html->link(__('New Event'), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('Back'), array('controller' => 'overview', 'action' => 'admin')); ?></li>
+		<li><?php echo $this->Html->link(__('Back'), array('controller' => 'Overview', 'action' => 'admin')); ?></li>
 	</ul>
 </div>

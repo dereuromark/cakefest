@@ -14,10 +14,10 @@ use Cake\Core\Configure;
  */
 class AppController extends Controller {
 
-	public $components = array('Session', 'RequestHandler', 'Tools.Common', 'Tools.AuthUser');
+	public $components = array('Tools.Session', 'RequestHandler', 'Tools.Common', 'Tools.AuthUser');
 
 	public $helpers = array('Session', 'Html', 'Form', 'Tools.Common',
-		'Tools.Format', 'Tools.Time', 'Tools.Number', 'Tools.AuthUser');
+		'Tools.Format', 'Tools.Time', 'Tools.Number', 'Tools.AuthUser', 'Tools.Obfuscate', 'Tools.Js');
 
 	/**
 	 * AppController::constructClasses()
@@ -40,8 +40,9 @@ class AppController extends Controller {
 					),
 					'columns' => array('username', 'email'),
 					'userModel' => 'Users',
+					'passwordHasher' => Configure::read('Passwordable.passwordHasher')
 					//'scope' => array('User.email_confirmed' => 1)
-				)
+				),
 			),
 			'authorize' => array(
 				'TinyAuth.Tiny'
@@ -91,6 +92,20 @@ class AppController extends Controller {
 				$this->Common->flashMessage('The page you tried to access is not relevant if you are already logged in. Redirected to main page.', 'info');
 				return $this->redirect($this->Auth->config('loginRedirect'));
 			}
+		}
+
+		// Locale detection
+		//preg_match('/([a-z]{2})-([A-Z]{2})/', env('HTTP_ACCEPT_LANGUAGE'), $matches);
+		$matches = \Tools\Utility\Language::parseLanguageList();
+		$matches = array();
+		if ($matches) {
+			$locale = array_shift($matches);
+			$locale = array_shift($locale);
+			ini_set('intl.default_locale', $locale);
+		} elseif ($timezone = $this->Session->read('Auth.User.timezone')) {
+			$tz = new \DateTimeZone($timezone);
+			$country = $tz->getLocation();
+			ini_set('intl.default_locale', $country['country_code']);
 		}
 	}
 

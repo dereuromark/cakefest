@@ -1,5 +1,5 @@
 <div class="users form">
-<?php echo $this->Form->create('User'); ?>
+<?php echo $this->Form->create($user); ?>
 	<fieldset>
 		<legend><?php echo __('Account information'); ?></legend>
 	<?php
@@ -8,13 +8,13 @@
 		echo $this->Form->input('email');
 
 
-		$availableRoles = Configure::read('Role');
+		$availableRoles = Cake\Core\Configure::read('Roles');
 		$roles = array();
 		foreach ($availableRoles as $role => $id) {
 			$roles[$id] = $role;
 		}
 		echo $this->Form->input('role_id', array('options' => $roles));
-		echo $this->Form->input('status', array('options' => User::statuses()));
+		echo $this->Form->input('status', array('options' => $user->statuses()));
 	?>
 	</fieldset>
 	<fieldset>
@@ -42,7 +42,7 @@
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 
-		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('User.id')), null, __('Are you sure you want to delete # {0}?', $this->Form->value('User.id'))); ?></li>
+		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $user->id), array('confirm' => __('Are you sure you want to delete # {0}?', $user->id))); ?></li>
 		<li><?php echo $this->Html->link(__('List Users'), array('action' => 'index')); ?></li>
 	</ul>
 </div>
