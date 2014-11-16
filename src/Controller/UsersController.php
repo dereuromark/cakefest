@@ -25,7 +25,7 @@ class UsersController extends AppController {
 	 * @return void
 	 */
 	public function view($id = null) {
-		if (empty($id) || !($user = $this->User->find('first', array('conditions' => array('User.id' => $id))))) {
+		if (empty($id) || !($user = $this->Users->find('first', array('conditions' => array('User.id' => $id))))) {
 			$this->Common->flashMessage(__('invalidRecord'), 'error');
 			return $this->Common->autoRedirect(array('action' => 'index'));
 		}
@@ -39,13 +39,13 @@ class UsersController extends AppController {
 	 * @return void
 	 */
 	public function edit($id = null) {
-		if (empty($id) || !($user = $this->User->find('first', array('conditions' => array('User.id' => $id))))) {
+		if (empty($id) || !($user = $this->Users->find('first', array('conditions' => array('User.id' => $id))))) {
 			$this->Common->flashMessage(__('invalidRecord'), 'error');
 			return $this->Common->autoRedirect(array('action' => 'index'));
 		}
 		if ($this->Common->isPosted()) {
-			$this->User->Behaviors->attach('Tools.Passwordable', array('require' => false));
-			if ($this->User->save($this->request->data)) {
+			$this->Users->Behaviors->attach('Tools.Passwordable', array('require' => false));
+			if ($this->Users->save($entity)) {
 				$var = $this->request->data['User']['username'];
 				$this->Common->flashMessage(__('record edit {0} saved', h($var)), 'success');
 				return $this->Common->postRedirect(array('action' => 'index'));
@@ -65,13 +65,13 @@ class UsersController extends AppController {
 	 */
 	public function delete($id = null) {
 		$this->request->allowMethod('post', 'delete');
-		if (empty($id) || !($user = $this->User->find('first', array('conditions' => array('User.id' => $id), 'fields' => array('id', 'username'))))) {
+		if (empty($id) || !($user = $this->Users->find('first', array('conditions' => array('User.id' => $id), 'fields' => array('id', 'username'))))) {
 			$this->Common->flashMessage(__('invalidRecord'), 'error');
 			return $this->Common->autoRedirect(array('action' => 'index'));
 		}
 		$var = $user['username'];
 
-		if ($this->User->delete($user)) {
+		if ($this->Users->delete($user)) {
 			$this->Common->flashMessage(__('record del {0} done', h($var)), 'success');
 			return $this->Common->postRedirect(array('action' => 'index'));
 		}
