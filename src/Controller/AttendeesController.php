@@ -150,6 +150,7 @@ class AttendeesController extends AppController {
 
 		$lastAttendees = $this->Attendees->find('all', array('conditions' => array('Attendees.event_id' => $event['id'])))->contain('Users');
 
+		$lastAttendees = $lastAttendees->toArray();
 		foreach ($lastAttendees as $key => $attendee) {
 			if ($this->Attendees->validate($attendee)) {
 				unset($lastAttendees[$key]);

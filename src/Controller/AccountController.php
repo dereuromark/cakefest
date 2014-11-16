@@ -80,6 +80,8 @@ class AccountController extends AppController {
 	 * @return void
 	 */
 	public function lost_password($key = null) {
+		$user = $this->Users->newEntity($this->request->data);
+
 		if ($this->Common->isPosted()) {
 			$keyToCheck = $this->request->data('Form.key');
 		} elseif (!empty($key)) {
@@ -101,13 +103,13 @@ class AccountController extends AppController {
 			}
 
 		} elseif (!empty($this->request->data['Form']['login'])) {
-			$this->User->Behaviors->attach('Tools.Captcha');
-			unset($this->User->validate['email']['isUnique']);
-			$this->User->set($this->request->data);
+			$this->Users->Behaviors->attach('Tools.Captcha');
+			unset($this->Users->validate['email']['isUnique']);
+			//$this->User->set($this->request->data);
 
 			// Validate basic email scheme and captcha input.
-			if ($this->User->validates()) {
-				$res = $this->User->find('first', array(
+			if ($this->Users->validate($user)) {
+				$res = $this->Users->find('first', array(
 					'fields' => array('username', 'id', 'email'),
 					'conditions' => array('email' => $this->request->data['Form']['login'])));
 
