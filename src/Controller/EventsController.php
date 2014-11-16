@@ -88,7 +88,7 @@ class EventsController extends AppController {
 		}
 		$var = $event['name'];
 
-		if ($this->Events->delete($id)) {
+		if ($this->Events->delete($event)) {
 			$this->Common->flashMessage(__('record del {0} done', h($var)), 'success');
 			return $this->Common->postRedirect(array('action' => 'index'));
 		}

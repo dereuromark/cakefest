@@ -71,7 +71,7 @@ class UsersController extends AppController {
 		}
 		$var = $user['username'];
 
-		if ($this->User->delete($id)) {
+		if ($this->User->delete($user)) {
 			$this->Common->flashMessage(__('record del {0} done', h($var)), 'success');
 			return $this->Common->postRedirect(array('action' => 'index'));
 		}
