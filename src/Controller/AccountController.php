@@ -259,7 +259,7 @@ class AccountController extends AppController {
 	 * @throws InternalErrorException
 	 */
 	public function delete($id = null) {
-		$this->request->allowMethod('post', 'delete');
+		$this->request->allowMethod(['post', 'delete']);
 		$uid = $this->request->session()->read('Auth.User.id');
 		if (!$this->User->delete($uid)) {
 			throw new InternalErrorException();
