@@ -98,7 +98,7 @@ class AttendeesController extends AppController {
 			$this->Common->flashMessage(__('invalidRecord'), 'error');
 			return $this->Common->autoRedirect(array('action' => 'index'));
 		}
-		$var = $attendee['Attendee']['user_id'];
+		$var = $attendee['user_id'];
 
 		if ($this->Attendees->delete($attendee)) {
 			$this->Common->flashMessage(__('record del {0} done', h($var)), 'success');
@@ -124,10 +124,10 @@ class AttendeesController extends AppController {
 		} else {
 			$data = array();
 			foreach ($lastAttendees as $attendee) {
-				$data[$attendee['Attendee']['id']] = array(
-					'email' => $attendee['User']['email'],
-					'username' => $attendee['User']['username'],
-					'user_id' => $attendee['User']['id'],
+				$data[$attendee['id']] = array(
+					'email' => $attendee->user['email'],
+					'username' => $attendee->user['username'],
+					'user_id' => $attendee->user['id'],
 					'check' => true);
 			}
 			$this->request->data['Form'] = $data;

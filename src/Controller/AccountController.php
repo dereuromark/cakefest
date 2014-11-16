@@ -90,10 +90,10 @@ class AccountController extends AppController {
 			$this->Tokens = TableRegistry::get('Tools.Tokens');
 			$key = $this->Tokens->useKey('reset_pwd', $keyToCheck);
 
-			if (!empty($key) && $key['Token']['used'] == 1) {
+			if (!empty($key) && $key['used'] == 1) {
 				$this->Common->flashMessage(__('alreadyChangedYourPassword'), 'warning');
 			} elseif (!empty($key)) {
-				$uid = $key['Token']['user_id'];
+				$uid = $key['user_id'];
 				$this->request->session()->write('Auth.Tmp.id', $uid);
 				$this->redirect(array('action' => 'change_password'));
 			} else {
@@ -113,11 +113,11 @@ class AccountController extends AppController {
 
 				// Valid user found to this email address
 				if (!empty($res)) {
-					$uid = $res['User']['id'];
+					$uid = $res['id'];
 					$this->Token = ClassRegistry::init('Tools.Token');
 					$cCode = $this->Token->newKey('reset_pwd', null, $uid);
 					if (Configure::read('debug') > 0) {
-						$debugMessage = 'DEBUG MODE: Show activation key - ' . h($res['User']['username']) . ' | ' . $cCode;
+						$debugMessage = 'DEBUG MODE: Show activation key - ' . h($res->user['username']) . ' | ' . $cCode;
 						$this->Common->flashMessage($debugMessage, 'info');
 					}
 
@@ -125,13 +125,13 @@ class AccountController extends AppController {
 					Configure::write('Email.live', true);
 
 					$this->Email = new EmailLib();
-					$this->Email->to($res['User']['email'], $res['User']['username']);
+					$this->Email->to($res['email'], $res['username']);
 					$this->Email->subject(Configure::read('Config.pageName') . ' - ' . __('Password request'));
 					$this->Email->template('lost_password');
 					$this->Email->viewVars(compact('cCode'));
 					if ($this->Email->send()) {
 						// Confirmation output
-						$email = h(FormatHelper::hideEmail($res['User']['email']));
+						$email = h(FormatHelper::hideEmail($res['email']));
 
 						$this->Common->flashMessage(__('An email with instructions has been send to \'{0}\'.', $email), 'success');
 						$this->Common->flashMessage(__('In a third step you will then be able to change your password.'), 'success');

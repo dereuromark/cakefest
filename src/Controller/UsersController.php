@@ -69,7 +69,7 @@ class UsersController extends AppController {
 			$this->Common->flashMessage(__('invalidRecord'), 'error');
 			return $this->Common->autoRedirect(array('action' => 'index'));
 		}
-		$var = $user['User']['username'];
+		$var = $user['username'];
 
 		if ($this->User->delete($id)) {
 			$this->Common->flashMessage(__('record del {0} done', h($var)), 'success');
