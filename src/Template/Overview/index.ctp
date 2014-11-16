@@ -3,8 +3,13 @@
 <a href="http://cakefest.org/" target="_blank"><img src="http://cakefest.org/img/event.jpg" title="CakeFest" style="margin-bottom: 8px;" alt="" /></a>
 </div>
 
-<h2>CakeFest 2014 - Who is on board?</h2>
-<p><b>August 21st - August 24th</b>, Madrid, Spain</p>
+<h2>CakeFest <?php echo $event->from->format('Y'); ?></a> - Who is on board?</h2>
+<p><b><?php echo $event->from->format('F jS'); ?> - <?php echo $event->to->format('F jS'); ?></b>, <?php echo h($event->name); ?></p>
+<?php if (!empty($event->description)) { ?>
+<p>
+<?php echo h($event->description); ?>
+</p>
+<?php } ?>
 
 <h3>What is the CakeFest</h3>
 <p>

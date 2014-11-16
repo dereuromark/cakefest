@@ -8,12 +8,10 @@
 
 <?php
 	$this->loadHelper('Tools.Timeline');
-	$from = new \DateTime($event['from']);
-	$to = new \DateTime($event['to']);
 
 	$settings = array(
-		'min' => $from->sub(new \DateInterval('P10D')),
-		'max' => $to->add(new \DateInterval('P10D')),
+		'min' => $event['from']->sub(new \DateInterval('P10D')),
+		'max' => $event['to']->add(new \DateInterval('P10D')),
 	);
 	$this->Timeline->settings($settings);
 

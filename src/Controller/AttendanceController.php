@@ -56,7 +56,7 @@ class AttendanceController extends AppController {
 			if ($this->Attendees->save($attendee)) {
 				$from = $attendee['from'];
 				$to = $attendee['to'];
-				$this->Common->flashMessage(__('Attendance from %s to %s saved', $from, $to), 'success');
+				$this->Common->flashMessage(__('Attendance from {0} to {1} saved', $from, $to), 'success');
 				return $this->Common->postRedirect(array('action' => 'index'));
 			}
 			$this->Common->flashMessage(__('formContainsErrors'), 'error');
@@ -81,7 +81,7 @@ class AttendanceController extends AppController {
 			if ($this->Attendees->save($attendee)) {
 				$from = $attendee['from'];
 				$to = $attendee['to'];
-				$this->Common->flashMessage(__('Attendance from %s to %s saved', $from, $to), 'success');
+				$this->Common->flashMessage(__('Attendance from {0} to {1} saved', $from, $to), 'success');
 				return $this->Common->postRedirect(array('action' => 'index'));
 			}
 			$this->Common->flashMessage(__('formContainsErrors'), 'error');
@@ -108,10 +108,10 @@ class AttendanceController extends AppController {
 		$var = $attendee['user_id'];
 
 		if ($this->Attendees->delete($attendee)) {
-			$this->Common->flashMessage(__('record del %s done', h($var)), 'success');
+			$this->Common->flashMessage(__('record del {0} done', h($var)), 'success');
 			return $this->Common->postRedirect(array('action' => 'index'));
 		}
-		$this->Common->flashMessage(__('record del %s not done exception', h($var)), 'error');
+		$this->Common->flashMessage(__('record del {0} not done exception', h($var)), 'error');
 		return $this->Common->autoRedirect(array('action' => 'index'));
 	}
 

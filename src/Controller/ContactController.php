@@ -72,7 +72,7 @@ class ContactController extends AppController {
 		$this->Email->template('contact');
 		$this->Email->viewVars(compact('message', 'subject', 'fromEmail', 'fromName'));
 		if ($this->Email->send()) {
-			$this->Common->flashMessage(__('contactSuccessfullySent %s', $fromEmail), 'success');
+			$this->Common->flashMessage(__('contactSuccessfullySent {0}', $fromEmail), 'success');
 			return $this->redirect(array('action' => 'index'));
 		}
 		$this->log($this->Email->getError());
