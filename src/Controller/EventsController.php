@@ -81,7 +81,7 @@ class EventsController extends AppController {
 	 * @return void
 	 */
 	public function delete($id = null) {
-		$this->request->allowMethod('post', 'delete');
+		$this->request->allowMethod(['post', 'delete']);
 		if (empty($id) || !($event = $this->Events->find('first', array('conditions' => array('Events.id' => $id), 'fields' => array('id', 'name'))))) {
 			$this->Common->flashMessage(__('invalidRecord'), 'error');
 			return $this->Common->autoRedirect(array('action' => 'index'));
