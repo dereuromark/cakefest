@@ -33,7 +33,7 @@
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $user['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $user['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $user['id']), array('confirm' => __('Are you sure you want to delete # {0}?', $user['User']['id']))); ?>
+			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $user['id']), array('confirm' => __('Are you sure you want to delete # {0}?', $user['id']))); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>

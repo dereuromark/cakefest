@@ -35,28 +35,33 @@ class AttendanceController extends AppController {
 	public function add() {
 		$events = $this->Attendees->Events->find('list', array('conditions' => array('Events.to >=' => date(FORMAT_DB_DATETIME))));
 
+		$defaults = [
+			'from' => date(FORMAT_DB_DATETIME),
+			'to' => date(FORMAT_DB_DATETIME),
+			'user_id' => $this->Session->read('Auth.User.id')
+		];
+		if (!$this->Common->isPosted()) {
+			if (count($events) === 1) {
+				$key = array_keys($events->toArray());
+				$key = array_shift($key);
+				$event = $this->Attendees->Events->get($key);
+				$defaults['from'] = $event['from']->format(FORMAT_DB_DATE) . ' ' . '08:00:00';
+				$defaults['to'] = $event['to']->format(FORMAT_DB_DATE) . ' ' . '20:00:00';
+			}
+		}
+		$this->request->data += $defaults;
+		$attendee = $this->Attendees->newEntity($this->request->data);
+
 		if ($this->Common->isPosted()) {
-			$this->Attendees->create();
-			$this->request->data['Attendee']['user_id'] = $this->Session->read('Auth.User.id');
-			if ($this->Attendees->save($this->request->data)) {
-				$var = $this->request->data['Attendee']['user_id'];
-				$this->Common->flashMessage(__('record add %s saved', h($var)), 'success');
+			if ($this->Attendees->save($attendee)) {
+				$from = $attendee['from'];
+				$to = $attendee['to'];
+				$this->Common->flashMessage(__('Attendance from %s to %s saved', $from, $to), 'success');
 				return $this->Common->postRedirect(array('action' => 'index'));
 			}
 			$this->Common->flashMessage(__('formContainsErrors'), 'error');
-		} else {
-			$this->request->data['Attendee']['from'] = date(FORMAT_DB_DATETIME);
-			$this->request->data['Attendee']['to'] = date(FORMAT_DB_DATETIME);
-
-			if (count($events) === 1) {
-				$key = array_keys($events);
-				$event = $this->Attendees->Events->get(array_shift($key));
-				$this->request->data['Attendee']['from'] = $event['from'] . ' ' . '08:00:00';
-				$this->request->data['Attendee']['to'] = $event['to'] . ' ' . '20:00:00';
-			}
 		}
-
-		$this->set(compact('events'));
+		$this->set(compact('attendee', 'events'));
 	}
 
 	/**
@@ -74,8 +79,9 @@ class AttendanceController extends AppController {
 		if ($this->Common->isPosted()) {
 			$this->Attendees->patchEntity($attendee, $this->request->data);
 			if ($this->Attendees->save($attendee)) {
-				$var = $this->request->data['user_id'];
-				$this->Common->flashMessage(__('record edit %s saved', h($var)), 'success');
+				$from = $attendee['from'];
+				$to = $attendee['to'];
+				$this->Common->flashMessage(__('Attendance from %s to %s saved', $from, $to), 'success');
 				return $this->Common->postRedirect(array('action' => 'index'));
 			}
 			$this->Common->flashMessage(__('formContainsErrors'), 'error');

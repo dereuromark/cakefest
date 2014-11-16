@@ -17,15 +17,15 @@
 		<td><?php echo $this->Format->yesNo($attendee['display_email']); ?>&nbsp;</td>
 		<td><?php echo $this->Format->yesNo(!empty($attendee['comment'])); ?>&nbsp;</td>
 		<td>
-			<?php echo $this->Html->link($attendee->event['name'], array('controller' => 'events', 'action' => 'view', $attendee['Event']['id'])); ?>
+			<?php echo $this->Html->link($attendee->event['name'], array('controller' => 'events', 'action' => 'view', $attendee->event['id'])); ?>
 		</td>
 		<td>
-			<?php echo $this->Html->link($attendee['User']['username'], array('controller' => 'users', 'action' => 'view', $attendee['User']['id'])); ?>
+			<?php echo $this->Html->link($attendee->user['username'], array('controller' => 'users', 'action' => 'view', $attendee->user['id'])); ?>
 		</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $attendee['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $attendee['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $attendee['id']), array('confirm' => __('Are you sure you want to delete # {0}?', $attendee['Attendee']['id']))); ?>
+			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $attendee['id']), array('confirm' => __('Are you sure you want to delete # {0}?', $attendee['id']))); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>

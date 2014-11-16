@@ -1,12 +1,12 @@
 <div class="attendees view">
 <h2><?php echo __('Attendee'); ?></h2>
 <p>
-Event: <?php echo h($attendee['Event']['name']); ?>
+Event: <?php echo h($attendee->event['name']); ?>
 </p>
 
-<h3><?php echo h($attendee['User']['username']); ?></h3>
+<h3><?php echo h($attendee->user['username']); ?></h3>
 
-<p><?php echo App\Model\Entity\User::statuses($attendee['User']['status']); ?></p>
+<p><?php echo App\Model\Entity\User::statuses($attendee->user['status']); ?></p>
 
 	<dl>
 		<dt><?php echo __('From'); ?></dt>
@@ -23,7 +23,7 @@ Event: <?php echo h($attendee['Event']['name']); ?>
 		<dd>
 			<?php if ($this->AuthUser->id()) { ?>
 				<?php if ($attendee['display_email'] || $this->AuthUser->hasRole(Cake\Core\Configure::read('Roles.admin'))) {; ?>
-				<?php echo h($attendee['User']['email']); ?>
+				<?php echo h($attendee->user['email']); ?>
 				<?php } ?>
 			<?php } else { ?>
 				<i>You need to be logged in to see the email.</i>
@@ -33,7 +33,7 @@ Event: <?php echo h($attendee['Event']['name']); ?>
 
 		<dt><?php echo __('IRC Nick'); ?></dt>
 		<dd>
-			<?php echo h($attendee['User']['irc_nick']); ?>
+			<?php echo h($attendee->user['irc_nick']); ?>
 			&nbsp;
 		</dd>
 

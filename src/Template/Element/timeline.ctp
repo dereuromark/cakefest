@@ -19,7 +19,7 @@
 
 	foreach ($attendees as $attendee) {
 		$content = '';
-		if ($attendee['User']['status'] == App\Model\Entity\User::STATUS_CORE_DEV) {
+		if ($attendee->user['status'] == App\Model\Entity\User::STATUS_CORE_DEV) {
 			$content .= '<div style="float: right"><small>' . __('Core Dev') . '</small></div>';
 		}
 		$content .= $this->Html->link($attendee->user->username, array('controller' => 'attendees', 'action' => 'view', $attendee['id']));
