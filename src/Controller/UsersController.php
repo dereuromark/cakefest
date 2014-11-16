@@ -44,7 +44,7 @@ class UsersController extends AppController {
 			return $this->Common->autoRedirect(array('action' => 'index'));
 		}
 		if ($this->Common->isPosted()) {
-			$this->Users->Behaviors->attach('Tools.Passwordable', array('require' => false));
+			$this->Users->addBehavior('Tools.Passwordable', array('require' => false));
 			if ($this->Users->save($entity)) {
 				$var = $this->request->data['User']['username'];
 				$this->Common->flashMessage(__('record edit {0} saved', h($var)), 'success');

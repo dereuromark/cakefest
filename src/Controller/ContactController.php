@@ -31,7 +31,7 @@ class ContactController extends AppController {
 			$subject = $this->request->data['ContactForm']['subject'];
 
 			if (!$this->AuthUser->id()) {
-				//$this->ContactForm->Behaviors->attach('Tools.Captcha');
+				//$this->ContactForm->addBehavior('Tools.Captcha');
 			}
 			if ($this->ContactForm->validate($contactForm)) {
 				$this->_send($name, $email, $subject, $message);

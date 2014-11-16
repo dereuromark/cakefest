@@ -103,7 +103,7 @@ class AccountController extends AppController {
 			}
 
 		} elseif (!empty($this->request->data['Form']['login'])) {
-			$this->Users->Behaviors->attach('Tools.Captcha');
+			$this->Users->addBehavior('Tools.Captcha');
 			unset($this->Users->validate['email']['isUnique']);
 			//$this->User->set($this->request->data);
 
@@ -168,7 +168,7 @@ class AccountController extends AppController {
 			$this->redirect(array('action' => 'login'));
 		}
 
-		$this->User->Behaviors->load('Tools.Passwordable', array());
+		$this->User->addBehavior('Tools.Passwordable', array());
 		if ($this->Common->isPosted()) {
 			$this->request->data['User']['id'] = $uid;
 			$options = array(
