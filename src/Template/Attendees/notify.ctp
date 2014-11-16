@@ -1,5 +1,5 @@
 <div class="attendees form">
-<?php echo $this->Form->create('ContactForm'); ?>
+<?php echo $this->Form->create($form); ?>
 	<fieldset>
 		<legend><?php echo __('Notify Attendees'); ?></legend>
 	<?php
@@ -10,7 +10,7 @@
 		echo $this->Form->hidden('Form.' . $attendee['id'] . '.email');
 		echo $this->Form->hidden('Form.' . $attendee['id'] . '.username');
 	}
-	if (empty($lastAttendees)) {
+	if (!count($lastAttendees)) {
 		echo '<i>n/a</i>';
 	}
 	?>

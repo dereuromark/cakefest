@@ -47,6 +47,8 @@ class EventsController extends AppController {
 			}
 			$this->Common->flashMessage(__('formContainsErrors'), 'error');
 		}
+
+		$this->set(compact('event'));
 	}
 
 	/**
