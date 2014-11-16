@@ -30,6 +30,8 @@ class AttendeesController extends AppController {
 	 * @return void
 	 */
 	public function index() {
+		$this->paginate['contain'] = ['Events'];
+
 		$attendees = $this->paginate();
 		$this->set(compact('attendees'));
 	}

@@ -2,7 +2,7 @@
 	<h2><?php echo __('My Attendance'); ?></h2>
 
 <p>as <b><?php echo \App\Model\Entity\User::statuses($user['status'])?></b>.<p>
-<?php if ($user['User']['status'] == \App\Model\Entity\User::STATUS_DEV) { ?>
+<?php if ($user['status'] == \App\Model\Entity\User::STATUS_DEV) { ?>
 <?php
 	$url = array(
 		'controller' => 'Contact',

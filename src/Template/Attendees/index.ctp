@@ -12,20 +12,20 @@
 	</tr>
 	<?php foreach ($attendees as $attendee): ?>
 	<tr>
-		<td><?php echo h($attendee['Attendee']['from']); ?>&nbsp;</td>
-		<td><?php echo h($attendee['Attendee']['to']); ?>&nbsp;</td>
-		<td><?php echo $this->Format->yesNo($attendee['Attendee']['display_email']); ?>&nbsp;</td>
-		<td><?php echo $this->Format->yesNo(!empty($attendee['Attendee']['comment'])); ?>&nbsp;</td>
+		<td><?php echo h($attendee['from']); ?>&nbsp;</td>
+		<td><?php echo h($attendee['to']); ?>&nbsp;</td>
+		<td><?php echo $this->Format->yesNo($attendee['display_email']); ?>&nbsp;</td>
+		<td><?php echo $this->Format->yesNo(!empty($attendee['comment'])); ?>&nbsp;</td>
 		<td>
-			<?php echo $this->Html->link($attendee['Event']['name'], array('controller' => 'events', 'action' => 'view', $attendee['Event']['id'])); ?>
+			<?php echo $this->Html->link($attendee->event['name'], array('controller' => 'events', 'action' => 'view', $attendee['Event']['id'])); ?>
 		</td>
 		<td>
 			<?php echo $this->Html->link($attendee['User']['username'], array('controller' => 'users', 'action' => 'view', $attendee['User']['id'])); ?>
 		</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $attendee['Attendee']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $attendee['Attendee']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $attendee['Attendee']['id']), array('confirm' => __('Are you sure you want to delete # {0}?', $attendee['Attendee']['id']))); ?>
+			<?php echo $this->Html->link(__('View'), array('action' => 'view', $attendee['id'])); ?>
+			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $attendee['id'])); ?>
+			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $attendee['id']), array('confirm' => __('Are you sure you want to delete # {0}?', $attendee['Attendee']['id']))); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>

@@ -8,8 +8,8 @@
 
 <?php
 	$this->loadHelper('Tools.Timeline');
-	$from = new \DateTime($event['Event']['from']);
-	$to = new \DateTime($event['Event']['to']);
+	$from = new \DateTime($event['from']);
+	$to = new \DateTime($event['to']);
 
 	$settings = array(
 		'min' => $from->sub(new \DateInterval('P10D')),

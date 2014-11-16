@@ -11,18 +11,18 @@ Event: <?php echo h($attendee['Event']['name']); ?>
 	<dl>
 		<dt><?php echo __('From'); ?></dt>
 		<dd>
-			<?php echo h($attendee['Attendee']['from']); ?>
+			<?php echo h($attendee['from']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('To'); ?></dt>
 		<dd>
-			<?php echo h($attendee['Attendee']['to']); ?>
+			<?php echo h($attendee['to']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Email'); ?></dt>
 		<dd>
 			<?php if ($this->AuthUser->id()) { ?>
-				<?php if ($attendee['Attendee']['display_email'] || $this->AuthUser->hasRole(Cake\Core\Configure::read('Roles.admin'))) {; ?>
+				<?php if ($attendee['display_email'] || $this->AuthUser->hasRole(Cake\Core\Configure::read('Roles.admin'))) {; ?>
 				<?php echo h($attendee['User']['email']); ?>
 				<?php } ?>
 			<?php } else { ?>
@@ -39,7 +39,7 @@ Event: <?php echo h($attendee['Event']['name']); ?>
 
 		<dt><?php echo __('Comment'); ?></dt>
 		<dd>
-			<?php echo nl2br(h($attendee['Attendee']['comment'])); ?>
+			<?php echo nl2br(h($attendee['comment'])); ?>
 			&nbsp;
 		</dd>
 	</dl>
