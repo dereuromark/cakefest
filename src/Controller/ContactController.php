@@ -9,7 +9,6 @@ use Cake\Core\Configure;
 class ContactController extends AppController {
 
 	public $modelClass = 'Tools.ContactForm';
-	//public $uses = array('Tools.ContactForm');
 
 	public function beforeFilter(Event $event) {
 		parent::beforeFilter($event);

@@ -457,8 +457,8 @@ msgid "No way"
 msgstr ""
 
 #: Test/Case/Model/Behavior/PasswordableBehaviorTest.php:769;770
-msgid "valErrBetweenCharacters %s %s"
-msgstr "Zwischen %s und %s Zeichen"
+msgid "valErrBetweenCharacters {0} {1}"
+msgstr "Please enter between {0} and {1} chars."
 
 #: Test/Case/Model/Behavior/SluggedBehaviorTest.php:288
 msgid "and"

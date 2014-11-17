@@ -157,6 +157,8 @@ class AttendeesController extends AppController {
 			}
 		}
 
+		$this->loadModel('Tools.ContactForms');
+
 		if ($this->Common->isPosted()) {
 			if ($count = $this->_sendNotifications()) {
 				$this->Common->flashMessage(__('mails sent {0}', $count), 'success');
@@ -180,7 +182,7 @@ class AttendeesController extends AppController {
 			$this->request->data['Form'] = $data;
 		}
 
-		$this->set(compact('lastAttendees'));
+		$this->set(compact('form', 'lastAttendees'));
 		$this->render('notify');
 	}
 
@@ -189,13 +191,12 @@ class AttendeesController extends AppController {
 	 *
 	 * @return int Count
 	 */
-	protected function _sendNotifications() {
+	protected function _sendNotifications($form) {
 		if (empty($this->request->data['Form'])) {
 			return 0;
 		}
-		$this->loadModel('Tools.ContactForm');
-		$this->ContactForm->set($this->request->data);
-		if (!$this->ContactForm->validates()) {
+
+		if (!$this->ContactForms->validate($form)) {
 			return 0;
 		}
 
