@@ -31,3 +31,4 @@ _*
 /config/app_local.php
 /bin/phpunit
 /bin/phpunit.bat
+/phpunit.phar
