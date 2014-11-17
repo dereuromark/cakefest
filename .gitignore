@@ -2,7 +2,6 @@
 /config/database.php
 /tmp
 /logs
-/config/configs_private.php
 _*
 /vendor/autoload.php
 /vendor/composer
