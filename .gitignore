@@ -31,3 +31,4 @@ _*
 /bin/phpunit
 /bin/phpunit.bat
 /phpunit.phar
+/phpunit.xml
