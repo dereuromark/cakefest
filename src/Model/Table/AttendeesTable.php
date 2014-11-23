@@ -102,10 +102,11 @@ class AttendeesTable extends AppTable {
 	public function isValidDate(Time $date, $field, $context) {
 		if (empty($context['data']['event_id'])) {
 			return true;
-		}//throw new \Exception();
+		}
+
 		$event = $this->Events->get($context['data']['event_id']);
 		$compareDate = $event[$field];
-debug($compareDate);
+
 		switch ($field) {
 			case 'from':
 				$compare = $compareDate->copy()->subDays(10);

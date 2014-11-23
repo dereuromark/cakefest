@@ -41,7 +41,7 @@ class AttendeesTableTest extends TestCase {
 	 * @return void
 	 */
 	public function testIsValidDate() {
-		$event = $this->Attendees->Events->newEntity(['from' => '2014-04-12', 'to' => '2014-04-20']);
+		$event = $this->Attendees->Events->newEntity(['from' => new Time('2014-04-12'), 'to' => new Time('2014-04-20')]);
 		$result = $this->Attendees->Events->save($event);
 		$this->assertTrue((bool)$result);
 
