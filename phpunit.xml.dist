@@ -36,6 +36,9 @@
 
 			<directory suffix=".php">./tests/</directory>
 			<directory suffix=".ctp">./tests/</directory>
+
+			<directory suffix=".php">./plugins/</directory>
+			<directory suffix=".ctp">./plugins/</directory>
 		</blacklist>
 	</filter>
 </phpunit>
