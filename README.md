@@ -4,9 +4,12 @@
 [![License](https://poser.pugx.org/dereuromark/cakefest/license.png)](https://packagist.org/packages/dereuromark/cakefest)
 
 A fun app to socialize around the upcoming CakeFest this year.
-Join in and tell others about your planned trip to Madrid and the fest.
+Join in and tell others about your planned trip to the conference, and maybe what else you are planning to do in the city.
 
-* Check it out live: http://cakefest.dereuromark.de
+* Check it out live:
+  - Cake2 version: http://cakefest.dereuromark.de
+  - NEW Cake3 version: http://cakefest3.dereuromark.de
+
 * Author: Mark Scherer alias dereuromark
 
 

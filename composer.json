@@ -40,9 +40,6 @@
 			"Cake\\Test\\Fixture\\": "./vendor/cakephp/cakephp/tests/Fixture"
 		}
 	},
-	"config" : {
-		"bin-dir" : "bin"
-	},
 	"scripts": {
 		"post-install-cmd": "App\\Console\\Installer::postInstall"
 	},
