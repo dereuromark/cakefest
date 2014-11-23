@@ -18,7 +18,7 @@ class EventsFixture extends TestFixture {
 		'id' => ['type' => 'integer'],
 		'from' => ['type' => 'datetime', 'null' => false, 'default' => null],
 		'to' => ['type' => 'datetime', 'null' => false, 'default' => null],
-		'name' => ['type' => 'string', 'null' => false, 'default' => null, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'],
+		'name' => ['type' => 'string', 'null' => false, 'default' => '', 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'],
 		'description' => ['type' => 'text', 'null' => true, 'default' => null, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'],
 		'_constraints' => ['primary' => ['type' => 'primary', 'columns' => ['id']]],
 		'_options' => ['charset' => 'utf8', 'collate' => 'utf8_unicode_ci', 'engine' => 'InnoDB']
