@@ -1,12 +1,14 @@
 <?php
 namespace Test\TestCase\Model;
-use App\Model\Event;
+
+use Tools\TestSuite\TestCase;
+use Cake\ORM\TableRegistry;
 
 /**
  * Event Test Case
  *
  */
-class EventTest extends TestCase {
+class EventsTableTest extends TestCase {
 
 	/**
 	 * Fixtures
@@ -25,7 +27,17 @@ class EventTest extends TestCase {
 	 */
 	public function setUp() {
 		parent::setUp();
-		$this->Event = ClassRegistry::init('Event');
+		$this->Events = TableRegistry::get('Events');
+	}
+
+	/**
+	 * EventsTest::testIsValidDate()
+	 *
+	 * @return void
+	 */
+	public function testIsValidDate() {
+		$result = $this->Events->find();
+		$this->assertSame(1, count($result));
 	}
 
 	/**
@@ -34,7 +46,7 @@ class EventTest extends TestCase {
 	 * @return void
 	 */
 	public function tearDown() {
-		unset($this->Event);
+		unset($this->Events);
 
 		parent::tearDown();
 	}

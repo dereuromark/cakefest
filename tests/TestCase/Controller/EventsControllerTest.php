@@ -1,5 +1,7 @@
 <?php
 namespace Test\TestCase\Controller;
+
+use Cake\TestSuite\ControllerTestCase;
 use App\Controller\EventsController;
 
 /**

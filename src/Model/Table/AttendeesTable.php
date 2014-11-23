@@ -3,6 +3,7 @@ namespace App\Model\Table;
 
 use App\Model\Table\AppTable;
 use Cake\ORM\Query;
+use Cake\I18n\Time;
 
 /**
  * Attendee Table
@@ -98,11 +99,11 @@ class AttendeesTable extends AppTable {
 	 * @return boolean Success or string Error message.
 	 * @throws InternalErrorException
 	 */
-	public function isValidDate($date, $field, $config) {
-		if (empty($config['data']['event_id'])) {
+	public function isValidDate(Time $date, $field, $context) {
+		if (empty($context['data']['event_id'])) {
 			return true;
 		}//throw new \Exception();
-		$event = $this->Events->get($config['data']['event_id']);
+		$event = $this->Events->get($context['data']['event_id']);
 		$compareDate = $event[$field];
 
 		switch ($field) {

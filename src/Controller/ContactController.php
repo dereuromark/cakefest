@@ -8,7 +8,7 @@ use Cake\Core\Configure;
 
 class ContactController extends AppController {
 
-	public $modelClass = 'Tools.ContactForm';
+	public $modelClass = 'Tools.ContactForms';
 
 	public function beforeFilter(Event $event) {
 		parent::beforeFilter($event);
@@ -20,7 +20,7 @@ class ContactController extends AppController {
 	 * @return void
 	 */
 	public function index() {
-		$contactForm = $this->ContactForm->newEntity($this->request->data);
+		$contactForm = $this->ContactForms->newEntity($this->request->data);
 
 		if ($this->Common->isPosted()) {
 
