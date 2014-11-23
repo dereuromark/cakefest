@@ -11,6 +11,7 @@ $Tmp = new Cake\Filesystem\Folder(TMP);
 $Tmp->create(TMP . 'cache/models', 0770);
 $Tmp->create(TMP . 'cache/persistent', 0770);
 $Tmp->create(TMP . 'cache/views', 0770);
+$Tmp->create(TMP . 'logs', 0770);
 
 // Ensure default test connection is defined
 if (!getenv('db_class')) {
