@@ -15,7 +15,7 @@ class AttendeesFixture extends TestFixture {
 	 * @var array
 	 */
 	public $fields = array(
-		'id' => ['type' => 'integer', 'null' => false, 'default' => null, 'length' => 10],
+		'id' => ['type' => 'integer'],
 		'from' => ['type' => 'datetime', 'null' => false, 'default' => null],
 		'to' => ['type' => 'datetime', 'null' => false, 'default' => null],
 		'display_email' => ['type' => 'boolean', 'null' => false, 'default' => '0'],

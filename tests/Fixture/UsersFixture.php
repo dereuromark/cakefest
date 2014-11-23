@@ -15,7 +15,7 @@ class UsersFixture extends TestFixture {
 	 * @var array
 	 */
 	public $fields = array(
-		'id' => ['type' => 'integer', 'null' => false, 'default' => null, 'length' => 10],
+		'id' => ['type' => 'integer'],
 		'username' => ['type' => 'string', 'null' => false, 'default' => null, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'],
 		'email' => ['type' => 'string', 'null' => false, 'default' => null, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'],
 		'password' => ['type' => 'string', 'null' => true, 'default' => null, 'length' => 60, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'],

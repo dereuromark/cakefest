@@ -15,7 +15,7 @@ class EventsFixture extends TestFixture {
 	 * @var array
 	 */
 	public $fields = array(
-		'id' => ['type' => 'integer', 'null' => false, 'default' => null, 'length' => 10],
+		'id' => ['type' => 'integer'],
 		'from' => ['type' => 'datetime', 'null' => false, 'default' => null],
 		'to' => ['type' => 'datetime', 'null' => false, 'default' => null],
 		'name' => ['type' => 'string', 'null' => false, 'default' => null, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'],
