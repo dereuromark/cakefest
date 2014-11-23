@@ -35,7 +35,7 @@ class ContactController extends AppController {
 			if ($this->ContactForm->validate($contactForm)) {
 				$this->_send($name, $email, $subject, $message);
 			} else {
-				$this->Common->flashMessage(__('formContainsErrors'), 'error');
+				$this->Flash->message(__('formContainsErrors'), 'error');
 			}
 
 		} else {
@@ -71,11 +71,11 @@ class ContactController extends AppController {
 		$this->Email->template('contact');
 		$this->Email->viewVars(compact('message', 'subject', 'fromEmail', 'fromName'));
 		if ($this->Email->send()) {
-			$this->Common->flashMessage(__('contactSuccessfullySent {0}', $fromEmail), 'success');
+			$this->Flash->message(__('contactSuccessfullySent {0}', $fromEmail), 'success');
 			return $this->redirect(array('action' => 'index'));
 		}
 		$this->log($this->Email->getError());
-		$this->Common->flashMessage(__('Contact Email could not be sent'), 'error');
+		$this->Flash->message(__('Contact Email could not be sent'), 'error');
 	}
 
 }

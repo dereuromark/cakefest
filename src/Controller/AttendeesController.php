@@ -53,7 +53,7 @@ class AttendeesController extends AppController {
 	 */
 	public function view($id = null) {
 		if (empty($id) || !($attendee = $this->Attendees->get($id, ['contain' => ['Events', 'Users']]))) {
-			$this->Common->flashMessage(__('invalidRecord'), 'error');
+			$this->Flash->message(__('invalidRecord'), 'error');
 			return $this->Common->autoRedirect(array('action' => 'index'));
 		}
 		$this->set(compact('attendee'));
@@ -67,17 +67,17 @@ class AttendeesController extends AppController {
 	 */
 	public function edit($id = null) {
 		if (empty($id) || !($attendee = $this->Attendees->find('first', array('conditions' => array('Attendees.id' => $id))))) {
-			$this->Common->flashMessage(__('invalidRecord'), 'error');
+			$this->Flash->message(__('invalidRecord'), 'error');
 			return $this->Common->autoRedirect(array('action' => 'index'));
 		}
 		if ($this->Common->isPosted()) {
 			$this->Attendees->patchEntity($attendee, $this->request->data);
 			if ($this->Attendees->save($attendee)) {
 				$var = $this->request->data['user_id'];
-				$this->Common->flashMessage(__('record edit {0} saved', h($var)), 'success');
+				$this->Flash->message(__('record edit {0} saved', h($var)), 'success');
 				return $this->Common->postRedirect(array('action' => 'index'));
 			}
-			$this->Common->flashMessage(__('formContainsErrors'), 'error');
+			$this->Flash->message(__('formContainsErrors'), 'error');
 		}
 
 		$events = $this->Attendees->Events->find('list');
@@ -95,16 +95,16 @@ class AttendeesController extends AppController {
 	public function delete($id = null) {
 		$this->request->allowMethod(['post', 'delete']);
 		if (empty($id) || !($attendee = $this->Attendees->find('first', array('conditions' => array('Attendees.id' => $id), 'fields' => array('id', 'user_id'))))) {
-			$this->Common->flashMessage(__('invalidRecord'), 'error');
+			$this->Flash->message(__('invalidRecord'), 'error');
 			return $this->Common->autoRedirect(array('action' => 'index'));
 		}
 		$var = $attendee['user_id'];
 
 		if ($this->Attendees->delete($attendee)) {
-			$this->Common->flashMessage(__('record del {0} done', h($var)), 'success');
+			$this->Flash->message(__('record del {0} done', h($var)), 'success');
 			return $this->Common->postRedirect(array('action' => 'index'));
 		}
-		$this->Common->flashMessage(__('record del {0} not done exception', h($var)), 'error');
+		$this->Flash->message(__('record del {0} not done exception', h($var)), 'error');
 		return $this->Common->autoRedirect(array('action' => 'index'));
 	}
 
@@ -117,10 +117,10 @@ class AttendeesController extends AppController {
 		$lastAttendees = $this->Attendees->getNotifyableAttendees();
 		if ($this->Common->isPosted()) {
 			if ($count = $this->_sendNotifications()) {
-				$this->Common->flashMessage(__('mails sent {0}', $count), 'success');
+				$this->Flash->message(__('mails sent {0}', $count), 'success');
 				return $this->Common->postRedirect(array('action' => 'index'));
 			}
-			$this->Common->flashMessage(__('formContainsErrors'), 'error');
+			$this->Flash->message(__('formContainsErrors'), 'error');
 		} else {
 			$data = array();
 			foreach ($lastAttendees as $attendee) {
@@ -161,10 +161,10 @@ class AttendeesController extends AppController {
 
 		if ($this->Common->isPosted()) {
 			if ($count = $this->_sendNotifications()) {
-				$this->Common->flashMessage(__('mails sent {0}', $count), 'success');
+				$this->Flash->message(__('mails sent {0}', $count), 'success');
 				return $this->Common->postRedirect(array('action' => 'index'));
 			}
-			$this->Common->flashMessage(__('formContainsErrors'), 'error');
+			$this->Flash->message(__('formContainsErrors'), 'error');
 		} else {
 			$data = array();
 			foreach ($lastAttendees as $attendee) {

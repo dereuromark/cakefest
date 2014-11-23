@@ -47,7 +47,7 @@
 		<div id="container">
 			<div id="content">
 
-			<?php echo $this->Common->flash(); ?>
+			<?php echo $this->Flash->flash(); ?>
 
 			<?php echo $this->fetch('content'); ?>
 			</div>

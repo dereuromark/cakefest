@@ -56,10 +56,10 @@ class AttendanceController extends AppController {
 			if ($this->Attendees->save($attendee)) {
 				$from = $attendee['from'];
 				$to = $attendee['to'];
-				$this->Common->flashMessage(__('Attendance from {0} to {1} saved', $from, $to), 'success');
+				$this->Flash->message(__('Attendance from {0} to {1} saved', $from, $to), 'success');
 				return $this->Common->postRedirect(array('action' => 'index'));
 			}
-			$this->Common->flashMessage(__('formContainsErrors'), 'error');
+			$this->Flash->message(__('formContainsErrors'), 'error');
 		}
 		$this->set(compact('attendee', 'events'));
 	}
@@ -73,7 +73,7 @@ class AttendanceController extends AppController {
 	public function edit($id = null) {
 		$uid = $this->Session->read('Auth.User.id');
 		if (empty($id) || !($attendee = $this->Attendees->find('first', array('conditions' => array('Attendees.id' => $id, 'Attendees.user_id' => $uid))))) {
-			$this->Common->flashMessage(__('invalidRecord'), 'error');
+			$this->Flash->message(__('invalidRecord'), 'error');
 			return $this->Common->autoRedirect(array('action' => 'index'));
 		}
 		if ($this->Common->isPosted()) {
@@ -81,10 +81,10 @@ class AttendanceController extends AppController {
 			if ($this->Attendees->save($attendee)) {
 				$from = $attendee['from'];
 				$to = $attendee['to'];
-				$this->Common->flashMessage(__('Attendance from {0} to {1} saved', $from, $to), 'success');
+				$this->Flash->message(__('Attendance from {0} to {1} saved', $from, $to), 'success');
 				return $this->Common->postRedirect(array('action' => 'index'));
 			}
-			$this->Common->flashMessage(__('formContainsErrors'), 'error');
+			$this->Flash->message(__('formContainsErrors'), 'error');
 		}
 		$events = $this->Attendees->Events->find('list', array('conditions' => array('Events.to >=' => date(FORMAT_DB_DATETIME))));
 		$this->set(compact('attendee', 'events'));
@@ -102,16 +102,16 @@ class AttendanceController extends AppController {
 		$this->request->allowMethod(['post', 'delete']);
 		$uid = $this->Session->read('Auth.User.id');
 		if (empty($id) || !($attendee = $this->Attendees->find('first', array('conditions' => array('Attendees.id' => $id, 'Attendees.user_id' => $uid), 'fields' => array('id', 'user_id'))))) {
-			$this->Common->flashMessage(__('invalidRecord'), 'error');
+			$this->Flash->message(__('invalidRecord'), 'error');
 			return $this->Common->autoRedirect(array('action' => 'index'));
 		}
 		$var = $attendee['user_id'];
 
 		if ($this->Attendees->delete($attendee)) {
-			$this->Common->flashMessage(__('record del {0} done', h($var)), 'success');
+			$this->Flash->message(__('record del {0} done', h($var)), 'success');
 			return $this->Common->postRedirect(array('action' => 'index'));
 		}
-		$this->Common->flashMessage(__('record del {0} not done exception', h($var)), 'error');
+		$this->Flash->message(__('record del {0} not done exception', h($var)), 'error');
 		return $this->Common->autoRedirect(array('action' => 'index'));
 	}
 

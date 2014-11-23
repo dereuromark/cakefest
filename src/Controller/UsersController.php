@@ -26,7 +26,7 @@ class UsersController extends AppController {
 	 */
 	public function view($id = null) {
 		if (empty($id) || !($user = $this->Users->find('first', array('conditions' => array('Users.id' => $id))))) {
-			$this->Common->flashMessage(__('invalidRecord'), 'error');
+			$this->Flash->message(__('invalidRecord'), 'error');
 			return $this->Common->autoRedirect(array('action' => 'index'));
 		}
 		$this->set(compact('user'));
@@ -40,7 +40,7 @@ class UsersController extends AppController {
 	 */
 	public function edit($id = null) {
 		if (empty($id) || !($user = $this->Users->find('first', array('conditions' => array('Users.id' => $id))))) {
-			$this->Common->flashMessage(__('invalidRecord'), 'error');
+			$this->Flash->message(__('invalidRecord'), 'error');
 			return $this->Common->autoRedirect(array('action' => 'index'));
 		}
 		if ($this->Common->isPosted()) {
@@ -48,10 +48,10 @@ class UsersController extends AppController {
 			$this->Users->addBehavior('Tools.Passwordable', array('require' => false));
 			if ($this->Users->save($user)) {
 				$var = $this->request->data['username'];
-				$this->Common->flashMessage(__('record edit {0} saved', h($var)), 'success');
+				$this->Flash->message(__('record edit {0} saved', h($var)), 'success');
 				return $this->Common->postRedirect(array('action' => 'index'));
 			}
-			$this->Common->flashMessage(__('formContainsErrors'), 'error');
+			$this->Flash->message(__('formContainsErrors'), 'error');
 		}
 
 		$this->set(compact('user'));
@@ -67,16 +67,16 @@ class UsersController extends AppController {
 	public function delete($id = null) {
 		$this->request->allowMethod(['post', 'delete']);
 		if (empty($id) || !($user = $this->Users->find('first', array('conditions' => array('Users.id' => $id), 'fields' => array('id', 'username'))))) {
-			$this->Common->flashMessage(__('invalidRecord'), 'error');
+			$this->Flash->message(__('invalidRecord'), 'error');
 			return $this->Common->autoRedirect(array('action' => 'index'));
 		}
 		$var = $user['username'];
 
 		if ($this->Users->delete($user)) {
-			$this->Common->flashMessage(__('record del {0} done', h($var)), 'success');
+			$this->Flash->message(__('record del {0} done', h($var)), 'success');
 			return $this->Common->postRedirect(array('action' => 'index'));
 		}
-		$this->Common->flashMessage(__('record del {0} not done exception', h($var)), 'error');
+		$this->Flash->message(__('record del {0} not done exception', h($var)), 'error');
 		return $this->Common->autoRedirect(array('action' => 'index'));
 	}
 

@@ -14,9 +14,9 @@ use Cake\Core\Configure;
  */
 class AppController extends Controller {
 
-	public $components = array('Tools.Session', 'RequestHandler', 'Tools.Common', 'Tools.AuthUser');
+	public $components = array('Tools.Session', 'RequestHandler', 'Tools.Common', 'Tools.Flash', 'Tools.AuthUser');
 
-	public $helpers = array('Session', 'Html', 'Form', 'Tools.Common',
+	public $helpers = array('Session', 'Html', 'Form', 'Tools.Common', 'Tools.Flash',
 		'Tools.Format', 'Tools.Time', 'Tools.Number', 'Tools.AuthUser', 'Tools.Obfuscate', 'Tools.Js');
 
 	/**
@@ -89,7 +89,7 @@ class AppController extends Controller {
 		}
 		foreach ($allowed as $controller => $actions) {
 			if ($this->name === $controller && in_array($this->request->action, $actions)) {
-				$this->Common->flashMessage('The page you tried to access is not relevant if you are already logged in. Redirected to main page.', 'info');
+				$this->Flash->message('The page you tried to access is not relevant if you are already logged in. Redirected to main page.', 'info');
 				return $this->redirect($this->Auth->config('loginRedirect'));
 			}
 		}
