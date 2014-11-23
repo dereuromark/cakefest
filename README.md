@@ -13,14 +13,14 @@ Join in and tell others about your planned trip to the conference, and maybe wha
 * Author: Mark Scherer alias dereuromark
 
 
-### Dependencies
+## Dependencies
 
 * CakePHP 3.x
 * FriendsOfCake/Authenticate and CakeDC/Search plugin
 * My Tools, Geo, TinyAuth and Setup plugins
 * Uses DebugKit plugin for development
 
-### Installation
+## Installation
 
 * Clone this repo via git - or download it manually.
 * Navigate into the ROOT folder.
@@ -29,12 +29,12 @@ Join in and tell others about your planned trip to the conference, and maybe wha
 * Create a vhost with a local dev domain of your choice, e.g. `cakefest.local`, and use ROOT/webroot/ as document root.
 * Check it out at `http://cakefest.local`.
 
-### TODOS
+## TODOS
 
 * OptIn
 * Geo Map
 
-#### Ideas
+### Ideas
 
 * Timezone
 * Contact Form
