@@ -130,6 +130,8 @@ class UsersTable extends AppTable {
 	);
 
 	public function initialize(array $config = []) {
+		parent::initialize($config);
+
 		$this->addBehavior('Search.Searchable');
 	}
 
