@@ -116,4 +116,21 @@ class UsersTable extends AppTable {
 		)
 	);
 
+	public $filterArgs = array(
+		'search' => array(
+			'type' => 'like',
+			'field' => array('username', 'email')
+		),
+		'role_id' => array(
+			'type' => 'value'
+		),
+		'status' => array(
+			'type' => 'value'
+		)
+	);
+
+	public function initialize(array $config = []) {
+		$this->addBehavior('Search.Searchable');
+	}
+
 }

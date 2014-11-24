@@ -8,13 +8,19 @@ use App\Controller\AppController;
  */
 class UsersController extends AppController {
 
+	public $components = array(
+		'Search.Prg'
+	);
+
 	/**
 	 * index method
 	 *
 	 * @return void
 	 */
 	public function index() {
-		$users = $this->paginate();
+		$this->Prg->commonProcess();
+
+		$users = $this->paginate($this->Users->find('searchable', $this->Prg->parsedParams()));
 		$this->set(compact('users'));
 	}
 

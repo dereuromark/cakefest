@@ -1,4 +1,20 @@
 <div class="users index">
+
+<?php
+		echo $this->Form->create(null);
+		echo $this->Form->input('search');
+		echo $this->Form->input('role_id', array(
+				'empty' => ' - no filter - '
+		));
+		echo $this->Form->input('status', array(
+				'options' => App\Model\Entity\User::statuses(),
+				'empty' => ' - no filter - '
+		));
+		echo $this->Form->submit(__('Submit'));
+		echo $this->Form->end();
+		?>
+
+
 	<h2><?php echo __('Users'); ?></h2>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
