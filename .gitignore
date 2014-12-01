@@ -32,3 +32,9 @@ _*
 /bin/phpunit.bat
 /phpunit.phar
 /phpunit.xml
+/plugins/Migrations
+/vendor/dereuromark
+/vendor/pdepend/pdepend
+/vendor/phpmd/phpmd
+/vendor/robmorgan/phinx
+/vendor/squizlabs/php_codesniffer

@@ -41,14 +41,14 @@ echo $this->element('timeline');
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('Join in'), array('controller' => 'attendance', 'action' => 'index')); ?></li>
+		<li><?php echo $this->Html->link(__('Join in'), array('controller' => 'Attendance', 'action' => 'index')); ?></li>
 	</ul>
 	<?php if (!$this->AuthUser->id()) { ?>
 	<br />
 	<br />
 	<h4>No account yet?</h4>
 	<p style="margin-top: 10px;">
-	<?php echo $this->Html->link('Please register first', array('controller' => 'account', 'action' => 'register'))?>
+	<?php echo $this->Html->link('Please register first', array('controller' => 'Account', 'action' => 'register'))?>
 	</p>
 	<?php } ?>
 </div>

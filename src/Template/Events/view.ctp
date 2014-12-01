@@ -37,44 +37,4 @@
 		<li><?php echo $this->Html->link(__('New Event'), array('action' => 'add')); ?> </li>
 	</ul>
 </div>
-<div class="related">
-	<h3><?php echo __('Related Attendees'); ?></h3>
-	<?php if (!empty($event['Attendee'])): ?>
-	<table cellpadding = "0" cellspacing = "0">
-	<tr>
-		<th><?php echo __('Id'); ?></th>
-		<th><?php echo __('From'); ?></th>
-		<th><?php echo __('To'); ?></th>
-		<th><?php echo __('Display Email'); ?></th>
-		<th><?php echo __('Comment'); ?></th>
-		<th><?php echo __('Event Id'); ?></th>
-		<th><?php echo __('User Id'); ?></th>
-		<th class="actions"><?php echo __('Actions'); ?></th>
-	</tr>
-	<?php
-		$i = 0;
-		foreach ($event['Attendee'] as $attendee): ?>
-		<tr>
-			<td><?php echo $attendee['id']; ?></td>
-			<td><?php echo $attendee['from']; ?></td>
-			<td><?php echo $attendee['to']; ?></td>
-			<td><?php echo $attendee['display_email']; ?></td>
-			<td><?php echo $attendee['comment']; ?></td>
-			<td><?php echo $attendee['event_id']; ?></td>
-			<td><?php echo $attendee['user_id']; ?></td>
-			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('controller' => 'attendees', 'action' => 'view', $attendee['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'attendees', 'action' => 'edit', $attendee['id'])); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'attendees', 'action' => 'delete', $attendee['id']), array('confirm' => __('Are you sure you want to delete # {0}?', $attendee['id']))); ?>
-			</td>
-		</tr>
-	<?php endforeach; ?>
-	</table>
-<?php endif; ?>
 
-	<div class="actions">
-		<ul>
-			<li><?php echo $this->Html->link(__('New Attendee'), array('controller' => 'attendees', 'action' => 'add')); ?> </li>
-		</ul>
-	</div>
-</div>

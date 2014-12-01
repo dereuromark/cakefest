@@ -59,6 +59,6 @@
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('Back'), array('controller' => 'overview', 'action' => 'admin')); ?></li>
+		<li><?php echo $this->Html->link(__('Back'), array('controller' => 'Overview', 'action' => 'admin')); ?></li>
 	</ul>
 </div>

@@ -23,7 +23,9 @@
 		"dereuromark/cakephp-tools": "dev-cake3",
 		"dereuromark/cakephp-setup": "dev-cake3",
 		"friendsofcake/authenticate": "dev-cake3",
-		"CakeDC/search" : "3.0.*-dev"
+		"CakeDC/search" : "3.0.*-dev",
+		"cakephp/migrations": "dev-master",
+		"dereuromark/cakephp-codesniffer": "3.0.*-dev"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "*",

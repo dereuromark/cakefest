@@ -26,7 +26,7 @@ If you want to displayed under a different status (as core developer),
 	<?php foreach ($attendees as $attendee): ?>
 	<tr>
 		<td>
-			<?php //echo $this->Html->link($attendee->event['name'], array('controller' => 'events', 'action' => 'view', $attendee->event['id'])); ?>
+			<?php //echo $this->Html->link($attendee->event['name'], array('controller' => 'Events', 'action' => 'view', $attendee->event['id'])); ?>
 			<?php echo h($attendee->event['name']); ?>
 		</td>
 		<td><?php echo $this->Time->nice($attendee['from']); ?>&nbsp;</td>
@@ -54,6 +54,6 @@ If you want to displayed under a different status (as core developer),
 	<?php if (!count($attendees)) { ?>
 		<li><?php echo $this->Html->link(__('Attend now'), array('action' => 'add')); ?></li>
 	<?php } ?>
-		<li><?php echo $this->Html->link(__('Back'), array('controller' => 'overview', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('Back'), array('controller' => 'Overview', 'action' => 'index')); ?> </li>
 	</ul>
 </div>

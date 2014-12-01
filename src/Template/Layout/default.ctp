@@ -29,14 +29,14 @@
 					<?php echo h($this->Session->read('Auth.User.username')); ?> [<?php echo h($this->Session->read('Auth.User.email')); ?>] -
 
 					<?php if ($this->AuthUser->hasRole(Cake\Core\Configure::read('Roles.admin'))) { ?>
-						<?php echo $this->Html->link('Admin', array('controller' => 'overview', 'action' => 'admin')); ?> |
+						<?php echo $this->Html->link('Admin', array('controller' => 'Overview', 'action' => 'admin')); ?> |
 					<?php } ?>
-					<?php echo $this->Html->link('Account', array('controller' => 'account', 'action' => 'edit')); ?> |
-					<?php echo $this->Html->link('Attendance', array('controller' => 'attendance', 'action' => 'index')); ?> |
-					<?php echo $this->Html->link('Logout', array('controller' => 'account', 'action' => 'logout')); ?>
+					<?php echo $this->Html->link('Account', array('controller' => 'Account', 'action' => 'edit')); ?> |
+					<?php echo $this->Html->link('Attendance', array('controller' => 'Attendance', 'action' => 'index')); ?> |
+					<?php echo $this->Html->link('Logout', array('controller' => 'Account', 'action' => 'logout')); ?>
 				<?php } else { ?>
-					<?php echo $this->Html->link('Login', array('controller' => 'account', 'action' => 'login')); ?> |
-					<?php echo $this->Html->link('Register', array('controller' => 'account', 'action' => 'register')); ?>
+					<?php echo $this->Html->link('Login', array('controller' => 'Account', 'action' => 'login')); ?> |
+					<?php echo $this->Html->link('Register', array('controller' => 'Account', 'action' => 'register')); ?>
 				<?php } ?>
 			</div>
 
