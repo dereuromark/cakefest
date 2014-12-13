@@ -3,6 +3,8 @@
 use Cake\Routing\Router;
 use Cake\Core\Plugin;
 
+Router::defaultRouteClass('InflectedRoute');
+
 Router::scope('/', function ($routes) {
 
 /**
@@ -35,8 +37,8 @@ Router::scope('/', function ($routes) {
  * routes you want in your application.
  */
 	//$routes->fallbacks();
-	$routes->connect('/:controller', ['action' => 'index'], ['routeClass' => 'InflectedRoute']);
-	$routes->connect('/:controller/:action/*', [], ['routeClass' => 'InflectedRoute']);
+	$routes->connect('/:controller', ['action' => 'index']);
+	$routes->connect('/:controller/:action/*');
 });
 
 /**
