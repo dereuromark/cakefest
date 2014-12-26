@@ -3,7 +3,7 @@
 <p>
 My email address: <?php echo $this->Obfuscate->encodeEmailUrl(Cake\Core\Configure::read('Config.adminEmail')); ?></p>
 
-<?php echo $this->Form->create($contactForm);?>
+<?php echo $this->Form->create($contact);?>
 	<fieldset>
 		<legend><?php echo __('The quickest way to write me an email');?></legend>
 	<?php
@@ -13,7 +13,7 @@ My email address: <?php echo $this->Obfuscate->encodeEmailUrl(Cake\Core\Configur
 		echo $this->Form->input('message', array('type' => 'textarea', 'class'=>'contact', 'rows'=>10, 'label'=>__('Your Message')));
 
 		if (!$this->AuthUser->id()) {
-			//echo $this->Captcha->input('ContactForm');
+			//echo $this->Captcha->input('Contact');
 		}
 
 	?>

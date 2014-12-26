@@ -16,7 +16,7 @@ class AppController extends Controller {
 
 	public $components = array('Tools.Session', 'RequestHandler', 'Tools.Common', 'Tools.Flash', 'Tools.AuthUser');
 
-	public $helpers = array('Session', 'Html', 'Form', 'Tools.Common', 'Tools.Flash',
+	public $helpers = array('Session', 'Html', 'Tools.Form', 'Tools.Common', 'Tools.Flash',
 		'Tools.Format', 'Tools.Time', 'Tools.Number', 'Tools.AuthUser', 'Tools.Obfuscate', 'Tools.Js');
 
 	/**
@@ -26,10 +26,6 @@ class AppController extends Controller {
 	 */
 	public function initialize() {
 		parent::initialize();
-
-		if (Plugin::loaded('DebugKit') && Configure::read('debug')) {
-			//$this->components[] = 'DebugKit.Toolbar';
-		}
 
 		$this->loadComponent('Auth', array(
 			'authenticate' => array(
@@ -96,6 +92,7 @@ class AppController extends Controller {
 
 		// Locale detection
 		//preg_match('/([a-z]{2})-([A-Z]{2})/', env('HTTP_ACCEPT_LANGUAGE'), $matches);
+		//TODO: use request->parseLanguage stuff instead()
 		$matches = \Tools\Utility\Language::parseLanguageList();
 		$matches = array();
 		if ($matches) {
