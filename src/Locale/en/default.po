@@ -18,8 +18,8 @@ msgstr "IRC Nick"
 msgid "formContainsErrors"
 msgstr "The form contains errors. Please correct them to continue."
 
-msgid "valErrBetweenCharacters %s %s"
-msgstr "Please provide an input between %s and %s chars."
+msgid "valErrBetweenCharacters {0} {1}"
+msgstr "Please provide an input between {0} and {1} chars."
 
 msgid "valErrPwdNotMatch"
 msgstr "The passwords do not match."
@@ -27,8 +27,8 @@ msgstr "The passwords do not match."
 msgid "new pw saved - you may now log in"
 msgstr "New password saved - you may now log in again."
 
-msgid "contactSuccessfullySent %s"
-msgstr "Email has been successfully sent - I will get back to you as soon as possible to the provided email address (%s)."
+msgid "contactSuccessfullySent {0}"
+msgstr "Email has been successfully sent - I will get back to you as soon as possible to the provided email address ({0})."
 
 msgid "This username has already been taken"
 msgstr "This username has already been taken! Please chose another one."
