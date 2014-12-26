@@ -23,14 +23,14 @@
 		"dereuromark/cakephp-setup": "dev-cake3",
 		"friendsofcake/authenticate": "dev-cake3",
 		"CakeDC/search" : "3.0.*-dev",
-		"cakephp/migrations": "dev-master",
-		"dereuromark/cakephp-codesniffer": "3.0.*-dev"
+		"cakephp/migrations": "dev-master"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "*",
 		"d11wtq/boris": "1.0.*",
 		"cakephp/debug_kit": "3.0.*-dev",
 		"cakephp/bake": "dev-master",
+		"dereuromark/cakephp-codesniffer": "3.0.*-dev",
 		"dereuromark/cakephp-upgrade": "dev-cake3",
 		"fabpot/php-cs-fixer": "1.*"
 	},
