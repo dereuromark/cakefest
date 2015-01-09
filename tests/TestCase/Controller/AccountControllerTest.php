@@ -65,7 +65,9 @@ class AccountControllerTest extends IntegrationTestCase {
 	 */
 	public function testLoginPostValidData() {
 		$data = array(
-			'username' => 'admin', 'pwd' => '123456'
+			'username' => 'admin',
+			'email' => 'admin@example.com',
+			'pwd' => '123456'
 		);
 		$this->Users = TableRegistry::get('Users');
 		$this->Users->addBehavior('Tools.Passwordable', array('confirm' => false));
@@ -87,12 +89,40 @@ class AccountControllerTest extends IntegrationTestCase {
 	 *
 	 * @return void
 	 */
+	public function testLoginPostValidDataEmail() {
+		$data = array(
+			'username' => 'admin',
+			'email' => 'admin@example.com',
+			'pwd' => '123456'
+		);
+		$this->Users = TableRegistry::get('Users');
+		$this->Users->addBehavior('Tools.Passwordable', array('confirm' => false));
+		$user = $this->Users->newEntity($data);
+		$result = $this->Users->save($user);
+		$this->assertTrue((bool)$result);
+		$this->Users->removeBehavior('Passwordable');
+
+		$data = array(
+			'login' => 'admin@example.com', 'password' => '123456'
+		);
+		$this->post(array('controller' => 'Account', 'action' => 'login'), $data);
+		$this->assertResponseCode(200);
+		$this->assertRedirect('/');
+	}
+
+	/**
+	 * Test index method
+	 *
+	 * @return void
+	 */
 	public function testLoginPostValidDataReferrer() {
 		$session = array('Auth' => array('redirect' => '/attendance'));
 		$this->session($session);
 
 		$data = array(
-			'username' => 'admin', 'pwd' => '123456'
+			'username' => 'admin',
+			'email' => 'admin@example.com',
+			'pwd' => '123456'
 		);
 		$this->Users = TableRegistry::get('Users');
 		$this->Users->addBehavior('Tools.Passwordable', array('confirm' => false));
