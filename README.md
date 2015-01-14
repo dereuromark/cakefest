@@ -2,6 +2,8 @@
 [![Build Status](https://api.travis-ci.org/dereuromark/cakefest.png?branch=3.0)](https://travis-ci.org/dereuromark/cakefest)
 [![Coverage Status](https://coveralls.io/repos/dereuromark/cakefest/badge.png?branch=3.0)](https://coveralls.io/r/dereuromark/cakefest)
 [![License](https://poser.pugx.org/dereuromark/cakefest/license.png)](https://packagist.org/packages/dereuromark/cakefest)
+[![Minimum PHP Version](http://img.shields.io/badge/php-%3E%3D%205.4-8892BF.svg)](https://php.net/)
+[![Coding Standards](https://img.shields.io/badge/cs-PSR--2--R-yellow.svg)](https://github.com/php-fig-rectified/fig-rectified-standards)
 
 A fun app to socialize around the upcoming CakeFest this year.
 Join in and tell others about your planned trip to the conference, and maybe what else you are planning to do in the city.
