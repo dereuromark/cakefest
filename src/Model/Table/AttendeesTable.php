@@ -99,9 +99,12 @@ class AttendeesTable extends AppTable {
 	 * @return boolean Success or string Error message.
 	 * @throws InternalErrorException
 	 */
-	public function isValidDate(Time $date, $field, $context) {
+	public function isValidDate($date, $field, $context) {
 		if (empty($context['data']['event_id'])) {
 			return true;
+		}
+		if (!is_object($date)) {
+			$date = new Time($date);
 		}
 
 		$event = $this->Events->get($context['data']['event_id']);

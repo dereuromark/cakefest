@@ -42,11 +42,11 @@ class AttendanceController extends AppController {
 			'user_id' => $this->Session->read('Auth.User.id')
 		];
 		if (!$this->Common->isPosted()) {
-			$events = $events->toArray();
-			if (count($events) === 1) {
-				$key = array_keys($events);
+			$eventList = $events->toArray();
+			if (count($eventList) === 1) {
+				$key = array_keys($eventList);
 				$key = array_shift($key);
-				die(debug($key));
+
 				$event = $this->Attendees->Events->get($key);
 				$defaults['from'] = $event['from']->format(FORMAT_DB_DATE) . ' ' . '08:00:00';
 				$defaults['to'] = $event['to']->format(FORMAT_DB_DATE) . ' ' . '20:00:00';

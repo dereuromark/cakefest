@@ -4,6 +4,7 @@ namespace App\Test\TestCase\Controller;
 use App\Controller\AttendanceController;
 use Tools\TestSuite\IntegrationTestCase;
 use Cake\ORM\TableRegistry;
+use Cake\I18n\Time;
 
 /**
  * App\Controller\Attendance Test Case
@@ -49,9 +50,25 @@ class AttendanceControllerTest extends IntegrationTestCase {
 	 */
 	public function testAdd()
 	{
+		$Events = TableRegistry::get('Events');
+		$from = new Time();
+		$to = new Time();
+		$data = array(
+			'from' => $from->addMonth(),
+			'to' => $to->addMonth()->addWeek(),
+
+		);
+		$events = $Events->newEntity($data);
+		$result = $Events->save($events);
+		$this->assertTrue((bool)$result);
+
 		$this->get(array('controller' => 'Attendance', 'action' => 'add'));
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();
+
+		$this->assertSame(array(2 => ''), $this->_controller->viewVars['events']->toArray());
+		$this->assertEquals($data['from']->format('Y-m-d'), $this->_controller->viewVars['attendee']->from->format('Y-m-d'));
+		$this->assertEquals($data['to']->format('Y-m-d'), $this->_controller->viewVars['attendee']->to->format('Y-m-d'));
 	}
 
 	/**
