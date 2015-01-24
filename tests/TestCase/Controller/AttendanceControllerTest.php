@@ -1,0 +1,146 @@
+<?php
+namespace App\Test\TestCase\Controller;
+
+use App\Controller\AttendanceController;
+use Tools\TestSuite\IntegrationTestCase;
+use Cake\ORM\TableRegistry;
+
+/**
+ * App\Controller\Attendance Test Case
+ */
+class AttendanceControllerTest extends IntegrationTestCase {
+
+	/**
+	 * Fixtures
+	 *
+	 * @var array
+	 */
+	public $fixtures = [
+		'Users' => 'app.users',
+		'Attendees' => 'app.attendees',
+		'Events' => 'app.events'
+	];
+
+	public function setUp() {
+		parent::setUp();
+
+		$data = array(
+			'Auth' => array('User' => array('id' => 1, 'role_id' => 1))
+		);
+		$this->session($data);
+	}
+
+	/**
+	 * Test index method
+	 *
+	 * @return void
+	 */
+	public function testIndex()
+	{
+		$this->get(array('controller' => 'Attendance', 'action' => 'index'));
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
+	/**
+	 * Test view method
+	 *
+	 * @return void
+	 */
+	public function testAdd()
+	{
+		$this->get(array('controller' => 'Attendance', 'action' => 'add'));
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
+	/**
+	 * Test view method
+	 *
+	 * @return void
+	 */
+	public function testAddPost()
+	{
+		$data = array(
+			'comment' => 'Foo bar'
+		);
+		$this->post(array('controller' => 'Attendance', 'action' => 'add'), $data);
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+
+		$this->assertResponseContains('<div class="message error">');
+	}
+
+	/**
+	 * Test edit method
+	 *
+	 * @return void
+	 */
+	public function testEdit()
+	{
+		$Attendees = TableRegistry::get('Attendees');
+		$record = $Attendees->find()->first();
+		$id = $record->id;
+
+		$data = array(
+			'comment' => 'Foo bar'
+		);
+		$this->get(array('controller' => 'Attendance', 'action' => 'edit', $id));
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
+	/**
+	 * Test edit method
+	 *
+	 * @return void
+	 */
+	public function testEditPost()
+	{
+		$Attendees = TableRegistry::get('Attendees');
+		$record = $Attendees->find()->first();
+		$id = $record->id;
+
+		$data = array(
+			'comment' => 'Foo bar'
+		);
+		$this->post(array('controller' => 'Attendance', 'action' => 'edit', $id), $data);
+		$this->assertResponseCode(302);
+		$this->assertRedirect();
+
+		$record = $Attendees->find()->first();
+		$this->assertSame('Foo bar', $record->comment);
+	}
+
+	/**
+	 * Test delete method
+	 *
+	 * @return void
+	 */
+	public function testDeleteInvalid()
+	{
+		$Attendees = TableRegistry::get('Attendees');
+		$record = $Attendees->find()->first();
+		$id = $record->id;
+
+		$this->get(array('controller' => 'Attendance', 'action' => 'delete', $id));
+		$this->assertResponseError(); // 405
+	}
+
+	/**
+	 * Test delete method
+	 *
+	 * @return void
+	 */
+	public function testDeletePost()
+	{
+		$Attendees = TableRegistry::get('Attendees');
+		$record = $Attendees->find()->first();
+		$id = $record->id;
+
+		$this->post(array('controller' => 'Attendance', 'action' => 'delete', $id));
+		$this->assertResponseCode(302);
+		$this->assertRedirect();
+		$this->assertSession(array('record del 1 done'), 'FlashMessage.success');
+	}
+}

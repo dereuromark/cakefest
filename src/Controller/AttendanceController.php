@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Core\Configure;
+use Cake\I18n\Time;
 
 /**
  * Attendance Controller
@@ -36,14 +37,16 @@ class AttendanceController extends AppController {
 		$events = $this->Attendees->Events->find('list', array('conditions' => array('Events.to >=' => date(FORMAT_DB_DATETIME))));
 
 		$defaults = [
-			'from' => date(FORMAT_DB_DATETIME),
-			'to' => date(FORMAT_DB_DATETIME),
+			'from' => new Time(),
+			'to' => new Time(),
 			'user_id' => $this->Session->read('Auth.User.id')
 		];
 		if (!$this->Common->isPosted()) {
+			$events = $events->toArray();
 			if (count($events) === 1) {
-				$key = array_keys($events->toArray());
+				$key = array_keys($events);
 				$key = array_shift($key);
+				die(debug($key));
 				$event = $this->Attendees->Events->get($key);
 				$defaults['from'] = $event['from']->format(FORMAT_DB_DATE) . ' ' . '08:00:00';
 				$defaults['to'] = $event['to']->format(FORMAT_DB_DATE) . ' ' . '20:00:00';
