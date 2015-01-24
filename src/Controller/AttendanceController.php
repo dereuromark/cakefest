@@ -3,7 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Core\Configure;
-use Cake\I18n\Time;
+use Tools\Utility\Time;
 
 /**
  * Attendance Controller

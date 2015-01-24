@@ -3,14 +3,14 @@ namespace App\Model\Table;
 
 use App\Model\Table\AppTable;
 use Cake\ORM\Query;
-use Cake\I18n\Time;
+use Tools\Utility\Time;
 
 /**
  * Attendee Table
  */
 class AttendeesTable extends AppTable {
 
-	public $order = array('Attendees.from' => 'ASC');
+	public $order = array('from' => 'ASC');
 
 	/**
 	 * Display field
@@ -103,6 +103,7 @@ class AttendeesTable extends AppTable {
 		if (empty($context['data']['event_id'])) {
 			return true;
 		}
+		//die(debug($context['providers']['table']->schema()));
 		if (!is_object($date)) {
 			$date = new Time($date);
 		}
