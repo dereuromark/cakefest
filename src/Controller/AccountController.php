@@ -97,7 +97,7 @@ class AccountController extends AppController {
 			} elseif (!empty($key)) {
 				$uid = $key['user_id'];
 				$this->request->session()->write('Auth.Tmp.id', $uid);
-				$this->redirect(array('action' => 'change_password'));
+				return $this->redirect(array('action' => 'change_password'));
 			} else {
 				$this->Flash->message(__('Invalid Key'), 'error');
 			}
@@ -160,14 +160,14 @@ class AccountController extends AppController {
 		$uid = $this->request->session()->read('Auth.Tmp.id');
 		if (empty($uid)) {
 			$this->Flash->message(__('You have to find your account first and click on the link in the email you receive afterwards'), 'error');
-			$this->redirect(array('action' => 'lost_password'));
+			return $this->redirect(array('action' => 'lost_password'));
 		}
 
 		if ($this->request->query('abort')) {
 			if (!empty($uid)) {
 				$this->request->session()->delete('Auth.Tmp');
 			}
-			$this->redirect(array('action' => 'login'));
+			return $this->redirect(array('action' => 'login'));
 		}
 
 		$user = $this->Users->newEntity();
