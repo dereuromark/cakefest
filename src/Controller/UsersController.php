@@ -31,10 +31,8 @@ class UsersController extends AppController {
 	 * @return void
 	 */
 	public function view($id = null) {
-		if (empty($id) || !($user = $this->Users->find('first', array('conditions' => array('Users.id' => $id))))) {
-			$this->Flash->message(__('invalidRecord'), 'error');
-			return $this->Common->autoRedirect(array('action' => 'index'));
-		}
+		$user = $this->Users->get($id);
+
 		$this->set(compact('user'));
 	}
 

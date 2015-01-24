@@ -4,7 +4,7 @@ namespace App\Controller;
 use Cake\Event\Event;
 use App\Controller\AppController;
 use Tools\View\Helper\FormatHelper;
-use Tools\EmailLib;
+use Tools\Network\Email\Email;
 use Cake\Core\Configure;
 use Cake\ORM\TableRegistry;
 
@@ -80,7 +80,7 @@ class AccountController extends AppController {
 	 * @return void
 	 */
 	public function lost_password($key = null) {
-		$user = $this->Users->newEntity($this->request->data);
+		$user = $this->Users->newEntity();
 
 		if ($this->Common->isPosted()) {
 			$keyToCheck = $this->request->data('Form.key');
@@ -105,10 +105,11 @@ class AccountController extends AppController {
 		} elseif (!empty($this->request->data['Form']['login'])) {
 			$this->Users->addBehavior('Tools.Captcha');
 			unset($this->Users->validate['email']['isUnique']);
-			//$this->User->set($this->request->data);
+
+			$user = $this->Users->patchEntity($user, $this->request->data);
 
 			// Validate basic email scheme and captcha input.
-			if ($this->Users->validate($user)) {
+			if (!$user->errors()) {
 				$res = $this->Users->find('first', array(
 					'fields' => array('username', 'id', 'email'),
 					'conditions' => array('email' => $this->request->data['Form']['login'])));
@@ -116,8 +117,8 @@ class AccountController extends AppController {
 				// Valid user found to this email address
 				if (!empty($res)) {
 					$uid = $res['id'];
-					$this->Token = ClassRegistry::init('Tools.Token');
-					$cCode = $this->Token->newKey('reset_pwd', null, $uid);
+					$this->Tokens = ClassRegistry::init('Tools.Tokens');
+					$cCode = $this->Tokens->newKey('reset_pwd', null, $uid);
 					if (Configure::read('debug') > 0) {
 						$debugMessage = 'DEBUG MODE: Show activation key - ' . h($res->user['username']) . ' | ' . $cCode;
 						$this->Flash->message($debugMessage, 'info');
@@ -126,7 +127,7 @@ class AccountController extends AppController {
 					// Send email
 					Configure::write('Email.live', true);
 
-					$this->Email = new EmailLib();
+					$this->Email = new Email();
 					$this->Email->to($res['email'], $res['username']);
 					$this->Email->subject(Configure::read('Config.pageName') . ' - ' . __('Password request'));
 					$this->Email->template('lost_password');
@@ -146,7 +147,8 @@ class AccountController extends AppController {
 			}
 		}
 
-		$this->helpers = array_merge($this->helpers, array('Tools.Captcha'));
+		//$this->helpers = array_merge($this->helpers, array('Tools.Captcha'));
+		$this->set(compact('user'));
 	}
 
 	/**
@@ -168,18 +170,20 @@ class AccountController extends AppController {
 			$this->redirect(array('action' => 'login'));
 		}
 
-		$this->User->addBehavior('Tools.Passwordable', array());
+		$user = $this->Users->newEntity();
+
+		$this->Users->addBehavior('Tools.Passwordable', array());
 		if ($this->Common->isPosted()) {
-			$this->request->data['User']['id'] = $uid;
+			$user = $this->Users->patchEntity($user, $this->request->data);
+			$user->id = $uid;
 			$options = array(
-				'validate' => true,
 				'fieldList' => array('id', 'pwd', 'pwd_repeat')
 			);
-			if ($this->User->save($this->request->data, $options)) {
+			if ($this->Users->save($user, $options)) {
 				$this->Flash->message(__('new pw saved - you may now log in'), 'success');
 				$this->request->session()->delete('Auth.Tmp');
-				$username = $this->User->field('username', array('id' => $uid));
-				$this->redirect(array('action' => 'login', '?' => array('username' => $username)));
+				$username = $this->Users->fieldByConditions('username', array('id' => $uid));
+				return $this->Common->postRedirect(array('action' => 'login', '?' => array('username' => $username)));
 			}
 			$this->Flash->message(__('formContainsErrors'), 'error');
 
@@ -187,6 +191,8 @@ class AccountController extends AppController {
 			unset($this->request->data['User']['pwd']);
 			unset($this->request->data['User']['pwd_repeat']);
 		}
+
+		$this->set(compact('user'));
 	}
 
 	/**

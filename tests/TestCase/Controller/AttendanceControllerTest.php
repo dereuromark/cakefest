@@ -142,6 +142,7 @@ class AttendanceControllerTest extends IntegrationTestCase {
 
 		$this->get(array('controller' => 'Attendance', 'action' => 'delete', $id));
 		$this->assertResponseError(); // 405
+		$this->assertFalse(true);
 	}
 
 	/**
