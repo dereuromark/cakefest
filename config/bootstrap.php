@@ -51,11 +51,11 @@ try {
 	die($e->getMessage() . "\n");
 }
 
+Configure::load('app_custom');
 // Load an environment local configuration file.
 // You can use a file like app_local.php to provide local overrides to your
 // shared configuration.
-Configure::load('app_local', 'default');
-//Configure::load('app_private', 'default');
+Configure::load('app_local');
 
 // When debug = false the metadata cache should last
 // for a very very long time, as we don't want

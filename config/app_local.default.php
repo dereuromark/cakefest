@@ -1,6 +1,6 @@
 <?php
 $config = [
-	'debug' => true,
+	//'debug' => true,
 
 	'Security' => [
 		'salt' => '1ebcb009bb3f8ebe43a4addc3fc1c1f310c50520',
