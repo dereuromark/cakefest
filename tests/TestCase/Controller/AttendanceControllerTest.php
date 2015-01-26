@@ -66,9 +66,11 @@ class AttendanceControllerTest extends IntegrationTestCase {
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();
 
+		$from = new Time($this->_controller->request->data['from']);
+		$to = new Time($this->_controller->request->data['to']);
 		$this->assertSame(array(2 => ''), $this->_controller->viewVars['events']->toArray());
-		$this->assertEquals($data['from']->format('Y-m-d'), $this->_controller->viewVars['attendee']->from->format('Y-m-d'));
-		$this->assertEquals($data['to']->format('Y-m-d'), $this->_controller->viewVars['attendee']->to->format('Y-m-d'));
+		$this->assertEquals($data['from']->format('Y-m-d'), $from->format('Y-m-d'));
+		$this->assertEquals($data['to']->format('Y-m-d'), $to->format('Y-m-d'));
 	}
 
 	/**
