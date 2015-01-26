@@ -43,7 +43,7 @@ class AccountControllerTest extends IntegrationTestCase {
 		$this->session($data);
 
 		$this->get(array('controller' => 'Account', 'action' => 'login'));
-		$this->assertResponseCode(200);
+		$this->assertResponseCode(302);
 		$this->assertRedirect('/');
 	}
 
@@ -80,7 +80,7 @@ class AccountControllerTest extends IntegrationTestCase {
 			'login' => 'admin', 'password' => '123456'
 		);
 		$this->post(array('controller' => 'Account', 'action' => 'login'), $data);
-		$this->assertResponseCode(200);
+		$this->assertResponseCode(302);
 		$this->assertRedirect('/');
 	}
 
@@ -106,7 +106,7 @@ class AccountControllerTest extends IntegrationTestCase {
 			'login' => 'admin@example.com', 'password' => '123456'
 		);
 		$this->post(array('controller' => 'Account', 'action' => 'login'), $data);
-		$this->assertResponseCode(200);
+		$this->assertResponseCode(302);
 		$this->assertRedirect('/');
 	}
 
@@ -135,7 +135,7 @@ class AccountControllerTest extends IntegrationTestCase {
 			'login' => 'admin', 'password' => '123456'
 		);
 		$this->post(array('controller' => 'Account', 'action' => 'login'), $data);
-		$this->assertResponseCode(200);
+		$this->assertResponseCode(302);
 		$this->assertRedirect('/attendance');
 	}
 
@@ -149,7 +149,7 @@ class AccountControllerTest extends IntegrationTestCase {
 		$this->session($session);
 
 		$this->get(array('controller' => 'Account', 'action' => 'logout'));
-		$this->assertResponseCode(200);
+		$this->assertResponseCode(302);
 		$this->assertRedirect('/');
 	}
 
@@ -171,7 +171,7 @@ class AccountControllerTest extends IntegrationTestCase {
 	 */
 	public function testChangePasswordInvalid() {
 		$this->get(array('controller' => 'Account', 'action' => 'change_password'));
-		$this->assertResponseCode(200);
+		$this->assertResponseCode(302);
 		$this->assertRedirect(array('controller' => 'Account', 'action' => 'lost_password'));
 	}
 
