@@ -1,7 +1,7 @@
 <div class="attendees form">
 <?php echo $this->Form->create($attendee); ?>
 	<fieldset>
-		<legend><?php echo __('Add Attendee'); ?></legend>
+		<legend><?php echo __('Own Attendance'); ?></legend>
 	<?php
 		echo $this->Form->input('from', array('type' => 'datetime', 'dateFormat' => 'DMY', 'timeFormat' => 24, 'interval' => 30));
 		echo $this->Form->input('to', array('type' => 'datetime', 'dateFormat' => 'DMY', 'timeFormat' => 24, 'interval' => 30));

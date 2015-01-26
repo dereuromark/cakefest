@@ -53,9 +53,11 @@ class AttendanceController extends AppController {
 			}
 		}
 		$this->request->data += $defaults;
-		$attendee = $this->Attendees->newEntity($this->request->data);
+		$attendee = $this->Attendees->newEntity();
 
 		if ($this->Common->isPosted()) {
+			$attendee = $this->Attendees->patchEntity($attendee, $this->request->data);
+
 			if ($this->Attendees->save($attendee)) {
 				$from = $attendee['from'];
 				$to = $attendee['to'];
@@ -80,7 +82,7 @@ class AttendanceController extends AppController {
 			return $this->Common->autoRedirect(array('action' => 'index'));
 		}
 		if ($this->Common->isPosted()) {
-			$this->Attendees->patchEntity($attendee, $this->request->data);
+			$attendee = $this->Attendees->patchEntity($attendee, $this->request->data);
 			if ($this->Attendees->save($attendee)) {
 				$from = $attendee['from'];
 				$to = $attendee['to'];

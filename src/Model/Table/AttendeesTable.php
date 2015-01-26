@@ -72,7 +72,7 @@ class AttendeesTable extends AppTable {
 				'last' => true
 			),
 			'isUnique' => array(
-				'rule' => array('validateUnique', array('scope' => ['user_id'])),
+				'rule' => array('validateUniqueExt', array('scope' => ['user_id'])),
 				'last' => true,
 				'message' => 'You can only have one attendance entry per event',
 				'provider' => 'table'
