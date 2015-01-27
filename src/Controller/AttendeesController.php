@@ -81,7 +81,7 @@ class AttendeesController extends AppController {
 		}
 
 		$events = $this->Attendees->Events->find('list');
-		$users = $this->Attendees->User->find('list');
+		$users = $this->Attendees->Users->find('list');
 		$this->set(compact('attendee', 'events', 'users'));
 	}
 
