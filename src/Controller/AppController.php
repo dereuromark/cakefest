@@ -14,7 +14,7 @@ use Cake\Core\Configure;
  */
 class AppController extends Controller {
 
-	public $components = array('Tools.Session', 'RequestHandler', 'Tools.Common', 'Tools.Flash', 'Tools.AuthUser');
+	public $components = array('Shim.Session', 'RequestHandler', 'Tools.Common', 'Tools.Flash', 'Tools.AuthUser');
 
 	public $helpers = array('Session', 'Html', 'Tools.Form', 'Tools.Common', 'Tools.Flash',
 		'Tools.Format', 'Tools.Time', 'Tools.Number', 'Tools.AuthUser', 'Tools.Obfuscate', 'Tools.Js');

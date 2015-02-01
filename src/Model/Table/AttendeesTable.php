@@ -125,8 +125,8 @@ class AttendeesTable extends AppTable {
 				return true;
 			case 'to':
 				$compare = $compareDate->copy()->addDays(10);
-				$date12am = $date->copy()->startofDay($date);
-				if (!($date12am->lte($compare))) {
+				$date = $date->copy()->startofDay();
+				if (!($date->lte($compare))) {
 					return 'You cannot set a date after ' . $compare->format(FORMAT_DB_DATE);
 				}
 				$compareDate = $event['from'];
