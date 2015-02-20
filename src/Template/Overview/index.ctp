@@ -29,7 +29,7 @@ might be able to connect before, after and especially during the event to social
 
 <h3>The attendees this year</h3>
 <p>
-Currently, <?php echo count($attendees); ?> devs submitted their attendance schedule so far:
+Currently, <?php echo count($attendees->toArray()); ?> devs submitted their attendance schedule so far:
 </p>
 
 <?php
