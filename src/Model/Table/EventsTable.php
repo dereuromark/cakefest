@@ -43,7 +43,7 @@ class EventsTable extends AppTable {
 		],
 		'name' => [
 			'notEmpty' => [
-				'rule' => ['notEmpty'],
+				'rule' => ['notBlank'],
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,

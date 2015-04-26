@@ -21,7 +21,7 @@ if (!getenv('db_class')) {
 
 Cake\Datasource\ConnectionManager::drop('test');
 
-if (WINDOWS) {
+if (false && WINDOWS) {
 	Cake\Datasource\ConnectionManager::config('test', [
 		'className' => 'Cake\Database\Connection',
 		'driver' => 'Cake\Database\Driver\Mysql',

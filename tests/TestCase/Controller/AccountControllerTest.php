@@ -231,6 +231,13 @@ class AccountControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testEdit() {
+		$Users = TableRegistry::get('Users');
+		$record = $Users->find()->first();
+		$id = $record->id;
+
+		$session = array('Auth' => array('User' => array('id' => $id)));
+		$this->session($session);
+
 		$this->get(array('controller' => 'Account', 'action' => 'edit'));
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();

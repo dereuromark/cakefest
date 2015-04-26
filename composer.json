@@ -26,7 +26,6 @@
 		"cakephp/migrations": "dev-master"
 	},
 	"require-dev": {
-		"phpunit/phpunit": "*",
 		"d11wtq/boris": "1.0.*",
 		"cakephp/debug_kit": "3.0.*-dev",
 		"cakephp/bake": "dev-master",

@@ -24,7 +24,7 @@ class UsersTable extends AppTable {
 	public $validate = [
 		'username' => [
 			'notEmpty' => [
-				'rule' => ['notEmpty'],
+				'rule' => ['notBlank'],
 				//'message' => 'Your custom message here',
 				'last' => true,
 			],

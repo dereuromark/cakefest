@@ -245,15 +245,15 @@ class AccountController extends AppController {
 			$user = $this->Users->patchEntity($user, $this->request->data);
 			if ($this->Users->save($user, $options)) {
 				// Update session data, as well
-				$this->Flash->message(__('Account modified'), 'success');
+				$this->Flash->success(__('Account modified'));
 				$this->Auth->setUser($user->toArray());
 				return $this->redirect(['controller' => 'Overview', 'action' => 'index']);
 			}
-			$this->Flash->message(__('formContainsErrors'), 'error');
+			$this->Flash->error(__('formContainsErrors'));
 
 			// Pwd should not be passed to the view again for security reasons.
-			//unset($this->request->data['User']['pwd']);
-			//unset($this->request->data['User']['pwd_repeat']);
+			unset($this->request->data['pwd']);
+			unset($this->request->data['pwd_repeat']);
 		}
 
 		$this->set(compact('user'));
@@ -269,7 +269,8 @@ class AccountController extends AppController {
 	public function delete($id = null) {
 		$this->request->allowMethod(['post', 'delete']);
 		$uid = $this->request->session()->read('Auth.User.id');
-		if (!$this->User->delete($uid)) {
+		$user = $this->Users->get($uid);
+		if (!$this->User->delete($user)) {
 			throw new InternalErrorException();
 		}
 		$this->Flash->message('Account deleted', 'success');
