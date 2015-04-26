@@ -14,7 +14,7 @@ class UsersFixture extends TestFixture {
 	 *
 	 * @var array
 	 */
-	public $fields = array(
+	public $fields = [
 		'id' => ['type' => 'integer'],
 		'username' => ['type' => 'string', 'null' => false, 'default' => null, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'],
 		'email' => ['type' => 'string', 'null' => false, 'default' => null, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'],
@@ -27,15 +27,15 @@ class UsersFixture extends TestFixture {
 		'language_id' => ['type' => 'integer', 'null' => false, 'default' => '0', 'length' => 10],
 		'_constraints' => ['primary' => ['type' => 'primary', 'columns' => ['id']]],
 		'_options' => ['charset' => 'utf8', 'collate' => 'utf8_unicode_ci', 'engine' => 'InnoDB']
-	);
+	];
 
 	/**
 	 * Records
 	 *
 	 * @var array
 	 */
-	public $records = array(
-		array(
+	public $records = [
+		[
 			'id' => 1,
 			'username' => 'Lorem ipsum dolor sit amet',
 			'email' => 'Lorem ipsum dolor sit amet',
@@ -46,7 +46,7 @@ class UsersFixture extends TestFixture {
 			'modified' => '2013-08-08 14:25:09',
 			'role_id' => 1,
 			'language_id' => 1
-		),
-	);
+		],
+	];
 
 }

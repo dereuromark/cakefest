@@ -15,10 +15,10 @@ class EventsTableTest extends TestCase {
 	 *
 	 * @var array
 	 */
-	public $fixtures = array(
+	public $fixtures = [
 		'app.events',
 		'app.attendees'
-	);
+	];
 
 	/**
 	 * setUp method

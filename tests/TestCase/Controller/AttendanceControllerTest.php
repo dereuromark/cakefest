@@ -25,9 +25,9 @@ class AttendanceControllerTest extends IntegrationTestCase {
 	public function setUp() {
 		parent::setUp();
 
-		$data = array(
-			'Auth' => array('User' => array('id' => 1, 'role_id' => 1))
-		);
+		$data = [
+			'Auth' => ['User' => ['id' => 1, 'role_id' => 1]]
+		];
 		$this->session($data);
 	}
 
@@ -38,7 +38,7 @@ class AttendanceControllerTest extends IntegrationTestCase {
 	 */
 	public function testIndex()
 	{
-		$this->get(array('controller' => 'Attendance', 'action' => 'index'));
+		$this->get(['controller' => 'Attendance', 'action' => 'index']);
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();
 	}
@@ -53,22 +53,22 @@ class AttendanceControllerTest extends IntegrationTestCase {
 		$Events = TableRegistry::get('Events');
 		$from = new Time();
 		$to = new Time();
-		$data = array(
+		$data = [
 			'from' => $from->addMonth(),
 			'to' => $to->addMonth()->addWeek(),
 
-		);
+		];
 		$events = $Events->newEntity($data);
 		$result = $Events->save($events);
 		$this->assertTrue((bool)$result);
 
-		$this->get(array('controller' => 'Attendance', 'action' => 'add'));
+		$this->get(['controller' => 'Attendance', 'action' => 'add']);
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();
 
 		$from = new Time($this->_controller->request->data['from']);
 		$to = new Time($this->_controller->request->data['to']);
-		$this->assertSame(array(2 => ''), $this->_controller->viewVars['events']->toArray());
+		$this->assertSame([2 => ''], $this->_controller->viewVars['events']->toArray());
 		$this->assertEquals($data['from']->format('Y-m-d'), $from->format('Y-m-d'));
 		$this->assertEquals($data['to']->format('Y-m-d'), $to->format('Y-m-d'));
 	}
@@ -80,10 +80,10 @@ class AttendanceControllerTest extends IntegrationTestCase {
 	 */
 	public function testAddPost()
 	{
-		$data = array(
+		$data = [
 			'comment' => 'Foo bar'
-		);
-		$this->post(array('controller' => 'Attendance', 'action' => 'add'), $data);
+		];
+		$this->post(['controller' => 'Attendance', 'action' => 'add'], $data);
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();
 
@@ -101,10 +101,10 @@ class AttendanceControllerTest extends IntegrationTestCase {
 		$record = $Attendees->find()->first();
 		$id = $record->id;
 
-		$data = array(
+		$data = [
 			'comment' => 'Foo bar'
-		);
-		$this->get(array('controller' => 'Attendance', 'action' => 'edit', $id));
+		];
+		$this->get(['controller' => 'Attendance', 'action' => 'edit', $id]);
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();
 	}
@@ -120,10 +120,10 @@ class AttendanceControllerTest extends IntegrationTestCase {
 		$record = $Attendees->find()->first();
 		$id = $record->id;
 
-		$data = array(
+		$data = [
 			'comment' => 'Foo bar'
-		);
-		$this->post(array('controller' => 'Attendance', 'action' => 'edit', $id), $data);
+		];
+		$this->post(['controller' => 'Attendance', 'action' => 'edit', $id], $data);
 		$this->assertResponseCode(302);
 		$this->assertRedirect();
 
@@ -142,7 +142,7 @@ class AttendanceControllerTest extends IntegrationTestCase {
 		$record = $Attendees->find()->first();
 		$id = $record->id;
 
-		$this->get(array('controller' => 'Attendance', 'action' => 'delete', $id));
+		$this->get(['controller' => 'Attendance', 'action' => 'delete', $id]);
 		$this->assertResponseError(); // 405
 	}
 
@@ -157,9 +157,9 @@ class AttendanceControllerTest extends IntegrationTestCase {
 		$record = $Attendees->find()->first();
 		$id = $record->id;
 
-		$this->post(array('controller' => 'Attendance', 'action' => 'delete', $id));
+		$this->post(['controller' => 'Attendance', 'action' => 'delete', $id]);
 		$this->assertResponseCode(302);
 		$this->assertRedirect();
-		$this->assertSession(array('record del 1 done'), 'FlashMessage.success');
+		$this->assertSession(['record del 1 done'], 'FlashMessage.success');
 	}
 }

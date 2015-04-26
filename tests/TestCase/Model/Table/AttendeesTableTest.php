@@ -17,11 +17,11 @@ class AttendeesTableTest extends TestCase {
 	 *
 	 * @var array
 	 */
-	public $fixtures = array(
+	public $fixtures = [
 		'app.attendees',
 		'app.events',
 		'app.users',
-	);
+	];
 
 	public $Attendees;
 
@@ -45,11 +45,11 @@ class AttendeesTableTest extends TestCase {
 		$result = $this->Attendees->Events->save($event);
 		$this->assertTrue((bool)$result);
 
-		$context = array(
-			'data' => array(
+		$context = [
+			'data' => [
 				'event_id' => $event->id,
-			)
-		);
+			]
+		];
 		$result = $this->Attendees->isValidDate(new Time('2014-04-04'), 'from', $context);
 		$this->assertTrue($result);
 

@@ -24,9 +24,9 @@ class UsersControllerTest extends IntegrationTestCase {
 	public function setUp() {
 		parent::setUp();
 
-		$data = array(
-			'Auth' => array('User' => array('id' => 1, 'role_id' => 1))
-		);
+		$data = [
+			'Auth' => ['User' => ['id' => 1, 'role_id' => 1]]
+		];
 		$this->session($data);
 	}
 
@@ -36,7 +36,7 @@ class UsersControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testIndex() {
-		$this->get(array('controller' => 'Users', 'action' => 'index'));
+		$this->get(['controller' => 'Users', 'action' => 'index']);
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();
 	}
@@ -49,7 +49,7 @@ class UsersControllerTest extends IntegrationTestCase {
 	public function testViewInvalid() {
 		$id = 999;
 
-		$this->get(array('controller' => 'Users', 'action' => 'view', $id));
+		$this->get(['controller' => 'Users', 'action' => 'view', $id]);
 		$this->assertResponseCode(404);
 		$this->assertNoRedirect();
 	}
@@ -64,7 +64,7 @@ class UsersControllerTest extends IntegrationTestCase {
 		$record = $Users->find()->first();
 		$id = $record->id;
 
-		$this->get(array('controller' => 'Users', 'action' => 'view', $id));
+		$this->get(['controller' => 'Users', 'action' => 'view', $id]);
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();
 	}
@@ -79,7 +79,7 @@ class UsersControllerTest extends IntegrationTestCase {
 		$record = $Users->find()->first();
 		$id = $record->id;
 
-		$this->get(array('controller' => 'Users', 'action' => 'edit', $id));
+		$this->get(['controller' => 'Users', 'action' => 'edit', $id]);
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();
 	}
@@ -94,7 +94,7 @@ class UsersControllerTest extends IntegrationTestCase {
 		$record = $Users->find()->first();
 		$id = $record->id;
 
-		$this->post(array('controller' => 'Users', 'action' => 'delete', $id));
+		$this->post(['controller' => 'Users', 'action' => 'delete', $id]);
 		$this->assertResponseCode(302);
 		$this->assertRedirect();
 	}
