@@ -4,7 +4,7 @@ Hi <?php echo $user['username']; ?>!
 
 
 Here you can directly log back in:
-<?php echo $this->Html->url(array('controller' => 'Attendance', 'action' => 'index'), true);?>
+<?php echo $this->Html->url(['controller' => 'Attendance', 'action' => 'index'], true);?>
 
 
 Let the others know if and when you will be there :)

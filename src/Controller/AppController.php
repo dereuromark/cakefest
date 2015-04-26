@@ -14,10 +14,10 @@ use Cake\Core\Configure;
  */
 class AppController extends Controller {
 
-	public $components = array('Shim.Session', 'RequestHandler', 'Tools.Common', 'Tools.Flash', 'Tools.AuthUser');
+	public $components = ['Shim.Session', 'RequestHandler', 'Tools.Common', 'Tools.Flash', 'Tools.AuthUser'];
 
-	public $helpers = array('Session', 'Html', 'Tools.Form', 'Tools.Common', 'Tools.Flash',
-		'Tools.Format', 'Tools.Time', 'Tools.Number', 'Tools.AuthUser', 'Tools.Obfuscate', 'Tools.Js');
+	public $helpers = ['Session', 'Html', 'Tools.Form', 'Tools.Common', 'Tools.Flash',
+		'Tools.Format', 'Tools.Time', 'Tools.Number', 'Tools.AuthUser', 'Tools.Obfuscate', 'Tools.Js'];
 
 	/**
 	 * AppController::constructClasses()
@@ -27,47 +27,47 @@ class AppController extends Controller {
 	public function initialize() {
 		parent::initialize();
 
-		$this->loadComponent('Auth', array(
-			'authenticate' => array(
-				'FOC/Authenticate.MultiColumn' => array(
-					'fields' => array(
+		$this->loadComponent('Auth', [
+			'authenticate' => [
+				'FOC/Authenticate.MultiColumn' => [
+					'fields' => [
 						'username' => 'login',
 						'password' => 'password'
-					),
-					'columns' => array('username', 'email'),
+					],
+					'columns' => ['username', 'email'],
 					'userModel' => 'Users',
 					'passwordHasher' => Configure::read('Passwordable.passwordHasher')
 					//'scope' => array('User.email_confirmed' => 1)
-				),
-			),
-			'authorize' => array(
+				],
+			],
+			'authorize' => [
 				'TinyAuth.Tiny'
-			),
-			'logoutRedirect' => array(
+			],
+			'logoutRedirect' => [
 				'plugin' => false,
 				'admin' => false,
 				'controller' => 'Overview',
 				'action' => 'index'
-			),
-			'loginRedirect' => array(
+			],
+			'loginRedirect' => [
 				'plugin' => false,
 				'admin' => false,
 				'controller' => 'Overview',
 				'action' => 'index'
-			),
-			'loginAction' => array(
+			],
+			'loginAction' => [
 				'plugin' => false,
 				'admin' => false,
 				'controller' => 'Account',
 				'action' => 'login'
-			),
-			'unauthorizedRedirect' => array(
+			],
+			'unauthorizedRedirect' => [
 				'plugin' => false,
 				'admin' => false,
 				'controller' => 'Overview',
 				'action' => 'index'
-			)
-		));
+			]
+		]);
 	}
 
 	/**
@@ -79,7 +79,7 @@ class AppController extends Controller {
 		parent::beforeFilter($event);
 
 		// Do not allow access to these public actions when already logged in
-		$allowed = array('Account' => array('login', 'lost_password', 'register'));
+		$allowed = ['Account' => ['login', 'lost_password', 'register']];
 		if (!$this->AuthUser->id()) {
 			return;
 		}
@@ -94,7 +94,7 @@ class AppController extends Controller {
 		//preg_match('/([a-z]{2})-([A-Z]{2})/', env('HTTP_ACCEPT_LANGUAGE'), $matches);
 		//TODO: use request->parseLanguage stuff instead()
 		$matches = \Tools\Utility\Language::parseLanguageList();
-		$matches = array();
+		$matches = [];
 		if ($matches) {
 			$locale = array_shift($matches);
 			$locale = array_shift($locale);

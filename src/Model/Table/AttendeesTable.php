@@ -10,7 +10,7 @@ use Tools\Utility\Time;
  */
 class AttendeesTable extends AppTable {
 
-	public $order = array('from' => 'ASC');
+	public $order = ['from' => 'ASC'];
 
 	/**
 	 * Display field
@@ -24,71 +24,71 @@ class AttendeesTable extends AppTable {
 	 *
 	 * @var array
 	 */
-	public $validate = array(
-		'from' => array(
-			'datetime' => array(
-				'rule' => array('datetime'),
+	public $validate = [
+		'from' => [
+			'datetime' => [
+				'rule' => ['datetime'],
 				//'message' => 'Your custom message here',
 				'last' => true,
-			),
-			'isValidDate' => array(
-				'rule' => array('isValidDate', 'from'),
+			],
+			'isValidDate' => [
+				'rule' => ['isValidDate', 'from'],
 				'message' => 'Please provide a valid date within the allowed range',
 				'last' => true,
 				'provider' => 'table'
-			)
-		),
-		'to' => array(
-			'datetime' => array(
-				'rule' => array('datetime'),
+			]
+		],
+		'to' => [
+			'datetime' => [
+				'rule' => ['datetime'],
 				'last' => true,
-			),
-			'isValidDate' => array(
-				'rule' => array('isValidDate', 'to'),
+			],
+			'isValidDate' => [
+				'rule' => ['isValidDate', 'to'],
 				'message' => 'Please provide a valid date within the allowed range',
 				'last' => true,
 				'provider' => 'table'
-			),
-			'validateDateTime' => array(
-				'rule' => array('validateDateTime', array('after' => 'from')),
+			],
+			'validateDateTime' => [
+				'rule' => ['validateDateTime', ['after' => 'from']],
 				'message' => 'This date must be after the from date',
 				'last' => true,
 				'provider' => 'table'
-			),
-		),
-		'display_email' => array(
-			'boolean' => array(
-				'rule' => array('boolean'),
+			],
+		],
+		'display_email' => [
+			'boolean' => [
+				'rule' => ['boolean'],
 				//'message' => 'Your custom message here',
 				'allowEmpty' => true,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'event_id' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
+			],
+		],
+		'event_id' => [
+			'numeric' => [
+				'rule' => ['numeric'],
 				'last' => true
-			),
-			'isUnique' => array(
-				'rule' => array('validateUniqueExt', array('scope' => ['user_id'])),
+			],
+			'isUnique' => [
+				'rule' => ['validateUniqueExt', ['scope' => ['user_id']]],
 				'last' => true,
 				'message' => 'You can only have one attendance entry per event',
 				'provider' => 'table'
-			),
-		),
-		'user_id' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
+			],
+		],
+		'user_id' => [
+			'numeric' => [
+				'rule' => ['numeric'],
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-	);
+			],
+		],
+	];
 
 	/**
 	 * Attendee::isValidDate()
@@ -146,12 +146,12 @@ class AttendeesTable extends AppTable {
 	 * @return array
 	 */
 	public function getNotifyableAttendees() {
-		$last = $this->Events->find('first', array('order' => array('from' => 'DESC')));
-		$current = $this->Events->find('first', array('conditions' => array('id !=' => $last['id']), 'order' => array('from' => 'DESC')));
+		$last = $this->Events->find('first', ['order' => ['from' => 'DESC']]);
+		$current = $this->Events->find('first', ['conditions' => ['id !=' => $last['id']], 'order' => ['from' => 'DESC']]);
 
-		$currentAttendees = $this->find('all', array('conditions' => array('Attendees.event_id' => $current['id'])));
+		$currentAttendees = $this->find('all', ['conditions' => ['Attendees.event_id' => $current['id']]]);
 		$currentUserList = Hash::extract($currentAttendees, '{n}.Attendees.user_id');
-		$lastAttendees = $this->find('all', array('contain' => array('Users'), 'conditions' => array('Attendees.user_id NOT' => $currentUserList, 'Attendees.event_id' => $last['id'])));
+		$lastAttendees = $this->find('all', ['contain' => ['Users'], 'conditions' => ['Attendees.user_id NOT' => $currentUserList, 'Attendees.event_id' => $last['id']]]);
 		return $lastAttendees;
 	}
 
@@ -160,22 +160,22 @@ class AttendeesTable extends AppTable {
 	 *
 	 * @var array
 	 */
-	public $belongsTo = array(
-		'Event' => array(
+	public $belongsTo = [
+		'Event' => [
 			//'className' => 'Event',
 			'foreignKey' => 'event_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
-		),
-		'User' => array(
+		],
+		'User' => [
 			//'className' => 'User',
 			'foreignKey' => 'user_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
-		)
-	);
+		]
+	];
 
 	/**
 	 * Find all of this year only.

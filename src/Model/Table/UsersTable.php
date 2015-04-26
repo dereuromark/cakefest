@@ -21,71 +21,71 @@ class UsersTable extends AppTable {
 	 *
 	 * @var array
 	 */
-	public $validate = array(
-		'username' => array(
-			'notEmpty' => array(
-				'rule' => array('notEmpty'),
+	public $validate = [
+		'username' => [
+			'notEmpty' => [
+				'rule' => ['notEmpty'],
 				//'message' => 'Your custom message here',
 				'last' => true,
-			),
-			'isUnique' => array(
-				'rule' => array('validateUnique'),
+			],
+			'isUnique' => [
+				'rule' => ['validateUnique'],
 				'message' => 'This username has already been taken',
 				'last' => true,
 				'provider' => 'table'
-			),
-		),
-		'email' => array(
-			'email' => array(
-				'rule' => array('email'),
+			],
+		],
+		'email' => [
+			'email' => [
+				'rule' => ['email'],
 				'message' => 'Please provide a valid email address',
 				'last' => true,
-			),
-			'isUnique' => array(
-				'rule' => array('validateUnique'),
+			],
+			'isUnique' => [
+				'rule' => ['validateUnique'],
 				'message' => 'This username has already been taken',
 				'last' => true,
 				'provider' => 'table'
-			),
-		),
-		'status' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
+			],
+		],
+		'status' => [
+			'numeric' => [
+				'rule' => ['numeric'],
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'role_id' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
+			],
+		],
+		'role_id' => [
+			'numeric' => [
+				'rule' => ['numeric'],
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'language_id' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
+			],
+		],
+		'language_id' => [
+			'numeric' => [
+				'rule' => ['numeric'],
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-	);
+			],
+		],
+	];
 
 	/**
 	 * belongsTo associations
 	 *
 	 * @var array
 	 */
-	public $belongsTo = array(
+	public $belongsTo = [
 		/*
 		'Role' => array(
 			'className' => 'Role',
@@ -102,32 +102,32 @@ class UsersTable extends AppTable {
 			'order' => ''
 		)
 		*/
-	);
+	];
 
 	/**
 	 * hasMany associations
 	 *
 	 * @var array
 	 */
-	public $hasMany = array(
-		'Attendee' => array(
+	public $hasMany = [
+		'Attendee' => [
 			'className' => 'Attendee',
 			'dependent' => true,
-		)
-	);
+		]
+	];
 
-	public $filterArgs = array(
-		'search' => array(
+	public $filterArgs = [
+		'search' => [
 			'type' => 'like',
-			'field' => array('username', 'email')
-		),
-		'role_id' => array(
+			'field' => ['username', 'email']
+		],
+		'role_id' => [
 			'type' => 'value'
-		),
-		'status' => array(
+		],
+		'status' => [
 			'type' => 'value'
-		)
-	);
+		]
+	];
 
 	public function initialize(array $config = []) {
 		parent::initialize($config);

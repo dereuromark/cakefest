@@ -17,7 +17,7 @@ class OverviewController extends AppController {
 	 *
 	 * @var array
 	 */
-	public $components = array('Paginator');
+	public $components = ['Paginator'];
 
 	/**
 	 * OverviewController::beforeFilter()
@@ -38,9 +38,9 @@ class OverviewController extends AppController {
 	public function index() {
 		// For now just the newest one
 		//$event = $this->Users->Attendees->Events->find('first', array('order' => array('from' => 'DESC')));
-		$event = $this->Users->Attendees->Events->find('all', array('order' => array('from' => 'DESC')))->first();
+		$event = $this->Users->Attendees->Events->find('all', ['order' => ['from' => 'DESC']])->first();
 
-		$attendees = $this->Users->Attendees->find('all', array('conditions' => array('Attendees.event_id' => $event['id'])))
+		$attendees = $this->Users->Attendees->find('all', ['conditions' => ['Attendees.event_id' => $event['id']]])
 			->contain('Users');
 
 		$this->set(compact('event', 'attendees'));

@@ -15,7 +15,7 @@
 	<?php echo $this->fetch('meta') ?>
 	<?php echo $this->fetch('css') ?>
 	<?php
-		$this->Html->script('jquery', array('inline' => false));
+		$this->Html->script('jquery', ['inline' => false]);
 	?>
 	<?php echo $this->fetch('script') ?>
 </head>
@@ -29,14 +29,14 @@
 					<?php echo h($this->Session->read('Auth.User.username')); ?> [<?php echo h($this->Session->read('Auth.User.email')); ?>] -
 
 					<?php if ($this->AuthUser->hasRole(Cake\Core\Configure::read('Roles.admin'))) { ?>
-						<?php echo $this->Html->link('Admin', array('controller' => 'Overview', 'action' => 'admin')); ?> |
+						<?php echo $this->Html->link('Admin', ['controller' => 'Overview', 'action' => 'admin']); ?> |
 					<?php } ?>
-					<?php echo $this->Html->link('Account', array('controller' => 'Account', 'action' => 'edit')); ?> |
-					<?php echo $this->Html->link('Attendance', array('controller' => 'Attendance', 'action' => 'index')); ?> |
-					<?php echo $this->Html->link('Logout', array('controller' => 'Account', 'action' => 'logout')); ?>
+					<?php echo $this->Html->link('Account', ['controller' => 'Account', 'action' => 'edit']); ?> |
+					<?php echo $this->Html->link('Attendance', ['controller' => 'Attendance', 'action' => 'index']); ?> |
+					<?php echo $this->Html->link('Logout', ['controller' => 'Account', 'action' => 'logout']); ?>
 				<?php } else { ?>
-					<?php echo $this->Html->link('Login', array('controller' => 'Account', 'action' => 'login')); ?> |
-					<?php echo $this->Html->link('Register', array('controller' => 'Account', 'action' => 'register')); ?>
+					<?php echo $this->Html->link('Login', ['controller' => 'Account', 'action' => 'login']); ?> |
+					<?php echo $this->Html->link('Register', ['controller' => 'Account', 'action' => 'register']); ?>
 				<?php } ?>
 			</div>
 
@@ -54,10 +54,10 @@
 			<div id="footer">
 			<div style="float: left; text-align: left;">
 <?php
-	$url = array(
+	$url = [
 		'controller' => 'contact',
-		'?' => array('subject' => 'CakeFest App')
-	);
+		'?' => ['subject' => 'CakeFest App']
+	];
 ?>
 				<p>
 				Written in and running on <b>CakePHP <?php echo Cake\Core\Configure::version(); ?></b>. Created by <a href="http://www.dereuromark.de" target="_blank">dereuromark</a> - August 2013.
@@ -65,13 +65,13 @@
 				Bugs? Issues? <a href="https://github.com/dereuromark/cakefest" target="_blank">Open a PR/ticket</a> or <?php echo $this->Html->link('contact me', $url)?>.
 
 				</p><p>
-				More infos to the event at <a href="http://lanyrd.com/2014/cakefest/" target="_blank">lanyrd.com/2014/cakefest/</a>.</p>
+				More infos to the event at <a href="http://lanyrd.com/2015/cakefest/" target="_blank">lanyrd.com/2015/cakefest/</a>.</p>
 			</div>
 
 			<?php echo $this->Html->link(
-					$this->Html->image('cake.power.gif', array('alt' => '', 'border' => '0')),
+					$this->Html->image('cake.power.gif', ['alt' => '', 'border' => '0']),
 					'http://www.cakephp.org/',
-					array('target' => '_blank', 'escape' => false)
+					['target' => '_blank', 'escape' => false]
 				);
 			?>
 		</div>
@@ -79,7 +79,7 @@
 		</footer>
 	</div>
 	<?php echo $this->fetch('script'); ?>
-	<?php echo $this->Js->writeBuffer(array('onDomReady' => false)); ?>
+	<?php echo $this->Js->writeBuffer(['onDomReady' => false]); ?>
 
 <?php
 $debug = Cake\Core\Configure::read('debug');

@@ -9,10 +9,10 @@
 <?php
 	$this->loadHelper('Tools.Timeline');
 
-	$settings = array(
+	$settings = [
 		'min' => $event['from']->sub(new \DateInterval('P10D')),
 		'max' => $event['to']->add(new \DateInterval('P10D')),
-	);
+	];
 	$this->Timeline->settings($settings);
 
 	foreach ($attendees as $attendee) {
@@ -20,9 +20,9 @@
 		if ($attendee->user['status'] == App\Model\Entity\User::STATUS_CORE_DEV) {
 			$content .= '<div style="float: right"><small>' . __('Core Dev') . '</small></div>';
 		}
-		$content .= $this->Html->link($attendee->user->username, array('controller' => 'Attendees', 'action' => 'view', $attendee['id']));
+		$content .= $this->Html->link($attendee->user->username, ['controller' => 'Attendees', 'action' => 'view', $attendee['id']]);
 
-		$this->Timeline->addItem(array('start' => $attendee['from'], 'end' => $attendee['to'], 'content' => $content));
+		$this->Timeline->addItem(['start' => $attendee['from'], 'end' => $attendee['to'], 'content' => $content]);
 	}
 	$this->Timeline->finalize();
 ?>

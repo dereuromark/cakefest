@@ -20,46 +20,46 @@ class EventsTable extends AppTable {
 	 *
 	 * @var array
 	 */
-	public $validate = array(
-		'from' => array(
-			'datetime' => array(
-				'rule' => array('date'),
+	public $validate = [
+		'from' => [
+			'datetime' => [
+				'rule' => ['date'],
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'to' => array(
-			'datetime' => array(
-				'rule' => array('date'),
+			],
+		],
+		'to' => [
+			'datetime' => [
+				'rule' => ['date'],
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'name' => array(
-			'notEmpty' => array(
-				'rule' => array('notEmpty'),
+			],
+		],
+		'name' => [
+			'notEmpty' => [
+				'rule' => ['notEmpty'],
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-	);
+			],
+		],
+	];
 
 	/**
 	 * hasMany associations
 	 *
 	 * @var array
 	 */
-	public $hasMany = array(
-		'Attendee' => array(
+	public $hasMany = [
+		'Attendee' => [
 			//'className' => 'Attendee',
 			'foreignKey' => 'event_id',
 			'dependent' => false,
@@ -67,7 +67,7 @@ class EventsTable extends AppTable {
 			'fields' => '',
 			'order' => '',
 			'limit' => '',
-		)
-	);
+		]
+	];
 
 }

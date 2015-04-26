@@ -17,15 +17,15 @@
 		<td><?php echo $this->Format->yesNo($attendee['display_email']); ?>&nbsp;</td>
 		<td><?php echo $this->Format->yesNo(!empty($attendee['comment'])); ?>&nbsp;</td>
 		<td>
-			<?php echo $this->Html->link($attendee->event['name'], array('controller' => 'events', 'action' => 'view', $attendee->event['id'])); ?>
+			<?php echo $this->Html->link($attendee->event['name'], ['controller' => 'events', 'action' => 'view', $attendee->event['id']]); ?>
 		</td>
 		<td>
-			<?php echo $this->Html->link($attendee->user['username'], array('controller' => 'users', 'action' => 'view', $attendee->user['id'])); ?>
+			<?php echo $this->Html->link($attendee->user['username'], ['controller' => 'users', 'action' => 'view', $attendee->user['id']]); ?>
 		</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $attendee['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $attendee['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $attendee['id']), array('confirm' => __('Are you sure you want to delete # {0}?', $attendee['id']))); ?>
+			<?php echo $this->Html->link(__('View'), ['action' => 'view', $attendee['id']]); ?>
+			<?php echo $this->Html->link(__('Edit'), ['action' => 'edit', $attendee['id']]); ?>
+			<?php echo $this->Form->postLink(__('Delete'), ['action' => 'delete', $attendee['id']], ['confirm' => __('Are you sure you want to delete # {0}?', $attendee['id'])]); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -35,7 +35,7 @@
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('List Events'), array('controller' => 'Events', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Users'), array('controller' => 'Users', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Events'), ['controller' => 'Events', 'action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']); ?> </li>
 	</ul>
 </div>

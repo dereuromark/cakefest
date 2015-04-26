@@ -3,9 +3,9 @@
 	<fieldset>
 		<legend><?php echo __('Own Attendance'); ?></legend>
 	<?php
-		echo $this->Form->input('from', array('type' => 'datetime', 'dateFormat' => 'DMY', 'timeFormat' => 24, 'interval' => 30));
-		echo $this->Form->input('to', array('type' => 'datetime', 'dateFormat' => 'DMY', 'timeFormat' => 24, 'interval' => 30));
-		echo $this->Form->input('display_email', array('after' => ' Only logged in users will be able to see it.'));
+		echo $this->Form->input('from', ['type' => 'datetime', 'dateFormat' => 'DMY', 'timeFormat' => 24, 'interval' => 30]);
+		echo $this->Form->input('to', ['type' => 'datetime', 'dateFormat' => 'DMY', 'timeFormat' => 24, 'interval' => 30]);
+		echo $this->Form->input('display_email', ['after' => ' Only logged in users will be able to see it.']);
 		echo $this->Form->input('comment');
 		echo $this->Form->input('event_id');
 	?>
@@ -17,6 +17,6 @@
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 
-		<li><?php echo $this->Html->link(__('Back'), array('action' => 'index')); ?></li>
+		<li><?php echo $this->Html->link(__('Back'), ['action' => 'index']); ?></li>
 	</ul>
 </div>

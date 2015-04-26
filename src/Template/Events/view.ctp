@@ -31,10 +31,10 @@
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('Edit Event'), array('action' => 'edit', $event['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Event'), array('action' => 'delete', $event['id']), array('confirm' => __('Are you sure you want to delete # {0}?', $event['id']))); ?> </li>
-		<li><?php echo $this->Html->link(__('List Events'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Event'), array('action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('Edit Event'), ['action' => 'edit', $event['id']]); ?> </li>
+		<li><?php echo $this->Form->postLink(__('Delete Event'), ['action' => 'delete', $event['id']], ['confirm' => __('Are you sure you want to delete # {0}?', $event['id'])]); ?> </li>
+		<li><?php echo $this->Html->link(__('List Events'), ['action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New Event'), ['action' => 'add']); ?> </li>
 	</ul>
 </div>
 

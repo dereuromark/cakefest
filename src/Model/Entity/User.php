@@ -13,10 +13,10 @@ class User extends AppEntity {
 	 * @return mixed
 	 */
 	public static function statuses($value = null) {
-		$array = array(
+		$array = [
 			self::STATUS_DEV => __('CakePHP Developer'),
 			self::STATUS_CORE_DEV => __('CakePHP Core Developer'),
-		);
+		];
 
 		return parent::enum($value, $array);
 	}

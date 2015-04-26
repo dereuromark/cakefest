@@ -9,19 +9,19 @@
 
 
 		$availableRoles = Cake\Core\Configure::read('Roles');
-		$roles = array();
+		$roles = [];
 		foreach ($availableRoles as $role => $id) {
 			$roles[$id] = $role;
 		}
-		echo $this->Form->input('role_id', array('options' => $roles));
-		echo $this->Form->input('status', array('options' => $user->statuses()));
+		echo $this->Form->input('role_id', ['options' => $roles]);
+		echo $this->Form->input('status', ['options' => $user->statuses()]);
 	?>
 	</fieldset>
 	<fieldset>
 		<legend>Set new password</legend>
 	<?php
-		echo $this->Form->input('pwd', array('type' => 'password'));
-		echo $this->Form->input('pwd_repeat', array('type' => 'password'));
+		echo $this->Form->input('pwd', ['type' => 'password']);
+		echo $this->Form->input('pwd_repeat', ['type' => 'password']);
 	?>
 	</fieldset>
 
@@ -42,7 +42,7 @@
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 
-		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $user->id), array('confirm' => __('Are you sure you want to delete # {0}?', $user->id))); ?></li>
-		<li><?php echo $this->Html->link(__('List Users'), array('action' => 'index')); ?></li>
+		<li><?php echo $this->Form->postLink(__('Delete'), ['action' => 'delete', $user->id], ['confirm' => __('Are you sure you want to delete # {0}?', $user->id)]); ?></li>
+		<li><?php echo $this->Html->link(__('List Users'), ['action' => 'index']); ?></li>
 	</ul>
 </div>

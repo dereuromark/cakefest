@@ -4,10 +4,10 @@
 <p>as <b><?php echo \App\Model\Entity\User::statuses($user['status'])?></b>.<p>
 <?php if ($user['status'] == \App\Model\Entity\User::STATUS_DEV) { ?>
 <?php
-	$url = array(
+	$url = [
 		'controller' => 'Contact',
-		'?' => array('subject' => 'Core Dev', 'message' => 'I am a core dev!')
-	);
+		'?' => ['subject' => 'Core Dev', 'message' => 'I am a core dev!']
+	];
 ?>
 <p>
 If you want to displayed under a different status (as core developer),
@@ -34,8 +34,8 @@ If you want to displayed under a different status (as core developer),
 		<td><?php echo $this->Format->yesNo($attendee['display_email']); ?>&nbsp;</td>
 
 		<td class="actions">
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $attendee['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $attendee['id']), array('confirm' => __('Are you sure you want to delete # {0}?', $attendee['id']))); ?>
+			<?php echo $this->Html->link(__('Edit'), ['action' => 'edit', $attendee['id']]); ?>
+			<?php echo $this->Form->postLink(__('Delete'), ['action' => 'delete', $attendee['id']], ['confirm' => __('Are you sure you want to delete # {0}?', $attendee['id'])]); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -52,8 +52,8 @@ If you want to displayed under a different status (as core developer),
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 	<?php if (!count($attendees)) { ?>
-		<li><?php echo $this->Html->link(__('Attend now'), array('action' => 'add')); ?></li>
+		<li><?php echo $this->Html->link(__('Attend now'), ['action' => 'add']); ?></li>
 	<?php } ?>
-		<li><?php echo $this->Html->link(__('Back'), array('controller' => 'Overview', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('Back'), ['controller' => 'Overview', 'action' => 'index']); ?> </li>
 	</ul>
 </div>

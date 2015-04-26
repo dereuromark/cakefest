@@ -3,13 +3,13 @@
 <?php
 		echo $this->Form->create(null);
 		echo $this->Form->input('search');
-		echo $this->Form->input('role_id', array(
+		echo $this->Form->input('role_id', [
 				'empty' => ' - no filter - '
-		));
-		echo $this->Form->input('status', array(
+		]);
+		echo $this->Form->input('status', [
 				'options' => App\Model\Entity\User::statuses(),
 				'empty' => ' - no filter - '
-		));
+		]);
 		echo $this->Form->submit(__('Submit'));
 		echo $this->Form->end();
 		?>
@@ -47,9 +47,9 @@
 		<td><?php echo h($user['language_id']); ?>&nbsp;</td>
 		<?php } ?>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $user['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $user['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $user['id']), array('confirm' => __('Are you sure you want to delete # {0}?', $user['id']))); ?>
+			<?php echo $this->Html->link(__('View'), ['action' => 'view', $user['id']]); ?>
+			<?php echo $this->Html->link(__('Edit'), ['action' => 'edit', $user['id']]); ?>
+			<?php echo $this->Form->postLink(__('Delete'), ['action' => 'delete', $user['id']], ['confirm' => __('Are you sure you want to delete # {0}?', $user['id'])]); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -59,6 +59,6 @@
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('Back'), array('controller' => 'Overview', 'action' => 'admin')); ?></li>
+		<li><?php echo $this->Html->link(__('Back'), ['controller' => 'Overview', 'action' => 'admin']); ?></li>
 	</ul>
 </div>

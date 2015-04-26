@@ -27,16 +27,16 @@ class AccountController extends AppController {
 		if ($this->Common->isPosted()) {
 			$user = $this->Auth->identify();
 			if ($user) {
-				$this->Users->addBehavior('Tools.Passwordable', array('confirm' => false));
+				$this->Users->addBehavior('Tools.Passwordable', ['confirm' => false]);
 				$password = $this->request->data['password'];
-				$dbPassword = $this->Users->field('password', array('id' => $user['id']));
+				$dbPassword = $this->Users->field('password', ['id' => $user['id']]);
 
 				if ($this->Users->needsPasswordRehash($dbPassword)) {
-					$data = array(
+					$data = [
 						'id' => $user['id'],
 						'pwd' => $password,
 						'modified' => false
-					);
+					];
 					$updatedUser = $this->Users->newEntity($data, ['markNew' => false]);
 					if (!$this->Users->save($updatedUser, ['validate' => false])) {
 						trigger_error(sprintf('Could not store new pwd for user %s.', $user['id']));
@@ -97,7 +97,7 @@ class AccountController extends AppController {
 			} elseif (!empty($key)) {
 				$uid = $key['user_id'];
 				$this->request->session()->write('Auth.Tmp.id', $uid);
-				return $this->redirect(array('action' => 'change_password'));
+				return $this->redirect(['action' => 'change_password']);
 			} else {
 				$this->Flash->message(__('Invalid Key'), 'error');
 			}
@@ -110,9 +110,9 @@ class AccountController extends AppController {
 
 			// Validate basic email scheme and captcha input.
 			if (!$user->errors()) {
-				$res = $this->Users->find('first', array(
-					'fields' => array('username', 'id', 'email'),
-					'conditions' => array('email' => $this->request->data['Form']['login'])));
+				$res = $this->Users->find('first', [
+					'fields' => ['username', 'id', 'email'],
+					'conditions' => ['email' => $this->request->data['Form']['login']]]);
 
 				// Valid user found to this email address
 				if (!empty($res)) {
@@ -141,7 +141,7 @@ class AccountController extends AppController {
 					} else {
 						$this->Flash->message(__('Confirmation Email could not be sent. Please consult an admin.'), 'error');
 					}
-					return $this->redirect(array('action' => 'lost_password'));
+					return $this->redirect(['action' => 'lost_password']);
 				}
 				$this->Flash->message(__('No account has been found for \'{0}\'', $this->request->data['Form']['login']), 'error');
 			}
@@ -160,30 +160,30 @@ class AccountController extends AppController {
 		$uid = $this->request->session()->read('Auth.Tmp.id');
 		if (empty($uid)) {
 			$this->Flash->message(__('You have to find your account first and click on the link in the email you receive afterwards'), 'error');
-			return $this->redirect(array('action' => 'lost_password'));
+			return $this->redirect(['action' => 'lost_password']);
 		}
 
 		if ($this->request->query('abort')) {
 			if (!empty($uid)) {
 				$this->request->session()->delete('Auth.Tmp');
 			}
-			return $this->redirect(array('action' => 'login'));
+			return $this->redirect(['action' => 'login']);
 		}
 
 		$user = $this->Users->newEntity();
 
-		$this->Users->addBehavior('Tools.Passwordable', array());
+		$this->Users->addBehavior('Tools.Passwordable', []);
 		if ($this->Common->isPosted()) {
 			$user = $this->Users->patchEntity($user, $this->request->data);
 			$user->id = $uid;
-			$options = array(
-				'fieldList' => array('id', 'pwd', 'pwd_repeat')
-			);
+			$options = [
+				'fieldList' => ['id', 'pwd', 'pwd_repeat']
+			];
 			if ($this->Users->save($user, $options)) {
 				$this->Flash->message(__('new pw saved - you may now log in'), 'success');
 				$this->request->session()->delete('Auth.Tmp');
-				$username = $this->Users->fieldByConditions('username', array('id' => $uid));
-				return $this->Common->postRedirect(array('action' => 'login', '?' => array('username' => $username)));
+				$username = $this->Users->fieldByConditions('username', ['id' => $uid]);
+				return $this->Common->postRedirect(['action' => 'login', '?' => ['username' => $username]]);
 			}
 			$this->Flash->message(__('formContainsErrors'), 'error');
 
@@ -212,7 +212,7 @@ class AccountController extends AppController {
 				$this->Flash->message(__('Account created'), 'success');
 				// Log in right away
 				$this->Auth->setUser($user->toArray());
-				return $this->redirect(array('controller' => 'Overview', 'action' => 'index'));
+				return $this->redirect(['controller' => 'Overview', 'action' => 'index']);
 			}
 			$this->Flash->message(__('formContainsErrors'), 'error');
 			// pwd should not be passed to the view again for security reasons
@@ -234,20 +234,20 @@ class AccountController extends AppController {
 	public function edit() {
 		$uid = $this->request->session()->read('Auth.User.id');
 		$user = $this->Users->get($uid);
-		$this->Users->addBehavior('Tools.Passwordable', array('require' => false));
+		$this->Users->addBehavior('Tools.Passwordable', ['require' => false]);
 
 		if ($this->Common->isPosted()) {
 			//$user->id = $uid;
-			$options = array(
+			$options = [
 				//'validate' => true,
 				//'fieldList' => array('id', 'username', 'email', 'irc_nick', 'pwd', 'pwd_repeat')
-			);
+			];
 			$user = $this->Users->patchEntity($user, $this->request->data);
 			if ($this->Users->save($user, $options)) {
 				// Update session data, as well
 				$this->Flash->message(__('Account modified'), 'success');
 				$this->Auth->setUser($user->toArray());
-				return $this->redirect(array('controller' => 'Overview', 'action' => 'index'));
+				return $this->redirect(['controller' => 'Overview', 'action' => 'index']);
 			}
 			$this->Flash->message(__('formContainsErrors'), 'error');
 
@@ -273,7 +273,7 @@ class AccountController extends AppController {
 			throw new InternalErrorException();
 		}
 		$this->Flash->message('Account deleted', 'success');
-		return $this->redirect(array('action' => 'logout'));
+		return $this->redirect(['action' => 'logout']);
 	}
 
 }

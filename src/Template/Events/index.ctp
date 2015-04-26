@@ -15,9 +15,9 @@
 		<td><?php echo h($event['name']); ?>&nbsp;</td>
 		<td><?php echo h($event['description']); ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $event['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $event['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $event['id']), array('confirm' => __('Are you sure you want to delete # {0}?', $event['id']))); ?>
+			<?php echo $this->Html->link(__('View'), ['action' => 'view', $event['id']]); ?>
+			<?php echo $this->Html->link(__('Edit'), ['action' => 'edit', $event['id']]); ?>
+			<?php echo $this->Form->postLink(__('Delete'), ['action' => 'delete', $event['id']], ['confirm' => __('Are you sure you want to delete # {0}?', $event['id'])]); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -27,7 +27,7 @@
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('New Event'), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('Back'), array('controller' => 'Overview', 'action' => 'admin')); ?></li>
+		<li><?php echo $this->Html->link(__('New Event'), ['action' => 'add']); ?></li>
+		<li><?php echo $this->Html->link(__('Back'), ['controller' => 'Overview', 'action' => 'admin']); ?></li>
 	</ul>
 </div>

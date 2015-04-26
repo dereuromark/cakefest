@@ -10,8 +10,8 @@
 	<fieldset>
 		<legend>Set new password</legend>
 	<?php
-		echo $this->Form->input('pwd', array('type' => 'password'));
-		echo $this->Form->input('pwd_repeat', array('type' => 'password'));
+		echo $this->Form->input('pwd', ['type' => 'password']);
+		echo $this->Form->input('pwd_repeat', ['type' => 'password']);
 	?>
 	</fieldset>
 
@@ -33,6 +33,6 @@
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 
-		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $user->id), array('confirm' => __('Are you sure you want to delete your account # {0}?', $user->id))); ?></li>
+		<li><?php echo $this->Form->postLink(__('Delete'), ['action' => 'delete', $user->id], ['confirm' => __('Are you sure you want to delete your account # {0}?', $user->id)]); ?></li>
 	</ul>
 </div>

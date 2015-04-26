@@ -16,6 +16,6 @@
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 
-		<li><?php echo $this->Html->link(__('List Events'), array('action' => 'index')); ?></li>
+		<li><?php echo $this->Html->link(__('List Events'), ['action' => 'index']); ?></li>
 	</ul>
 </div>

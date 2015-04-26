@@ -5,7 +5,7 @@
 	<?php
 	foreach ($lastAttendees as $attendee) {
 		$label = $attendee->user->username . ' - ' . $attendee->user->email;
-		echo $this->Form->input('Form.' . $attendee['id'] . '.check', array('type' => 'checkbox', 'label' => $label));
+		echo $this->Form->input('Form.' . $attendee['id'] . '.check', ['type' => 'checkbox', 'label' => $label]);
 		echo $this->Form->hidden('Form.' . $attendee['id'] . '.user_id');
 		echo $this->Form->hidden('Form.' . $attendee['id'] . '.email');
 		echo $this->Form->hidden('Form.' . $attendee['id'] . '.username');
@@ -19,7 +19,7 @@
 		<legend>Message</legend>
 	<?php
 		echo $this->Form->input('subject');
-		echo $this->Form->input('message', array('type' => 'textarea'));
+		echo $this->Form->input('message', ['type' => 'textarea']);
 	?>
 	</fieldset>
 	<?php echo $this->Form->submit(__('Send')); ?>
@@ -28,6 +28,6 @@
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('List Attendees'), array('action' => 'index')); ?></li>
+		<li><?php echo $this->Html->link(__('List Attendees'), ['action' => 'index']); ?></li>
 	</ul>
 </div>

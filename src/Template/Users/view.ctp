@@ -61,8 +61,8 @@
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('Edit User'), array('action' => 'edit', $user['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete User'), array('action' => 'delete', $user['id']), array('confirm' => __('Are you sure you want to delete # {0}?', $user['id']))); ?> </li>
-		<li><?php echo $this->Html->link(__('List Users'), array('action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('Edit User'), ['action' => 'edit', $user['id']]); ?> </li>
+		<li><?php echo $this->Form->postLink(__('Delete User'), ['action' => 'delete', $user['id']], ['confirm' => __('Are you sure you want to delete # {0}?', $user['id'])]); ?> </li>
+		<li><?php echo $this->Html->link(__('List Users'), ['action' => 'index']); ?> </li>
 	</ul>
 </div>

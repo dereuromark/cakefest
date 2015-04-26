@@ -1,7 +1,7 @@
 You requested to reset your password.
 
 Please click on the link to confirm your request:
-<?php echo $this->Html->url(array('controller' => 'Account', 'action' => 'lost_password', $cCode), true);?>
+<?php echo $this->Html->url(['controller' => 'Account', 'action' => 'lost_password', $cCode], true);?>
 
 
 Alternativly, you can also insert the code manually on the website:

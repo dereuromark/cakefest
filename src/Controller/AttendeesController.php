@@ -54,7 +54,7 @@ class AttendeesController extends AppController {
 	public function view($id = null) {
 		if (empty($id) || !($attendee = $this->Attendees->get($id, ['contain' => ['Events', 'Users']]))) {
 			$this->Flash->message(__('invalidRecord'), 'error');
-			return $this->Common->autoRedirect(array('action' => 'index'));
+			return $this->Common->autoRedirect(['action' => 'index']);
 		}
 		$this->set(compact('attendee'));
 	}
@@ -66,16 +66,16 @@ class AttendeesController extends AppController {
 	 * @return void
 	 */
 	public function edit($id = null) {
-		if (empty($id) || !($attendee = $this->Attendees->find('first', array('conditions' => array('Attendees.id' => $id))))) {
+		if (empty($id) || !($attendee = $this->Attendees->find('first', ['conditions' => ['Attendees.id' => $id]]))) {
 			$this->Flash->message(__('invalidRecord'), 'error');
-			return $this->Common->autoRedirect(array('action' => 'index'));
+			return $this->Common->autoRedirect(['action' => 'index']);
 		}
 		if ($this->Common->isPosted()) {
 			$this->Attendees->patchEntity($attendee, $this->request->data);
 			if ($this->Attendees->save($attendee)) {
 				$var = $this->request->data['user_id'];
 				$this->Flash->message(__('record edit {0} saved', h($var)), 'success');
-				return $this->Common->postRedirect(array('action' => 'index'));
+				return $this->Common->postRedirect(['action' => 'index']);
 			}
 			$this->Flash->message(__('formContainsErrors'), 'error');
 		}
@@ -94,18 +94,18 @@ class AttendeesController extends AppController {
 	 */
 	public function delete($id = null) {
 		$this->request->allowMethod(['post', 'delete']);
-		if (empty($id) || !($attendee = $this->Attendees->find('first', array('conditions' => array('Attendees.id' => $id), 'fields' => array('id', 'user_id'))))) {
+		if (empty($id) || !($attendee = $this->Attendees->find('first', ['conditions' => ['Attendees.id' => $id], 'fields' => ['id', 'user_id']]))) {
 			$this->Flash->message(__('invalidRecord'), 'error');
-			return $this->Common->autoRedirect(array('action' => 'index'));
+			return $this->Common->autoRedirect(['action' => 'index']);
 		}
 		$var = $attendee['user_id'];
 
 		if ($this->Attendees->delete($attendee)) {
 			$this->Flash->message(__('record del {0} done', h($var)), 'success');
-			return $this->Common->postRedirect(array('action' => 'index'));
+			return $this->Common->postRedirect(['action' => 'index']);
 		}
 		$this->Flash->message(__('record del {0} not done exception', h($var)), 'error');
-		return $this->Common->autoRedirect(array('action' => 'index'));
+		return $this->Common->autoRedirect(['action' => 'index']);
 	}
 
 	/**
@@ -118,24 +118,24 @@ class AttendeesController extends AppController {
 		if ($this->Common->isPosted()) {
 			if ($count = $this->_sendNotifications()) {
 				$this->Flash->message(__('mails sent {0}', $count), 'success');
-				return $this->Common->postRedirect(array('action' => 'index'));
+				return $this->Common->postRedirect(['action' => 'index']);
 			}
 			$this->Flash->message(__('formContainsErrors'), 'error');
 		} else {
-			$data = array();
+			$data = [];
 			foreach ($lastAttendees as $attendee) {
-				$data[$attendee['id']] = array(
+				$data[$attendee['id']] = [
 					'email' => $attendee->user['email'],
 					'username' => $attendee->user['username'],
 					'user_id' => $attendee->user['id'],
-					'check' => true);
+					'check' => true];
 			}
 			$this->request->data['Form'] = $data;
 
-			$this->request->data['ContactForm'] = array(
+			$this->request->data['ContactForm'] = [
 				'subject' => 'CakeFest' . date('Y'),
 				'message' => 'You have been part of the CakeFest last year. Are you joining this year, as well?'
-			);
+			];
 		}
 		$this->set(compact('lastAttendees'));
 	}
@@ -146,9 +146,9 @@ class AttendeesController extends AppController {
 	 * @return void
 	 */
 	public function notify_invalid() {
-		$event = $this->Attendees->Events->find('all', array('order' => array('from' => 'DESC')))->first();
+		$event = $this->Attendees->Events->find('all', ['order' => ['from' => 'DESC']])->first();
 
-		$lastAttendees = $this->Attendees->find('all', array('conditions' => array('Attendees.event_id' => $event['id'])))->contain('Users');
+		$lastAttendees = $this->Attendees->find('all', ['conditions' => ['Attendees.event_id' => $event['id']]])->contain('Users');
 
 		$lastAttendees = $lastAttendees->toArray();
 		foreach ($lastAttendees as $key => $attendee) {
@@ -162,23 +162,23 @@ class AttendeesController extends AppController {
 		if ($this->Common->isPosted()) {
 			if ($count = $this->_sendNotifications()) {
 				$this->Flash->message(__('mails sent {0}', $count), 'success');
-				return $this->Common->postRedirect(array('action' => 'index'));
+				return $this->Common->postRedirect(['action' => 'index']);
 			}
 			$this->Flash->message(__('formContainsErrors'), 'error');
 		} else {
-			$data = array();
+			$data = [];
 			foreach ($lastAttendees as $attendee) {
-				$data[$attendee['id']] = array(
+				$data[$attendee['id']] = [
 					'email' => $attendee->user->email,
 					'username' => $attendee->user->username,
 					'user_id' => $attendee->user->id,
-					'check' => true);
+					'check' => true];
 			}
 
-			$this->request->data = array(
+			$this->request->data = [
 				'subject' => 'CakeFest ' . date('Y'),
 				'message' => 'You signed up for CakeFest this year. But your submitted dates seem to be invalid. Can you please correct them?'
-			);
+			];
 			$this->request->data['Form'] = $data;
 		}
 
