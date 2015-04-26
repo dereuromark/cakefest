@@ -35,8 +35,7 @@ class UsersControllerTest extends IntegrationTestCase {
 	 *
 	 * @return void
 	 */
-	public function testIndex()
-	{
+	public function testIndex() {
 		$this->get(array('controller' => 'Users', 'action' => 'index'));
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();
@@ -47,8 +46,7 @@ class UsersControllerTest extends IntegrationTestCase {
 	 *
 	 * @return void
 	 */
-	public function testViewInvalid()
-	{
+	public function testViewInvalid() {
 		$id = 999;
 
 		$this->get(array('controller' => 'Users', 'action' => 'view', $id));
@@ -61,8 +59,7 @@ class UsersControllerTest extends IntegrationTestCase {
 	 *
 	 * @return void
 	 */
-	public function testView()
-	{
+	public function testView() {
 		$Users = TableRegistry::get('Users');
 		$record = $Users->find()->first();
 		$id = $record->id;
@@ -77,13 +74,12 @@ class UsersControllerTest extends IntegrationTestCase {
 	 *
 	 * @return void
 	 */
-	public function testEdit()
-	{
+	public function testEdit() {
 		$Users = TableRegistry::get('Users');
 		$record = $Users->find()->first();
 		$id = $record->id;
 
-		$this->get(array('controller' => 'Users', 'action' => 'view', $id));
+		$this->get(array('controller' => 'Users', 'action' => 'edit', $id));
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();
 	}
@@ -93,8 +89,7 @@ class UsersControllerTest extends IntegrationTestCase {
 	 *
 	 * @return void
 	 */
-	public function testDelete()
-	{
+	public function testDelete() {
 		$Users = TableRegistry::get('Users');
 		$record = $Users->find()->first();
 		$id = $record->id;

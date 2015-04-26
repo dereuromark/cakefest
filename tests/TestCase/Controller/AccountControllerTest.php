@@ -225,4 +225,36 @@ class AccountControllerTest extends IntegrationTestCase {
 		$this->assertNoRedirect();
 	}
 
+	/**
+	 * AccountControllerTest::testLogout()
+	 *
+	 * @return void
+	 */
+	public function testEdit() {
+		$this->get(array('controller' => 'Account', 'action' => 'edit'));
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
+	/**
+	 * Test delete method
+	 *
+	 * @return void
+	 */
+	public function testDelete() {
+		$Users = TableRegistry::get('Users');
+		$record = $Users->find()->first();
+		$id = $record->id;
+
+		$session = array('Auth' => array('User' => array('id' => $id)));
+		$this->session($session);
+
+		$this->post(array('controller' => 'Account', 'action' => 'delete'));
+		$this->assertResponseCode(302);
+		$this->assertRedirect();
+
+		$record = $Users->find()->where(['id' => $id])->first();
+		$this->assertEmpty($record);
+	}
+
 }
