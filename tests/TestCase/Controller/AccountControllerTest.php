@@ -22,6 +22,12 @@ class AccountControllerTest extends IntegrationTestCase {
 		parent::setUp();
 	}
 
+	public function tearDown() {
+		parent::tearDown();
+
+		TableRegistry::clear();
+	}
+
 	/**
 	 * Test index method
 	 *
@@ -226,10 +232,10 @@ class AccountControllerTest extends IntegrationTestCase {
 	}
 
 	/**
-	 * AccountControllerTest::testLogout()
-	 *
-	 * @return void
-	 */
+ * AccountControllerTest::testEdit()
+ *
+ * @return void
+ */
 	public function testEdit() {
 		$Users = TableRegistry::get('Users');
 		$record = $Users->find()->first();
@@ -241,6 +247,24 @@ class AccountControllerTest extends IntegrationTestCase {
 		$this->get(['controller' => 'Account', 'action' => 'edit']);
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();
+	}
+
+	/**
+	 * AccountControllerTest::testEdit()
+	 *
+	 * @return void
+	 */
+	public function testEditPost() {
+		$Users = TableRegistry::get('Users');
+		$record = $Users->find()->first();
+		$id = $record->id;
+
+		$session = ['Auth' => ['User' => ['id' => $id, 'role_id' => 1]]];
+		$this->session($session);
+
+		$this->post(['controller' => 'Account', 'action' => 'edit']);
+		$this->assertResponseCode(302);
+		$this->assertRedirect();
 	}
 
 	/**
