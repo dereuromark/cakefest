@@ -270,7 +270,7 @@ class AccountController extends AppController {
 		$this->request->allowMethod(['post', 'delete']);
 		$uid = $this->request->session()->read('Auth.User.id');
 		$user = $this->Users->get($uid);
-		if (!$this->User->delete($user)) {
+		if (!$this->Users->delete($user)) {
 			throw new InternalErrorException();
 		}
 		$this->Flash->message('Account deleted', 'success');

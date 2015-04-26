@@ -235,7 +235,7 @@ class AccountControllerTest extends IntegrationTestCase {
 		$record = $Users->find()->first();
 		$id = $record->id;
 
-		$session = ['Auth' => ['User' => ['id' => $id]]];
+		$session = ['Auth' => ['User' => ['id' => $id, 'role_id' => 1]]];
 		$this->session($session);
 
 		$this->get(['controller' => 'Account', 'action' => 'edit']);
@@ -253,7 +253,7 @@ class AccountControllerTest extends IntegrationTestCase {
 		$record = $Users->find()->first();
 		$id = $record->id;
 
-		$session = ['Auth' => ['User' => ['id' => $id]]];
+		$session = ['Auth' => ['User' => ['id' => $id, 'role_id' => 1]]];
 		$this->session($session);
 
 		$this->post(['controller' => 'Account', 'action' => 'delete']);
