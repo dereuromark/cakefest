@@ -30,6 +30,12 @@ class UsersControllerTest extends IntegrationTestCase {
 		$this->session($data);
 	}
 
+	public function tearDown() {
+		parent::tearDown();
+
+		TableRegistry::clear();
+	}
+
 	/**
 	 * Test index method
 	 *
