@@ -103,7 +103,7 @@ class AccountController extends AppController {
 			}
 
 		} elseif (!empty($this->request->data['Form']['login'])) {
-			$this->Users->addBehavior('Tools.Captcha');
+			//$this->Users->addBehavior('Tools.Captcha');
 			unset($this->Users->validate['email']['isUnique']);
 
 			$user = $this->Users->patchEntity($user, $this->request->data);
@@ -117,11 +117,11 @@ class AccountController extends AppController {
 				// Valid user found to this email address
 				if (!empty($res)) {
 					$uid = $res['id'];
-					$this->Tokens = ClassRegistry::init('Tools.Tokens');
+					$this->Tokens = TableRegistry::get('Tools.Tokens');
 					$cCode = $this->Tokens->newKey('reset_pwd', null, $uid);
 					if (Configure::read('debug') > 0) {
 						$debugMessage = 'DEBUG MODE: Show activation key - ' . h($res->user['username']) . ' | ' . $cCode;
-						$this->Flash->message($debugMessage, 'info');
+						$this->Flash->info($debugMessage);
 					}
 
 					// Send email
@@ -136,14 +136,14 @@ class AccountController extends AppController {
 						// Confirmation output
 						$email = h(FormatHelper::hideEmail($res['email']));
 
-						$this->Flash->message(__('An email with instructions has been send to \'{0}\'.', $email), 'success');
-						$this->Flash->message(__('In a third step you will then be able to change your password.'), 'success');
+						$this->Flash->success(__('An email with instructions has been send to \'{0}\'.', $email));
+						$this->Flash->success(__('In a third step you will then be able to change your password.'));
 					} else {
-						$this->Flash->message(__('Confirmation Email could not be sent. Please consult an admin.'), 'error');
+						$this->Flash->error(__('Confirmation Email could not be sent. Please consult an admin.'));
 					}
 					return $this->redirect(['action' => 'lost_password']);
 				}
-				$this->Flash->message(__('No account has been found for \'{0}\'', $this->request->data['Form']['login']), 'error');
+				$this->Flash->error(__('No account has been found for \'{0}\'', $this->request->data['Form']['login']));
 			}
 		}
 
@@ -188,8 +188,8 @@ class AccountController extends AppController {
 			$this->Flash->message(__('formContainsErrors'), 'error');
 
 			// Pwd should not be passed to the view again for security reasons.
-			unset($this->request->data['User']['pwd']);
-			unset($this->request->data['User']['pwd_repeat']);
+			unset($this->request->data['pwd']);
+			unset($this->request->data['pwd_repeat']);
 		}
 
 		$this->set(compact('user'));
@@ -216,10 +216,10 @@ class AccountController extends AppController {
 			}
 			$this->Flash->message(__('formContainsErrors'), 'error');
 			// pwd should not be passed to the view again for security reasons
-			$user->unsetProperty('pwd');
-			$user->unsetProperty('pwd_repeat');
-			//unset($this->request->data['User']['pwd']);
-			//unset($this->request->data['User']['pwd_repeat']);
+			//$user->unsetProperty('pwd');
+			//$user->unsetProperty('pwd_repeat');
+			unset($this->request->data['pwd']);
+			unset($this->request->data['pwd_repeat']);
 		}
 
 		$this->set(compact('user'));

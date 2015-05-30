@@ -37,10 +37,10 @@ class UsersFixture extends TestFixture {
 	public $records = [
 		[
 			'id' => 1,
-			'username' => 'Lorem ipsum dolor sit amet',
-			'email' => 'Lorem ipsum dolor sit amet',
-			'password' => 'Lorem ipsum dolor sit amet',
-			'timezone' => 'Lorem ipsum dolor sit amet',
+			'username' => 'foo',
+			'email' => 'foo@bar.de',
+			'password' => 'hashed',
+			'timezone' => '',
 			'status' => 1,
 			'created' => '2013-08-08 14:25:09',
 			'modified' => '2013-08-08 14:25:09',

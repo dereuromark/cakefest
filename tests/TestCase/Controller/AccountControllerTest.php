@@ -16,7 +16,9 @@ class AccountControllerTest extends IntegrationTestCase {
 	 *
 	 * @var array
 	 */
-	public $fixtures = ['Users' => 'app.users', 'Attendees' => 'app.attendees', 'Events' => 'app.events'];
+	public $fixtures = [
+		'Users' => 'app.users', 'Attendees' => 'app.attendees', 'Events' => 'app.events',
+		'plugin.Tools.tokens'];
 
 	public function setUp() {
 		parent::setUp();
@@ -168,6 +170,22 @@ class AccountControllerTest extends IntegrationTestCase {
 		$this->get(['controller' => 'Account', 'action' => 'lost_password']);
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();
+	}
+
+	/**
+	 * AccountControllerTest::testLogout()
+	 *
+	 * @return void
+	 */
+	public function testLostPasswordPost() {
+		$data = [
+			'Form' => [
+				'login' => 'foo@bar.de',
+			]
+		];
+		$this->post(['controller' => 'Account', 'action' => 'lost_password'], $data);
+		$this->assertResponseCode(302);
+		$this->assertRedirect();
 	}
 
 	/**
