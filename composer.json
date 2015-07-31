@@ -41,6 +41,11 @@
 			"Cake\\Test\\Fixture\\": "./vendor/cakephp/cakephp/tests/Fixture"
 		}
 	},
+	"repositories" : [{
+		"type" : "vcs",
+		"url" : "https://github.com/dereuromark/search"
+	}
+	],
 	"scripts": {
 		"post-install-cmd": "App\\Console\\Installer::postInstall"
 	},

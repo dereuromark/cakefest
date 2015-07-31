@@ -18,6 +18,15 @@ return [
 		'passwordHasher' => ['className' => 'Fallback', 'hashers' => ['Default', 'Weak']]
 	],
 
+	'Log' => [
+		'debug' => [
+			'scopes' => false,
+		],
+		'error' => [
+			'scopes' => false,
+		],
+	],
+
 	'Roles' => array(
 		'admin' => '1',
 		'user' => '2',
