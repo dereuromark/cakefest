@@ -43,12 +43,18 @@ return [
 		'js' => 'buffer'
 	),
 
-  // Please provide the following using the app_locale.php which is not under version control
-	'Email' => array(
-		'Smtp' => array(
+	// Please provide the following using the app_locale.php which is not under version control
+	'Email' => [
+		'default' => [
+			'from' => ''
+		]
+	],
+
+	'EmailTransport' => [
+		'default' => [
 			'host' => '',
 			'username' => '',
 			'password' => ''
-		)
-	)
+		]
+	]
 ];
