@@ -9,8 +9,8 @@ A fun app to socialize around the upcoming CakeFest this year.
 Join in and tell others about your planned trip to the conference, and maybe what else you are planning to do in the city.
 
 * Check it out live:
-  - Cake2 version: http://cakefest.dereuromark.de
-  - NEW Cake3 version: http://cakefest3.dereuromark.de
+  - CakePHP 2 version: *install yourself from master branch*
+  - NEW CakePHP 3 version: http://cakefest.dereuromark.de
 
 * Author: Mark Scherer alias dereuromark
 
