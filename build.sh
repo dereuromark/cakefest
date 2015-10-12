@@ -18,8 +18,8 @@ mkdir -p ./logs
 mkdir -p ./webroot/js/cjs/
 mkdir -p ./webroot/css/ccss/
 
-#echo "### DB MIGRATION ###";
-#bin/cake Migrations migrate
+echo "### DB MIGRATION ###";
+bin/cake Migrations migrate
 
 echo "### ASSETS ###";
 bin/cake AssetCompress.AssetCompress build

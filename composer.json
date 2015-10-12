@@ -22,6 +22,7 @@
 		"dereuromark/cakephp-setup": "dev-master",
 		"friendsofcake/authenticate": "dev-cake3",
 		"CakeDC/search" : "3.0.*-dev",
+		"markstory/asset_compress": "~3.0",
 		"cakephp/migrations": "~1.1"
 	},
 	"require-dev": {
