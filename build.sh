@@ -11,13 +11,14 @@ php composer.phar install --prefer-dist --no-dev --optimize-autoloader --no-inte
 
 chmod +x bin/cake
 
+[ ! -f config/app_local.php ] && cp config/app_local.default.php config/app_local.php
+
 mkdir -p ./tmp
 mkdir -p ./logs
 mkdir -p ./webroot/js/cjs/
 mkdir -p ./webroot/css/ccss/
 
 #echo "### DB MIGRATION ###";
-# Don't forget to "chmod +x bin/cake" first
 #bin/cake Migrations migrate
 
 echo "### ASSETS ###";
