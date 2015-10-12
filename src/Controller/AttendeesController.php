@@ -3,7 +3,7 @@ namespace App\Controller;
 
 use Cake\Event\Event;
 use App\Controller\AppController;
-use Tools\Network\Email\Email;
+use Tools\Mailer\Email;
 use Cake\Core\Configure;
 
 /**

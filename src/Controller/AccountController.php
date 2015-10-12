@@ -3,8 +3,8 @@ namespace App\Controller;
 
 use Cake\Event\Event;
 use App\Controller\AppController;
-use Tools\View\Helper\FormatHelper;
-use Tools\Network\Email\Email;
+use Tools\View\Helper\ObfuscateHelper;
+use Tools\Mailer\Email;
 use Cake\Core\Configure;
 use Cake\ORM\TableRegistry;
 
@@ -134,7 +134,7 @@ class AccountController extends AppController {
 					$this->Email->viewVars(compact('cCode'));
 					if ($this->Email->send()) {
 						// Confirmation output
-						$email = h(FormatHelper::hideEmail($res['email']));
+						$email = h(ObfuscateHelper::hideEmail($res['email']));
 
 						$this->Flash->success(__('An email with instructions has been send to \'{0}\'.', $email));
 						$this->Flash->success(__('In a third step you will then be able to change your password.'));
