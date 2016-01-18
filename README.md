@@ -1,7 +1,7 @@
 # CakePHP CakeFest APP
-[![Build Status](https://api.travis-ci.org/dereuromark/cakefest.png?branch=3.0)](https://travis-ci.org/dereuromark/cakefest)
-[![Coverage Status](https://coveralls.io/repos/dereuromark/cakefest/badge.png?branch=3.0)](https://coveralls.io/r/dereuromark/cakefest)
-[![License](https://poser.pugx.org/dereuromark/cakefest/license.png)](https://packagist.org/packages/dereuromark/cakefest)
+[![Build Status](https://api.travis-ci.org/dereuromark/cakefest.svg?branch=3.0)](https://travis-ci.org/dereuromark/cakefest)
+[![Coverage Status](https://coveralls.io/repos/dereuromark/cakefest/badge.svg?branch=3.0)](https://coveralls.io/r/dereuromark/cakefest)
+[![License](https://poser.pugx.org/dereuromark/cakefest/license.svg)](https://packagist.org/packages/dereuromark/cakefest)
 [![Minimum PHP Version](http://img.shields.io/badge/php-%3E%3D%205.4-8892BF.svg)](https://php.net/)
 [![Coding Standards](https://img.shields.io/badge/cs-PSR--2--R-yellow.svg)](https://github.com/php-fig-rectified/fig-rectified-standards)
 
