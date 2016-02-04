@@ -28,7 +28,7 @@ use Cake\Core\Plugin;
 use Cake\Datasource\ConnectionManager;
 use Cake\Error\ErrorHandler;
 use Cake\Log\Log;
-use Cake\Network\Email\Email;
+use Cake\Mailer\Email;
 use Cake\Network\Request;
 use Cake\Routing\DispatcherFactory;
 use Cake\Routing\Router;
@@ -143,7 +143,7 @@ Request::addDetector('tablet', function ($request) {
  * Inflector::rules('plural', ['/^(inflect)or$/i' => '\1ables']);
  * Inflector::rules('irregular' => ['red' => 'redlings']);
  * Inflector::rules('uninflected', ['dontinflectme']);
- * Inflector::rules('transliteration', ['/å/' => 'aa']);
+ * Inflector::rules('transliteration', ['/ï¿½/' => 'aa']);
  */
 
 /**

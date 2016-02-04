@@ -64,8 +64,11 @@
 
 				Bugs? Issues? <a href="https://github.com/dereuromark/cakefest" target="_blank">Open a PR/ticket</a> or <?php echo $this->Html->link('contact me', $url)?>.
 
-				</p><p>
+				</p>
+				<?php if (false) { ?>
+				<p>
 				More infos to the event at <a href="http://lanyrd.com/2015/cakefest/" target="_blank">lanyrd.com/2015/cakefest/</a>.</p>
+				<?php } ?>
 			</div>
 
 			<?php echo $this->Html->link(
