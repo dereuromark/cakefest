@@ -8,8 +8,8 @@ use Tools\Utility\Time;
 /**
  * Attendance Controller
  *
- * @property Attendee $Attendee
- * @property PaginatorComponent $Paginator
+ * @property \App\Model\Table\AttendeesTable $Attendees
+ * @property \Cake\Controller\Component\PaginatorComponent $Paginator
  */
 class AttendanceController extends AppController {
 
@@ -34,7 +34,7 @@ class AttendanceController extends AppController {
 	 * @return void
 	 */
 	public function add() {
-		$events = $this->Attendees->Events->find('list', ['conditions' => ['Events.to >=' => date(FORMAT_DB_DATETIME)]]);
+		$events = $this->Attendees->Events->find('list', ['conditions' => ['Events.to >=' => new Time()]]);
 
 		$defaults = [
 			'from' => new Time(),
@@ -48,10 +48,11 @@ class AttendanceController extends AppController {
 				$key = array_shift($key);
 
 				$event = $this->Attendees->Events->get($key);
-				$defaults['from'] = $event['from']->format(FORMAT_DB_DATE) . ' ' . '08:00:00';
-				$defaults['to'] = $event['to']->format(FORMAT_DB_DATE) . ' ' . '20:00:00';
+				$defaults['from'] = $event['from']->format('Y-m-d') . ' ' . '08:00:00';
+				$defaults['to'] = $event['to']->format('Y-m-d') . ' ' . '20:00:00';
 			}
 		}
+
 		$this->request->data += $defaults;
 		$attendee = $this->Attendees->newEntity();
 
@@ -91,7 +92,7 @@ class AttendanceController extends AppController {
 			}
 			$this->Flash->message(__('formContainsErrors'), 'error');
 		}
-		$events = $this->Attendees->Events->find('list', ['conditions' => ['Events.to >=' => date(FORMAT_DB_DATETIME)]]);
+		$events = $this->Attendees->Events->find('list', ['conditions' => ['Events.to >=' => date('Y-m-d')]]);
 		$this->set(compact('attendee', 'events'));
 		$this->render('add');
 	}

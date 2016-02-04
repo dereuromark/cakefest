@@ -10,8 +10,8 @@
 	</tr>
 	<?php foreach ($events as $event): ?>
 	<tr>
-		<td><?php echo h($event['from']); ?>&nbsp;</td>
-		<td><?php echo h($event['to']); ?>&nbsp;</td>
+		<td><?php echo $this->Time->niceDate($event['from']); ?>&nbsp;</td>
+		<td><?php echo $this->Time->niceDate($event['to']); ?>&nbsp;</td>
 		<td><?php echo h($event['name']); ?>&nbsp;</td>
 		<td><?php echo h($event['description']); ?>&nbsp;</td>
 		<td class="actions">

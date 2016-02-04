@@ -27,6 +27,7 @@ use Cake\Core\Configure\Engine\PhpConfig;
 use Cake\Core\Plugin;
 use Cake\Datasource\ConnectionManager;
 use Cake\Error\ErrorHandler;
+use Cake\I18n\Time;
 use Cake\Log\Log;
 use Cake\Mailer\Email;
 use Cake\Network\Request;
@@ -156,13 +157,9 @@ Request::addDetector('tablet', function ($request) {
  *
  */
 Plugin::loadAll(array(
-		'Tools' => array('autoload' => true, 'bootstrap' => true),
-		//'Setup',
+		'Tools' => ['bootstrap' => true],
+		'Setup' => ['bootstrap' => true],
 		'DebugKit' => ['bootstrap' => true],
-		//'FOC/Authenticate',
-		//'Search',
-		//'TinyAuth',
-		//'Geo'
 ));
 
 /**
@@ -173,6 +170,8 @@ DispatcherFactory::add('Routing');
 DispatcherFactory::add('ControllerFactory');
 
 //Router::extensions(['json']);
+
+Time::setToStringFormat('YYYY-MM-dd HH:mm');
 
 define('USER_ROLE_KEY', 'role_id');
 

@@ -115,24 +115,24 @@ class AttendeesTable extends AppTable {
 			case 'from':
 				$compare = $compareDate->copy()->subDays(10);
 				if (!($date->gte($compare))) {
-					return 'You cannot set a date before ' . $compare->format(FORMAT_DB_DATE);
+					return 'You cannot set a date before ' . $compare->format('Y-m-d');
 				}
 				$compareDate = $event['to'];
 				$compare = $compareDate->copy()->addDays(10);
 				if (!($date->lte($compare))) {
-					return 'You cannot set a date after ' . $compare->format(FORMAT_DB_DATE);
+					return 'You cannot set a date after ' . $compare->format('Y-m-d');
 				}
 				return true;
 			case 'to':
 				$compare = $compareDate->copy()->addDays(10);
 				$date = $date->copy()->startofDay();
 				if (!($date->lte($compare))) {
-					return 'You cannot set a date after ' . $compare->format(FORMAT_DB_DATE);
+					return 'You cannot set a date after ' . $compare->format('Y-m-d');
 				}
 				$compareDate = $event['from'];
 				$compare = $compareDate->copy()->subDays(10);
 				if (!($date->gte($compare))) {
-					return 'You cannot set a date before ' . $compare->format(FORMAT_DB_DATE);
+					return 'You cannot set a date before ' . $compare->format('Y-m-d');
 				}
 				return true;
 		}
