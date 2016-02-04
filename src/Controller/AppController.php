@@ -5,6 +5,7 @@ use Cake\Event\Event;
 use Tools\Controller\Controller;
 use Cake\Core\Plugin;
 use Cake\Core\Configure;
+use Tools\Utility\Language;
 
 /**
  * Application Controller
@@ -73,7 +74,8 @@ class AppController extends Controller {
 	/**
 	 * AppController::beforeFilter()
 	 *
-	 * @return void
+	 * @param \Cake\Event\Event $event
+	 * @return \Cake\Network\Response|null
 	 */
 	public function beforeFilter(Event $event) {
 		parent::beforeFilter($event);
@@ -81,7 +83,7 @@ class AppController extends Controller {
 		// Do not allow access to these public actions when already logged in
 		$allowed = ['Account' => ['login', 'lost_password', 'register']];
 		if (!$this->AuthUser->id()) {
-			return;
+			return null;
 		}
 		foreach ($allowed as $controller => $actions) {
 			if ($this->name === $controller && in_array($this->request->action, $actions)) {
@@ -93,7 +95,7 @@ class AppController extends Controller {
 		// Locale detection
 		//preg_match('/([a-z]{2})-([A-Z]{2})/', env('HTTP_ACCEPT_LANGUAGE'), $matches);
 		//TODO: use request->parseLanguage stuff instead()
-		$matches = \Tools\Utility\Language::parseLanguageList();
+		$matches = Language::parseLanguageList();
 		$matches = [];
 		if ($matches) {
 			$locale = array_shift($matches);
