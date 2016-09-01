@@ -1,12 +1,11 @@
 <?php
 namespace Test\TestCase\Model;
 
-use Tools\TestSuite\TestCase;
 use Cake\ORM\TableRegistry;
+use Tools\TestSuite\TestCase;
 
 /**
  * Event Test Case
- *
  */
 class EventsTableTest extends TestCase {
 

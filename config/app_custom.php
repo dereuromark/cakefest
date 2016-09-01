@@ -14,7 +14,7 @@ return [
 		'cookieTimeout' => MONTH
 	],
 
-	'Passwordable'  => [
+	'Passwordable' => [
 		'passwordHasher' => ['className' => 'Fallback', 'hashers' => ['Default', 'Weak']]
 	],
 
@@ -27,21 +27,21 @@ return [
 		],
 	],
 
-	'Roles' => array(
+	'Roles' => [
 		'admin' => '1',
 		'user' => '2',
-	),
+	],
 
-	'Config' => array(
+	'Config' => [
 		'pageName' => 'CakeFest App',
 		'adminEmail' => '', // Overwrite in app_local.php
 		'adminName' => 'Mark',
 		'rememberMe' => false,
-	),
+	],
 
-	'Asset' => array(
+	'Asset' => [
 		'js' => 'buffer'
-	),
+	],
 
 	// Please provide the following using the app_locale.php which is not under version control
 	'Email' => [

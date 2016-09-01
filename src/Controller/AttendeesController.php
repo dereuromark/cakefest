@@ -1,10 +1,9 @@
 <?php
 namespace App\Controller;
 
-use Cake\Event\Event;
 use App\Controller\AppController;
-use Tools\Mailer\Email;
 use Cake\Core\Configure;
+use Tools\Mailer\Email;
 
 /**
  * Attendees Controller
@@ -31,7 +30,7 @@ class AttendeesController extends AppController {
 	}
 
 	/**
-	 * @param string $id
+	 * @param string|null $id
 	 * @return \Cake\Network\Response|null
 	 */
 	public function view($id = null) {
@@ -43,7 +42,7 @@ class AttendeesController extends AppController {
 	}
 
 	/**
-	 * @param string $id
+	 * @param string|null $id
 	 * @return \Cake\Network\Response|null
 	 */
 	public function edit($id = null) {
@@ -67,7 +66,7 @@ class AttendeesController extends AppController {
 	}
 
 	/**
-	 * @param string $id
+	 * @param string|null $id
 	 * @return \Cake\Network\Response|null
 	 */
 	public function delete($id = null) {
@@ -94,7 +93,8 @@ class AttendeesController extends AppController {
 	public function notify() {
 		$lastAttendees = $this->Attendees->getNotifyableAttendees();
 		if ($this->Common->isPosted()) {
-			if ($count = $this->_sendNotifications()) {
+			$count = $this->_sendNotifications();
+			if ($countU) {
 				$this->Flash->message(__('mails sent {0}', $count), 'success');
 				return $this->Common->postRedirect(['action' => 'index']);
 			}
@@ -138,7 +138,8 @@ class AttendeesController extends AppController {
 		$this->loadModel('Tools.ContactForms');
 
 		if ($this->Common->isPosted()) {
-			if ($count = $this->_sendNotifications()) {
+			$count = $this->_sendNotifications();
+			if ($count) {
 				$this->Flash->message(__('mails sent {0}', $count), 'success');
 				return $this->Common->postRedirect(['action' => 'index']);
 			}
@@ -165,6 +166,7 @@ class AttendeesController extends AppController {
 	}
 
 	/**
+	 * @param array $form
 	 * @return int Count
 	 */
 	protected function _sendNotifications($form) {

@@ -1,8 +1,8 @@
 <?php
 
-use Cake\Routing\Route\DashedRoute;
-use Cake\Routing\Router;
 use Cake\Core\Plugin;
+use Cake\Routing\Router;
+use Cake\Routing\Route\DashedRoute;
 
 Router::defaultRouteClass(DashedRoute::class);
 
@@ -15,11 +15,11 @@ Router::scope('/', function ($routes) {
  */
 	$routes->connect('/', ['controller' => 'Overview', 'action' => 'index']);
 
-	$routes->connect('/login', array('controller' => 'Account', 'action' => 'login'));
-	$routes->connect('/logout', array('controller' => 'Account', 'action' => 'logout'));
-	$routes->connect('/register', array('controller' => 'Account', 'action' => 'register'));
+	$routes->connect('/login', ['controller' => 'Account', 'action' => 'login']);
+	$routes->connect('/logout', ['controller' => 'Account', 'action' => 'logout']);
+	$routes->connect('/register', ['controller' => 'Account', 'action' => 'register']);
 
-	$routes->connect('/admin', array('controller' => 'Overview', 'action' => 'admin'));
+	$routes->connect('/admin', ['controller' => 'Overview', 'action' => 'admin']);
 
 /**
  * ...and connect the rest of 'Pages' controller's URLs.

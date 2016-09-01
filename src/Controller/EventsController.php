@@ -1,6 +1,8 @@
 <?php
 namespace App\Controller;
+
 use App\Controller\AppController;
+
 /**
  * Events Controller
  *
@@ -19,7 +21,7 @@ class EventsController extends AppController {
 	}
 
 	/**
-	 * @param string $id
+	 * @param string|null $id
 	 * @return \Cake\Network\Response|null
 	 */
 	public function view($id = null) {
@@ -50,7 +52,7 @@ class EventsController extends AppController {
 	}
 
 	/**
-	 * @param string $id
+	 * @param string|null $id
 	 * @return \Cake\Network\Response|null
 	 */
 	public function edit($id = null) {
@@ -72,7 +74,7 @@ class EventsController extends AppController {
 	}
 
 	/**
-	 * @param string $id
+	 * @param string|null $id
 	 * @return \Cake\Network\Response|null
 	 */
 	public function delete($id = null) {

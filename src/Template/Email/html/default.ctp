@@ -1,6 +1,5 @@
 <?php
 /**
- *
  * PHP 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)

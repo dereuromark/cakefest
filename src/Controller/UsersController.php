@@ -8,13 +8,14 @@ use App\Controller\AppController;
  */
 class UsersController extends AppController {
 
+	/**
+	 * @var array
+	 */
 	public $components = [
 		'Search.Prg'
 	];
 
 	/**
-	 * index method
-	 *
 	 * @return void
 	 */
 	public function index() {
@@ -25,9 +26,7 @@ class UsersController extends AppController {
 	}
 
 	/**
-	 * view method
-	 *
-	 * @param string $id
+	 * @param string|null $id
 	 * @return void
 	 */
 	public function view($id = null) {
@@ -37,9 +36,7 @@ class UsersController extends AppController {
 	}
 
 	/**
-	 * edit method
-	 *
-	 * @param string $id
+	 * @param string|null $id
 	 * @return void
 	 */
 	public function edit($id = null) {
@@ -64,8 +61,7 @@ class UsersController extends AppController {
 	/**
 	 * delete method
 	 *
-	 * @throws MethodNotAllowedException
-	 * @param string $id
+	 * @param string|null $id
 	 * @return void
 	 */
 	public function delete($id = null) {

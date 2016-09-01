@@ -8,8 +8,6 @@ use Cake\Core\Configure;
 class CakefestHelper extends AppHelper {
 
 	/**
-	 * CakefestHelper::roleName()
-	 *
 	 * @param int $roleId
 	 * @return string Role name
 	 */

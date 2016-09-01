@@ -1,11 +1,10 @@
 <?php
 namespace App\Controller;
 
-use Cake\Event\Event;
 use App\Controller\AppController;
-use Tools\Mailer\Email;
 use Cake\Core\Configure;
 use Tools\Form\ContactForm;
+use Tools\Mailer\Email;
 
 class ContactController extends AppController {
 

@@ -10,6 +10,7 @@ class User extends AppEntity {
 	const STATUS_CORE_DEV = 1;
 
 	/**
+	 * @param int|null $value
 	 * @return mixed
 	 */
 	public static function statuses($value = null) {

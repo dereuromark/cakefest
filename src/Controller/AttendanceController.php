@@ -2,7 +2,6 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-use Cake\Core\Configure;
 use Tools\Utility\Time;
 
 /**
@@ -68,7 +67,7 @@ class AttendanceController extends AppController {
 	}
 
 	/**
-	 * @param string $id
+	 * @param string|null $id
 	 * @return \Cake\Network\Response|null
 	 */
 	public function edit($id = null) {

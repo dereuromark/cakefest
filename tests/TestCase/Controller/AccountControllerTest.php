@@ -2,9 +2,8 @@
 
 namespace App\Test\TestCase\Controller;
 
-use App\Controller\AccountController;
-use Tools\TestSuite\IntegrationTestCase;
 use Cake\ORM\TableRegistry;
+use Tools\TestSuite\IntegrationTestCase;
 
 /**
  * App\Controller\AccountController Test Case
@@ -200,7 +199,6 @@ class AccountControllerTest extends IntegrationTestCase {
 
 		$session = ['Auth' => ['Tmp' => ['id' => '1']]];
 		$this->session($session);
-
 
 		$data = [
 			'pwd' => '123456',

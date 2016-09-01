@@ -5,20 +5,15 @@ use App\Model\Table\AppTable;
 
 /**
  * User Model
- *
  */
 class UsersTable extends AppTable {
 
 	/**
-	 * Display field
-	 *
 	 * @var string
 	 */
 	public $displayField = 'username';
 
 	/**
-	 * Validation rules
-	 *
 	 * @var array
 	 */
 	public $validate = [
@@ -81,8 +76,6 @@ class UsersTable extends AppTable {
 	];
 
 	/**
-	 * belongsTo associations
-	 *
 	 * @var array
 	 */
 	public $belongsTo = [
@@ -105,8 +98,6 @@ class UsersTable extends AppTable {
 	];
 
 	/**
-	 * hasMany associations
-	 *
 	 * @var array
 	 */
 	public $hasMany = [
@@ -116,6 +107,9 @@ class UsersTable extends AppTable {
 		]
 	];
 
+	/**
+	 * @var array
+	 */
 	public $filterArgs = [
 		'search' => [
 			'type' => 'like',
@@ -129,6 +123,10 @@ class UsersTable extends AppTable {
 		]
 	];
 
+	/**
+	 * @param array $config
+	 * @return void
+	 */
 	public function initialize(array $config = []) {
 		parent::initialize($config);
 

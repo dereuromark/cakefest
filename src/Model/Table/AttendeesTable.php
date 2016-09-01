@@ -10,18 +10,17 @@ use Tools\Utility\Time;
  */
 class AttendeesTable extends AppTable {
 
+	/**
+	 * @var array
+	 */
 	public $order = ['from' => 'ASC'];
 
 	/**
-	 * Display field
-	 *
 	 * @var string
 	 */
 	public $displayField = 'user_id';
 
 	/**
-	 * Validation rules
-	 *
 	 * @var array
 	 */
 	public $validate = [
@@ -91,13 +90,10 @@ class AttendeesTable extends AppTable {
 	];
 
 	/**
-	 * Attendee::isValidDate()
-	 *
-	 * @param Time $date
+	 * @param \Tools\Utility\Time $date
 	 * @param string $field
-	 * @param mixed $settings
-	 * @return boolean Success or string Error message.
-	 * @throws InternalErrorException
+	 * @param array $context
+	 * @return bool Success or string Error message.
 	 */
 	public function isValidDate($date, $field, $context) {
 		if (empty($context['data']['event_id'])) {
@@ -141,8 +137,6 @@ class AttendeesTable extends AppTable {
 	}
 
 	/**
-	 * Attendee::getNotifyableAttendees()
-	 *
 	 * @return array
 	 */
 	public function getNotifyableAttendees() {
@@ -156,8 +150,6 @@ class AttendeesTable extends AppTable {
 	}
 
 	/**
-	 * belongsTo associations
-	 *
 	 * @var array
 	 */
 	public $belongsTo = [
@@ -180,9 +172,9 @@ class AttendeesTable extends AppTable {
 	/**
 	 * Find all of this year only.
 	 *
-	 * @param Query $query
+	 * @param \Cake\ORM\Query $query
 	 * @param array $options
-	 * @return Query
+	 * @return \Cake\ORM\Query
 	 */
 	public function findUpcoming(Query $query, array $options) {
 		$query->contain('Events');

@@ -2,20 +2,21 @@
 namespace Tools\TestCase\View\Helper;
 
 use App\View\Helper\CakefestHelper;
+use Cake\Core\Configure;
 use Cake\TestSuite\TestCase;
 use Cake\View\View;
-use Cake\Core\Configure;
 
 /**
  * Cakefest Helper Test Case
  */
 class CakefestHelperTest extends TestCase {
 
+	/**
+	 * @var \App\View\Helper\CakefestHelper
+	 */
 	public $Cakefest;
 
 	/**
-	 * CakefestHelperTest::setUp()
-	 *
 	 * @return void
 	 */
 	public function setUp() {

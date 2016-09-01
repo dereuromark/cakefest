@@ -2,24 +2,22 @@
 namespace App\Controller;
 
 use Cake\Core\Configure;
-use Cake\Utility\Inflector;
-use App\Controller\AppController;
+use Cake\Network\Exception\NotFoundException;
+use Cake\View\Exception\MissingTemplateException;
 
 /**
- * Static content controller.
+ * Static content controller
  *
- * This file will render views from views/pages/
- *
+ * This controller will render views from Template/Pages/
  */
 class PagesController extends AppController {
 
 	/**
 	 * Displays a view
 	 *
-	 * @param mixed What page to display
-	 * @return void
-	 * @throws NotFoundException When the view file could not be found
-	 *	or MissingTemplateException in debug mode.
+	 * @return void|\Cake\Network\Response
+	 * @throws \Cake\Network\Exception\NotFoundException When the view file could not
+	 *   be found or \Cake\View\Exception\MissingTemplateException in debug mode.
 	 */
 	public function display() {
 		$path = func_get_args();

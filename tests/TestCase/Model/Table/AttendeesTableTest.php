@@ -1,14 +1,13 @@
 <?php
 namespace Test\TestCase\Model;
 
-use Tools\TestSuite\TestCase;
 use App\Model\Table\Attendees;
-use Cake\ORM\TableRegistry;
 use Cake\I18n\Time;
+use Cake\ORM\TableRegistry;
+use Tools\TestSuite\TestCase;
 
 /**
  * Attendee Test Case
- *
  */
 class AttendeesTableTest extends TestCase {
 

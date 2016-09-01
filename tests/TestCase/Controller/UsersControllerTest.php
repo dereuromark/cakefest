@@ -1,9 +1,8 @@
 <?php
 namespace App\Test\TestCase\Controller;
 
-use App\Controller\UsersController;
-use Tools\TestSuite\IntegrationTestCase;
 use Cake\ORM\TableRegistry;
+use Tools\TestSuite\IntegrationTestCase;
 
 /**
  * App\Controller\UsersController Test Case
@@ -104,4 +103,5 @@ class UsersControllerTest extends IntegrationTestCase {
 		$this->assertResponseCode(302);
 		$this->assertRedirect();
 	}
+
 }

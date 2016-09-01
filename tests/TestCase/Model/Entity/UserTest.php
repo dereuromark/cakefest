@@ -1,13 +1,11 @@
 <?php
 namespace Test\TestCase\Model;
 
-use Tools\TestSuite\TestCase;
-use Cake\ORM\TableRegistry;
 use App\Model\Entity\User;
+use Tools\TestSuite\TestCase;
 
 /**
  * User Test Case
- *
  */
 class UserTest extends TestCase {
 

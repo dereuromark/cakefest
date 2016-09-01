@@ -5,7 +5,6 @@ use Cake\TestSuite\Fixture\TestFixture;
 
 /**
  * EventFixture
- *
  */
 class EventsFixture extends TestFixture {
 

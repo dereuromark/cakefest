@@ -2,11 +2,11 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-use Cake\Network\Exception\InternalErrorException;
-use Tools\View\Helper\ObfuscateHelper;
-use Tools\Mailer\Email;
 use Cake\Core\Configure;
+use Cake\Network\Exception\InternalErrorException;
 use Cake\ORM\TableRegistry;
+use Tools\Mailer\Email;
+use Tools\View\Helper\ObfuscateHelper;
 
 class AccountController extends AppController {
 
@@ -252,7 +252,7 @@ class AccountController extends AppController {
 	 *
 	 * @param mixed $id
 	 * @return \Cake\Network\Response|null
-	 * @throws InternalErrorException
+	 * @throws \Cake\Network\Exception\InternalErrorException
 	 */
 	public function delete($id = null) {
 		$this->request->allowMethod(['post', 'delete']);

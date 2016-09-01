@@ -25,15 +25,15 @@ $config = [
 		],
 	],
 
-	'Config' => array(
+	'Config' => [
 		'adminEmail' => 'youreemail@example.de'
-	),
+	],
 
-	'FormConfig' => array(
+	'FormConfig' => [
 		'novalidate' => true,
-		'templates' => array(
+		'templates' => [
 			'dateWidget' => '{{day}}{{month}}{{year}}{{hour}}{{minute}}{{second}}{{meridian}}',
-		)
-	)
+		]
+	]
 
 ];

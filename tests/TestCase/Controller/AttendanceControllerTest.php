@@ -1,10 +1,9 @@
 <?php
 namespace App\Test\TestCase\Controller;
 
-use App\Controller\AttendanceController;
-use Tools\TestSuite\IntegrationTestCase;
-use Cake\ORM\TableRegistry;
 use Cake\I18n\Time;
+use Cake\ORM\TableRegistry;
+use Tools\TestSuite\IntegrationTestCase;
 
 /**
  * App\Controller\Attendance Test Case
@@ -36,8 +35,7 @@ class AttendanceControllerTest extends IntegrationTestCase {
 	 *
 	 * @return void
 	 */
-	public function testIndex()
-	{
+	public function testIndex() {
 		$this->get(['controller' => 'Attendance', 'action' => 'index']);
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();
@@ -48,8 +46,7 @@ class AttendanceControllerTest extends IntegrationTestCase {
 	 *
 	 * @return void
 	 */
-	public function testAdd()
-	{
+	public function testAdd() {
 		$Events = TableRegistry::get('Events');
 		$from = new Time();
 		$to = new Time();
@@ -78,8 +75,7 @@ class AttendanceControllerTest extends IntegrationTestCase {
 	 *
 	 * @return void
 	 */
-	public function testAddPost()
-	{
+	public function testAddPost() {
 		$data = [
 			'comment' => 'Foo bar'
 		];
@@ -95,8 +91,7 @@ class AttendanceControllerTest extends IntegrationTestCase {
 	 *
 	 * @return void
 	 */
-	public function testEdit()
-	{
+	public function testEdit() {
 		$Attendees = TableRegistry::get('Attendees');
 		$record = $Attendees->find()->first();
 		$id = $record->id;
@@ -114,8 +109,7 @@ class AttendanceControllerTest extends IntegrationTestCase {
 	 *
 	 * @return void
 	 */
-	public function testEditPost()
-	{
+	public function testEditPost() {
 		$Attendees = TableRegistry::get('Attendees');
 		$record = $Attendees->find()->first();
 		$id = $record->id;
@@ -136,8 +130,7 @@ class AttendanceControllerTest extends IntegrationTestCase {
 	 *
 	 * @return void
 	 */
-	public function testDeleteInvalid()
-	{
+	public function testDeleteInvalid() {
 		$Attendees = TableRegistry::get('Attendees');
 		$record = $Attendees->find()->first();
 		$id = $record->id;
@@ -151,8 +144,7 @@ class AttendanceControllerTest extends IntegrationTestCase {
 	 *
 	 * @return void
 	 */
-	public function testDeletePost()
-	{
+	public function testDeletePost() {
 		$Attendees = TableRegistry::get('Attendees');
 		$record = $Attendees->find()->first();
 		$id = $record->id;
@@ -162,4 +154,5 @@ class AttendanceControllerTest extends IntegrationTestCase {
 		$this->assertRedirect();
 		$this->assertSession(['record del 1 done'], 'FlashMessage.success');
 	}
+
 }

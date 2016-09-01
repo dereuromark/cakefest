@@ -1,10 +1,10 @@
 <?php
 namespace App\Controller;
 
-use Cake\Event\Event;
-use Tools\Controller\Controller;
-use Cake\Core\Plugin;
 use Cake\Core\Configure;
+use Cake\Event\Event;
+use DateTimeZone;
+use Tools\Controller\Controller;
 use Tools\Utility\Language;
 
 /**
@@ -104,7 +104,7 @@ class AppController extends Controller {
 			$locale = array_shift($locale);
 			ini_set('intl.default_locale', $locale);
 		} elseif ($timezone = $this->Session->read('Auth.User.timezone')) {
-			$tz = new \DateTimeZone($timezone);
+			$tz = new DateTimeZone($timezone);
 			$country = $tz->getLocation();
 			ini_set('intl.default_locale', $country['country_code']);
 		}
