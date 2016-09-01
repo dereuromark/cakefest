@@ -8,27 +8,31 @@ use Cake\Core\Configure;
 use Tools\Utility\Language;
 
 /**
- * Application Controller
- *
- * Add your application-wide methods in the class below, your controllers
- * will inherit them.
+ * @property \Tools\Controller\Component\FlashComponent $Flash
+ * @property \Tools\Controller\Component\CommonComponent $Common
+ * @property \Tools\Controller\Component\AuthUserComponent $AuthUser
+ * @property \Shim\Controller\Component\SessionComponent $Session
  */
 class AppController extends Controller {
 
+	/**
+	 * @var array
+	 */
 	public $components = ['Shim.Session', 'RequestHandler', 'Tools.Common', 'Tools.Flash', 'Tools.AuthUser'];
 
+	/**
+	 * @var array
+	 */
 	public $helpers = ['Shim.Session', 'Html', 'Tools.Form', 'Tools.Common', 'Tools.Flash',
 		'Tools.Format', 'Tools.Time', 'Tools.Number', 'Tools.AuthUser', 'Tools.Obfuscate', 'Tools.Js'];
 
 	/**
-	 * AppController::constructClasses()
-	 *
 	 * @return void
 	 */
 	public function initialize() {
 		parent::initialize();
 
-		$this->loadComponent('Auth', [
+		$this->loadComponent('TinyAuth.Auth', [
 			'authenticate' => [
 				'FOC/Authenticate.MultiColumn' => [
 					'fields' => [
@@ -72,8 +76,6 @@ class AppController extends Controller {
 	}
 
 	/**
-	 * AppController::beforeFilter()
-	 *
 	 * @param \Cake\Event\Event $event
 	 * @return \Cake\Network\Response|null
 	 */

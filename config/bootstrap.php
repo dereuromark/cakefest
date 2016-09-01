@@ -21,7 +21,6 @@ require CORE_PATH . 'config' . DS . 'bootstrap.php';
 
 use Cake\Cache\Cache;
 use Cake\Console\ConsoleErrorHandler;
-use Cake\Core\App;
 use Cake\Core\Configure;
 use Cake\Core\Configure\Engine\PhpConfig;
 use Cake\Core\Plugin;
@@ -32,8 +31,6 @@ use Cake\Log\Log;
 use Cake\Mailer\Email;
 use Cake\Network\Request;
 use Cake\Routing\DispatcherFactory;
-use Cake\Routing\Router;
-use Cake\Utility\Inflector;
 use Cake\Utility\Security;
 
 /**
@@ -148,21 +145,6 @@ Request::addDetector('tablet', function ($request) {
  */
 
 /**
- * Plugins need to be loaded manually, you can either load them one by one or all of them in a single call
- * Uncomment one of the lines below, as you need. make sure you read the documentation on Plugin to use more
- * advanced ways of loading plugins
- *
- * Plugin::loadAll(); // Loads all plugins at once
- * Plugin::load('DebugKit'); //Loads a single plugin named DebugKit
- *
- */
-Plugin::loadAll(array(
-		'Tools' => ['bootstrap' => true],
-		'Setup' => ['bootstrap' => true],
-		'DebugKit' => ['bootstrap' => true],
-));
-
-/**
  * Connect middleware/dispatcher filters.
  */
 DispatcherFactory::add('Asset');
@@ -176,3 +158,27 @@ Time::setToStringFormat('YYYY-MM-dd HH:mm');
 define('USER_ROLE_KEY', 'role_id');
 
 Configure::write('Config.language', 'eng');
+
+/**
+ * Plugins need to be loaded manually, you can either load them one by one or all of them in a single call
+ * Uncomment one of the lines below, as you need. make sure you read the documentation on Plugin to use more
+ * advanced ways of loading plugins
+ *
+ * Plugin::loadAll(); // Loads all plugins at once
+ * Plugin::load('DebugKit'); //Loads a single plugin named DebugKit
+ *
+ */
+/*
+Plugin::loadAll(array(
+	'Tools' => ['bootstrap' => true],
+	'Setup' => ['bootstrap' => true],
+	'DebugKit' => ['bootstrap' => true],
+));
+*/
+Plugin::load('Migrations');
+Plugin::load('Tools', ['bootstrap' => true]);
+Plugin::load('Setup', ['bootstrap' => true]);
+
+if (Configure::read('debug')) {
+	Plugin::load('DebugKit', ['bootstrap' => true]);
+}

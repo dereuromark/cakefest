@@ -6,18 +6,17 @@ use Cake\Core\Configure;
 use Tools\Utility\Time;
 
 /**
- * Attendance Controller
- *
  * @property \App\Model\Table\AttendeesTable $Attendees
  * @property \Cake\Controller\Component\PaginatorComponent $Paginator
  */
 class AttendanceController extends AppController {
 
+	/**
+	 * @var string
+	 */
 	public $modelClass = 'Attendees';
 
 	/**
-	 * index method
-	 *
 	 * @return void
 	 */
 	public function index() {
@@ -29,9 +28,7 @@ class AttendanceController extends AppController {
 	}
 
 	/**
-	 * add method
-	 *
-	 * @return void
+	 * @return \Cake\Network\Response|null
 	 */
 	public function add() {
 		$events = $this->Attendees->Events->find('list', ['conditions' => ['Events.to >=' => new Time()]]);
@@ -71,10 +68,8 @@ class AttendanceController extends AppController {
 	}
 
 	/**
-	 * edit method
-	 *
 	 * @param string $id
-	 * @return void
+	 * @return \Cake\Network\Response|null
 	 */
 	public function edit($id = null) {
 		$uid = $this->Session->read('Auth.User.id');
@@ -98,11 +93,8 @@ class AttendanceController extends AppController {
 	}
 
 	/**
-	 * delete method
-	 *
-	 * @throws MethodNotAllowedException
-	 * @param string $id
-	 * @return void
+	 * @param string|null $id
+	 * @return \Cake\Network\Response|null
 	 */
 	public function delete($id = null) {
 		$this->request->allowMethod(['post', 'delete']);

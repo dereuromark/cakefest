@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# Make sure this file is executable
+# chmod +x setup
+
+echo "### INSTALL/UPDATE ###";
+[ ! -f composer.phar ] && curl -sS https://getcomposer.org/installer | php
+php composer.phar selfupdate
+
+[ ! -f phpunit.phar ] && wget https://phar.phpunit.de/phpunit.phar
+
+[ -d .git ] && git pull
+
+php composer.phar install
+
+[ ! -f config/app_local.php ] && cp config/app_local.default.php config/app_local.php
+
+rm -Rf tmp/*
+rm -Rf logs/*
+
+echo "### DB MIGRATION ###";
+bin/cake Migrations migrate
+
+echo "### DONE ###";
+exit 0

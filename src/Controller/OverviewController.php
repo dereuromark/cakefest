@@ -1,34 +1,22 @@
 <?php
 namespace App\Controller;
 
-use Cake\Event\Event;
 use App\Controller\AppController;
+use Cake\Network\Exception\NotFoundException;
 
 /**
- * Overview Controller
- *
  */
 class OverviewController extends AppController {
 
+	/**
+	 * @var string
+	 */
 	public $modelClass = 'Users';
 
 	/**
-	 * Components
-	 *
 	 * @var array
 	 */
 	public $components = ['Paginator'];
-
-	/**
-	 * OverviewController::beforeFilter()
-	 *
-	 * @return void
-	 */
-	public function beforeFilter(Event $event) {
-		parent::beforeFilter($event);
-
-		$this->Auth->allow('index');
-	}
 
 	/**
 	 * Homepage.
@@ -39,6 +27,9 @@ class OverviewController extends AppController {
 		// For now just the newest one
 		//$event = $this->Users->Attendees->Events->find('first', array('order' => array('from' => 'DESC')));
 		$event = $this->Users->Attendees->Events->find('all', ['order' => ['from' => 'DESC']])->first();
+		if (!$event) {
+			throw new NotFoundException('No event scheduled in admin area.');
+		}
 
 		$attendees = $this->Users->Attendees->find('all', ['conditions' => ['Attendees.event_id' => $event['id']]])
 			->contain('Users');

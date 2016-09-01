@@ -14,19 +14,6 @@ use Cake\Core\Configure;
 class AttendeesController extends AppController {
 
 	/**
-	 * AttendeesController::beforeFilter()
-	 *
-	 * @return void
-	 */
-	public function beforeFilter(Event $event) {
-		parent::beforeFilter($event);
-
-		$this->Auth->allow('view');
-	}
-
-	/**
-	 * index method
-	 *
 	 * @return void
 	 */
 	public function index() {
@@ -37,8 +24,6 @@ class AttendeesController extends AppController {
 	}
 
 	/**
-	 * AttendeesController::map()
-	 *
 	 * @return void
 	 */
 	public function map() {
@@ -46,10 +31,8 @@ class AttendeesController extends AppController {
 	}
 
 	/**
-	 * view method
-	 *
 	 * @param string $id
-	 * @return void
+	 * @return \Cake\Network\Response|null
 	 */
 	public function view($id = null) {
 		if (empty($id) || !($attendee = $this->Attendees->get($id, ['contain' => ['Events', 'Users']]))) {
@@ -60,10 +43,8 @@ class AttendeesController extends AppController {
 	}
 
 	/**
-	 * edit method
-	 *
 	 * @param string $id
-	 * @return void
+	 * @return \Cake\Network\Response|null
 	 */
 	public function edit($id = null) {
 		if (empty($id) || !($attendee = $this->Attendees->find('first', ['conditions' => ['Attendees.id' => $id]]))) {
@@ -86,11 +67,8 @@ class AttendeesController extends AppController {
 	}
 
 	/**
-	 * delete method
-	 *
-	 * @throws MethodNotAllowedException
 	 * @param string $id
-	 * @return void
+	 * @return \Cake\Network\Response|null
 	 */
 	public function delete($id = null) {
 		$this->request->allowMethod(['post', 'delete']);
@@ -187,8 +165,6 @@ class AttendeesController extends AppController {
 	}
 
 	/**
-	 * AttendeesController::_sendNotifications()
-	 *
 	 * @return int Count
 	 */
 	protected function _sendNotifications($form) {
@@ -212,11 +188,14 @@ class AttendeesController extends AppController {
 	}
 
 	/**
+	 * @param array $user
+	 * @param string $subject
+	 * @param string $message
 	 * @return bool Success
 	 */
 	protected function _send(array $user, $subject, $message) {
-		$adminEmail = Configure::read('Config.adminEmail');
-		$adminEmailname = Configure::read('Config.adminName');
+		//$adminEmail = Configure::read('Config.adminEmail');
+		//$adminEmailname = Configure::read('Config.adminName');
 
 		// Send email to Admin
 		Configure::write('Email.live', true);

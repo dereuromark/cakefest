@@ -1,8 +1,8 @@
 <?php
 namespace App\Controller;
 
-use Cake\Event\Event;
 use App\Controller\AppController;
+use Cake\Network\Exception\InternalErrorException;
 use Tools\View\Helper\ObfuscateHelper;
 use Tools\Mailer\Email;
 use Cake\Core\Configure;
@@ -10,18 +10,13 @@ use Cake\ORM\TableRegistry;
 
 class AccountController extends AppController {
 
+	/**
+	 * @var string
+	 */
 	public $modelClass = 'Users';
 
-	public function beforeFilter(Event $event) {
-		parent::beforeFilter($event);
-
-		$this->Auth->allow(['login', 'logout', 'register', 'activate', 'lost_password', 'change_password']);
-	}
-
 	/**
-	 * AccountController::login()
-	 *
-	 * @return void
+	 * @return \Cake\Network\Response|null
 	 */
 	public function login() {
 		if ($this->Common->isPosted()) {
@@ -51,16 +46,15 @@ class AccountController extends AppController {
 			$this->request->data['password'] = '';
 
 		} else {
-			if ($username = $this->request->query('username')) {
+			$username = $this->request->query('username');
+			if ($username) {
 				$this->request->data['login'] = $username;
 			}
 		}
 	}
 
 	/**
-	 * AccountController::logout()
-	 *
-	 * @return void
+	 * @return \Cake\Network\Response|null
 	 */
 	public function logout() {
 		$whereTo = $this->Auth->logout();
@@ -76,10 +70,10 @@ class AccountController extends AppController {
 	/**
 	 * AccountController::lost_password()
 	 *
-	 * @param string $key
-	 * @return void
+	 * @param string|null $key
+	 * @return \Cake\Network\Response|null
 	 */
-	public function lost_password($key = null) {
+	public function lostPassword($key = null) {
 		$user = $this->Users->newEntity();
 
 		if ($this->Common->isPosted()) {
@@ -136,7 +130,7 @@ class AccountController extends AppController {
 						// Confirmation output
 						$email = h(ObfuscateHelper::hideEmail($res['email']));
 
-						$this->Flash->success(__('An email with instructions has been send to \'{0}\'.', $email));
+						$this->Flash->success(__('An email with instructions has been send to \'\'{0}\'\'.', $email));
 						$this->Flash->success(__('In a third step you will then be able to change your password.'));
 					} else {
 						$this->Flash->error(__('Confirmation Email could not be sent. Please consult an admin.'));
@@ -152,11 +146,9 @@ class AccountController extends AppController {
 	}
 
 	/**
-	 * AccountController::change_password()
-	 *
-	 * @return void
+	 * @return \Cake\Network\Response|null
 	 */
-	public function change_password() {
+	public function changePassword() {
 		$uid = $this->request->session()->read('Auth.Tmp.id');
 		if (empty($uid)) {
 			$this->Flash->message(__('You have to find your account first and click on the link in the email you receive afterwards'), 'error');
@@ -198,8 +190,7 @@ class AccountController extends AppController {
 	/**
 	 * AccountController::register()
 	 *
-	 * @return void
-	 * @throws CakeException
+	 * @return \Cake\Network\Response|null
 	 */
 	public function register() {
 		$this->Users->addBehavior('Tools.Passwordable');
@@ -228,8 +219,8 @@ class AccountController extends AppController {
 	/**
 	 * AccountController::edit()
 	 *
-	 * @return void
-	 * @throws CakeException
+	 * @return \Cake\Network\Response|null
+	 * @throws \Exception
 	 */
 	public function edit() {
 		$uid = $this->request->session()->read('Auth.User.id');
@@ -263,7 +254,7 @@ class AccountController extends AppController {
 	 * AccountController::delete()
 	 *
 	 * @param mixed $id
-	 * @return void
+	 * @return \Cake\Network\Response|null
 	 * @throws InternalErrorException
 	 */
 	public function delete($id = null) {

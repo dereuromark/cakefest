@@ -10,3 +10,4 @@ _*
 /phpunit.xml
 /plugins/
 /composer.phar
+.idea/

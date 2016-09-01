@@ -9,12 +9,6 @@ use Tools\Form\ContactForm;
 
 class ContactController extends AppController {
 
-	public function beforeFilter(Event $event) {
-		parent::beforeFilter($event);
-
-		$this->Auth->allow();
-	}
-
 	/**
 	 * @return void
 	 */
@@ -56,7 +50,11 @@ class ContactController extends AppController {
 	}
 
 	/**
-	 * @return void
+	 * @param string $fromName
+	 * @param string $fromEmail
+	 * @param string $subject
+	 * @param string $message
+	 * @return \Cake\Network\Response|null
 	 */
 	protected function _send($fromName, $fromEmail, $subject, $message) {
 		$adminEmail = Configure::read('Config.adminEmail');

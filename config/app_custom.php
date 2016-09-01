@@ -46,7 +46,6 @@ return [
 	// Please provide the following using the app_locale.php which is not under version control
 	'Email' => [
 		'default' => [
-			'from' => ''
 		]
 	],
 

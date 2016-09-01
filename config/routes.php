@@ -1,9 +1,10 @@
 <?php
 
+use Cake\Routing\Route\DashedRoute;
 use Cake\Routing\Router;
 use Cake\Core\Plugin;
 
-Router::defaultRouteClass('InflectedRoute');
+Router::defaultRouteClass(DashedRoute::class);
 
 Router::scope('/', function ($routes) {
 
@@ -36,9 +37,7 @@ Router::scope('/', function ($routes) {
  * You can remove these routes once you've connected the
  * routes you want in your application.
  */
-	//$routes->fallbacks();
-	$routes->connect('/:controller', ['action' => 'index']);
-	$routes->connect('/:controller/:action/*');
+	$routes->fallbacks();
 });
 
 /**
