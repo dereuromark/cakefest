@@ -188,15 +188,14 @@ class AccountController extends AppController {
 	}
 
 	/**
-	 * AccountController::register()
-	 *
 	 * @return \Cake\Network\Response|null
 	 */
 	public function register() {
+		$user = $this->Users->newEntity();
 		$this->Users->addBehavior('Tools.Passwordable');
-		$user = $this->Users->newEntity($this->request->data);
 
 		if ($this->Common->isPosted()) {
+			$user = $this->Users->patchEntity($user, $this->request->data);
 			$user->role_id = Configure::read('Roles.user');
 
 			if ($this->Users->save($user)) {
@@ -217,8 +216,6 @@ class AccountController extends AppController {
 	}
 
 	/**
-	 * AccountController::edit()
-	 *
 	 * @return \Cake\Network\Response|null
 	 * @throws \Exception
 	 */

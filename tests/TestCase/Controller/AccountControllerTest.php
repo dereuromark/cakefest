@@ -12,8 +12,6 @@ use Cake\ORM\TableRegistry;
 class AccountControllerTest extends IntegrationTestCase {
 
 	/**
-	 * Fixtures
-	 *
 	 * @var array
 	 */
 	public $fixtures = [
@@ -31,8 +29,6 @@ class AccountControllerTest extends IntegrationTestCase {
 	}
 
 	/**
-	 * Test index method
-	 *
 	 * @return void
 	 */
 	public function testLogin() {
@@ -56,8 +52,6 @@ class AccountControllerTest extends IntegrationTestCase {
 	}
 
 	/**
-	 * Test index method
-	 *
 	 * @return void
 	 */
 	public function testLoginPostInvalidData() {
@@ -67,8 +61,6 @@ class AccountControllerTest extends IntegrationTestCase {
 	}
 
 	/**
-	 * Test index method
-	 *
 	 * @return void
 	 */
 	public function testLoginPostValidData() {
@@ -93,8 +85,6 @@ class AccountControllerTest extends IntegrationTestCase {
 	}
 
 	/**
-	 * Test index method
-	 *
 	 * @return void
 	 */
 	public function testLoginPostValidDataEmail() {
@@ -119,8 +109,6 @@ class AccountControllerTest extends IntegrationTestCase {
 	}
 
 	/**
-	 * Test index method
-	 *
 	 * @return void
 	 */
 	public function testLoginPostValidDataReferrer() {
@@ -148,8 +136,6 @@ class AccountControllerTest extends IntegrationTestCase {
 	}
 
 	/**
-	 * AccountControllerTest::testLogout()
-	 *
 	 * @return void
 	 */
 	public function testLogout() {
@@ -162,8 +148,6 @@ class AccountControllerTest extends IntegrationTestCase {
 	}
 
 	/**
-	 * AccountControllerTest::testLogout()
-	 *
 	 * @return void
 	 */
 	public function testLostPassword() {
@@ -173,8 +157,6 @@ class AccountControllerTest extends IntegrationTestCase {
 	}
 
 	/**
-	 * AccountControllerTest::testLogout()
-	 *
 	 * @return void
 	 */
 	public function testLostPasswordPost() {
@@ -189,8 +171,6 @@ class AccountControllerTest extends IntegrationTestCase {
 	}
 
 	/**
-	 * AccountControllerTest::testLogout()
-	 *
 	 * @return void
 	 */
 	public function testChangePasswordInvalid() {
@@ -200,8 +180,6 @@ class AccountControllerTest extends IntegrationTestCase {
 	}
 
 	/**
-	 * AccountControllerTest::testLogout()
-	 *
 	 * @return void
 	 */
 	public function testChangePassword() {
@@ -214,8 +192,6 @@ class AccountControllerTest extends IntegrationTestCase {
 	}
 
 	/**
-	 * AccountControllerTest::testLogout()
-	 *
 	 * @return void
 	 */
 	public function testChangePasswordPost() {
@@ -239,8 +215,6 @@ class AccountControllerTest extends IntegrationTestCase {
 	}
 
 	/**
-	 * AccountControllerTest::testLogout()
-	 *
 	 * @return void
 	 */
 	public function testRegister() {
@@ -250,10 +224,38 @@ class AccountControllerTest extends IntegrationTestCase {
 	}
 
 	/**
- * AccountControllerTest::testEdit()
- *
- * @return void
- */
+	 * @return void
+	 */
+	public function testRegisterPostInvalid() {
+		$data = [
+			'username' => '',
+			'email' => ''
+		];
+
+		$this->post(['controller' => 'Account', 'action' => 'register'], $data);
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testRegisterPost() {
+		$data = [
+			'username' => 'fooobar',
+			'email' => 'foobar@example.com',
+			'pwd' => '123456',
+			'pwd_repeat' => '123456',
+		];
+
+		$this->post(['controller' => 'Account', 'action' => 'register'], $data);
+		$this->assertResponseCode(302);
+		$this->assertRedirect();
+	}
+
+	/**
+	 * @return void
+	 */
 	public function testEdit() {
 		$Users = TableRegistry::get('Users');
 		$record = $Users->find()->first();
@@ -268,8 +270,6 @@ class AccountControllerTest extends IntegrationTestCase {
 	}
 
 	/**
-	 * AccountControllerTest::testEdit()
-	 *
 	 * @return void
 	 */
 	public function testEditPost() {
@@ -286,8 +286,6 @@ class AccountControllerTest extends IntegrationTestCase {
 	}
 
 	/**
-	 * Test delete method
-	 *
 	 * @return void
 	 */
 	public function testDelete() {

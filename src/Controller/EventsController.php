@@ -19,10 +19,8 @@ class EventsController extends AppController {
 	}
 
 	/**
-	 * view method
-	 *
 	 * @param string $id
-	 * @return void
+	 * @return \Cake\Network\Response|null
 	 */
 	public function view($id = null) {
 		if (empty($id) || !($event = $this->Events->find('first', ['conditions' => ['Events.id' => $id]]))) {
@@ -33,13 +31,13 @@ class EventsController extends AppController {
 	}
 
 	/**
-	 * add method
-	 *
-	 * @return void
+	 * @return \Cake\Network\Response|null
 	 */
 	public function add() {
-		$event = $this->Events->newEntity($this->request->data);
+		$event = $this->Events->newEntity();
 		if ($this->Common->isPosted()) {
+			$event = $this->Events->patchEntity($event, $this->request->data);
+
 			if ($this->Events->save($event)) {
 				$var = $this->request->data['name'];
 				$this->Flash->message(__('record add {0} saved', h($var)), 'success');
@@ -52,10 +50,8 @@ class EventsController extends AppController {
 	}
 
 	/**
-	 * edit method
-	 *
 	 * @param string $id
-	 * @return void
+	 * @return \Cake\Network\Response|null
 	 */
 	public function edit($id = null) {
 		if (empty($id) || !($event = $this->Events->find('first', ['conditions' => ['Events.id' => $id]]))) {
@@ -76,11 +72,8 @@ class EventsController extends AppController {
 	}
 
 	/**
-	 * delete method
-	 *
-	 * @throws MethodNotAllowedException
 	 * @param string $id
-	 * @return void
+	 * @return \Cake\Network\Response|null
 	 */
 	public function delete($id = null) {
 		$this->request->allowMethod(['post', 'delete']);
