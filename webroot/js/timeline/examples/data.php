@@ -33,7 +33,7 @@ google.visualization.Query.setResponse({
 /**
  * Retrieve the request id from the get/post data
  *
- * @return {number} $reqId       The request id, or 0 if not found
+ * @return int $reqId       The request id, or 0 if not found
  */
 function getReqId() {
   $reqId = 0;
