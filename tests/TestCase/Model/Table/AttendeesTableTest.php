@@ -1,7 +1,6 @@
 <?php
 namespace Test\TestCase\Model;
 
-use App\Model\Table\Attendees;
 use Cake\I18n\Time;
 use Cake\ORM\TableRegistry;
 use Tools\TestSuite\TestCase;
@@ -12,8 +11,6 @@ use Tools\TestSuite\TestCase;
 class AttendeesTableTest extends TestCase {
 
 	/**
-	 * Fixtures
-	 *
 	 * @var array
 	 */
 	public $fixtures = [
@@ -22,11 +19,12 @@ class AttendeesTableTest extends TestCase {
 		'app.users',
 	];
 
+	/**
+	 * @var \App\Model\Table\AttendeesTable
+	 */
 	public $Attendees;
 
 	/**
-	 * setUp method
-	 *
 	 * @return void
 	 */
 	public function setUp() {
@@ -35,8 +33,6 @@ class AttendeesTableTest extends TestCase {
 	}
 
 	/**
-	 * AttendeeTest::testIsValidDate()
-	 *
 	 * @return void
 	 */
 	public function testIsValidDate() {
@@ -63,8 +59,6 @@ class AttendeesTableTest extends TestCase {
 	}
 
 	/**
-	 * tearDown method
-	 *
 	 * @return void
 	 */
 	public function tearDown() {

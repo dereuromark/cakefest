@@ -10,8 +10,11 @@ use Tools\TestSuite\TestCase;
 class UsersTableTest extends TestCase {
 
 	/**
-	 * Fixtures
-	 *
+	 * @var \App\Model\Table\UsersTable
+	 */
+	protected $Users;
+
+	/**
 	 * @var array
 	 */
 	public $fixtures = [
@@ -19,8 +22,6 @@ class UsersTableTest extends TestCase {
 	];
 
 	/**
-	 * setUp method
-	 *
 	 * @return void
 	 */
 	public function setUp() {
@@ -29,18 +30,14 @@ class UsersTableTest extends TestCase {
 	}
 
 	/**
-	 * EventsTest::testIsValidDate()
-	 *
 	 * @return void
 	 */
 	public function testIsValidDate() {
-		$result = $this->Users->find();
+		$result = $this->Users->find()->all();
 		$this->assertSame(1, count($result));
 	}
 
 	/**
-	 * tearDown method
-	 *
 	 * @return void
 	 */
 	public function tearDown() {

@@ -90,7 +90,7 @@ class AttendeesTable extends AppTable {
 	];
 
 	/**
-	 * @param \Tools\Utility\Time $date
+	 * @param \Cake\I18n\Time $date
 	 * @param string $field
 	 * @param array $context
 	 * @return bool Success or string Error message.

@@ -10,8 +10,11 @@ use Tools\TestSuite\TestCase;
 class EventsTableTest extends TestCase {
 
 	/**
-	 * Fixtures
-	 *
+	 * @var \App\Model\Table\EventsTable
+	 */
+	public $Events;
+
+	/**
 	 * @var array
 	 */
 	public $fixtures = [
@@ -20,8 +23,6 @@ class EventsTableTest extends TestCase {
 	];
 
 	/**
-	 * setUp method
-	 *
 	 * @return void
 	 */
 	public function setUp() {
@@ -30,18 +31,14 @@ class EventsTableTest extends TestCase {
 	}
 
 	/**
-	 * EventsTest::testIsValidDate()
-	 *
 	 * @return void
 	 */
 	public function testIsValidDate() {
-		$result = $this->Events->find();
+		$result = $this->Events->find()->all();
 		$this->assertSame(1, count($result));
 	}
 
 	/**
-	 * tearDown method
-	 *
 	 * @return void
 	 */
 	public function tearDown() {
