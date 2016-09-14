@@ -27,7 +27,6 @@ if (!defined('DS')) {
 
 /**
  * The full path to the directory which holds "app", WITHOUT a trailing DS.
- *
  */
 if (!defined('ROOT')) {
 	define('ROOT', dirname(dirname(dirname(__FILE__))));
@@ -35,7 +34,6 @@ if (!defined('ROOT')) {
 
 /**
  * The actual directory name for the "app".
- *
  */
 if (!defined('APP_DIR')) {
 	define('APP_DIR', basename(dirname(dirname(__FILE__))));
@@ -67,7 +65,6 @@ if (!defined('CAKE_CORE_INCLUDE_PATH') && file_exists($vendorPath . DS . $dispat
 /**
  * Editing below this line should not be necessary.
  * Change at your own risk.
- *
  */
 if (!defined('WEBROOT_DIR')) {
 	define('WEBROOT_DIR', basename(dirname(__FILE__)));
@@ -89,7 +86,7 @@ if (!defined('CAKE_CORE_INCLUDE_PATH')) {
 	}
 }
 if (!empty($failed)) {
-	trigger_error("CakePHP core could not be found. Check the value of CAKE_CORE_INCLUDE_PATH in APP/webroot/index.php. It should point to the directory containing your " . DS . "cake core directory and your " . DS . "vendors root directory.", E_USER_ERROR);
+	trigger_error('CakePHP core could not be found. Check the value of CAKE_CORE_INCLUDE_PATH in APP/webroot/index.php. It should point to the directory containing your ' . DS . 'cake core directory and your ' . DS . 'vendors root directory.', E_USER_ERROR);
 }
 
 if (Configure::read('debug') < 1) {

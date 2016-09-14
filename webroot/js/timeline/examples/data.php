@@ -30,22 +30,19 @@ google.visualization.Query.setResponse({
 ";
 
 
-
 /**
  * Retrieve the request id from the get/post data
+ *
  * @return {number} $reqId       The request id, or 0 if not found
- */ 
+ */
 function getReqId() {
   $reqId = 0;
 
   foreach ($_REQUEST as $req) {
-    if (substr($req, 0,6) == "reqId:") {
-      $reqId = substr($req, 6);
-    }
+	if (substr($req, 0, 6) == 'reqId:') {
+	  $reqId = substr($req, 6);
+	}
   }
 
   return $reqId;
 }
-
-
-?>
