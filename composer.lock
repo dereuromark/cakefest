@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "929cb2b0c79ac8315303872b30319a33",
-    "content-hash": "6adaffac5ab28b2fba5aeffb01a49579",
+    "hash": "f5009a0d4016c9cab5c74d8f8c361cfe",
+    "content-hash": "20e4a278da0598a47064e153f4da3b1b",
     "packages": [
         {
             "name": "aura/installer-default",
@@ -125,60 +125,6 @@
                 "localization"
             ],
             "time": "2014-08-24 00:00:00"
-        },
-        {
-            "name": "cakedc/search",
-            "version": "3.0.x-dev",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/dereuromark/search.git",
-                "reference": "ab6cf79ddd2f92dcc899df70df385da723d552ab"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/search/zipball/ab6cf79ddd2f92dcc899df70df385da723d552ab",
-                "reference": "ab6cf79ddd2f92dcc899df70df385da723d552ab",
-                "shasum": ""
-            },
-            "require": {
-                "cakephp/cakephp": "~3.0",
-                "php": ">=5.4.16"
-            },
-            "type": "cakephp-plugin",
-            "autoload": {
-                "psr-4": {
-                    "Search\\": "src",
-                    "Search\\Test\\": "tests"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Cake Development Corporation",
-                    "email": "team@cakedc.com",
-                    "homepage": "http://cakedc.com"
-                }
-            ],
-            "description": "Search Plugin for CakePHP",
-            "homepage": "http://github.com/CakeDC/search",
-            "keywords": [
-                "cakephp",
-                "filter",
-                "post-redirect-get",
-                "prg",
-                "search"
-            ],
-            "support": {
-                "email": "team@cakedc.com",
-                "issues": "https://github.com/CakeDC/search/issues",
-                "forum": "http://stackoverflow.com/tags/cakedc",
-                "wiki": "https://github.com/CakeDC/search/blob/master/Docs/Home.md",
-                "irc": "irc://irc.freenode.org/cakephp",
-                "source": "https://github.com/CakeDC/search"
-            },
-            "time": "2016-09-13 22:55:01"
         },
         {
             "name": "cakephp/cakephp",
@@ -397,6 +343,54 @@
             ],
             "description": "A composer installer for CakePHP 3.0+ plugins.",
             "time": "2016-04-28 03:01:34"
+        },
+        {
+            "name": "dereuromark/cakephp-flash",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dereuromark/cakephp-flash.git",
+                "reference": "9d70b47b3df6fd4e349b6b56cab7058746fea771"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-flash/zipball/9d70b47b3df6fd4e349b6b56cab7058746fea771",
+                "reference": "9d70b47b3df6fd4e349b6b56cab7058746fea771",
+                "shasum": ""
+            },
+            "require": {
+                "cakephp/cakephp": "~3.2",
+                "php": ">=5.5"
+            },
+            "require-dev": {
+                "fig-r/psr2r-sniffer": "dev-master"
+            },
+            "type": "cakephp-plugin",
+            "autoload": {
+                "psr-4": {
+                    "Flash\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mark Scherer",
+                    "homepage": "http://www.dereuromark.de",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "A CakePHP plugin around powerful flash message handling.",
+            "homepage": "https://github.com/dereuromark/cakephp-flash",
+            "keywords": [
+                "cakephp",
+                "flash",
+                "messages",
+                "plugin"
+            ],
+            "time": "2016-10-16 23:08:29"
         },
         {
             "name": "dereuromark/cakephp-geo",
@@ -792,6 +786,54 @@
             ],
             "abandoned": true,
             "time": "2015-12-22 21:34:32"
+        },
+        {
+            "name": "friendsofcake/search",
+            "version": "2.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/FriendsOfCake/search.git",
+                "reference": "b7a9d10aa9f92a1039b8e26c3f1d4ec816a40dfb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/FriendsOfCake/search/zipball/b7a9d10aa9f92a1039b8e26c3f1d4ec816a40dfb",
+                "reference": "b7a9d10aa9f92a1039b8e26c3f1d4ec816a40dfb",
+                "shasum": ""
+            },
+            "require": {
+                "cakephp/cakephp": "~3.0"
+            },
+            "require-dev": {
+                "cakephp/cakephp-codesniffer": "dev-master",
+                "friendsofcake/cakephp-test-utilities": "dev-master"
+            },
+            "type": "cakephp-plugin",
+            "autoload": {
+                "psr-4": {
+                    "Search\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Christian Winther",
+                    "homepage": "http://cakephp.nu/",
+                    "role": "Author"
+                }
+            ],
+            "description": "CakePHP 3.0 easy search framework",
+            "homepage": "https://github.com/FriendsOfCake/search",
+            "keywords": [
+                "cake3",
+                "cakephp",
+                "cakephp3",
+                "search"
+            ],
+            "time": "2016-09-24 04:32:33"
         },
         {
             "name": "igorw/get-in",
@@ -2296,12 +2338,12 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "dereuromark/cakephp-tinyauth": 20,
         "dereuromark/cakephp-geo": 20,
-        "dereuromark/cakephp-tools": 20,
         "dereuromark/cakephp-setup": 20,
-        "cakedc/search": 20,
+        "dereuromark/cakephp-tinyauth": 20,
+        "dereuromark/cakephp-tools": 20,
         "friendsofcake/authenticate": 0,
+        "friendsofcake/search": 0,
         "cakephp/bake": 0,
         "psy/psysh": 0
     },

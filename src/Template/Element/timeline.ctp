@@ -13,7 +13,7 @@
 		'min' => $event['from']->sub(new \DateInterval('P10D')),
 		'max' => $event['to']->add(new \DateInterval('P10D')),
 	];
-	$this->Timeline->settings($settings);
+	$this->Timeline->config($settings);
 
 	foreach ($attendees as $attendee) {
 		$content = '';

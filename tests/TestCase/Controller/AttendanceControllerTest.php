@@ -83,7 +83,7 @@ class AttendanceControllerTest extends IntegrationTestCase {
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();
 
-		$this->assertResponseContains('<div class="message error">');
+		$this->assertResponseContains('<div class="alert alert-danger">');
 	}
 
 	/**
@@ -152,7 +152,8 @@ class AttendanceControllerTest extends IntegrationTestCase {
 		$this->post(['controller' => 'Attendance', 'action' => 'delete', $id]);
 		$this->assertResponseCode(302);
 		$this->assertRedirect();
-		$this->assertSession(['record del 1 done'], 'FlashMessage.success');
+
+		$this->assertSession(__('record del {0} done', $id), 'Flash.flash.0.message');
 	}
 
 }

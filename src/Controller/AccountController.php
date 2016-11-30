@@ -42,7 +42,7 @@ class AccountController extends AppController {
 				$this->Flash->success(__('loggedInMessage'));
 				return $this->redirect($this->Auth->redirectUrl());
 			}
-			$this->Flash->error(__('loggedInError'));
+			$this->Flash->error(__('Login failed. Please try again and check your input.'));
 			$this->request->data['password'] = '';
 
 		} else {
@@ -63,7 +63,7 @@ class AccountController extends AppController {
 			$this->Common->loadComponent('Tools.RememberMe');
 			$this->RememberMe->delete();
 		}
-		$this->Flash->success(__('loggedOutMessage'));
+		$this->Flash->success(__('You successfully logged out.'));
 		return $this->redirect($whereTo);
 	}
 
@@ -87,7 +87,7 @@ class AccountController extends AppController {
 			$key = $this->Tokens->useKey('reset_pwd', $keyToCheck);
 
 			if (!empty($key) && $key['used'] == 1) {
-				$this->Flash->warning(__('alreadyChangedYourPassword'));
+				$this->Flash->warning(__('You already changed your password.'));
 			} elseif (!empty($key)) {
 				$uid = $key['user_id'];
 				$this->request->session()->write('Auth.Tmp.id', $uid);

@@ -4,7 +4,7 @@ namespace App\Model\Table;
 use App\Model\Table\AppTable;
 
 /**
- * User Model
+ * @mixin \Search\Model\Behavior\SearchBehavior
  */
 class UsersTable extends AppTable {
 
@@ -78,48 +78,10 @@ class UsersTable extends AppTable {
 	/**
 	 * @var array
 	 */
-	public $belongsTo = [
-		/*
-		'Role' => array(
-			'className' => 'Role',
-			'foreignKey' => 'role_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		),
-		'Language' => array(
-			'className' => 'Language',
-			'foreignKey' => 'language_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		)
-		*/
-	];
-
-	/**
-	 * @var array
-	 */
 	public $hasMany = [
 		'Attendee' => [
 			'className' => 'Attendee',
 			'dependent' => true,
-		]
-	];
-
-	/**
-	 * @var array
-	 */
-	public $filterArgs = [
-		'search' => [
-			'type' => 'like',
-			'field' => ['username', 'email']
-		],
-		'role_id' => [
-			'type' => 'value'
-		],
-		'status' => [
-			'type' => 'value'
 		]
 	];
 
@@ -130,7 +92,16 @@ class UsersTable extends AppTable {
 	public function initialize(array $config = []) {
 		parent::initialize($config);
 
-		$this->addBehavior('Search.Searchable');
+		$this->addBehavior('Search.Search');
+
+		$this->searchManager()
+			->value('role_id')
+			->value('status')
+			->add('search', 'Search.Like', [
+				'before' => true,
+				'after' => true,
+				'field' => ['username', 'email']
+			]);
 	}
 
 }

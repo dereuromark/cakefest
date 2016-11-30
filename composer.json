@@ -14,17 +14,18 @@
 		}],
 	"require": {
 		"php": ">=5.5",
-		"cakephp/cakephp": "3.3.*",
+		"cakephp/cakephp": "dev-3.next as 3.4",
 		"cakephp/migrations": "~1.1",
 		"cakephp/plugin-installer": "*",
-		"dereuromark/cakephp-tinyauth": "dev-master",
+		"dereuromark/cakephp-flash": "^1.0",
 		"dereuromark/cakephp-geo": "dev-master",
-		"dereuromark/cakephp-tools": "dev-master",
 		"dereuromark/cakephp-setup": "dev-master",
-		"CakeDC/search" : "3.0.*-dev",
+		"dereuromark/cakephp-tinyauth": "dev-master",
+		"dereuromark/cakephp-tools": "dev-master",
 		"friendsofcake/authenticate": "@stable",
-		"mobiledetect/mobiledetectlib": "2.*",
-		"markstory/asset_compress": "~3.0"
+		"friendsofcake/search": "@stable",
+		"markstory/asset_compress": "~3.0",
+		"mobiledetect/mobiledetectlib": "2.*"
 	},
 	"require-dev": {
 		"cakephp/bake": "@stable",

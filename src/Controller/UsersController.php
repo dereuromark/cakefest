@@ -19,9 +19,9 @@ class UsersController extends AppController {
 	 * @return void
 	 */
 	public function index() {
-		$this->Prg->commonProcess();
+		$query = $this->Users->find('search', ['search' => $this->request->query]);
 
-		$users = $this->paginate($this->Users->find('searchable', $this->Prg->parsedParams()));
+		$users = $this->paginate($query);
 		$this->set(compact('users'));
 	}
 

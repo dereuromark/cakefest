@@ -24,7 +24,7 @@ class AppController extends Controller {
 	 * @var array
 	 */
 	public $helpers = ['Shim.Session', 'Html', 'Tools.Form', 'Tools.Common', 'Flash.Flash',
-		'Tools.Format', 'Tools.Time', 'Tools.Number', 'TinyAuth.AuthUser', 'Tools.Obfuscate', 'Tools.Js'];
+		'Tools.Format', 'Tools.Time', 'Tools.Number', 'TinyAuth.AuthUser', 'Tools.Obfuscate', 'Shim.Js'];
 
 	/**
 	 * @return void

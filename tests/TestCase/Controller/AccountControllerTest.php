@@ -208,8 +208,7 @@ class AccountControllerTest extends IntegrationTestCase {
 		$this->assertResponseCode(302);
 		$this->assertRedirect(['action' => 'login', '?' => ['username' => $username]]);
 
-		$result = $this->_requestSession->read('FlashMessage.success');
-		$this->assertSame([__('new pw saved - you may now log in')], $result);
+		$this->assertSession(__('new pw saved - you may now log in'), 'Flash.flash.0.message');
 	}
 
 	/**

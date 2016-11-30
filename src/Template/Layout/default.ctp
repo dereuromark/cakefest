@@ -9,8 +9,6 @@
 		echo $this->Html->meta('icon');
 	?>
 	<?php echo $this->Html->css('cake.generic') ?>
-	<?php //echo $this->Html->css('base.css') ?>
-	<?php //echo $this->Html->css('cake.css') ?>
 
 	<?php echo $this->fetch('meta') ?>
 	<?php echo $this->fetch('css') ?>
@@ -47,7 +45,7 @@
 		<div id="container">
 			<div id="content">
 
-			<?php echo $this->Flash->flash(); ?>
+			<?php echo $this->Flash->render(); ?>
 
 			<?php echo $this->fetch('content'); ?>
 			</div>
