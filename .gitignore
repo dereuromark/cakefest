@@ -11,3 +11,4 @@ _*
 /plugins/
 /composer.phar
 .idea/
+schema-dump-default.lock

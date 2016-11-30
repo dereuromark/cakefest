@@ -93,7 +93,7 @@ if ($isCli) {
 
 // Include the CLI bootstrap overrides.
 if ($isCli) {
-	//require __DIR__ . '/bootstrap_cli.php';
+	require __DIR__ . '/bootstrap_cli.php';
 }
 
 /**
@@ -174,7 +174,7 @@ Plugin::loadAll(array(
 	'DebugKit' => ['bootstrap' => true],
 ));
 */
-Plugin::load('Migrations');
+
 Plugin::load('Tools', ['bootstrap' => true]);
 Plugin::load('Setup', ['bootstrap' => true]);
 

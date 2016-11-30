@@ -8,9 +8,9 @@ use Tools\Controller\Controller;
 use Tools\Utility\Language;
 
 /**
- * @property \Tools\Controller\Component\FlashComponent $Flash
+ * @property \Flash\Controller\Component\FlashComponent $Flash
  * @property \Tools\Controller\Component\CommonComponent $Common
- * @property \Tools\Controller\Component\AuthUserComponent $AuthUser
+ * @property \TinyAuth\Controller\Component\AuthUserComponent $AuthUser
  * @property \Shim\Controller\Component\SessionComponent $Session
  */
 class AppController extends Controller {
@@ -18,13 +18,13 @@ class AppController extends Controller {
 	/**
 	 * @var array
 	 */
-	public $components = ['Shim.Session', 'RequestHandler', 'Tools.Common', 'Tools.Flash', 'Tools.AuthUser'];
+	public $components = ['Shim.Session', 'RequestHandler', 'Tools.Common', 'Flash.Flash', 'TinyAuth.AuthUser'];
 
 	/**
 	 * @var array
 	 */
-	public $helpers = ['Shim.Session', 'Html', 'Tools.Form', 'Tools.Common', 'Tools.Flash',
-		'Tools.Format', 'Tools.Time', 'Tools.Number', 'Tools.AuthUser', 'Tools.Obfuscate', 'Tools.Js'];
+	public $helpers = ['Shim.Session', 'Html', 'Tools.Form', 'Tools.Common', 'Flash.Flash',
+		'Tools.Format', 'Tools.Time', 'Tools.Number', 'TinyAuth.AuthUser', 'Tools.Obfuscate', 'Tools.Js'];
 
 	/**
 	 * @return void
@@ -42,7 +42,6 @@ class AppController extends Controller {
 					'columns' => ['username', 'email'],
 					'userModel' => 'Users',
 					'passwordHasher' => Configure::read('Passwordable.passwordHasher')
-					//'scope' => array('User.email_confirmed' => 1)
 				],
 			],
 			'authorize' => [
@@ -89,7 +88,7 @@ class AppController extends Controller {
 		}
 		foreach ($allowed as $controller => $actions) {
 			if ($this->name === $controller && in_array($this->request->action, $actions)) {
-				$this->Flash->message('The page you tried to access is not relevant if you are already logged in. Redirected to main page.', 'info');
+				$this->Flash->info('The page you tried to access is not relevant if you are already logged in. Redirected to main page.');
 				return $this->redirect($this->Auth->config('loginRedirect'));
 			}
 		}
