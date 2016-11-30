@@ -41,7 +41,7 @@ class UsersController extends AppController {
 	 */
 	public function edit($id = null) {
 		if (empty($id) || !($user = $this->Users->find('first', ['conditions' => ['Users.id' => $id]]))) {
-			$this->Flash->message(__('invalidRecord'), 'error');
+			$this->Flash->error(__('invalidRecord'));
 			return $this->Common->autoRedirect(['action' => 'index']);
 		}
 		if ($this->Common->isPosted()) {
@@ -49,10 +49,10 @@ class UsersController extends AppController {
 			$this->Users->addBehavior('Tools.Passwordable', ['require' => false]);
 			if ($this->Users->save($user)) {
 				$var = $this->request->data['username'];
-				$this->Flash->message(__('record edit {0} saved', h($var)), 'success');
+				$this->Flash->success(__('record edit {0} saved', h($var)));
 				return $this->Common->postRedirect(['action' => 'index']);
 			}
-			$this->Flash->message(__('formContainsErrors'), 'error');
+			$this->Flash->error(__('formContainsErrors'));
 		}
 
 		$this->set(compact('user'));
@@ -67,16 +67,16 @@ class UsersController extends AppController {
 	public function delete($id = null) {
 		$this->request->allowMethod(['post', 'delete']);
 		if (empty($id) || !($user = $this->Users->find('first', ['conditions' => ['Users.id' => $id], 'fields' => ['id', 'username']]))) {
-			$this->Flash->message(__('invalidRecord'), 'error');
+			$this->Flash->error(__('invalidRecord'));
 			return $this->Common->autoRedirect(['action' => 'index']);
 		}
 		$var = $user['username'];
 
 		if ($this->Users->delete($user)) {
-			$this->Flash->message(__('record del {0} done', h($var)), 'success');
+			$this->Flash->success(__('record del {0} done', h($var)));
 			return $this->Common->postRedirect(['action' => 'index']);
 		}
-		$this->Flash->message(__('record del {0} not done exception', h($var)), 'error');
+		$this->Flash->error(__('record del {0} not done exception', h($var)));
 		return $this->Common->autoRedirect(['action' => 'index']);
 	}
 

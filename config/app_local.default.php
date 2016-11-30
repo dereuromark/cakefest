@@ -1,5 +1,5 @@
 <?php
-$config = [
+return [
 	//'debug' => true,
 
 	'Security' => [
@@ -11,7 +11,7 @@ $config = [
 			'host' => 'localhost',
 			'username' => 'root',
 			'password' => '',
-			'database' => 'cake_cakefest',
+			'database' => 'cakefest_local',
 		],
 
 		/**
@@ -21,7 +21,7 @@ $config = [
 			'host' => 'localhost',
 			'username' => 'root',
 			'password' => '',
-			'database' => 'cake_test',
+			'database' => 'test_cakefest_local',
 		],
 	],
 
