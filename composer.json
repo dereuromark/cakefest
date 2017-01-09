@@ -52,7 +52,9 @@
 	],
 	"scripts": {
 		"post-install-cmd": "App\\Console\\Installer::postInstall",
-		"post-autoload-dump": "Cake\\Composer\\Installer\\PluginInstaller::postAutoloadDump"
+		"post-autoload-dump": "Cake\\Composer\\Installer\\PluginInstaller::postAutoloadDump",
+		"cs-check": "vendor/bin/phpcs --standard=vendor/fig-r/psr2r-sniffer/PSR2R/ruleset.xml --ignore=/vendor/,/scripts/,/tmp/,/logs/,/config/Migrations/ --extensions=php -p ./",
+		"cs-fix": "vendor/bin/phpcbf --standard=vendor/fig-r/psr2r-sniffer/PSR2R/ruleset.xml --ignore=/vendor/,/scripts/,/tmp/,/logs/,/config/Migrations/ --extensions=php -v -f ./"
 	},
 	"prefer-stable": true,
 	"config": {
