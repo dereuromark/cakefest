@@ -37,7 +37,7 @@ class UsersController extends AppController {
 
 	/**
 	 * @param string|null $id
-	 * @return void
+	 * @return \Cake\Network\Response|null
 	 */
 	public function edit($id = null) {
 		if (empty($id) || !($user = $this->Users->find('first', ['conditions' => ['Users.id' => $id]]))) {
@@ -59,10 +59,8 @@ class UsersController extends AppController {
 	}
 
 	/**
-	 * delete method
-	 *
 	 * @param string|null $id
-	 * @return void
+	 * @return \Cake\Network\Response
 	 */
 	public function delete($id = null) {
 		$this->request->allowMethod(['post', 'delete']);
