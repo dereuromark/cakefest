@@ -17,11 +17,11 @@ Join in and tell others about your planned trip to the conference, and maybe wha
 ## Dependencies
 
 * CakePHP 3.3+
-* FriendsOfCake/Authenticate and CakeDC/Search plugin
+* FriendsOfCake/Authenticate and FriendsOfCake/Search plugin
 * My Tools, Geo, TinyAuth and Setup plugins
 * Uses Migrations plugin for DB migration
 * Uses DebugKit plugin for development
-
+* Uses IdeHelper plugin for annotations
 
 ## Installation
 
