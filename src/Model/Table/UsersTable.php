@@ -1,12 +1,10 @@
 <?php
 namespace App\Model\Table;
 
-use App\Model\Table\AppTable;
-
 /**
  * @mixin \Search\Model\Behavior\SearchBehavior
  */
-class UsersTable extends AppTable {
+class UsersTable extends Table {
 
 	/**
 	 * @var string

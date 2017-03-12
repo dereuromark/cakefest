@@ -1,14 +1,13 @@
 <?php
 namespace App\Model\Table;
 
-use App\Model\Table\AppTable;
 use Cake\ORM\Query;
 use Tools\Utility\Time;
 
 /**
  * Attendee Table
  */
-class AttendeesTable extends AppTable {
+class AttendeesTable extends Table {
 
 	/**
 	 * @var array

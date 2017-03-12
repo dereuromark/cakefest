@@ -14,23 +14,24 @@
 		}],
 	"require": {
 		"php": ">=5.5",
-		"cakephp/cakephp": "dev-3.next as 3.4",
-		"cakephp/migrations": "~1.1",
+		"cakephp/cakephp": "^3.4",
+		"cakephp/migrations": "^1.1",
 		"cakephp/plugin-installer": "*",
 		"dereuromark/cakephp-flash": "^1.0",
-		"dereuromark/cakephp-geo": "dev-master",
+		"dereuromark/cakephp-geo": "^1.1",
 		"dereuromark/cakephp-setup": "dev-master",
-		"dereuromark/cakephp-tinyauth": "dev-master",
-		"dereuromark/cakephp-tools": "dev-master",
+		"dereuromark/cakephp-tinyauth": "^1.6",
+		"dereuromark/cakephp-tools": "dev-master as 1.1",
 		"friendsofcake/authenticate": "@stable",
 		"friendsofcake/search": "@stable",
-		"markstory/asset_compress": "~3.0",
+		"markstory/asset_compress": "^3.0",
 		"mobiledetect/mobiledetectlib": "2.*"
 	},
 	"require-dev": {
-		"cakephp/bake": "@stable",
-		"cakephp/debug_kit": "~3.2",
-		"fig-r/psr2r-sniffer": "^0.3.1",
+		"cakephp/bake": "dev-master",
+		"cakephp/debug_kit": "^3.2",
+		"dereuromark/cakephp-ide-helper": "dev-master",
+		"fig-r/psr2r-sniffer": "dev-master",
 		"psy/psysh": "@stable"
 	},
 	"autoload": {
@@ -45,19 +46,18 @@
 			"Tools\\Test\\Fixture\\": "./vendor/dereuromark/cakephp-tools/tests/Fixture"
 		}
 	},
-	"repositories" : [{
-		"type" : "vcs",
-		"url" : "https://github.com/dereuromark/search"
-	}
-	],
 	"scripts": {
 		"post-install-cmd": "App\\Console\\Installer::postInstall",
 		"post-autoload-dump": "Cake\\Composer\\Installer\\PluginInstaller::postAutoloadDump",
+		"setup": "[ ! -f phpunit.phar ] && wget https://phar.phpunit.de/phpunit.phar",
+		"test": "php phpunit.phar",
+		"coverage": "php phpunit.phar --log-junit webroot/coverage/unitreport.xml --coverage-html webroot/coverage --coverage-clover webroot/coverage/coverage.xml",
 		"cs-check": "vendor/bin/phpcs --standard=vendor/fig-r/psr2r-sniffer/PSR2R/ruleset.xml --ignore=/vendor/,/scripts/,/tmp/,/logs/,/config/Migrations/ --extensions=php -p ./",
 		"cs-fix": "vendor/bin/phpcbf --standard=vendor/fig-r/psr2r-sniffer/PSR2R/ruleset.xml --ignore=/vendor/,/scripts/,/tmp/,/logs/,/config/Migrations/ --extensions=php -v -f ./"
 	},
 	"prefer-stable": true,
 	"config": {
+		"preferred-install": "source",
 		"sort-packages": true,
 		"process-timeout": 600
 	}

@@ -1,12 +1,10 @@
 <?php
 namespace App\Model\Table;
 
-use App\Model\Table\AppTable;
-
 /**
  * Event Model
  */
-class EventsTable extends AppTable {
+class EventsTable extends Table {
 
 	/**
 	 * Display field
