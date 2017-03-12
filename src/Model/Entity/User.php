@@ -29,8 +29,8 @@ class User extends Entity {
 	 */
 	public static function statuses($value = null) {
 		$array = [
-			self::STATUS_DEV => __('CakePHP Developer'),
-			self::STATUS_CORE_DEV => __('CakePHP Core Developer'),
+			static::STATUS_DEV => __('CakePHP Developer'),
+			static::STATUS_CORE_DEV => __('CakePHP Core Developer'),
 		];
 
 		return parent::enum($value, $array);

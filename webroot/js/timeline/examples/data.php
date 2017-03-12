@@ -29,7 +29,6 @@ google.visualization.Query.setResponse({
 });
 ";
 
-
 /**
  * Retrieve the request id from the get/post data
  *

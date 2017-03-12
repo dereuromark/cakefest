@@ -8,7 +8,6 @@ use Tools\Mailer\Email;
 /**
  * Attendees Controller
  *
- * @property Attendee $Attendee
  * @property \App\Model\Table\AttendeesTable $Attendees
  */
 class AttendeesController extends AppController {
@@ -27,7 +26,6 @@ class AttendeesController extends AppController {
 	 * @return void
 	 */
 	public function map() {
-
 	}
 
 	/**

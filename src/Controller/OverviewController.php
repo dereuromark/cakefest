@@ -5,7 +5,6 @@ use App\Controller\AppController;
 use Cake\Network\Exception\NotFoundException;
 
 /**
- *
  * @property \App\Model\Table\UsersTable $Users
  */
 class OverviewController extends AppController {
