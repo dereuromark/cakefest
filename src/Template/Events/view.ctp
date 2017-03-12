@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ */
+?>
 <div class="events view">
 <h2><?php echo __('Event'); ?></h2>
 	<dl>

@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ */
+?>
 You requested to reset your password.
 
 Please click on the link to confirm your request:

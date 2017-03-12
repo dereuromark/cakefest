@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ */
+?>
 <h2>Welcome</h2>
 <p>You need to login to proceed.</p>
 

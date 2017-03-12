@@ -7,6 +7,7 @@ use App\Controller\AppController;
  * Events Controller
  *
  * @property Event $Event
+ * @property \App\Model\Table\EventsTable $Events
  */
 class EventsController extends AppController {
 

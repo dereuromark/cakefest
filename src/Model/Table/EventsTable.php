@@ -3,6 +3,14 @@ namespace App\Model\Table;
 
 /**
  * Event Model
+ *
+ * @method \App\Model\Entity\Event get($primaryKey, $options = [])
+ * @method \App\Model\Entity\Event newEntity($data = null, array $options = [])
+ * @method \App\Model\Entity\Event[] newEntities(array $data, array $options = [])
+ * @method \App\Model\Entity\Event|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \App\Model\Entity\Event patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
+ * @method \App\Model\Entity\Event[] patchEntities($entities, array $data, array $options = [])
+ * @method \App\Model\Entity\Event findOrCreate($search, callable $callback = null, $options = [])
  */
 class EventsTable extends Table {
 

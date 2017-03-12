@@ -1,4 +1,8 @@
-<?php echo $this->Html->script('jquery'); ?>
+<?php /**
+ * @var \App\View\AppView $this
+ * @var \App\Model\Entity\Attendee[] $attendees
+ */
+echo $this->Html->script('jquery'); ?>
 <?php echo $this->Html->script('timeline/timeline'); ?>
 <?php echo $this->Html->css('/js/timeline/timeline'); ?>
 

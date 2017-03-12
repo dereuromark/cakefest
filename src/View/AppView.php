@@ -8,6 +8,10 @@ use Cake\View\View;
  * @property \Tools\View\Helper\FormHelper $Format
  * @property \TinyAuth\View\Helper\AuthUserHelper $AuthUser
  * @property \Geo\View\Helper\GoogleMapHelper $GoogleMap
+ * @property \Tools\View\Helper\FormatHelper $Format
+ * @property \Tools\View\Helper\ObfuscateHelper $Obfuscate
+ * @property \Tools\View\Helper\TimelineHelper $Timeline
+ * @property \App\View\Helper\CakefestHelper $Cakefest
  */
 class AppView extends View {
 

@@ -1,3 +1,9 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ * @var \App\Model\Entity\User $user
+ */
+?>
 <h3><?php echo __('Step 3: Set a new password')?></h3>
 
 <div class="users form">

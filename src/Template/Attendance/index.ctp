@@ -1,3 +1,9 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ * @var \App\Model\Entity\Attendee[] $attendees
+ */
+?>
 <div class="attendees index">
 	<h2><?php echo __('My Attendance'); ?></h2>
 

@@ -1,3 +1,9 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ * @var \App\Model\Entity\Event[] $events
+ */
+?>
 <div class="events index">
 	<h2><?php echo __('Events'); ?></h2>
 	<table cellpadding="0" cellspacing="0">

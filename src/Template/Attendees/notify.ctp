@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ */
+?>
 <div class="attendees form">
 <?php echo $this->Form->create($form); ?>
 	<fieldset>

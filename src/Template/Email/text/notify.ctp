@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ */
+?>
 Hi <?php echo $user['username']; ?>!
 
 <?php echo $message; ?>

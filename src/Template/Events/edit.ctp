@@ -1,3 +1,9 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ * @var \App\Model\Entity\Event $event
+ */
+?>
 <div class="events form">
 <?php echo $this->Form->create($event); ?>
 	<fieldset>

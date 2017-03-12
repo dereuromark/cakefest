@@ -1,6 +1,22 @@
 <?php
 namespace App\Model\Entity;
 
+/**
+ * @property int $id
+ * @property string $username
+ * @property string $irc_nick
+ * @property string $email
+ * @property bool $email_confirmed
+ * @property string $password
+ * @property string $timezone
+ * @property int $status
+ * @property \Cake\I18n\Time $created
+ * @property \Cake\I18n\Time $modified
+ * @property int $role_id
+ * @property int $language_id
+ *
+ * @property \App\Model\Entity\Attendee[] $attendees
+ */
 class User extends Entity {
 
 	const STATUS_DEV = 0;

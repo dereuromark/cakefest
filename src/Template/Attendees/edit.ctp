@@ -1,3 +1,9 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ * @var \App\Model\Entity\Attendee $attendee
+ */
+?>
 <div class="attendees form">
 <?php echo $this->Form->create($attendee); ?>
 	<fieldset>

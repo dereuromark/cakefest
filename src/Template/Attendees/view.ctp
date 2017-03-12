@@ -1,3 +1,9 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ * @var \App\Model\Entity\Attendee $attendee
+ */
+?>
 <div class="attendees view">
 <h2><?php echo __('Attendee'); ?></h2>
 <p>

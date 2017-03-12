@@ -1,5 +1,8 @@
 <?php
 /**
+ * @var \App\View\AppView $this
+ */
+/**
  *
  * PHP 5
  *
