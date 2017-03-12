@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a69d563f79009312040379df3a7d427c",
-    "content-hash": "7b5663ae7ecad1e99e6ab1271ac3baaf",
+    "hash": "9f0588d3982d3e05e2b7e2586076b7ba",
+    "content-hash": "36aa820a9a455bab00e1f25b34b3156c",
     "packages": [
         {
             "name": "aura/intl",
@@ -2451,6 +2451,56 @@
             "time": "2017-03-05 18:23:57"
         },
         {
+            "name": "psa/cakephp-fixture-check",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/World-Architects/cakephp-fixture-check.git",
+                "reference": "e8969cb7289d6823acf81c2934321fa19c884629"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/World-Architects/cakephp-fixture-check/zipball/e8969cb7289d6823acf81c2934321fa19c884629",
+                "reference": "e8969cb7289d6823acf81c2934321fa19c884629",
+                "shasum": ""
+            },
+            "require": {
+                "cakephp/cakephp": "^3.4",
+                "cakephp/plugin-installer": "*"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "<6.0"
+            },
+            "type": "cakephp-plugin",
+            "autoload": {
+                "psr-4": {
+                    "Psa\\FixtureCheck\\": "src",
+                    "Psa\\FixtureCheck\\Test\\Fixture\\": "tests\\Fixture"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Florian Krämer",
+                    "homepage": "http://world-architects.com"
+                },
+                {
+                    "name": "Falk Romano",
+                    "homepage": "http://world-architects.com"
+                }
+            ],
+            "description": "Plugin to compare fixtures with live DB tables",
+            "homepage": "https://github.com/World-Architects/cakephp-fixture-check",
+            "keywords": [
+                "fixtures",
+                "testing"
+            ],
+            "time": "2017-02-23 00:40:54"
+        },
+        {
             "name": "psy/psysh",
             "version": "v0.8.2",
             "source": {
@@ -2875,6 +2925,7 @@
         "cakephp/bake": 0,
         "dereuromark/cakephp-ide-helper": 20,
         "fig-r/psr2r-sniffer": 20,
+        "psa/cakephp-fixture-check": 20,
         "psy/psysh": 0
     },
     "prefer-stable": true,

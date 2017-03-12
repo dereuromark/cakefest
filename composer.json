@@ -32,6 +32,7 @@
 		"cakephp/debug_kit": "^3.2",
 		"dereuromark/cakephp-ide-helper": "dev-master",
 		"fig-r/psr2r-sniffer": "dev-master",
+		"psa/cakephp-fixture-check": "dev-master",
 		"psy/psysh": "@stable"
 	},
 	"autoload": {
