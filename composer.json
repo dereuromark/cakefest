@@ -19,7 +19,7 @@
 		"cakephp/plugin-installer": "*",
 		"dereuromark/cakephp-flash": "^1.0",
 		"dereuromark/cakephp-geo": "^1.1",
-		"dereuromark/cakephp-setup": "dev-master",
+		"dereuromark/cakephp-setup": "^1.0",
 		"dereuromark/cakephp-tinyauth": "^1.6",
 		"dereuromark/cakephp-tools": "dev-master as 1.1",
 		"friendsofcake/authenticate": "@stable",
@@ -28,7 +28,7 @@
 		"mobiledetect/mobiledetectlib": "2.*"
 	},
 	"require-dev": {
-		"cakephp/bake": "dev-master",
+		"cakephp/bake": "@stable",
 		"cakephp/debug_kit": "^3.2",
 		"dereuromark/cakephp-ide-helper": "dev-master",
 		"fig-r/psr2r-sniffer": "dev-master",

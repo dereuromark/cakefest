@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "18f81d7351408b917802d432525c9942",
-    "content-hash": "f4e23a5c8fbd0896e48a4cfa8e90fbb1",
+    "hash": "a69d563f79009312040379df3a7d427c",
+    "content-hash": "7b5663ae7ecad1e99e6ab1271ac3baaf",
     "packages": [
         {
             "name": "aura/intl",
@@ -378,7 +378,7 @@
         },
         {
             "name": "dereuromark/cakephp-setup",
-            "version": "dev-master",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-setup.git",
@@ -1700,7 +1700,7 @@
     "packages-dev": [
         {
             "name": "cakephp/bake",
-            "version": "dev-master",
+            "version": "1.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/bake.git",
@@ -2068,16 +2068,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-ide-helper.git",
-                "reference": "98d52b8fb1d459b4700f23f37f425431389b9a46"
+                "reference": "e87c2d108dd52dcb713fb03bd7ef2cebb136a0e3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/98d52b8fb1d459b4700f23f37f425431389b9a46",
-                "reference": "98d52b8fb1d459b4700f23f37f425431389b9a46",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/e87c2d108dd52dcb713fb03bd7ef2cebb136a0e3",
+                "reference": "e87c2d108dd52dcb713fb03bd7ef2cebb136a0e3",
                 "shasum": ""
             },
             "require": {
-                "cakephp/bake": "dev-master as 1.3",
+                "cakephp/bake": "^1.3.2",
                 "cakephp/cakephp": "^3.4",
                 "php": ">=5.6",
                 "squizlabs/php_codesniffer": "^2.8"
@@ -2119,7 +2119,7 @@
                 "phpstorm",
                 "plugin"
             ],
-            "time": "2017-03-12 12:28:04"
+            "time": "2017-03-12 17:23:22"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -2869,11 +2869,10 @@
     ],
     "minimum-stability": "stable",
     "stability-flags": {
-        "dereuromark/cakephp-setup": 20,
         "dereuromark/cakephp-tools": 20,
         "friendsofcake/authenticate": 0,
         "friendsofcake/search": 0,
-        "cakephp/bake": 20,
+        "cakephp/bake": 0,
         "dereuromark/cakephp-ide-helper": 20,
         "fig-r/psr2r-sniffer": 20,
         "psy/psysh": 0
