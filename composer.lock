@@ -4,7 +4,6 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "18f81d7351408b917802d432525c9942",
     "content-hash": "f4e23a5c8fbd0896e48a4cfa8e90fbb1",
     "packages": [
         {
@@ -51,7 +50,7 @@
                 "l10n",
                 "localization"
             ],
-            "time": "2017-01-20 05:00:11"
+            "time": "2017-01-20T05:00:11+00:00"
         },
         {
             "name": "cakephp/cakephp",
@@ -129,7 +128,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2017-03-10 04:23:39"
+            "time": "2017-03-10T04:23:39+00:00"
         },
         {
             "name": "cakephp/chronos",
@@ -184,7 +183,7 @@
                 "datetime",
                 "time"
             ],
-            "time": "2017-02-15 08:51:03"
+            "time": "2017-02-15T08:51:03+00:00"
         },
         {
             "name": "cakephp/migrations",
@@ -234,7 +233,7 @@
                 "cakephp",
                 "migrations"
             ],
-            "time": "2017-01-07 16:45:31"
+            "time": "2017-01-07T16:45:31+00:00"
         },
         {
             "name": "cakephp/plugin-installer",
@@ -274,7 +273,7 @@
                 }
             ],
             "description": "A composer installer for CakePHP 3.0+ plugins.",
-            "time": "2016-04-28 03:01:34"
+            "time": "2016-04-28T03:01:34+00:00"
         },
         {
             "name": "dereuromark/cakephp-flash",
@@ -322,7 +321,7 @@
                 "messages",
                 "plugin"
             ],
-            "time": "2016-10-16 23:08:29"
+            "time": "2016-10-16T23:08:29+00:00"
         },
         {
             "name": "dereuromark/cakephp-geo",
@@ -374,7 +373,7 @@
                 "maps",
                 "plugin"
             ],
-            "time": "2017-03-03 21:58:34"
+            "time": "2017-03-03T21:58:34+00:00"
         },
         {
             "name": "dereuromark/cakephp-setup",
@@ -477,33 +476,30 @@
                 "plugin",
                 "shim"
             ],
-            "time": "2017-02-19 23:57:01"
+            "time": "2017-02-19T23:57:01+00:00"
         },
         {
             "name": "dereuromark/cakephp-tinyauth",
-            "version": "1.6.3",
+            "version": "1.6.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-tinyauth.git",
-                "reference": "13c5dc7dcf487bff9808569b6f1a13c6d0ec2598"
+                "reference": "c4d121c3a7214ba52476517810d555685973ef7e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-tinyauth/zipball/13c5dc7dcf487bff9808569b6f1a13c6d0ec2598",
-                "reference": "13c5dc7dcf487bff9808569b6f1a13c6d0ec2598",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-tinyauth/zipball/c4d121c3a7214ba52476517810d555685973ef7e",
+                "reference": "c4d121c3a7214ba52476517810d555685973ef7e",
                 "shasum": ""
             },
             "require": {
-                "cakephp/cakephp": "~3.2",
+                "cakephp/cakephp": "^3.2",
                 "php": ">=5.5"
             },
             "require-dev": {
                 "fig-r/psr2r-sniffer": "dev-master"
             },
             "type": "cakephp-plugin",
-            "extra": {
-                "installer-name": "TinyAuth"
-            },
             "autoload": {
                 "psr-4": {
                     "TinyAuth\\": "src"
@@ -530,7 +526,7 @@
                 "roles",
                 "tinyauth"
             ],
-            "time": "2016-12-20 21:50:18"
+            "time": "2017-02-25T17:37:50+00:00"
         },
         {
             "name": "dereuromark/cakephp-tools",
@@ -667,7 +663,7 @@
                 "psr-7"
             ],
             "abandoned": "php-http/httplug",
-            "time": "2015-08-12 09:35:40"
+            "time": "2015-08-12T09:35:40+00:00"
         },
         {
             "name": "friendsofcake/authenticate",
@@ -718,7 +714,7 @@
                 "cakephp"
             ],
             "abandoned": true,
-            "time": "2015-12-22 21:34:32"
+            "time": "2015-12-22T21:34:32+00:00"
         },
         {
             "name": "friendsofcake/search",
@@ -766,7 +762,7 @@
                 "cakephp3",
                 "search"
             ],
-            "time": "2017-03-11 07:43:32"
+            "time": "2017-03-11T07:43:32+00:00"
         },
         {
             "name": "igorw/get-in",
@@ -811,7 +807,7 @@
                 "assoc-array",
                 "hash-map"
             ],
-            "time": "2014-12-15 23:03:51"
+            "time": "2014-12-15T23:03:51+00:00"
         },
         {
             "name": "league/climate",
@@ -862,7 +858,7 @@
                 "php",
                 "terminal"
             ],
-            "time": "2016-04-04 20:24:59"
+            "time": "2016-04-04T20:24:59+00:00"
         },
         {
             "name": "markstory/asset_compress",
@@ -920,7 +916,7 @@
                 "minifier",
                 "sass"
             ],
-            "time": "2016-11-02 02:45:32"
+            "time": "2016-11-02T02:45:32+00:00"
         },
         {
             "name": "markstory/mini-asset",
@@ -983,7 +979,7 @@
                 "psr7",
                 "sass"
             ],
-            "time": "2017-01-31 02:16:11"
+            "time": "2017-01-31T02:16:11+00:00"
         },
         {
             "name": "mobiledetect/mobiledetectlib",
@@ -1037,7 +1033,7 @@
                 "mobile detector",
                 "php mobile detect"
             ],
-            "time": "2016-11-11 14:56:25"
+            "time": "2016-11-11T14:56:25+00:00"
         },
         {
             "name": "psr/http-message",
@@ -1087,7 +1083,7 @@
                 "request",
                 "response"
             ],
-            "time": "2016-08-06 14:39:51"
+            "time": "2016-08-06T14:39:51+00:00"
         },
         {
             "name": "psr/log",
@@ -1134,7 +1130,7 @@
                 "psr",
                 "psr-3"
             ],
-            "time": "2016-10-10 12:19:37"
+            "time": "2016-10-10T12:19:37+00:00"
         },
         {
             "name": "robmorgan/phinx",
@@ -1200,7 +1196,7 @@
                 "migrations",
                 "phinx"
             ],
-            "time": "2016-10-27 10:16:12"
+            "time": "2016-10-27T10:16:12+00:00"
         },
         {
             "name": "seld/cli-prompt",
@@ -1248,7 +1244,7 @@
                 "input",
                 "prompt"
             ],
-            "time": "2016-04-18 09:31:41"
+            "time": "2016-04-18T09:31:41+00:00"
         },
         {
             "name": "symfony/config",
@@ -1304,7 +1300,7 @@
             ],
             "description": "Symfony Config Component",
             "homepage": "https://symfony.com",
-            "time": "2017-03-01 18:18:25"
+            "time": "2017-03-01T18:18:25+00:00"
         },
         {
             "name": "symfony/console",
@@ -1367,7 +1363,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2017-03-06 19:30:27"
+            "time": "2017-03-06T19:30:27+00:00"
         },
         {
             "name": "symfony/debug",
@@ -1424,7 +1420,7 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
-            "time": "2017-02-18 17:28:00"
+            "time": "2017-02-18T17:28:00+00:00"
         },
         {
             "name": "symfony/filesystem",
@@ -1473,7 +1469,7 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2017-03-06 19:30:27"
+            "time": "2017-03-06T19:30:27+00:00"
         },
         {
             "name": "symfony/polyfill-mbstring",
@@ -1532,7 +1528,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2016-11-14 01:06:16"
+            "time": "2016-11-14T01:06:16+00:00"
         },
         {
             "name": "symfony/yaml",
@@ -1587,7 +1583,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2017-03-07 16:47:02"
+            "time": "2017-03-07T16:47:02+00:00"
         },
         {
             "name": "willdurand/geocoder",
@@ -1647,7 +1643,7 @@
                 "geocoding",
                 "geoip"
             ],
-            "time": "2015-12-06 20:17:20"
+            "time": "2015-12-06T20:17:20+00:00"
         },
         {
             "name": "zendframework/zend-diactoros",
@@ -1697,7 +1693,7 @@
                 "psr",
                 "psr-7"
             ],
-            "time": "2017-01-23 04:53:24"
+            "time": "2017-01-23T04:53:24+00:00"
         }
     ],
     "packages-dev": [
@@ -1804,7 +1800,7 @@
                 "debug",
                 "kit"
             ],
-            "time": "2017-03-07 02:39:42"
+            "time": "2017-03-07T02:39:42+00:00"
         },
         {
             "name": "composer/ca-bundle",
@@ -1863,7 +1859,7 @@
                 "ssl",
                 "tls"
             ],
-            "time": "2017-03-06 11:59:08"
+            "time": "2017-03-06T11:59:08+00:00"
         },
         {
             "name": "composer/composer",
@@ -1940,7 +1936,7 @@
                 "dependency",
                 "package"
             ],
-            "time": "2017-03-10 08:29:45"
+            "time": "2017-03-10T08:29:45+00:00"
         },
         {
             "name": "composer/semver",
@@ -2002,7 +1998,7 @@
                 "validation",
                 "versioning"
             ],
-            "time": "2016-08-30 16:08:34"
+            "time": "2016-08-30T16:08:34+00:00"
         },
         {
             "name": "composer/spdx-licenses",
@@ -2063,7 +2059,7 @@
                 "spdx",
                 "validator"
             ],
-            "time": "2016-09-28 07:17:45"
+            "time": "2016-09-28T07:17:45+00:00"
         },
         {
             "name": "dereuromark/cakephp-ide-helper",
@@ -2071,12 +2067,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-ide-helper.git",
-                "reference": "bb092c4bc27d4ed6fb4def9837baf0035f28412b"
+                "reference": "98d52b8fb1d459b4700f23f37f425431389b9a46"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/bb092c4bc27d4ed6fb4def9837baf0035f28412b",
-                "reference": "bb092c4bc27d4ed6fb4def9837baf0035f28412b",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/98d52b8fb1d459b4700f23f37f425431389b9a46",
+                "reference": "98d52b8fb1d459b4700f23f37f425431389b9a46",
                 "shasum": ""
             },
             "require": {
@@ -2122,7 +2118,7 @@
                 "phpstorm",
                 "plugin"
             ],
-            "time": "2017-03-12 12:21:17"
+            "time": "2017-03-12T12:28:04+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -2155,7 +2151,7 @@
                 "MIT"
             ],
             "description": "implementation of xdg base directory specification for php",
-            "time": "2014-10-24 07:27:01"
+            "time": "2014-10-24T07:27:01+00:00"
         },
         {
             "name": "fig-r/psr2r-sniffer",
@@ -2240,7 +2236,7 @@
                     "homepage": "http://www.acci.cz"
                 }
             ],
-            "time": "2014-04-08 15:00:19"
+            "time": "2014-04-08T15:00:19+00:00"
         },
         {
             "name": "jakub-onderka/php-console-highlighter",
@@ -2284,7 +2280,7 @@
                     "homepage": "http://www.acci.cz/"
                 }
             ],
-            "time": "2015-04-20 18:58:01"
+            "time": "2015-04-20T18:58:01+00:00"
         },
         {
             "name": "jdorn/sql-formatter",
@@ -2334,7 +2330,7 @@
                 "highlight",
                 "sql"
             ],
-            "time": "2014-01-12 16:20:24"
+            "time": "2014-01-12T16:20:24+00:00"
         },
         {
             "name": "justinrainbow/json-schema",
@@ -2400,7 +2396,7 @@
                 "json",
                 "schema"
             ],
-            "time": "2017-02-22 03:28:16"
+            "time": "2017-02-22T03:28:16+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -2451,7 +2447,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2017-03-05 18:23:57"
+            "time": "2017-03-05T18:23:57+00:00"
         },
         {
             "name": "psy/psysh",
@@ -2524,7 +2520,7 @@
                 "interactive",
                 "shell"
             ],
-            "time": "2017-03-01 00:13:29"
+            "time": "2017-03-01T00:13:29+00:00"
         },
         {
             "name": "seld/jsonlint",
@@ -2573,7 +2569,7 @@
                 "parser",
                 "validator"
             ],
-            "time": "2017-03-06 16:42:24"
+            "time": "2017-03-06T16:42:24+00:00"
         },
         {
             "name": "seld/phar-utils",
@@ -2617,7 +2613,7 @@
             "keywords": [
                 "phra"
             ],
-            "time": "2015-10-13 18:44:15"
+            "time": "2015-10-13T18:44:15+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",
@@ -2695,7 +2691,7 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2017-03-01 22:17:45"
+            "time": "2017-03-01T22:17:45+00:00"
         },
         {
             "name": "symfony/finder",
@@ -2744,7 +2740,7 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "time": "2017-02-21 09:12:04"
+            "time": "2017-02-21T09:12:04+00:00"
         },
         {
             "name": "symfony/process",
@@ -2793,7 +2789,7 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
-            "time": "2017-03-04 12:23:14"
+            "time": "2017-03-04T12:23:14+00:00"
         },
         {
             "name": "symfony/var-dumper",
@@ -2859,7 +2855,7 @@
                 "debug",
                 "dump"
             ],
-            "time": "2017-02-20 13:45:48"
+            "time": "2017-02-20T13:45:48+00:00"
         }
     ],
     "aliases": [
