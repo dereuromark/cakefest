@@ -43,7 +43,7 @@ script:
   - if [ '$COVERALLS' = '1' ]; then php vendor/bin/coveralls -c .coveralls.yml -v; fi
   - if [ '$DEFAULT' = '1' ]; then vendor/bin/phpunit; fi
   - if [[ $PHPCS == 1 ]]; then vendor/bin/phpcs -p --extensions=php --standard=vendor/fig-r/psr2r-sniffer/PSR2R/ruleset.xml --ignore=vendor/,docs/,config/Migrations/ -v . ; fi
-  - if [[ $PHPCS == 1 ]]; then bin/cake annotations all -f -d --cli -v ; fi
+  - if [[ $PHPCS == 1 ]]; then bin/cake annotations all -f -d --ci -v ; fi
 
 notifications:
   email: false

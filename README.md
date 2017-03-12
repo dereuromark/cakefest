@@ -16,7 +16,7 @@ Join in and tell others about your planned trip to the conference, and maybe wha
 
 ## Dependencies
 
-* CakePHP 3.3+
+* CakePHP 3.4+
 * FriendsOfCake/Authenticate and FriendsOfCake/Search plugin
 * My Tools, Geo, TinyAuth and Setup plugins
 * Uses Migrations plugin for DB migration
